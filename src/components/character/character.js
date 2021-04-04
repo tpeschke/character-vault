@@ -8,23 +8,25 @@ class Character extends Component {
 
         this.state = {
             downloadMode: props.match.path === "/download/:character",
-            character: props.match.params.character
+            character: props.match.params.character.split('.')[0]
         }
     }
 
-    componentWillMount() {
-        console.log(this.state.downloadMode, this.state.character)
-    }
-
     render() {
-        let { downloadMode } = this.state
+        let { downloadMode, character } = this.state
         return (
-            <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
-                <div className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
+            <div>
+                <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
+                    <div className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
+                        <p className="nameLocation">{character}</p>
+                    </div>
+                    <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
 
+                    </div>
                 </div>
-                <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
-
+                <div className={downloadMode ? 'removeDownloadButton' : 'downloadButton'}>
+                    {/* ADD LOADING INDICATOR */}
+                    <a href={`http://localhost:4000/${character}.pdf`} download>Download</a>
                 </div>
             </div>
         )

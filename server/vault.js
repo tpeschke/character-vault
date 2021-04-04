@@ -9,10 +9,10 @@ const app = new express();
 app.use(bodyParser.json());
 app.use(cors())
 
-app.get('/*.pdf', async function (req, res) {
+app.get('/:character', async function (req, res) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("http://localhost:3000/download/character", {
+    await page.goto(`http://localhost:3000/download/${req.params.character}`, {
      waitUntil: "networkidle2"
     });
     pdf = await page.pdf({

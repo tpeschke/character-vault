@@ -13,6 +13,16 @@
     padding: 15px 0;
 }
 
+.removeDownloadButton {
+    display: none;
+}
+
+.downloadButton {
+    position: sticky;
+    bottom: 5px;
+    margin-left: 5px
+}
+
 .pageBase {
     height: 1056px;
     width: 816px;
@@ -21,6 +31,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+    position: relative;
 }
 
 .pageViewStylings {
@@ -39,4 +50,13 @@
 .pageTwoMargin {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.pageBase p {
+    position: absolute;
+}
+
+.nameLocation {
+    left: 123px;
+    top: 5px;
 }
