@@ -26,6 +26,10 @@
     color: white
 }
 
+.fa-file-download:hover {
+    color: purple
+}
+
 .pageBase {
     height: 1056px;
     width: 816px;

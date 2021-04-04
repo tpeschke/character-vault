@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import CharacterViewer from './components/character-viewer/character-viewer';
 import Character from './components/character/character'
 import Header from './components/header/header'
-import Home from './components/home'
+import Home from './components/home/home'
 
 export default class Routes extends Component {
     render() {
@@ -11,10 +11,10 @@ export default class Routes extends Component {
             <div>
                 <Switch>
                     <Route
-                        path='/view/:character'
+                        path='/view/:id'
                         component={Header(CharacterViewer)} />
                     <Route
-                        path='/download/:character'
+                        path='/download/:id'
                         component={Character} />
                     <Route
                         exact path='*'

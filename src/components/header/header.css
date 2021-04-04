@@ -1,0 +1,17 @@
+.headerShell {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.fa-home {
+    font-size: 35px;
+    color: black
+}
+
+.fa-home:hover {
+    color: purple;
+    cursor: pointer;
+}
