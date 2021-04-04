@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './character-viewer.css'
 import Character from '../character/character.js'
 

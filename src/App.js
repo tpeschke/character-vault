@@ -1,14 +1,12 @@
 import './App.css';
-import CharacterViewer from './components/character-viewer/character-viewer'
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from './Routes'
 
 function App() {
   return (
-    <div>
-      <header>
-        <p>Bonfire Character Vault (beta)</p>
-      </header>
-      <CharacterViewer/>
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
 

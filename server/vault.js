@@ -12,7 +12,7 @@ app.use(cors())
 app.get('/*.pdf', async function (req, res) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("http://localhost:3000?download=true", {
+    await page.goto("http://localhost:3000/download/character", {
      waitUntil: "networkidle2"
     });
     pdf = await page.pdf({
