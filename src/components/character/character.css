@@ -22,11 +22,11 @@
 }
 
 .pageOne {
-    background-image: url("../assets/page1.png");
+    background-image: url("../../assets/page1.png");
 }
 
 .pageTwo {
-    background-image: url("../assets/page2.png");
+    background-image: url("../../assets/page2.png");
     margin-top: 15px;
     margin-bottom: 15px;
 }

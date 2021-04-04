@@ -1,5 +1,5 @@
 import './App.css';
-import CharacterViewer from './components/character-viewer'
+import CharacterViewer from './components/character-viewer/character-viewer'
 
 function App() {
   return (

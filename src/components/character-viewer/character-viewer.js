@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './character-viewer.css'
-import Character from './character.js'
+import Character from '../character/character.js'
 
 const downloadCharacter = async () => {
     let link = document.createElement('a')
