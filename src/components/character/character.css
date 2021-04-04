@@ -130,6 +130,27 @@ input.nameLocation {
     width: 271px;
 }
 
+input.raceLocation {
+    top: 43px;
+    width: 68px;
+}
+
+input.levelLocation {
+    top: 43px;
+    left: 470px;
+    width: 51px;
+}
+
+input.primaryLocation {
+    top: 43px;
+    width: 101px;
+}
+
+input.secondaryLocation {
+    top: 43px;
+    width: 127px;
+}
+
 @media(max-width: 900px) {
     .fa-file-download, .fa-edit, .fa-save {
         color: black;

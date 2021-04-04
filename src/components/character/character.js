@@ -26,31 +26,23 @@ class Character extends Component {
         this.setState({ isEditingMode: !this.state.isEditingMode })
     }
 
+    updateCharacter = (character) => {
+
+    }
+
     render() {
         let { downloadMode, character, isEditingMode } = this.state
         if (!character) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
-        let { name, id } = character
-
-        let view = <CharacterViewer character={character} downloadMode={downloadMode} />
-        let bottomButtons = (<div className={downloadMode ? 'removeButtons' : 'Buttons'}>
-            {/* ADD LOADING INDICATOR */}
-            <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
-            <i onClick={this.changeEditStatus} className="fas fa-edit"></i>
-        </div>)
+        let view = <CharacterViewer character={character} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
 
         if (isEditingMode) {
-            view = <CharacterEditor character={character} />
-            bottomButtons = (<div className={downloadMode ? 'removeButtons' : 'Buttons'}>
-                <div></div>
-                <i onClick={this.changeEditStatus} className="fas fa-save"></i>
-            </div>)
+            view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} downloadMode={downloadMode}/>
         }
         return (
             <div id="loaded">
                 {view}
-                {bottomButtons}
             </div>
         )
     }
