@@ -1,0 +1,32 @@
+#pdf {
+    height: 1056px;
+    width: 816px;
+    margin: 5px auto;
+}
+
+.pdfBackground {
+    background-color: grey;
+    padding: 15px 0;
+}
+
+.pageBase {
+    height: 1056px;
+    width: 816px;
+    background-color: white;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.pageOne {
+    background-image: url("../assets/page1.png");
+}
+
+.pageTwo {
+    background-image: url("../assets/page2.png");
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
