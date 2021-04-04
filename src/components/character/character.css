@@ -1,7 +1,5 @@
 #pdf {
-    height: 1056px;
     width: 816px;
-    
 }
 
 .pdfViewStylings {
@@ -19,8 +17,13 @@
 
 .downloadButton {
     position: sticky;
-    bottom: 5px;
-    margin-left: 5px
+    bottom: 10px;
+    margin-left: 10px
+}
+
+.fa-file-download {
+    font-size: 35px;
+    color: white
 }
 
 .pageBase {
@@ -30,7 +33,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
     position: relative;
 }
 
@@ -59,4 +61,10 @@
 .nameLocation {
     left: 123px;
     top: 5px;
+}
+
+@media(max-width: 900px) {
+    .fa-file-download {
+        color: black
+    }
 }

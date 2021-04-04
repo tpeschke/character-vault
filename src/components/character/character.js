@@ -26,7 +26,7 @@ class Character extends Component {
                 </div>
                 <div className={downloadMode ? 'removeDownloadButton' : 'downloadButton'}>
                     {/* ADD LOADING INDICATOR */}
-                    <a href={`http://localhost:4000/${character}.pdf`} download>Download</a>
+                    <a href={`http://localhost:4000/${character}.pdf`} download><i className="fas fa-file-download fa-lg"></i></a>
                 </div>
             </div>
         )
