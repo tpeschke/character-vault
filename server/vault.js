@@ -35,6 +35,14 @@ let dummyData = {
     level: 5
   }
 }
+
+app.get('/api/characters', function(req, res) {
+  let dummyDataArray = []
+  for(character in dummyData) {
+    dummyDataArray.push(dummyData[character])
+  }
+  res.send(dummyDataArray)
+})
 app.get('/api/view/:id', function(req, res){
   let {id} = req.params
   res.send(dummyData[id])

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import CharacterViewer from './components/character-viewer/character-viewer';
 import Character from './components/character/character'
 import Header from './components/header/header'
 import Home from './components/home/home'
@@ -12,7 +11,7 @@ export default class Routes extends Component {
                 <Switch>
                     <Route
                         path='/view/:id'
-                        component={Header(CharacterViewer)} />
+                        component={Header(Character)} />
                     <Route
                         path='/download/:id'
                         component={Character} />

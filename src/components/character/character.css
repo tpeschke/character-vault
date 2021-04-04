@@ -26,7 +26,7 @@
 }
 
 .pdfViewStylings {
-    margin: 5px auto;
+    margin: 35px auto 0;
 }
 
 .pdfBackground {
@@ -34,22 +34,31 @@
     padding: 15px 0;
 }
 
-.removeDownloadButton {
+.removeButtons {
     display: none;
 }
 
-.downloadButton {
+.Buttons {
+    position: sticky;
+    bottom: 10px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editButton {
     position: sticky;
     bottom: 10px;
     margin-left: 10px
 }
 
-.fa-file-download {
+.fa-file-download, .fa-edit, .fa-save {
     font-size: 35px;
     color: white
 }
 
-.fa-file-download:hover {
+.fa-file-download:hover, .fa-edit:hover, .fa-save:hover {
     color: purple
 }
 
@@ -81,17 +90,48 @@
     margin-bottom: 15px;
 }
 
-.pageBase p {
+.pageBase p, .pageBase input {
     position: absolute;
+    font-size: 13px;
 }
 
 .nameLocation {
     left: 123px;
-    top: 5px;
+    top: 7px;
+}
+
+.raceLocation {
+    left: 53px;
+    top: 31px;
+}
+
+.levelLocation {
+    left: 489px;
+    top: 31px;
+}
+
+.primaryLocation {
+    left: 195px;
+    top: 31px;
+}
+
+.secondaryLocation {
+    left: 319px;
+    top: 31px;
+}
+
+input {
+    background: rgba(173, 216, 230, 0.50);
+    border: none;
+}
+
+input.nameLocation {
+    top: 20px;
+    width: 271px;
 }
 
 @media(max-width: 900px) {
-    .fa-file-download {
-        color: black
+    .fa-file-download, .fa-edit, .fa-save {
+        color: black;
     }
 }
