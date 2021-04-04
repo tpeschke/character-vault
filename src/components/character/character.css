@@ -1,6 +1,10 @@
 #pdf {
     height: 1056px;
     width: 816px;
+    
+}
+
+.pdfViewStylings {
     margin: 5px auto;
 }
 
@@ -13,12 +17,15 @@
     height: 1056px;
     width: 816px;
     background-color: white;
-    -webkit-box-shadow: 5px 5px 15px 5px #000000;
-    box-shadow: 5px 5px 15px 5px #000000;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+}
+
+.pageViewStylings {
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
 }
 
 .pageOne {
@@ -27,6 +34,9 @@
 
 .pageTwo {
     background-image: url("../../assets/page2.png");
+}
+
+.pageTwoMargin {
     margin-top: 15px;
     margin-bottom: 15px;
 }
