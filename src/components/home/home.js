@@ -24,12 +24,12 @@ export default class Home extends Component {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
         
-        let characterList = characters.map(({name, race, primary, secondary, level, id}) => {
+        let characterList = characters.map(({name, race, primarya, secondarya, level, id}) => {
             return (
                 <Link className="character" key={id} to={`/view/${id}`}>
                     <p>{name}</p>
                     <p>{race}</p>
-                    <p>{primary}/{secondary}</p>
+                    <p>{primarya}/{secondarya}</p>
                     <p>Level: {level}</p>
                 </Link>
             )

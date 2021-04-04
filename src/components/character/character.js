@@ -36,7 +36,7 @@ class Character extends Component {
         let view = <CharacterViewer character={character} downloadMode={downloadMode} />
         let bottomButtons = (<div className={downloadMode ? 'removeButtons' : 'Buttons'}>
             {/* ADD LOADING INDICATOR */}
-            <a href={`http://localhost:4000/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
+            <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
             <i onClick={this.changeEditStatus} className="fas fa-edit"></i>
         </div>)
 
