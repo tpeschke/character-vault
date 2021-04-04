@@ -23,7 +23,7 @@ class Character extends Component {
     render() {
         let { downloadMode, character } = this.state
         if (!character) {
-            return (<div>loading...</div>)
+            return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
         let { name, id } = character
         return (
