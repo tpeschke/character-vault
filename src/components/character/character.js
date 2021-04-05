@@ -13,6 +13,8 @@ class Character extends Component {
             character: null,
             isEditingMode: false
         }
+
+        this.updateCharacter = this.updateCharacter.bind(this)
     }
 
     componentWillMount() {
@@ -26,8 +28,10 @@ class Character extends Component {
         this.setState({ isEditingMode: !this.state.isEditingMode })
     }
 
-    updateCharacter = (character) => {
-
+    updateCharacter = function (character) {
+        axios.post('/api/upsertCharacter', character).then(data => {
+            this.setState({character, isEditingMode: !this.state.isEditingMode})
+        })
     }
 
     render() {

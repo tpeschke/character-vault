@@ -3,6 +3,7 @@ const express = require('express')
   , bodyParser = require('body-parser')
   , cors = require('cors')
   , viewCtrl = require('./viewController')
+  , editCtrl = require('./editorController')
   , config = require('./server-config')
   , massive = require('massive')
 const path = require('path');
@@ -16,6 +17,8 @@ app.use(config.fakeAuth)
 app.get('/api/characters', viewCtrl.viewUsersCharacters)
 app.get('/api/view/:id', viewCtrl.viewCharacter)
 app.get('/api/download/:id', viewCtrl.downloadCharacters);
+
+app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './index.html'));

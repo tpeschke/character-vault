@@ -1,36 +1,5 @@
 const puppeteer = require('puppeteer')
 
-let dummyData = {
-  1: {
-    id: 1,
-    name: "Luke",
-    race: "Human",
-    primary: "Thief",
-    secondary: "Fighter",
-    level: 2
-  },
-  2: {
-    id: 2,
-    name: "Martin",
-    race: "Minotaur",
-    primary: "Champion",
-    secondary: "Assassin",
-    level: 20
-  },
-  3: {
-    id: 3,
-    name: "Riley",
-    race: "Changeling",
-    primary: "Runegalder",
-    secondary: "Runegalder",
-    level: 5
-  }
-}
-
-function getCharacterName(req, res) {
-  return dummyData[req.params.id.split('.')[0]].name
-}
-
 module.exports = {
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
