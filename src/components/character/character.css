@@ -120,6 +120,83 @@
     top: 31px;
 }
 
+.crpLocation {
+    left: 545px;
+    top: 31px;
+    width: 51px;
+    text-align: center;
+}
+
+.excurrentLocation {
+    left: 319px;
+    top: 53px;
+    width: 127px;
+    text-align: center;
+}
+
+.drawbackLocation {
+    left: 145px;
+    top: 74px;
+}
+
+.strLocation {
+    left: 20px;
+    top: 160px;
+    width: 48px;
+    text-align: center;
+}
+.dexLocation {
+    left: 20px;
+    top: 181px;
+    width: 48px;
+    text-align: center;
+}
+.conLocation {
+    left: 20px;
+    top: 202px;
+    width: 48px;
+    text-align: center;
+}
+.intLocation {
+    left: 20px;
+    top: 223px;
+    width: 48px;
+    text-align: center;
+}
+.wisLocation {
+    left: 20px;
+    top: 244px;
+    width: 48px;
+    text-align: center;
+}
+.chaLocation {
+    left: 20px;
+    top: 265px;
+    width: 48px;
+    text-align: center;
+}
+
+.honorLocation {
+    left: 20px;
+    top: 330px;
+    width: 48px;
+    text-align: center;
+}
+
+.stressthresholdLocation {
+    top: 476px;
+    left: 546px;
+    width: 74px;
+    text-align: center;
+}
+
+.favormaxLocation {
+    top: 538px;
+    left: 521px;
+    width: 50px;
+    text-align: center; 
+}
+
 input {
     background: rgba(173, 216, 230, 0.50);
     border: none;
@@ -137,7 +214,6 @@ input.raceLocation {
 
 input.levelLocation {
     top: 43px;
-    left: 470px;
     width: 51px;
 }
 
@@ -149,6 +225,52 @@ input.primaryLocation {
 input.secondaryLocation {
     top: 43px;
     width: 127px;
+}
+
+input.crpLocation {
+    top: 43px;
+    width: 51px;
+}
+
+input.excurrentLocation {
+    top: 66px;
+    width: 127px;
+}
+
+input.drawbackLocation {
+    top: 87px;
+    width: 301px
+}
+
+input.strLocation {
+    top: 171px;
+}
+input.dexLocation {
+    top: 192px;
+}
+input.conLocation {
+    top: 213px;
+}
+input.intLocation {
+    top: 234px;
+}
+input.wisLocation {
+    top: 255px;
+}
+input.chaLocation {
+    top: 276px;
+}
+
+input.honorLocation {
+    top: 342px;
+}
+
+input.stressthresholdLocation {
+    top: 488px;
+}
+
+input.favormaxLocation {
+    top: 551px;
 }
 
 @media(max-width: 900px) {

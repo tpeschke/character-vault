@@ -8,5 +8,15 @@ create table cvcharactermain (
     level int
 )
 
+alter table cvcharactermain 
+add column crp int, 
+add column excurrent int, 
+add column str int, add column dex int, add column con int, add column wis int, add column cha int, add column int int, 
+add column honor int, 
+add column drawback varchar(350), 
+add column stressthreshold int, 
+add column favormax int, 
+add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10);
+
 insert into cvcharactermain (userid, name, race, primarya, secondarya, level) values 
 (1, 'Luke', 'Human', 'Theif', 'Fighter', 2), (1, 'Martin', 'Minotaur', 'Champion', 'Assassin', 20), (1, 'Riley', 'Changeling', 'Runegalder', 'Runegalder', 5)

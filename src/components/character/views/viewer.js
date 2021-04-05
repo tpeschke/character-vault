@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, level } = props.character
+    let { name, id, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int  } = props.character
     let { downloadMode, changeEditStatus } = props
     return (
         <div>
@@ -12,6 +12,21 @@ export default function CharacterViewer(props) {
                     <p className="primaryLocation">{primarya}</p>
                     <p className="secondaryLocation">{secondarya}</p>
                     <p className="levelLocation">{level}</p>
+                    <p className="crpLocation">{crp}</p>
+                    <p className="excurrentLocation">{excurrent}</p>
+                    <p className="drawbackLocation">{drawback}</p>
+
+                    <p className="strLocation">{str}</p>
+                    <p className="dexLocation">{dex}</p>
+                    <p className="conLocation">{con}</p>
+                    <p className="intLocation">{int}</p>
+                    <p className="wisLocation">{wis}</p>
+                    <p className="chaLocation">{cha}</p>
+
+                    <p className="honorLocation">{honor}</p>
+
+                    <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
+                    <p className="favormaxLocation">{favormax}</p>
                 </div>
                 <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
 
