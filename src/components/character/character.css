@@ -95,29 +95,55 @@
     font-size: 13px;
 }
 
+input {
+    background: rgba(173, 216, 230, 0.50);
+    border: none;
+}
+
 .nameLocation {
     left: 123px;
     top: 7px;
+}
+input.nameLocation {
+    top: 20px;
+    width: 271px;
 }
 
 .raceLocation {
     left: 53px;
     top: 31px;
 }
+input.raceLocation {
+    top: 43px;
+    width: 68px;
+}
 
 .levelLocation {
     left: 489px;
     top: 31px;
+}
+input.levelLocation {
+    top: 43px;
+    left: 470px;
+    width: 51px;
 }
 
 .primaryLocation {
     left: 195px;
     top: 31px;
 }
+input.primaryLocation {
+    top: 43px;
+    width: 101px;
+}
 
 .secondaryLocation {
     left: 319px;
     top: 31px;
+}
+input.secondaryLocation {
+    top: 43px;
+    width: 127px;
 }
 
 .crpLocation {
@@ -126,6 +152,10 @@
     width: 51px;
     text-align: center;
 }
+input.crpLocation {
+    top: 43px;
+    width: 51px;
+}
 
 .excurrentLocation {
     left: 319px;
@@ -133,10 +163,18 @@
     width: 127px;
     text-align: center;
 }
+input.excurrentLocation {
+    top: 66px;
+    width: 127px;
+}
 
 .drawbackLocation {
     left: 145px;
     top: 74px;
+}
+input.drawbackLocation {
+    top: 87px;
+    width: 301px
 }
 
 .strLocation {
@@ -175,73 +213,6 @@
     width: 48px;
     text-align: center;
 }
-
-.honorLocation {
-    left: 20px;
-    top: 330px;
-    width: 48px;
-    text-align: center;
-}
-
-.stressthresholdLocation {
-    top: 476px;
-    left: 546px;
-    width: 74px;
-    text-align: center;
-}
-
-.favormaxLocation {
-    top: 538px;
-    left: 521px;
-    width: 50px;
-    text-align: center; 
-}
-
-input {
-    background: rgba(173, 216, 230, 0.50);
-    border: none;
-}
-
-input.nameLocation {
-    top: 20px;
-    width: 271px;
-}
-
-input.raceLocation {
-    top: 43px;
-    width: 68px;
-}
-
-input.levelLocation {
-    top: 43px;
-    width: 51px;
-}
-
-input.primaryLocation {
-    top: 43px;
-    width: 101px;
-}
-
-input.secondaryLocation {
-    top: 43px;
-    width: 127px;
-}
-
-input.crpLocation {
-    top: 43px;
-    width: 51px;
-}
-
-input.excurrentLocation {
-    top: 66px;
-    width: 127px;
-}
-
-input.drawbackLocation {
-    top: 87px;
-    width: 301px
-}
-
 input.strLocation {
     top: 171px;
 }
@@ -261,18 +232,106 @@ input.chaLocation {
     top: 276px;
 }
 
+.honorLocation {
+    left: 20px;
+    top: 330px;
+    width: 48px;
+    text-align: center;
+}
 input.honorLocation {
     top: 342px;
 }
 
+.takingabreatherLocation {
+    top: 423px;
+    left: 546px;
+    width: 74px;
+    text-align: center;
+}
+
+.stressthresholdLocation {
+    top: 476px;
+    left: 546px;
+    width: 74px;
+    text-align: center;
+}
 input.stressthresholdLocation {
     top: 488px;
 }
 
+.favormaxLocation {
+    top: 538px;
+    left: 521px;
+    width: 50px;
+    text-align: center; 
+}
 input.favormaxLocation {
     top: 551px;
 }
 
+.sizemodLocation {
+    top: 813px;
+    width: 48px;
+    left: 524px;
+    text-align: center;
+}
+input.sizemodLocation {
+    top: 824px;
+}
+
+.criticalLocation {
+    top: 601px;    
+    left: 722px;
+    width: 74px;
+    text-align: center;
+}
+input.criticalLocation {
+    top: 614px; 
+}
+.hurtLocation {
+    top: 601px;    
+    left: 479px;
+    width: 74px;
+    text-align: center;
+}
+.bloodiedLocation {
+    top: 601px;    
+    left: 555px;
+    width: 74px;
+    text-align: center;
+}
+.woundedLocation {
+    top: 601px;    
+    left: 630px;
+    width: 74px;
+    text-align: center;
+}
+
+.traumaLocation {
+    top: 642px;
+    left: 621px;
+    width: 74px;
+    text-align: center;
+}
+.vitalityrollLocation {
+    top: 813px;
+    width: 47px;
+    left: 599px;
+    text-align: center;
+}
+input.vitalityrollLocation {
+    top: 824px;
+}
+
+.vitalitydiceLocation {
+    top: 813px;
+    width: 36px;
+    left: 685px;
+    text-align: center;
+}
+input.vitalitydiceLocation {
+    top: 824px;
+}
 @media(max-width: 900px) {
     .fa-file-download, .fa-edit, .fa-save {
         color: black;

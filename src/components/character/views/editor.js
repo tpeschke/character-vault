@@ -32,6 +32,11 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
 
                     <input className="stressthresholdLocation" type="number" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
+
+                    <input className="criticalLocation" type="number" defaultValue={vitality} onChange={event => updateAttribute(event.target.value, "vitality")} />
+                    <input className="sizemodLocation" type="number" defaultValue={sizemod} onChange={event => updateAttribute(event.target.value, "sizemod")} />
+                    <input className="vitalityrollLocation" type="number" defaultValue={vitalityroll} onChange={event => updateAttribute(event.target.value, "vitalityroll")} />
+                    <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => updateAttribute(event.target.value, "vitalitydice")} />
                 </div>
                 <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
 
