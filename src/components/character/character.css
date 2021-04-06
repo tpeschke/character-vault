@@ -95,9 +95,11 @@
     font-size: 13px;
 }
 
-input {
+input, textarea {
     background: rgba(173, 216, 230, 0.50);
     border: none;
+    position: relative;
+    font-size: 13px;
 }
 
 .nameLocation {
@@ -169,12 +171,23 @@ input.excurrentLocation {
 }
 
 .drawbackLocation {
-    left: 145px;
+    left: 20px;
     top: 74px;
+    text-indent: 123px;
+    width: 426px;
 }
-input.drawbackLocation {
+.textArea {
+    left: 20px;
+    width: 426px;
+    max-width: 426px;
+    min-width: 426px;
+    max-height: 62px;
+    min-height: 62px;
+    text-indent: 122px;
+    overflow: hidden;
+}
+textarea.drawbackLocation {
     top: 87px;
-    width: 301px
 }
 
 .strLocation {

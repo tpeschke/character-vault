@@ -19,7 +19,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="levelLocation" type="number" defaultValue={level} onChange={event => updateAttribute(event.target.value, "level")}  />
                     <input className="crpLocation" type="number" defaultValue={crp} onChange={event => updateAttribute(event.target.value, "crp")}  />
                     <input className="excurrentLocation" type="number" defaultValue={excurrent} onChange={event => updateAttribute(event.target.value, "excurrent")}  />
-                    <input className="drawbackLocation" type="text" defaultValue={drawback} onChange={event => updateAttribute(event.target.value, "drawback")}  />
+                    <textarea className="drawbackLocation textArea" defaultValue={drawback} onChange={event => updateAttribute(event.target.value, "drawback")} maxLength="165"></textarea>
 
                     <input className="strLocation" type="number" defaultValue={str} onChange={event => updateAttribute(event.target.value, "str")}  />
                     <input className="dexLocation" type="number" defaultValue={dex} onChange={event => updateAttribute(event.target.value, "dex")}  />
