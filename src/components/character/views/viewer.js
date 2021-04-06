@@ -1,39 +1,5 @@
 import React from 'react'
 
-function calculateLeft (honor) {
-    let left = '0'
-    if (honor < 6) {
-        left = '141px'
-    } else if (honor < 11) {
-        left = '190px'
-    } else if (honor < 16) {
-        left = '239px'
-    } else if (honor < 21) {
-        left = '289px'
-    } else {
-        left = '340px'
-    }
-    return left
-}
-
-function calculateHumanHonorDice (race, honor) {
-    if (race.toUpperCase().trim() === "HUMAN") {
-        if (honor < 6) {
-            return (<div></div>)
-        } else if (honor < 11) {
-            return (<div className="circle-fill">d6!</div>)
-        } else if (honor < 16) {
-            return (<div className="circle-fill">d8!</div>)
-        } else if (honor < 21) {
-            return (<div className="circle-fill">d10!</div>)
-        } else {
-            return (<div className="circle-fill">d12!</div>)
-        }
-    } else {
-        return (<div></div>)
-    }
-}
-
 export default function CharacterViewer(props) {
     let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
@@ -72,7 +38,7 @@ export default function CharacterViewer(props) {
 
                     <p className="honorLocation">{shownHonor}</p>
                     <p className="extrahonordiceLocation">{extrahonordice}</p>
-                    <div className="circle" style={{left}}>{circleFill}</div>
+                    <div className="circle" style={{ left }}>{circleFill}</div>
 
                     <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con}</p>
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
@@ -100,9 +66,48 @@ export default function CharacterViewer(props) {
             </div>
             <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
                 {/* ADD LOADING INDICATOR */}
-                <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
-                <i onClick={changeEditStatus} className="fas fa-edit"></i>
+                <div className="left-corner-button corner-button">
+                    <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
+                </div>
+                <div className="right-corner-button corner-button">
+                    <i onClick={changeEditStatus} className="fas fa-edit"></i>
+                </div>
             </div>
         </div>
     )
+}
+
+
+function calculateLeft(honor) {
+    let left = '0'
+    if (honor < 6) {
+        left = '141px'
+    } else if (honor < 11) {
+        left = '190px'
+    } else if (honor < 16) {
+        left = '239px'
+    } else if (honor < 21) {
+        left = '289px'
+    } else {
+        left = '340px'
+    }
+    return left
+}
+
+function calculateHumanHonorDice(race, honor) {
+    if (race.toUpperCase().trim() === "HUMAN") {
+        if (honor < 6) {
+            return (<div></div>)
+        } else if (honor < 11) {
+            return (<div className="circle-fill">d6!</div>)
+        } else if (honor < 16) {
+            return (<div className="circle-fill">d8!</div>)
+        } else if (honor < 21) {
+            return (<div className="circle-fill">d10!</div>)
+        } else {
+            return (<div className="circle-fill">d12!</div>)
+        }
+    } else {
+        return (<div></div>)
+    }
 }

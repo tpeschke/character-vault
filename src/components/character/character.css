@@ -40,11 +40,38 @@
 
 .Buttons {
     position: sticky;
-    bottom: 10px;
-    margin: 0 10px;
     display: flex;
+    bottom: 0px;
     justify-content: space-between;
     align-items: center;
+}
+
+.corner-button {
+    position: relative;
+    background-color: whitesmoke;
+    height: 50px;
+    width: 50px;
+}
+
+.left-corner-button {
+    border-top-right-radius: 50px;
+}
+
+.left-corner-button i {
+    position: absolute;
+    bottom: 10px;
+    left: 5px
+}
+
+.right-corner-button {
+    position: relative;
+    border-top-left-radius: 50px;
+}
+
+.right-corner-button i {
+    position: absolute;
+    bottom: 5px;
+    right: 5px
 }
 
 .editButton {
@@ -54,8 +81,8 @@
 }
 
 .fa-file-download, .fa-edit, .fa-save {
-    font-size: 35px;
-    color: white
+    font-size: 30px;
+    color: grey
 }
 
 .fa-file-download:hover, .fa-edit:hover, .fa-save:hover {
@@ -528,5 +555,9 @@ input.vitalitydiceLocation {
 @media(max-width: 900px) {
     .fa-file-download, .fa-edit, .fa-save {
         color: black;
+    }
+
+    .corner-button {
+        background: transparent
     }
 }
