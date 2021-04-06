@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int  } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int  } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let { downloadMode, changeEditStatus } = props
     return (
@@ -11,7 +11,9 @@ export default function CharacterViewer(props) {
                     <p className="nameLocation">{name}</p>
                     <p className="raceLocation">{race}</p>
                     <p className="primaryLocation">{primarya}</p>
+                    <p className="primarylevelLocation">({primarylevel})</p>
                     <p className="secondaryLocation">{secondarya}</p>
+                    <p className="secondarylevelLocation">({secondarylevel})</p>
                     <p className="levelLocation">{level}</p>
                     <p className="crpLocation">{crp}</p>
                     <p className="excurrentLocation">{excurrent}</p>

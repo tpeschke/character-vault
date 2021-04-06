@@ -136,7 +136,17 @@ input.levelLocation {
 }
 input.primaryLocation {
     top: 43px;
-    width: 101px;
+    width: 86px;
+}
+
+.primarylevelLocation {
+    left:276px;
+    top: 31px;
+}
+input.primarylevelLocation {
+    left: 282px;
+    top: 43px;
+    width: 35px;
 }
 
 .secondaryLocation {
@@ -145,9 +155,18 @@ input.primaryLocation {
 }
 input.secondaryLocation {
     top: 43px;
-    width: 127px;
+    width: 93px;
 }
 
+.secondarylevelLocation {
+    left: 420px;
+    top: 31px;
+}
+input.secondarylevelLocation {
+    left: 413px;
+    top: 43px;
+    width: 35px;
+}
 .crpLocation {
     left: 545px;
     top: 31px;

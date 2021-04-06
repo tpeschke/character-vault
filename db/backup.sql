@@ -4,13 +4,13 @@ create table cvcharactermain (
     name varchar(250),
     race varchar(150),
     primaryA varchar(150),
-    secondaryA VARCHAR(150),
-    level int
+    secondaryA VARCHAR(150)
 )
 
 alter table cvcharactermain 
 add column crp int, 
 add column excurrent int, 
+add column primarylevel int, add column secondarylevel int,
 add column str int, add column dex int, add column con int, add column wis int, add column cha int, add column int int, 
 add column honor int, 
 add column drawback varchar(350), 

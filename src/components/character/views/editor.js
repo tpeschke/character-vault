@@ -7,7 +7,7 @@ function updateAttribute(value, type) {
 
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
-    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int } = characterCopy
+    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -15,7 +15,9 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="nameLocation" type="text" defaultValue={name} onChange={event => updateAttribute(event.target.value, "name")} />
                     <input className="raceLocation" type="text" defaultValue={race} onChange={event => updateAttribute(event.target.value, "race")}  />
                     <input className="primaryLocation" type="text" defaultValue={primarya} onChange={event => updateAttribute(event.target.value, "primarya")}  />
+                    <input className="primarylevelLocation" placeholder="lvl" type="number" defaultValue={primarylevel} onChange={event => updateAttribute(event.target.value, "primarylevel")}  />
                     <input className="secondaryLocation" type="text" defaultValue={secondarya} onChange={event => updateAttribute(event.target.value, "secondarya")}  />
+                    <input className="secondarylevelLocation" placeholder="lvl" type="number" defaultValue={secondarylevel} onChange={event => updateAttribute(event.target.value, "secondarylevel")}  />
                     <input className="levelLocation" type="number" defaultValue={level} onChange={event => updateAttribute(event.target.value, "level")}  />
                     <input className="crpLocation" type="number" defaultValue={crp} onChange={event => updateAttribute(event.target.value, "crp")}  />
                     <input className="excurrentLocation" type="number" defaultValue={excurrent} onChange={event => updateAttribute(event.target.value, "excurrent")}  />
