@@ -189,6 +189,13 @@ input.excurrentLocation {
     width: 127px;
 }
 
+.extolevelLocation {
+    left: 95px;
+    top: 53px;
+    width: 151px;
+    text-align: center;
+}
+
 .drawbackLocation {
     left: 20px;
     top: 74px;
