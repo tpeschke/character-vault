@@ -1,9 +1,46 @@
 import React from 'react'
 
+function calculateLeft (honor) {
+    let left = '0'
+    if (honor < 6) {
+        left = '141px'
+    } else if (honor < 11) {
+        left = '190px'
+    } else if (honor < 16) {
+        left = '239px'
+    } else if (honor < 21) {
+        left = '289px'
+    } else {
+        left = '340px'
+    }
+    return left
+}
+
+function calculateHumanHonorDice (race, honor) {
+    if (race.toUpperCase().trim() === "HUMAN") {
+        if (honor < 6) {
+            return (<div></div>)
+        } else if (honor < 11) {
+            return (<div className="circle-fill">d6!</div>)
+        } else if (honor < 16) {
+            return (<div className="circle-fill">d8!</div>)
+        } else if (honor < 21) {
+            return (<div className="circle-fill">d10!</div>)
+        } else {
+            return (<div className="circle-fill">d12!</div>)
+        }
+    } else {
+        return (<div></div>)
+    }
+}
+
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData  } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
+    let shownHonor = honor ? honor : chaData.honor
     let { downloadMode, changeEditStatus } = props
+    let left = calculateLeft(shownHonor)
+    let circleFill = calculateHumanHonorDice(race, shownHonor)
     return (
         <div>
             <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
@@ -33,9 +70,11 @@ export default function CharacterViewer(props) {
                     <p className="chaLocation">{cha}</p>
                     <p className="chaConfrontationLocation">{chaData.confrontation}</p>
 
-                    <p className="honorLocation">{honor ? honor : chaData.honor}</p>
+                    <p className="honorLocation">{shownHonor}</p>
+                    <p className="extrahonordiceLocation">{extrahonordice}</p>
+                    <div className="circle" style={{left}}>{circleFill}</div>
 
-                    <p className="takingabreatherLocation">{20 - con}</p>
+                    <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con}</p>
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
                     <p className="favormaxLocation">{favormax}</p>
                     <p className="favorminLocation">{chaData.favor}</p>
@@ -50,13 +89,13 @@ export default function CharacterViewer(props) {
                     <p className="vitalitydiceLocation">{vitalitydice}</p>
                 </div>
                 <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
-                <p className="strCarryLocation">{strData.carry}</p>
+                    <p className="strCarryLocation">{strData.carry}</p>
 
-                <p className="attackLocation">{dexData.attack+intData.attack} = {dexData.attack} + {intData.attack}</p>
-                <p className="defenseLocation">{dexData.defense+wisData.defense} = {dexData.defense} + {wisData.defense} </p>
-                <p className="initLocation">{dexData.init+wisData.init} = {dexData.init} + {wisData.init}</p>
-                <p className="strDamageLocation">{strData.damage}</p>
-                <p className="encumbLocation">{conData.encumb+wisData.encumb} = {conData.encumb} + {wisData.encumb}</p>
+                    <p className="attackLocation">{dexData.attack + intData.attack} = {dexData.attack} + {intData.attack}</p>
+                    <p className="defenseLocation">{dexData.defense + wisData.defense} = {dexData.defense} + {wisData.defense} </p>
+                    <p className="initLocation">{dexData.init + wisData.init} = {dexData.init} + {wisData.init}</p>
+                    <p className="strDamageLocation">{strData.damage}</p>
+                    <p className="encumbLocation">{conData.encumb + wisData.encumb} = {conData.encumb} + {wisData.encumb}</p>
                 </div>
             </div>
             <div className={downloadMode ? 'removeButtons' : 'Buttons'}>

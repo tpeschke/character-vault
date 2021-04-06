@@ -13,6 +13,7 @@ add column excurrent int,
 add column primarylevel int, add column secondarylevel int,
 add column str int, add column dex int, add column con int, add column wis int, add column cha int, add column int int, 
 add column honor int, 
+add column extrahonordice int
 add column drawback varchar(350), 
 add column stressthreshold int, 
 add column favormax int, 
