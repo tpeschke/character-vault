@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 
-module.exports = {
+viewController = {
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
     db.get.allUsersCharacters(req.user.id).then(data=> {
@@ -8,11 +8,15 @@ module.exports = {
     })
   },
   viewCharacter: function (req, res) {
+    viewController.assembleCharacter(req).then(character => {
+      res.send(character)
+    })
+  },
+  assembleCharacter: async function (req) {
     const db = req.app.get('db')
-    db.get.character(req.params.id).then(data=> {
+    return db.get.character(req.params.id).then(data=> {
       let character = data[0]
         , promiseArray = []
-
       promiseArray.push(db.get.stats.str(character.str).then(strData => {
         character.strData = strData[0]
         return true
@@ -38,12 +42,11 @@ module.exports = {
         return true
       }))
 
-      Promise.all(promiseArray).then(_=> {
-        res.send(character)
+      return Promise.all(promiseArray).then(_=> {
+        return character
       })
     })
   },
-  
   downloadCharacters: function (req, res) {
     const db = req.app.get('db')
     puppeteer.launch().then(browser => {
@@ -68,3 +71,5 @@ module.exports = {
     });
   }
 }
+
+module.exports = viewController
