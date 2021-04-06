@@ -222,36 +222,115 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
+.strConfrontationLocation {
+    left: 98px;
+    top: 160px;
+    width: 48px;
+    text-align: center;
+}
+.strCarryLocation {
+    left: 713px;
+    top: 476px;
+    width: 80px;
+    text-align: center;
+}
+.strDamageLocation {
+    left: 252px;
+    top: 607px;
+    width: 117px;
+    text-align: center;
+}
+
 .dexLocation {
     left: 20px;
     top: 181px;
     width: 48px;
     text-align: center;
 }
+.dexConfrontationLocation {
+    left: 98px;
+    top: 181px;
+    width: 48px;
+    text-align: center;
+}
+
+.attackLocation {
+    left: 254px;
+    top: 543px;
+    width: 116px;
+    text-align: center;
+}
+.defenseLocation {
+    left: 254px;
+    top: 563px;
+    width: 116px;
+    text-align: center;
+}
+.initLocation {
+    left: 254px;
+    top: 583px;
+    width: 116px;
+    text-align: center;
+}
+.encumbLocation {
+    left: 254px;
+    top: 626px;
+    width: 116px;
+    text-align: center;
+}
+
 .conLocation {
     left: 20px;
     top: 202px;
     width: 48px;
     text-align: center;
 }
+.conConfrontationLocation {
+    left: 98px;
+    top: 202px;
+    width: 48px;
+    text-align: center;
+}
+
 .intLocation {
     left: 20px;
     top: 223px;
     width: 48px;
     text-align: center;
 }
+.intConfrontationLocation {
+    left: 98px;
+    top: 223px;
+    width: 48px;
+    text-align: center;
+}
+
 .wisLocation {
     left: 20px;
     top: 244px;
     width: 48px;
     text-align: center;
 }
+.wisConfrontationLocation {
+    left: 98px;
+    top: 244px;
+    width: 48px;
+    text-align: center;
+}
+
 .chaLocation {
     left: 20px;
     top: 265px;
     width: 48px;
     text-align: center;
 }
+.chaConfrontationLocation {
+    left: 98px;
+    top: 265px;
+    width: 48px;
+    text-align: center;
+}
+
 input.strLocation {
     top: 171px;
 }
@@ -306,6 +385,13 @@ input.stressthresholdLocation {
 }
 input.favormaxLocation {
     top: 551px;
+}
+
+.favorminLocation {
+    top: 538px;
+    left: 571px;
+    width: 50px;
+    text-align: center; 
 }
 
 .sizemodLocation {
