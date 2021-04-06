@@ -10,7 +10,7 @@ function setToMax (value, max) {
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level} = req.body
+        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament} = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -34,8 +34,8 @@ module.exports = {
         wis = setToMax(wis, 20)
         cha = setToMax(cha, 20)
         honor = setToMax(honor, 25)
-        
-        db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level).then(_=>{
+
+        db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament).then(_=>{
             req.params.id = id
             assembleCharacter(req).then((character) => {
                 res.send(character)

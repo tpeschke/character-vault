@@ -411,9 +411,17 @@ input.chaLocation {
     width: 48px;
     text-align: center;
 }
-
 input.honorLocation {
     top: 342px;
+}
+
+.temperamentLocation {
+    left: 20px;
+    top: 372px;
+    width: 224px;
+}
+input.temperamentLocation {
+    top: 383px;
 }
 
 .extrahonordiceLocation {

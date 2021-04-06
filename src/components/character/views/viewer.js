@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor
     let { downloadMode, changeEditStatus } = props
@@ -39,8 +39,9 @@ export default function CharacterViewer(props) {
                     <p className="honorLocation">{shownHonor}</p>
                     <p className="extrahonordiceLocation">{extrahonordice}</p>
                     <div className="circle" style={{ left }}>{circleFill}</div>
+                    <p className="temperamentLocation">{temperament}</p>
 
-                    <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con}</p>
+                    <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
                     <p className="favormaxLocation">{favormax}</p>
                     <p className="favorminLocation">{chaData.favor}</p>
