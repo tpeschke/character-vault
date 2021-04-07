@@ -548,7 +548,6 @@ input.vitalitydiceLocation {
     text-align: center;
 }
 
-
 .contactsLocation {
     left: 20px;
     top: 750px;
@@ -564,7 +563,73 @@ input.vitalitydiceLocation {
     overflow: hidden;
 }
 textarea.contactsLocation {
-    top: 694px;
+    top: 635px;
+}
+
+.abilitiesoneLocation {
+    left: -406px;
+    top: 762px;
+    width: 250px;
+}
+.abilitiesonetextArea {
+    left: -406px;
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 165px;
+    min-height: 165px;
+    overflow: hidden;
+}
+textarea.abilitiesoneLocation {
+    top: 822px;
+}
+.abilitiesoneAdjustment {
+    left: 20px;
+    top: 877px;
+}
+
+.abilitiestwoLocation {
+    left: 272px;
+    top: 651px;
+    width: 273px;
+}
+.abilitiestwotextArea {
+    left: 272px;
+    width: 273px;
+    max-width: 273px;
+    min-width: 273px;
+    max-height: 165px;
+    min-height: 165px;
+    overflow: hidden;
+}
+textarea.abilitiestwoLocation {
+    top: 651px;
+}
+.abilitiestwoAdjustment {
+    left: 272px;
+    top: 877px;
+}
+
+.abilitiesthreeLocation {
+    left: 274px;
+    top: 612px;
+    width: 249px;
+}
+.abilitiesthreetextArea {
+    left: 274px;
+    width: 249px;
+    max-width: 249px;
+    min-width: 249px;
+    max-height: 126px;
+    min-height: 126px;
+    overflow: hidden;
+}
+textarea.abilitiesthreeLocation {
+    top: 612px;
+}
+.abilitiesthreeAdjustment {
+    left: 547px;
+    top: 877px;
 }
 
 .circle {

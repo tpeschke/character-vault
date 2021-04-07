@@ -3,7 +3,8 @@ import ViewList from './components/viewList'
 import ViewPairList from './components/viewPairList'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
+        abilitiesone, abilitiestwo, abilitiesthree } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
@@ -63,6 +64,10 @@ export default function CharacterViewer(props) {
                     <p className="vitalityrollLocation">{vitalityroll}</p>
                     <p className="vitalitydiceLocation">{vitalitydice}</p>
                     <p className="vitalityminLocation">{conData.vitalitymin}</p>
+
+                    <p className="abilitiesoneLocation abilitiesoneAdjustment">{abilitiesone}</p>
+                    <p className="abilitiestwoLocation abilitiestwoAdjustment">{abilitiestwo}</p>
+                    <p className="abilitiesthreeLocation abilitiesthreeAdjustment">{abilitiesthree}</p>
                 </div>
                 <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
                     <p className="strCarryLocation">{strData.carry}</p>
