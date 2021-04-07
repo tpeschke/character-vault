@@ -4,7 +4,7 @@ import ViewPairList from './components/viewPairList'
 
 export default function CharacterViewer(props) {
     let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes } = props.character
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
@@ -84,6 +84,10 @@ export default function CharacterViewer(props) {
                     <p className="removedabilityLocation">{removedability}</p>
                 </div>
                 <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
+                    <p className="copperLocation">{copper}</p>
+                    <p className="silverLocation">{silver}</p>
+                    <p className="goldLocation">{gold}</p>
+                    <p className="platiniumLocation">{platinium}</p>
                     <p className="strCarryLocation">{strData.carry}</p>
 
                     <p className="attackLocation">{dexData.attack + intData.attack} = {dexData.attack} + {intData.attack}</p>

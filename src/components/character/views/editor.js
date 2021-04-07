@@ -10,7 +10,7 @@ function updateAttribute(value, type) {
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes } = characterCopy
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -58,6 +58,11 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => updateAttribute(event.target.value, "removedability")} />
                 </div>
                 <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
+                    <input className="copperLocation" type="text" defaultValue={copper} onChange={event => updateAttribute(event.target.value, "copper")} />
+                    <input className="silverLocation" type="text" defaultValue={silver} onChange={event => updateAttribute(event.target.value, "silver")} />
+                    <input className="goldLocation" type="text" defaultValue={gold} onChange={event => updateAttribute(event.target.value, "gold")} />
+                    <input className="platiniumLocation" type="text" defaultValue={platinium} onChange={event => updateAttribute(event.target.value, "platinium")} />
+
                     <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onChange={event => updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
                 </div>
 

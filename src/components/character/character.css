@@ -680,7 +680,6 @@ textarea.abilitiesthreeLocation {
     top: 877px;
 }
 
-
 .removedabilityLocation {
     top: 1003px;
     width: 125px;
@@ -707,6 +706,46 @@ input.removedabilityLocation {
 }
 textarea.generalnotesLocation {
     top: 555px;
+}
+
+.copperLocation {
+    top: 324px;
+    width: 54px;
+    left: 516px;
+    text-align: center;
+}
+input.copperLocation {
+    top: 336px;
+}
+
+.silverLocation {
+    top: 324px;
+    width: 54px;
+    left: 592px;
+    text-align: center;
+}
+input.silverLocation {
+    top: 336px;
+}
+
+.goldLocation {
+    top: 324px;
+    width: 54px;
+    left: 666px;
+    text-align: center;
+}
+input.goldLocation {
+    top: 336px;
+}
+
+.platiniumLocation {
+    top: 324px;
+    width: 54px;
+    left: 742px;
+    text-align: center;
+}
+input.platiniumLocation {
+    top: 336px;
 }
 
 .circle {
