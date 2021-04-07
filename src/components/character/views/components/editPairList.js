@@ -22,23 +22,33 @@ export default class EditPairList extends Component {
 
     addNewItem = (title, value) => {
         let listArray = this.deepCopyListArray()
-        listArray.push({ title, value })
-        this.setState({ listArray }, _ => {
-            this.state.updateFunction(this.state.listArray, this.state.type)
-            document.getElementById(`addNewItemInputTitle${this.state.type}`).value = null;
-            document.getElementById(`addNewItemInputValue${this.state.type}`).value = null;
-        })
+        if (title || value) {
+            listArray.push({ title, value })
+            this.setState({ listArray }, _ => {
+                this.state.updateFunction(this.state.listArray, this.state.type)
+                document.getElementById(`addNewItemInputTitle${this.state.type}`).value = null;
+                document.getElementById(`addNewItemInputValue${this.state.type}`).value = null;
+            })
+        }
     }
 
     updateValue = (titleOrValue, value, index) => {
         let listArray = this.deepCopyListArray()
-        if (!listArray[index].value || listArray[index].value === '' && listArray[index].title === '' || !listArray[index].title) {
+        if (this.shouldDelete(titleOrValue, value, index, listArray)) {
             listArray.splice(index, 1)
         } else {
             listArray[index] = { ...listArray[index], [titleOrValue]: value }
         }
         console.log(listArray)
         this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
+    }
+
+    shouldDelete(titleOrValue, value, index, listArray) {
+        if (titleOrValue === 'title') {
+            return (!listArray[index].value || listArray[index].value === '') && (value === '' || !value)
+        } else if (titleOrValue === 'value') {
+            return (!value || value === '') && (listArray[index].title === '' || !listArray[index].title)
+        }
     }
 
     render() {

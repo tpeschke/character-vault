@@ -82,7 +82,7 @@
 
 .fa-file-download, .fa-edit, .fa-save {
     font-size: 30px;
-    color: grey
+    color: black;
 }
 
 .fa-file-download:hover, .fa-edit:hover, .fa-save:hover {
@@ -560,10 +560,7 @@ input.vitalitydiceLocation {
     width: 28px;
 }
 
-@media(max-width: 900px) {
-    .fa-file-download, .fa-edit, .fa-save {
-        color: black;
-    }
+@media(max-width: 835px) {
 
     .corner-button {
         background: transparent

@@ -10,7 +10,7 @@ function setToMax (value, max) {
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals} = req.body
+        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions} = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -41,6 +41,11 @@ module.exports = {
             promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals=>goals.id)]]).then(_=> {
                 return goals.map(({id: goalid, value}) => {
                     return db.upsert.goals(goalid, id, value)
+                })
+            }))
+            promiseArray.push(db.delete.devotions([id, [0, ...devotions.map(devotions=>devotions.id)]]).then(_=> {
+                return devotions.map(({id: devotionid, value, title}) => {
+                    return db.upsert.devotions(devotionid, id, title, value)
                 })
             }))
 

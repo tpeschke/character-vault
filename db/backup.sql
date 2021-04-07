@@ -224,3 +224,10 @@ create table cvgoals (
     characterId int,
     goal varchar(250)
 )
+
+create table cvdevotions (
+    id serial primary key,
+    characterid int,
+    title varchar(50),
+    value varchar(25)
+);

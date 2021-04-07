@@ -45,6 +45,10 @@ viewController = {
         character.goals = goals
         return true
       }))
+      promiseArray.push(db.get.devotions(character.id).then(devotions => {
+        character.devotions = devotions
+        return true
+      }))
       return Promise.all(promiseArray).then(_=> {
         return character
       })
