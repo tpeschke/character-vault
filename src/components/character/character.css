@@ -536,7 +536,6 @@ input.vitalityrollLocation {
     left: 685px;
     text-align: center;
 }
-
 input.vitalitydiceLocation {
     top: 824px;
 }
@@ -630,6 +629,17 @@ textarea.abilitiesthreeLocation {
 .abilitiesthreeAdjustment {
     left: 547px;
     top: 877px;
+}
+
+
+.removedabilityLocation {
+    top: 1003px;
+    width: 125px;
+    left: 671px;
+    text-align: center;
+}
+input.removedabilityLocation {
+    top: 1016px;
 }
 
 .circle {

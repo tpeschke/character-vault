@@ -10,7 +10,7 @@ function updateAttribute(value, type) {
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree } = characterCopy
+        abilitiesone, abilitiestwo, abilitiesthree, removedability } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -53,6 +53,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <textarea className="abilitiesoneLocation abilitiesonetextArea" defaultValue={abilitiesone} onChange={event => updateAttribute(event.target.value, "abilitiesone")} maxLength={"300"}></textarea>
                     <textarea className="abilitiestwoLocation abilitiestwotextArea" defaultValue={abilitiestwo} onChange={event => updateAttribute(event.target.value, "abilitiestwo")} maxLength={"310"}></textarea>
                     <textarea className="abilitiesthreeLocation abilitiesthreetextArea" defaultValue={abilitiesthree} onChange={event => updateAttribute(event.target.value, "abilitiesthree")} maxLength={"250"}></textarea>
+                    <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => updateAttribute(event.target.value, "removedability")} />
                 </div>
                 <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
 
