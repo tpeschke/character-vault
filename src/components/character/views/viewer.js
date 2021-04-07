@@ -5,7 +5,7 @@ import ViewPairList from './components/viewPairList'
 export default function CharacterViewer(props) {
     let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
-    let shownHonor = honor ? honor : chaData.honor
+    let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
     let left = calculateLeft(shownHonor)
     let circleFill = calculateHumanHonorDice(race, shownHonor)
@@ -93,9 +93,11 @@ function calculateLeft(honor) {
         left = '239px'
     } else if (honor < 21) {
         left = '289px'
-    } else {
+    } else if (honor < 26){
         left = '340px'
-    }
+    } else if (
+        left = '141px'
+    )
     return left
 }
 
@@ -109,8 +111,10 @@ function calculateHumanHonorDice(race, honor) {
             return (<div className="circle-fill">d8!</div>)
         } else if (honor < 21) {
             return (<div className="circle-fill">d10!</div>)
-        } else {
+        } else if (honor < 26) {
             return (<div className="circle-fill">d12!</div>)
+        } else {
+            return (<div></div>)
         }
     } else {
         return (<div></div>)
