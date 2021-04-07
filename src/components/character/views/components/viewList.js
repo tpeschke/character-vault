@@ -10,6 +10,10 @@ export default class ViewList extends Component {
         }
     }
 
+    makeId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
     render() {
         let { stylings, listArray } = this.state
         let listOfThingsToDisplay = listArray.map((item, i) => {
@@ -18,7 +22,7 @@ export default class ViewList extends Component {
                 width: '100%',
                 top: `${i * 21.33}px`
             }
-            return <p style={inputStyles} key={`${i}${stylings.top}`}>{item.value}</p>
+            return <p style={inputStyles} key={`${this.makeId()}`}>{item.value}</p>
         })
 
         return (

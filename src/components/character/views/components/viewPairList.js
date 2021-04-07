@@ -11,13 +11,17 @@ export default class ViewPairList extends Component {
         }
     }
 
+    makeId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
     render() {
         let { stylings, listArray } = this.state
         let listOfPairsToDisplay = listArray.map((item, i) => {
             let rowStyles = {
                 top: `${i * 21.33}px`
             }
-            return (<div className="editPairRow" style={rowStyles} key={`${item.value}${stylings.left}`}>
+            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <p className="titleInput">{item.title}</p>
                 <p className="valueDisplay">{item.value}</p>
             </div>)

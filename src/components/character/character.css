@@ -543,6 +543,13 @@ input.vitalitydiceLocation {
     top: 824px;
 }
 
+.vitalityminLocation {
+    top: 813px;
+    width: 36px;
+    left: 761px;
+    text-align: center;
+}
+
 .circle {
     border-radius: 50px/50px;
     border: solid 2px #000;

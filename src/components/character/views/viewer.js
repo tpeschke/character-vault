@@ -61,6 +61,7 @@ export default function CharacterViewer(props) {
                     <p className="sizemodLocation">{sizemod}</p>
                     <p className="vitalityrollLocation">{vitalityroll}</p>
                     <p className="vitalitydiceLocation">{vitalitydice}</p>
+                    <p className="vitalityminLocation">{conData.vitalitymin}</p>
                 </div>
                 <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
                     <p className="strCarryLocation">{strData.carry}</p>
