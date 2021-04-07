@@ -23,11 +23,13 @@ export default class EditList extends Component {
 
     addNewItem = (value) => {
         let listArray = this.deepCopyListArray()
-        listArray.push({value})
-        this.setState({ listArray }, _ => {
-            this.state.updateFunction(this.state.listArray, this.state.type)
-            document.getElementById(`addNewItemInput${this.state.type}`).value = null;
-        })
+        if (value) {
+            listArray.push({value})
+            this.setState({ listArray }, _ => {
+                this.state.updateFunction(this.state.listArray, this.state.type)
+                document.getElementById(`addNewItemInput${this.state.type}`).value = null;
+            })
+        }
     }
 
     updateValue = (value, index) => {

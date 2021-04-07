@@ -239,8 +239,7 @@ input.excurrentLocation {
     text-indent: 123px;
     width: 426px;
 }
-
-.textArea {
+.drawbacktextArea {
     left: 20px;
     width: 426px;
     max-width: 426px;
@@ -250,7 +249,6 @@ input.excurrentLocation {
     text-indent: 122px;
     overflow: hidden;
 }
-
 textarea.drawbackLocation {
     top: 87px;
 }
@@ -548,6 +546,25 @@ input.vitalitydiceLocation {
     width: 36px;
     left: 761px;
     text-align: center;
+}
+
+
+.contactsLocation {
+    left: 20px;
+    top: 750px;
+    width: 426px;
+}
+.contactstextArea {
+    left: 20px;
+    width: 426px;
+    max-width: 426px;
+    min-width: 426px;
+    max-height: 105px;
+    min-height: 105px;
+    overflow: hidden;
+}
+textarea.contactsLocation {
+    top: 694px;
 }
 
 .circle {

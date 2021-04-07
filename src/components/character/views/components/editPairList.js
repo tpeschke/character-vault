@@ -60,7 +60,7 @@ export default class EditPairList extends Component {
         let { stylings, listArray, limit } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let rowStyles = {
-                top: `${i * 21.33}px`
+                top: `${i * 21}px`
             }
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="titleInput" defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
@@ -71,7 +71,7 @@ export default class EditPairList extends Component {
         let rowStyles = {
             position: 'absolute',
             width: '100%',
-            top: `${listOfInputs.length * 21.33}px`,
+            top: `${listOfInputs.length * 21}px`,
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 

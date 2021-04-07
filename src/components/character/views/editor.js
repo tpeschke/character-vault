@@ -9,7 +9,7 @@ function updateAttribute(value, type) {
 
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
-    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation } = characterCopy
+    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -23,7 +23,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="levelLocation" type="number" min="1" defaultValue={level} onChange={event => updateAttribute(event.target.value, "level")} />
                     <input className="crpLocation" type="number" min="0" defaultValue={crp} onChange={event => updateAttribute(event.target.value, "crp")} />
                     <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onChange={event => updateAttribute(event.target.value, "excurrent")} />
-                    <textarea className="drawbackLocation textArea" defaultValue={drawback} onChange={event => updateAttribute(event.target.value, "drawback")} maxLength="165"></textarea>
+                    <textarea className="drawbackLocation drawbacktextArea" defaultValue={drawback} onChange={event => updateAttribute(event.target.value, "drawback")} maxLength="165"></textarea>
 
                     <input className="strLocation" type="number" max="20" min="1" defaultValue={str} onChange={event => updateAttribute(event.target.value, "str")} />
                     <input className="dexLocation" type="number" max="20" min="1" defaultValue={dex} onChange={event => updateAttribute(event.target.value, "dex")} />
@@ -39,6 +39,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <EditPairList stylings={{top: '525px', left: '20px', width: '224px'}} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"}/>
                     <EditPairList stylings={{top: '316px', left: '246px', width: '200px'}} listArray={traits} limit={13} updateFunction={updateAttribute} type={"traits"}/>
                     <EditList stylings={{top: '610px', left: '107px', width: '340px'}} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"}/>
+                    <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
                     <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />

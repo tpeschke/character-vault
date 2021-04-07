@@ -10,7 +10,7 @@ function setToMax (value, max) {
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation} = req.body
+        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts} = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -35,7 +35,7 @@ module.exports = {
         cha = setToMax(cha, 20)
         honor = setToMax(honor, 25)
 
-        db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament).then((data)=>{
+        db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts).then((data)=>{
             req.params.id = id
             let promiseArray = []
             promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals=>goals.id)]]).then(_=> {

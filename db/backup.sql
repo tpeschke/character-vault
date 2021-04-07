@@ -14,10 +14,16 @@ add column primarylevel int, add column secondarylevel int,
 add column str int, add column dex int, add column con int, add column wis int, add column cha int, add column int int, 
 add column honor int, 
 add column extrahonordice int,
- add column temperament varchar(50),
+add column temperament varchar(50),
 add column drawback varchar(350), 
 add column stressthreshold int, 
 add column favormax int, 
+add column contacts varchar(250),
+add column abilitiesone varchar(500), add column abilitiestwo varchar(500), add column abilitiesthree varchar(500),
+add column removedability varchar(50),
+add column maxrange int,
+add column generalnotes varchar(500),
+add column copper int, add column silver int, add column gold int, add column platinium int,
 add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10);
 
 insert into cvcharactermain (userid, name, race, primarya, secondarya, level) values 
