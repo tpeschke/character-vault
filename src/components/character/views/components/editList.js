@@ -13,8 +13,12 @@ export default class EditList extends Component {
         }
     }
 
+    deepCopyListArray = () => {
+        return this.state.listArray.map(item=>{return {...item}})
+    }
+
     addNewItem = (value) => {
-        let listArray = [...this.state.listArray]
+        let listArray = this.deepCopyListArray()
         listArray.push({value})
         this.setState({ listArray }, _ => {
             this.state.updateFunction(this.state.listArray, this.state.type)
@@ -23,16 +27,13 @@ export default class EditList extends Component {
     }
 
     updateValue = (value, index) => {
-        let listArray = [...this.state.listArray]
+        let listArray = this.deepCopyListArray()
         if (!value || value === '') {
-            listArray.splice(index)
+            listArray.splice(index, 1)
         } else {
-            if (listArray[index].id) {
-                listArray[index] = {id: listArray[index].id, value}
-            } else {
-                listArray[index] = {value}
-            }
+            listArray[index] = {...listArray[index], value}
         }
+        console.log(listArray)
         this.setState({ listArray }, _=> this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
@@ -44,9 +45,9 @@ export default class EditList extends Component {
                 width: '100%',
                 top: `${i * 21.33}px`
             }
-            return <input style={inputStyles} key={`${i}${stylings.top}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input style={inputStyles} key={`${item.value}${stylings.left}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
         })
-
+        
         let inputStyles = {
             position: 'absolute',
             width: '100%',

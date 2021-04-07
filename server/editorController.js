@@ -36,12 +36,11 @@ module.exports = {
         honor = setToMax(honor, 25)
 
         db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament).then((data)=>{
-            let { id } = data[0]
             req.params.id = id
             let promiseArray = []
-            promiseArray.push(goals.map(({id: goalid, value}) => {
-                return db.upsert.goals(goalid, id, value).then(_=> {
-                    
+            promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals=>goals.id)]]).then(_=> {
+                return goals.map(({id: goalid, value}) => {
+                    return db.upsert.goals(goalid, id, value)
                 })
             }))
 

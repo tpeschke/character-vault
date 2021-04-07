@@ -1,0 +1,1 @@
+delete from cvgoals where characterid = $1 and id != ANY($2)
