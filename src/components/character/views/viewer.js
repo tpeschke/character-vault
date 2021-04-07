@@ -1,7 +1,8 @@
 import React from 'react'
+import ViewList from './components/viewList'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor
     let { downloadMode, changeEditStatus } = props
@@ -40,6 +41,7 @@ export default function CharacterViewer(props) {
                     <p className="extrahonordiceLocation">{extrahonordice}</p>
                     <div className="circle" style={{ left }}>{circleFill}</div>
                     <p className="temperamentLocation">{temperament}</p>
+                    <ViewList stylings={{top: '392px', left: '20px', width: '224px'}} listArray={goals}/>
 
                     <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>

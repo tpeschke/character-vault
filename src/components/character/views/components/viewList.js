@@ -18,7 +18,7 @@ export default class ViewList extends Component {
                 width: '100%',
                 top: `${i * 21.33}px`
             }
-            return <input style={inputStyles} key={`${i}${stylings.top}`} defaultValue={item} />
+            return <p style={inputStyles} key={`${i}${stylings.top}`}>{item.value}</p>
         })
 
         return (

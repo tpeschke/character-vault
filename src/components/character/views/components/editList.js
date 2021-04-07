@@ -33,7 +33,6 @@ export default class EditList extends Component {
         } else {
             listArray[index] = {...listArray[index], value}
         }
-        console.log(listArray)
         this.setState({ listArray }, _=> this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
