@@ -457,7 +457,6 @@ input.stressthresholdLocation {
     width: 50px;
     text-align: center;
 }
-
 input.favormaxLocation {
     top: 551px;
 }
@@ -467,6 +466,56 @@ input.favormaxLocation {
     left: 571px;
     width: 50px;
     text-align: center;
+}
+
+.maxrangeLocation {
+    top: 540px;
+    left: 745px;
+    width: 50px;
+    text-align: center;
+}
+input.maxrangeLocation {
+    top: 552px;
+}
+
+.one {
+    top: 434px;
+    left: 674px;
+}
+.two {
+    top: 434px;
+}
+.three {
+    top: 455px;
+    left: 674px;
+}
+.four {
+    top: 455px;
+}
+.five {
+    top: 476px;
+    left: 674px;
+}
+.six {
+    top: 476px;
+}
+.seven {
+    top: 497px;
+    left: 674px;
+}
+.eight {
+    top: 497px;
+}
+.nine {
+    top: 518px;
+    left: 674px;
+}
+.ten {
+    top: 518px;
+}
+.eleven {
+    top: 539px;
+    left: 674px;
 }
 
 .sizemodLocation {

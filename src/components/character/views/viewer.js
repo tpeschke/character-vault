@@ -4,7 +4,7 @@ import ViewPairList from './components/viewPairList'
 
 export default function CharacterViewer(props) {
     let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability } = props.character
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
@@ -54,6 +54,19 @@ export default function CharacterViewer(props) {
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
                     <p className="favormaxLocation">{favormax}</p>
                     <p className="favorminLocation">{chaData.favor}</p>
+
+                    <p className="maxrangeLocation one">5</p>
+                    <p className="maxrangeLocation two">{(maxrange / 6).toFixed(0)}</p>
+                    <p className="maxrangeLocation three">{+(maxrange / 6).toFixed(0) + 1}</p>
+                    <p className="maxrangeLocation four">{(maxrange / 3).toFixed(0)}</p>
+                    <p className="maxrangeLocation five">{+(maxrange / 3).toFixed(0) + 1}</p>
+                    <p className="maxrangeLocation six">{(maxrange / 2).toFixed(0)}</p>
+                    <p className="maxrangeLocation seven">{+(maxrange / 2).toFixed(0) + 1}</p>
+                    <p className="maxrangeLocation eight">{(maxrange / 1.5).toFixed(0)}</p>
+                    <p className="maxrangeLocation nine">{+(maxrange / 1.5).toFixed(0) + 1}</p>
+                    <p className="maxrangeLocation ten">{(maxrange / 1.2).toFixed(0)}</p>
+                    <p className="maxrangeLocation eleven">{+(maxrange / 1.2).toFixed(0) + 1}</p>
+                    <p className="maxrangeLocation">{maxrange}</p>
 
                     <p className="criticalLocation">{shownVitality}</p>
                     <p className="woundedLocation">{(shownVitality * .75).toFixed(0)}</p>

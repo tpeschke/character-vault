@@ -10,7 +10,7 @@ function updateAttribute(value, type) {
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability } = characterCopy
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -44,6 +44,8 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
 
                     <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
+
+                    <input className="maxrangeLocation" type="number" defaultValue={maxrange} onChange={event => updateAttribute(event.target.value, "maxrange")} />
 
                     <input className="criticalLocation" type="number" defaultValue={vitality} onChange={event => updateAttribute(event.target.value, "vitality")} />
                     <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => updateAttribute(event.target.value, "sizemod")} />
