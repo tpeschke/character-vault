@@ -245,3 +245,9 @@ create table cvtraits (
     title varchar(50),
     value varchar(25)
 );
+
+create table cvreputation (
+    id serial primary key,
+    characterId int,
+    value varchar(250)
+);

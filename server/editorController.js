@@ -10,7 +10,7 @@ function setToMax (value, max) {
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits} = req.body
+        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation} = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -56,6 +56,11 @@ module.exports = {
             promiseArray.push(db.delete.traits([id, [0, ...traits.map(traits=>traits.id)]]).then(_=> {
                 return traits.map(({id: traitsid, value, title}) => {
                     return db.upsert.traits(traitsid, id, title, value)
+                })
+            }))
+            promiseArray.push(db.delete.reputation([id, [0, ...reputation.map(reputation=>reputation.id)]]).then(_=> {
+                return reputation.map(({id: reputationid, value}) => {
+                    return db.upsert.reputation(reputationid, id, value)
                 })
             }))
 

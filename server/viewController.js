@@ -57,6 +57,10 @@ viewController = {
         character.traits = traits
         return true
       }))
+      promiseArray.push(db.get.reputation(character.id).then(reputation => {
+        character.reputation = reputation
+        return true
+      }))
       return Promise.all(promiseArray).then(_=> {
         return character
       })
