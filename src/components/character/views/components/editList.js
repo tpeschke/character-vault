@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react'
 import React, { Component } from 'react'
 
 export default class EditList extends Component {
@@ -7,15 +6,18 @@ export default class EditList extends Component {
 
         this.state = {
             stylings: { position: 'relative', ...props.stylings },
-            listArray: props.listArray,
-            limit: props.limit
+            listArray: props.listArray || [],
+            limit: props.limit,
+            updateFunction: props.updateFunction,
+            type: props.type
         }
     }
 
     addNewItem = (value) => {
         let listArray = [...this.state.listArray]
-        listArray.push(value)
+        listArray.push({value})
         this.setState({ listArray }, _ => {
+            this.state.updateFunction(this.state.listArray, this.state.type)
             document.getElementById('addNewItemInput').value = null;
         })
     }
@@ -25,9 +27,13 @@ export default class EditList extends Component {
         if (!value || value === '') {
             listArray.splice(index)
         } else {
-            listArray[index] = value
+            if (listArray[index].id) {
+                listArray[index] = {id: listArray[index].id, value}
+            } else {
+                listArray[index] = {value}
+            }
         }
-        this.setState({ listArray })
+        this.setState({ listArray }, _=> this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
     render() {
@@ -38,7 +44,7 @@ export default class EditList extends Component {
                 width: '100%',
                 top: `${i * 21.33}px`
             }
-            return <input style={inputStyles} key={`${i}${stylings.top}`} defaultValue={item} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input style={inputStyles} key={`${i}${stylings.top}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
         })
 
         let inputStyles = {
