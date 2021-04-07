@@ -16,6 +16,10 @@ export default class EditList extends Component {
     deepCopyListArray = () => {
         return this.state.listArray.map(item=>{return {...item}})
     }
+    
+    makeId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
 
     addNewItem = (value) => {
         let listArray = this.deepCopyListArray()
@@ -44,7 +48,7 @@ export default class EditList extends Component {
                 width: '100%',
                 top: `${i * 21.33}px`
             }
-            return <input style={inputStyles} key={`${item.value}${stylings.left}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
         })
         
         let inputStyles = {

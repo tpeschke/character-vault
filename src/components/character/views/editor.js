@@ -9,7 +9,7 @@ function updateAttribute(value, type) {
 
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
-    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws } = characterCopy
+    let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -37,6 +37,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <EditList stylings={{top: '358px', left: '20px', width: '224px'}} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"}/>
                     <EditPairList stylings={{top: '442px', left: '20px', width: '224px'}} listArray={devotions} limit={3} updateFunction={updateAttribute} type={"devotions"}/>
                     <EditPairList stylings={{top: '525px', left: '20px', width: '224px'}} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"}/>
+                    <EditPairList stylings={{top: '316px', left: '246px', width: '200px'}} listArray={traits} limit={13} updateFunction={updateAttribute} type={"traits"}/>
 
                     <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />

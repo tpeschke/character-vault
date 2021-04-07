@@ -238,3 +238,10 @@ create table cvflaws (
     title varchar(50),
     value varchar(25)
 );
+
+create table cvtraits (
+    id serial primary key,
+    characterid int,
+    title varchar(50),
+    value varchar(25)
+);

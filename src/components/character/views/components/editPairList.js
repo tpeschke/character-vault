@@ -21,9 +21,13 @@ export default class EditPairList extends Component {
         return this.state.listArray.map(item => { return { ...item } })
     }
 
+    makeId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
     addNewItem = (title, value) => {
         let listArray = this.deepCopyListArray()
-        value = value ? value :  this.state.defaultValue
+        value = value ? value : this.state.defaultValue
         if (title || value) {
             listArray.push({ title, value })
             this.setState({ listArray }, _ => {
@@ -58,7 +62,7 @@ export default class EditPairList extends Component {
             let rowStyles = {
                 top: `${i * 21.33}px`
             }
-            return (<div className="editPairRow" style={rowStyles} key={`${item.value}${stylings.left}`}>
+            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="titleInput" defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
                 <input className="valueInput border-right" defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
             </div>)
