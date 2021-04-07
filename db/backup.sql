@@ -231,3 +231,10 @@ create table cvdevotions (
     title varchar(50),
     value varchar(25)
 );
+
+create table cvflaws (
+    id serial primary key,
+    characterid int,
+    title varchar(50),
+    value varchar(25)
+);

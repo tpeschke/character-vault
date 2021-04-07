@@ -12,7 +12,12 @@
 }
 
 .valueInput {
+    position: unset !important;
+    text-align: right;
     width: 25%;
+}
+
+.valueDisplay {
     position: unset !important;
     text-align: right;
 }

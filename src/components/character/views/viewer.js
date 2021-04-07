@@ -3,7 +3,7 @@ import ViewList from './components/viewList'
 import ViewPairList from './components/viewPairList'
 
 export default function CharacterViewer(props) {
-    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions } = props.character
+    let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
@@ -44,6 +44,7 @@ export default function CharacterViewer(props) {
                     <p className="temperamentLocation">{temperament}</p>
                     <ViewList stylings={{top: '392px', left: '20px', width: '224px'}} listArray={goals}/>
                     <ViewPairList stylings={{top: '476px', left: '20px', width: '224px'}} listArray={devotions}/>
+                    <ViewPairList stylings={{top: '559px', left: '20px', width: '224px'}} listArray={flaws}/>
 
                     <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                     <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>

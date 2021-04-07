@@ -10,7 +10,8 @@ export default class EditPairList extends Component {
             listArray: props.listArray || [],
             limit: props.limit,
             updateFunction: props.updateFunction,
-            type: props.type
+            type: props.type,
+            defaultValue: props.defaultValue || null
         }
     }
 
@@ -22,6 +23,7 @@ export default class EditPairList extends Component {
 
     addNewItem = (title, value) => {
         let listArray = this.deepCopyListArray()
+        value = value ? value :  this.state.defaultValue
         if (title || value) {
             listArray.push({ title, value })
             this.setState({ listArray }, _ => {

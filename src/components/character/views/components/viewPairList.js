@@ -19,7 +19,7 @@ export default class ViewPairList extends Component {
             }
             return (<div className="editPairRow" style={rowStyles} key={`${item.value}${stylings.left}`}>
                 <p className="titleInput">{item.title}</p>
-                <p className="valueInput">{item.value}</p>
+                <p className="valueDisplay">{item.value}</p>
             </div>)
         })
 
