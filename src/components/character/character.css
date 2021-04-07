@@ -691,6 +691,24 @@ input.removedabilityLocation {
     top: 1016px;
 }
 
+.generalnotesLocation {
+    left: 396px;
+    top: 544px;
+    width: 401px;
+}
+.generalnotestextArea {
+    left: 395px;
+    width: 401px;
+    max-width: 401px;
+    min-width: 401px;
+    max-height: 167px;
+    min-height: 167px;
+    overflow: hidden;
+}
+textarea.generalnotesLocation {
+    top: 555px;
+}
+
 .circle {
     border-radius: 50px/50px;
     border: solid 2px #000;

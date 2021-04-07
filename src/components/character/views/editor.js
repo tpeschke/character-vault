@@ -10,7 +10,7 @@ function updateAttribute(value, type) {
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange } = characterCopy
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -35,11 +35,11 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
 
                     <input className="honorLocation" type="number" max="25" min="0" defaultValue={honor} onChange={event => updateAttribute(event.target.value, "honor")} />
                     <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} />
-                    <EditList stylings={{top: '358px', left: '20px', width: '224px'}} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"}/>
-                    <EditPairList stylings={{top: '442px', left: '20px', width: '224px'}} listArray={devotions} limit={3} updateFunction={updateAttribute} type={"devotions"}/>
-                    <EditPairList stylings={{top: '525px', left: '20px', width: '224px'}} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"}/>
-                    <EditPairList stylings={{top: '316px', left: '246px', width: '200px'}} listArray={traits} limit={13} updateFunction={updateAttribute} type={"traits"}/>
-                    <EditList stylings={{top: '610px', left: '107px', width: '340px'}} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"}/>
+                    <EditList stylings={{ top: '358px', left: '20px', width: '224px' }} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
+                    <EditPairList stylings={{ top: '442px', left: '20px', width: '224px' }} listArray={devotions} limit={3} updateFunction={updateAttribute} type={"devotions"} />
+                    <EditPairList stylings={{ top: '525px', left: '20px', width: '224px' }} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
+                    <EditPairList stylings={{ top: '316px', left: '246px', width: '200px' }} listArray={traits} limit={13} updateFunction={updateAttribute} type={"traits"} />
+                    <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                     <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
                     <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
@@ -58,7 +58,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => updateAttribute(event.target.value, "removedability")} />
                 </div>
                 <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
-
+                    <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onChange={event => updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
                 </div>
 
             </div>

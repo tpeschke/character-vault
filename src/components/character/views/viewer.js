@@ -4,7 +4,7 @@ import ViewPairList from './components/viewPairList'
 
 export default function CharacterViewer(props) {
     let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange } = props.character
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes } = props.character
     let shownVitality = vitality ? vitality : sizemod + vitalityroll + con;
     let shownHonor = honor ? honor : chaData.honor 
     let { downloadMode, changeEditStatus } = props
@@ -91,6 +91,8 @@ export default function CharacterViewer(props) {
                     <p className="initLocation">{dexData.init + wisData.init} = {dexData.init} + {wisData.init}</p>
                     <p className="strDamageLocation">{strData.damage}</p>
                     <p className="encumbLocation">{conData.encumb + wisData.encumb} = {conData.encumb} + {wisData.encumb}</p>
+
+                    <p className="generalnotesLocation">{generalnotes}</p>
                 </div>
             </div>
             <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
