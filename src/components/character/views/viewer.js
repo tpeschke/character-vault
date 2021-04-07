@@ -85,36 +85,32 @@ export default function CharacterViewer(props) {
 
 function calculateLeft(honor) {
     let left = '0'
-    if (honor < 6) {
+    if (honor >= 0 && honor <= 5) {
         left = '141px'
-    } else if (honor < 11) {
+    } else if (honor >= 6 && honor <= 10) {
         left = '190px'
-    } else if (honor < 16) {
+    } else if (honor >= 11 && honor <= 15) {
         left = '239px'
-    } else if (honor < 21) {
+    } else if (honor >= 16 && honor <= 20) {
         left = '289px'
-    } else if (honor < 26){
+    } else if (honor >= 21 && honor <= 25){
         left = '340px'
-    } else if (
-        left = '141px'
-    )
+    }
     return left
 }
 
 function calculateHumanHonorDice(race, honor) {
     if (race.toUpperCase().trim() === "HUMAN") {
-        if (honor < 6) {
+        if (honor >= 0 && honor <= 5) {
             return (<div></div>)
-        } else if (honor < 11) {
+        } else if (honor >= 6 && honor <= 10) {
             return (<div className="circle-fill">d6!</div>)
-        } else if (honor < 16) {
+        } else if (honor >= 11 && honor <= 15) {
             return (<div className="circle-fill">d8!</div>)
-        } else if (honor < 21) {
+        } else if (honor >= 16 && honor <= 20) {
             return (<div className="circle-fill">d10!</div>)
-        } else if (honor < 26) {
+        } else if (honor >= 21 && honor <= 25) {
             return (<div className="circle-fill">d12!</div>)
-        } else {
-            return (<div></div>)
         }
     } else {
         return (<div></div>)
