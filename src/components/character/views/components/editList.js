@@ -22,7 +22,7 @@ export default class EditList extends Component {
         listArray.push({value})
         this.setState({ listArray }, _ => {
             this.state.updateFunction(this.state.listArray, this.state.type)
-            document.getElementById('addNewItemInput').value = null;
+            document.getElementById(`addNewItemInput${this.state.type}`).value = null;
         })
     }
 
@@ -51,13 +51,13 @@ export default class EditList extends Component {
             position: 'absolute',
             width: '100%',
             top: `${listOfInputs.length * 21.33}px`,
-            display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
+            display: `${listOfInputs.length >= limit ? 'none' : 'flex'}`
         }
 
         return (
             <div style={stylings}>
                 {listOfInputs}
-                <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id="addNewItemInput" />
+                <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id={`addNewItemInput${this.state.type}`} />
             </div>
         )
     }

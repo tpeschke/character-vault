@@ -1,0 +1,18 @@
+.editPairRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%
+}
+
+.titleInput {
+    width: 75%;
+    position: unset !important;
+}
+
+.valueInput {
+    width: 25%;
+    position: unset !important;
+    border-left: 1px solid #799aa4;
+}

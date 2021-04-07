@@ -1,5 +1,6 @@
 import React from 'react'
 import EditList from './components/editList'
+import EditPairList from './components/editPairList'
 let characterCopy
 
 function updateAttribute(value, type) {
@@ -34,6 +35,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="honorLocation" type="number" max="25" min="0" defaultValue={honor} onChange={event => updateAttribute(event.target.value, "honor")} />
                     <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} />
                     <EditList stylings={{top: '358px', left: '20px', width: '224px'}} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"}/>
+                    <EditPairList stylings={{top: '442px', left: '20px', width: '224px'}} listArray={[]} limit={3} updateFunction={updateAttribute} type={"devotions"} twoValues={true}/>
 
                     <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
