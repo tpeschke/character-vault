@@ -14,5 +14,9 @@
 .valueInput {
     width: 25%;
     position: unset !important;
+    text-align: right;
+}
+
+.border-right {
     border-left: 1px solid #799aa4;
 }

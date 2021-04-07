@@ -39,7 +39,6 @@ export default class EditPairList extends Component {
         } else {
             listArray[index] = { ...listArray[index], [titleOrValue]: value }
         }
-        console.log(listArray)
         this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
@@ -59,7 +58,7 @@ export default class EditPairList extends Component {
             }
             return (<div className="editPairRow" style={rowStyles} key={`${item.value}${stylings.left}`}>
                 <input className="titleInput" defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
-                <input className="valueInput" defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
+                <input className="valueInput border-right" defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
             </div>)
         })
 
@@ -75,7 +74,7 @@ export default class EditPairList extends Component {
                 {listOfInputs}
                 <div className="editPairRow" style={rowStyles}>
                     <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput" onBlur={e => this.addNewItem(null, e.target.value)} />
+                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" onBlur={e => this.addNewItem(null, e.target.value)} />
                 </div>
             </div>
         )
