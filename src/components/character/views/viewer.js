@@ -89,12 +89,12 @@ export default function CharacterViewer(props) {
                     <p className="goldLocation">{gold}</p>
                     <p className="platiniumLocation">{platinium}</p>
                     <p className="strCarryLocation">{strData.carry}</p>
-
-                    <p className="attackLocation">{dexData.attack + intData.attack} = {dexData.attack} + {intData.attack}</p>
-                    <p className="defenseLocation">{dexData.defense + wisData.defense} = {dexData.defense} + {wisData.defense} </p>
-                    <p className="initLocation">{dexData.init + wisData.init} = {dexData.init} + {wisData.init}</p>
-                    <p className="strDamageLocation">{strData.damage}</p>
-                    <p className="encumbLocation">{conData.encumb + wisData.encumb} = {conData.encumb} + {wisData.encumb}</p>
+        
+                    <p className="attackLocation"><strong>{dexData.attack + intData.attack}</strong> = {dexData.attack} + {intData.attack}</p>
+                    <p className="defenseLocation"><strong>{dexData.defense + wisData.defense}</strong> = {dexData.defense} + {wisData.defense} </p>
+                    <p className="initLocation"><strong>{dexData.init + wisData.init}</strong> = {dexData.init} + {wisData.init}</p>
+                    <p className="strDamageLocation"><strong>{strData.damage}</strong></p>
+                    <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
 
                     <p className="generalnotesLocation">{generalnotes}</p>
                 </div>
