@@ -825,6 +825,20 @@ input.platiniumLocation {
     top: 745px;
     left: 170px;
 }
+.weaponProfiletwo {
+    position: absolute;
+    height: 303px;
+    width: 151px;
+    top: 745px;
+    left: 321px;
+}
+.weaponProfilethree {
+    position: absolute;
+    height: 303px;
+    width: 151px;
+    top: 745px;
+    left: 471px;
+}
 
 .weaponnameLocation {
     width: 149px;
@@ -873,165 +887,165 @@ input.baseparryLocation {
 input.basemeasureLocation {
     top: 66px;
 }
-.onetypeLocation {
+.typeLocation {
     width: 65px;
     top: 76px;
     left: 84px;
     text-align: center;
 }
-input.onetypeLocation {
+input.typeLocation {
     top: 87px;
 }
 
-.onebonusLocation {
+.bonusLocation {
     width: 149px;
     top: 95px;
     left: 1px;
     text-indent: 60px;
 } 
-.onebonustextArea {
+.bonustextArea {
     max-width: 149px;
     min-width: 149px;
     max-height: 62px;
     min-height: 62px;
     overflow: hidden;
 }
-textarea.onebonusLocation {
+textarea.bonusLocation {
     top: 108px;
 }
 
-.onetraitsLocation {
+.traitsLocation {
     width: 149px;
     top: 159px;
     left: 1px;
     text-indent: 46px;
 } 
-.onetraitstextArea {
+.traitstextArea {
     max-width: 149px;
     min-width: 149px;
     max-height: 42px;
     min-height: 42px;
     overflow: hidden;
 }
-textarea.onetraitsLocation {
+textarea.traitsLocation {
     top: 104px;
 }
 
-.onetrainattackLocation {
+.trainattackLocation {
     width: 25px;
     top: 222px;
     left: 1px;
     text-align: center;
 }
-input.onetrainattackLocation {
+input.trainattackLocation {
     top: 235px;
 }
 
-.onetrainrecoveryLocation {
+.trainrecoveryLocation {
     width: 25px;
     top: 222px;
     left: 26px;
     text-align: center;
 }
-input.onetrainrecoveryLocation {
+input.trainrecoveryLocation {
     top: 235px;
 }
 
-.onetrainparryLocation {
+.trainparryLocation {
     width: 25px;
     top: 222px;
     left: 51px;
     text-align: center;
 }
-input.onetrainparryLocation {
+input.trainparryLocation {
     top: 235px;
 }
 
-.onetraindamageLocation {
+.traindamageLocation {
     width: 25px;
     top: 222px;
     left: 76px;
     text-align: center;
 }
-input.onetraindamageLocation {
+input.traindamageLocation {
     top: 235px;
 }
 
-.onemiscattackLocation {
+.miscattackLocation {
     width: 25px;
     top: 245px;
     left: 1px;
     text-align: center;
 }
-input.onemiscattackLocation {
+input.miscattackLocation {
     top: 257px;
 }
 
-.onemiscrecoveryLocation {
+.miscrecoveryLocation {
     width: 25px;
     top: 245px;
     left: 26px;
     text-align: center;
 }
-input.onemiscrecoveryLocation {
+input.miscrecoveryLocation {
     top: 257px;
 }
 
-.onemiscparryLocation {
+.miscparryLocation {
     width: 25px;
     top: 245px;
     left: 51px;
     text-align: center;
 }
-input.onemiscparryLocation {
+input.miscparryLocation {
     top: 257px;
 }
 
-.onemiscdamageLocation {
+.miscdamageLocation {
     width: 25px;
     top: 245px;
     left: 76px;
     text-align: center;
 }
-input.onemiscdamageLocation {
+input.miscdamageLocation {
     top: 257px;
 }
 
-.onemiscinitLocation {
+.miscinitLocation {
     width: 25px;
     top: 245px;
     left: 101px;
     text-align: center;
 }
-input.onemiscinitLocation {
+input.miscinitLocation {
     top: 257px;
 }
 
-.onetotalattackLocation {
+.totalattackLocation {
     width: 25px;
     top: 270px;
     left: 1px;
     text-align: center;
 }
-.onetotalrecoveryLocation {
+.totalrecoveryLocation {
     width: 25px;
     top: 270px;
     left: 26px;
     text-align: center;
 }
-.onetotalparryLocation {
+.totalparryLocation {
     width: 25px;
     top: 270px;
     left: 51px;
     text-align: center;
 }
-.onetotaldamageLocation {
+.totaldamageLocation {
     width: 25px;
     top: 270px;
     left: 76px;
     text-align: center;
 }
-.onetotalinitLocation {
+.totalinitLocation {
     width: 25px;
     top: 270px;
     left: 101px;

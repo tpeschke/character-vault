@@ -11,7 +11,7 @@ class Character extends Component {
         this.state = {
             downloadMode: props.match.path === "/download/:id",
             character: null,
-            isEditingMode: false
+            isEditingMode: true
         }
 
         this.updateCharacter = this.updateCharacter.bind(this)

@@ -306,3 +306,49 @@ create table weaponone (
     onetraits VARCHAR(50),
     onesize varchar(1)
 );
+
+create table weapontwo (
+    twoweaponid serial primary key,
+    characterid int UNIQUE,
+    twotrainattack int,
+    twotrainparry int,
+    twotrainrecovery int,
+    twotraindamage int,
+    twomiscattack int,
+    twomiscparry int,
+    twomiscrecovery int,
+    twomiscdamage int,
+    twomiscinit int,
+    twoname varchar(50),
+    twobasedamage varchar(50),
+    twobaserecovery int,
+    twobaseparry int,
+    twobasemeasure varchar(10),
+    twotype varchar(1),
+    twobonus varchar(100),
+    twotraits VARCHAR(50),
+    twosize varchar(1)
+);
+
+create table weaponthree (
+    threeweaponid serial primary key,
+    characterid int UNIQUE,
+    threetrainattack int,
+    threetrainparry int,
+    threetrainrecovery int,
+    threetraindamage int,
+    threemiscattack int,
+    threemiscparry int,
+    threemiscrecovery int,
+    threemiscdamage int,
+    threemiscinit int,
+    threename varchar(50),
+    threebasedamage varchar(50),
+    threebaserecovery int,
+    threebaseparry int,
+    threebasemeasure varchar(10),
+    threetype varchar(1),
+    threebonus varchar(100),
+    threetraits VARCHAR(50),
+    threesize varchar(1)
+);

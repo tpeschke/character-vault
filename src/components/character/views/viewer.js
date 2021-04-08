@@ -59,7 +59,9 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize } = this.state.character
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, 
+            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twoweaponid, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threeweaponid, threetrainattack, 
+            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -173,26 +175,82 @@ export default class CharacterViewer extends Component {
                             <p className="baserecoveryLocation">{onebaserecovery}</p>
                             <p className="baseparryLocation">{onebaseparry}</p>
                             <p className="basemeasureLocation">{onebasemeasure}</p>
-                            <p className="onetypeLocation">{onetype}</p>
-                            <p className="onebonusLocation">{onebonus}</p>
-                            <p className="onetraitsLocation">{onetraits}</p>
+                            <p className="typeLocation">{onetype}</p>
+                            <p className="bonusLocation">{onebonus}</p>
+                            <p className="traitsLocation">{onetraits}</p>
 
-                            <p className="onetrainattackLocation">{onetrainattack}</p>
-                            <p className="onetrainrecoveryLocation">{onetrainrecovery}</p>
-                            <p className="onetrainparryLocation">{onetrainparry}</p>
-                            <p className="onetraindamageLocation">{onetraindamage}</p>
+                            <p className="trainattackLocation">{onetrainattack}</p>
+                            <p className="trainrecoveryLocation">{onetrainrecovery}</p>
+                            <p className="trainparryLocation">{onetrainparry}</p>
+                            <p className="traindamageLocation">{onetraindamage}</p>
                             
-                            <p className="onemiscattackLocation">{onemiscattack}</p>
-                            <p className="onemiscrecoveryLocation">{onemiscrecovery}</p>
-                            <p className="onemiscparryLocation">{onemiscparry}</p>
-                            <p className="onemiscdamageLocation">{onemiscdamage}</p>
-                            <p className="onemiscinitLocation">{onemiscinit}</p>
+                            <p className="miscattackLocation">{onemiscattack}</p>
+                            <p className="miscrecoveryLocation">{onemiscrecovery}</p>
+                            <p className="miscparryLocation">{onemiscparry}</p>
+                            <p className="miscdamageLocation">{onemiscdamage}</p>
+                            <p className="miscinitLocation">{onemiscinit}</p>
                             
-                            <p className="onetotalattackLocation">{onetrainattack + onemiscattack}</p>
-                            <p className="onetotalrecoveryLocation">{onetrainrecovery + onemiscrecovery}</p>
-                            <p className="onetotalparryLocation">{onetrainparry + onemiscparry}</p>
-                            <p className="onetotaldamageLocation">{onetraindamage + onemiscdamage}</p>
-                            <p className="onetotalinitLocation">{onemiscinit}</p>
+                            <p className="totalattackLocation">{onetrainattack + onemiscattack}</p>
+                            <p className="totalrecoveryLocation">{onetrainrecovery + onemiscrecovery}</p>
+                            <p className="totalparryLocation">{onetrainparry + onemiscparry}</p>
+                            <p className="totaldamageLocation">{onetraindamage + onemiscdamage}</p>
+                            <p className="totalinitLocation">{onemiscinit}</p>
+                        </div>
+                        
+                        <div className="weaponProfiletwo">
+                            <p className="weaponnameLocation">{twoname}</p>
+                            <p className="basedamageLocation">{twobasedamage}</p>
+                            <p className="baserecoveryLocation">{twobaserecovery}</p>
+                            <p className="baseparryLocation">{twobaseparry}</p>
+                            <p className="basemeasureLocation">{twobasemeasure}</p>
+                            <p className="typeLocation">{twotype}</p>
+                            <p className="bonusLocation">{twobonus}</p>
+                            <p className="traitsLocation">{twotraits}</p>
+
+                            <p className="trainattackLocation">{twotrainattack}</p>
+                            <p className="trainrecoveryLocation">{twotrainrecovery}</p>
+                            <p className="trainparryLocation">{twotrainparry}</p>
+                            <p className="traindamageLocation">{twotraindamage}</p>
+                            
+                            <p className="miscattackLocation">{twomiscattack}</p>
+                            <p className="miscrecoveryLocation">{twomiscrecovery}</p>
+                            <p className="miscparryLocation">{twomiscparry}</p>
+                            <p className="miscdamageLocation">{twomiscdamage}</p>
+                            <p className="miscinitLocation">{twomiscinit}</p>
+                            
+                            <p className="totalattackLocation">{twotrainattack + twomiscattack}</p>
+                            <p className="totalrecoveryLocation">{twotrainrecovery + twomiscrecovery}</p>
+                            <p className="totalparryLocation">{twotrainparry + twomiscparry}</p>
+                            <p className="totaldamageLocation">{twotraindamage + twomiscdamage}</p>
+                            <p className="totalinitLocation">{twomiscinit}</p>
+                        </div>
+                        
+                        <div className="weaponProfilethree">
+                            <p className="weaponnameLocation">{threename}</p>
+                            <p className="basedamageLocation">{threebasedamage}</p>
+                            <p className="baserecoveryLocation">{threebaserecovery}</p>
+                            <p className="baseparryLocation">{threebaseparry}</p>
+                            <p className="basemeasureLocation">{threebasemeasure}</p>
+                            <p className="typeLocation">{threetype}</p>
+                            <p className="bonusLocation">{threebonus}</p>
+                            <p className="traitsLocation">{threetraits}</p>
+
+                            <p className="trainattackLocation">{threetrainattack}</p>
+                            <p className="trainrecoveryLocation">{threetrainrecovery}</p>
+                            <p className="trainparryLocation">{threetrainparry}</p>
+                            <p className="traindamageLocation">{threetraindamage}</p>
+                            
+                            <p className="miscattackLocation">{threemiscattack}</p>
+                            <p className="miscrecoveryLocation">{threemiscrecovery}</p>
+                            <p className="miscparryLocation">{threemiscparry}</p>
+                            <p className="miscdamageLocation">{threemiscdamage}</p>
+                            <p className="miscinitLocation">{threemiscinit}</p>
+                            
+                            <p className="totalattackLocation">{threetrainattack + threemiscattack}</p>
+                            <p className="totalrecoveryLocation">{threetrainrecovery + threemiscrecovery}</p>
+                            <p className="totalparryLocation">{threetrainparry + threemiscparry}</p>
+                            <p className="totaldamageLocation">{threetraindamage + threemiscdamage}</p>
+                            <p className="totalinitLocation">{threemiscinit}</p>
                         </div>
                     </div>
                 </div>
