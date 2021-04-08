@@ -10,7 +10,7 @@ function setToMax (value, max) {
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium} = req.body
+        let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour} = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -65,6 +65,26 @@ module.exports = {
             promiseArray.push(db.delete.reputation([id, [0, ...reputation.map(reputation=>reputation.id)]]).then(_=> {
                 return reputation.map(({id: reputationid, value}) => {
                     return db.upsert.reputation(reputationid, id, value)
+                })
+            }))
+            promiseArray.push(db.delete.gearone([id, [0, ...gearone.map(gearone=>gearone.id)]]).then(_=> {
+                return gearone.map(({id: gearoneid, value, title}) => {
+                    return db.upsert.gearone(gearoneid, id, title, value)
+                })
+            }))
+            promiseArray.push(db.delete.geartwo([id, [0, ...geartwo.map(geartwo=>geartwo.id)]]).then(_=> {
+                return geartwo.map(({id: geartwoid, value, title}) => {
+                    return db.upsert.geartwo(geartwoid, id, title, value)
+                })
+            }))
+            promiseArray.push(db.delete.gearthree([id, [0, ...gearthree.map(gearthree=>gearthree.id)]]).then(_=> {
+                return gearthree.map(({id: gearthreeid, value, title}) => {
+                    return db.upsert.gearthree(gearthreeid, id, title, value)
+                })
+            }))
+            promiseArray.push(db.delete.gearfour([id, [0, ...gearfour.map(gearfour=>gearfour.id)]]).then(_=> {
+                return gearfour.map(({id: gearfourid, value, title}) => {
+                    return db.upsert.gearfour(gearfourid, id, title, value)
                 })
             }))
 

@@ -7,13 +7,18 @@ export default class ViewPairList extends Component {
 
         this.state = {
             stylings: { position: 'relative', ...props.stylings },
-            listArray: props.listArray || []
+            listArray: props.listArray || [],
+            converterFunction: props.converterFunction || this.converterFunction
         }
     }
 
     makeId = () => {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
+
+    converterFunction = (value) => {
+        return value
+    }
 
     render() {
         let { stylings, listArray } = this.state
@@ -23,7 +28,7 @@ export default class ViewPairList extends Component {
             }
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <p className="titleInput">{item.title}</p>
-                <p className="valueDisplay">{item.value}</p>
+                <p className="valueDisplay">{this.state.converterFunction(item.value)}</p>
             </div>)
         })
 

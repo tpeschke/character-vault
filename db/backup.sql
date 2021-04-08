@@ -257,3 +257,28 @@ create table cvreputation (
     characterId int,
     value varchar(250)
 );
+
+create table cvgearone (
+    id serial primary key,
+    characterid int,
+    title varchar(150),
+    value varchar(50)
+);
+create table cvgeartwo (
+    id serial primary key,
+    characterid int,
+    title varchar(150),
+    value varchar(50)
+);
+create table cvgearthree (
+    id serial primary key,
+    characterid int,
+    title varchar(150),
+    value varchar(50)
+);
+create table cvgearfour (
+    id serial primary key,
+    characterid int,
+    title varchar(150),
+    value varchar(50)
+);

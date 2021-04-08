@@ -61,6 +61,22 @@ viewController = {
         character.reputation = reputation
         return true
       }))
+      promiseArray.push(db.get.gearone(character.id).then(gearone => {
+        character.gearone = gearone
+        return true
+      }))
+      promiseArray.push(db.get.geartwo(character.id).then(geartwo => {
+        character.geartwo = geartwo
+        return true
+      }))
+      promiseArray.push(db.get.gearthree(character.id).then(gearthree => {
+        character.gearthree = gearthree
+        return true
+      }))
+      promiseArray.push(db.get.gearfour(character.id).then(gearfour => {
+        character.gearfour = gearfour
+        return true
+      }))
       return Promise.all(promiseArray).then(_=> {
         return character
       })
