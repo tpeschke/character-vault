@@ -85,17 +85,17 @@ export default class CharacterViewer extends Component {
                         <p className="drawbackLocation">{drawback}</p>
 
                         <p className="strLocation">{str}</p>
-                        <p className="strConfrontationLocation">{strData.confrontation}</p>
+                        <p className="strConfrontationLocation">{strData.confrontation.toLowerCase()}</p>
                         <p className="dexLocation">{dex}</p>
-                        <p className="dexConfrontationLocation">{dexData.confrontation}</p>
+                        <p className="dexConfrontationLocation">{dexData.confrontation.toLowerCase()}</p>
                         <p className="conLocation">{con}</p>
-                        <p className="conConfrontationLocation">{conData.confrontation}</p>
+                        <p className="conConfrontationLocation">{conData.confrontation.toLowerCase()}</p>
                         <p className="intLocation">{int}</p>
-                        <p className="intConfrontationLocation">{intData.confrontation}</p>
+                        <p className="intConfrontationLocation">{intData.confrontation.toLowerCase()}</p>
                         <p className="wisLocation">{wis}</p>
-                        <p className="wisConfrontationLocation">{wisData.confrontation}</p>
+                        <p className="wisConfrontationLocation">{wisData.confrontation.toLowerCase()}</p>
                         <p className="chaLocation">{cha}</p>
-                        <p className="chaConfrontationLocation">{chaData.confrontation}</p>
+                        <p className="chaConfrontationLocation">{chaData.confrontation.toLowerCase()}</p>
 
                         <p className="crawlLocation">{crawl}</p>
                         <p className="walkLocation">{walk}</p>
