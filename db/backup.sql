@@ -283,3 +283,26 @@ create table cvgearfour (
     title varchar(150),
     value varchar(50)
 );
+
+create table weaponone (
+    oneweaponid serial primary key,
+    characterid int UNIQUE,
+    onetrainattack int,
+    onetrainparry int,
+    onetrainrecovery int,
+    onetraindamage int,
+    onemiscattack int,
+    onemiscparry int,
+    onemiscrecovery int,
+    onemiscdamage int,
+    onemiscinit int,
+    onename varchar(50),
+    onebasedamage varchar(50),
+    onebaserecovery int,
+    onebaseparry int,
+    onebasemeasure varchar(10),
+    onetype varchar(1),
+    onebonus varchar(100),
+    onetraits VARCHAR(50),
+    onesize varchar(1)
+);

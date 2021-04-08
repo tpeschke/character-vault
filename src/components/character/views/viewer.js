@@ -59,7 +59,7 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint } = this.state.character
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -166,6 +166,28 @@ export default class CharacterViewer extends Component {
                         <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
 
                         <p className="generalnotesLocation">{generalnotes}</p>
+
+                        <div className="weaponProfileOne">
+                            <p className="weaponnameLocation">{onename}</p>
+                            <p className="basedamageLocation">{onebasedamage}</p>
+                            <p className="baserecoveryLocation">{onebaserecovery}</p>
+                            <p className="baseparryLocation">{onebaseparry}</p>
+                            <p className="basemeasureLocation">{onebasemeasure}</p>
+                            <p className="onetypeLocation">{onetype}</p>
+                            <p className="onebonusLocation">{onebonus}</p>
+                            <p className="onetraitsLocation">{onetraits}</p>
+
+                            <p className="onetrainattackLocation">{onetrainattack}</p>
+                            <p className="onetrainrecoveryLocation">{onetrainrecovery}</p>
+                            <p className="onetrainparryLocation">{onetrainparry}</p>
+                            <p className="onetraindamageLocation">{onetraindamage}</p>
+                            
+                            <p className="onemiscattackLocation">{onemiscattack}</p>
+                            <p className="onemiscrecoveryLocation">{onemiscrecovery}</p>
+                            <p className="onemiscparryLocation">{onemiscparry}</p>
+                            <p className="onemiscdamageLocation">{onemiscdamage}</p>
+                            <p className="onemiscinitLocation">{onemiscinit}</p>
+                        </div>
                     </div>
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>

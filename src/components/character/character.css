@@ -1,3 +1,15 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .fa-spinner {
     font-size: 75px;
     color: white;
@@ -806,6 +818,194 @@ input.platiniumLocation {
     width: 28px;
 }
 
+.weaponProfileOne {
+    position: absolute;
+    height: 303px;
+    width: 151px;
+    top: 745px;
+    left: 170px;
+}
+
+.weaponnameLocation {
+    width: 149px;
+    left: 1px;
+    top: -12px
+}
+input.weaponnameLocation {
+    top: 0px
+}
+
+.basedamageLocation {
+    width: 96px;
+    left: 54px;
+    text-align: center;
+    top: 9px
+}
+input.basedamageLocation {
+    top: 21px;
+}
+
+.baserecoveryLocation {
+    width: 32px;
+    top: 32px;
+    left: 43px;
+    text-align: center;
+}
+input.baserecoveryLocation {
+    top: 43px;
+}
+.baseparryLocation {
+    width: 32px;
+    top: 32px;
+    left: 118px;
+    text-align: center;
+}
+input.baseparryLocation {
+    top: 43px;
+}
+
+.basemeasureLocation {
+    width: 90px;
+    top: 54px;
+    left: 60px;
+    text-align: center;
+}
+input.basemeasureLocation {
+    top: 66px;
+}
+.onetypeLocation {
+    width: 65px;
+    top: 76px;
+    left: 84px;
+    text-align: center;
+}
+input.onetypeLocation {
+    top: 87px;
+}
+
+.onebonusLocation {
+    width: 149px;
+    top: 95px;
+    left: 1px;
+    text-indent: 60px;
+} 
+.onebonustextArea {
+    max-width: 149px;
+    min-width: 149px;
+    max-height: 62px;
+    min-height: 62px;
+    overflow: hidden;
+}
+textarea.onebonusLocation {
+    top: 108px;
+}
+
+.onetraitsLocation {
+    width: 149px;
+    top: 159px;
+    left: 1px;
+    text-indent: 46px;
+} 
+.onetraitstextArea {
+    max-width: 149px;
+    min-width: 149px;
+    max-height: 42px;
+    min-height: 42px;
+    overflow: hidden;
+}
+textarea.onetraitsLocation {
+    top: 104px;
+}
+
+.onetrainattackLocation {
+    width: 25px;
+    top: 222px;
+    left: 1px;
+    text-align: center;
+}
+input.onetrainattackLocation {
+    top: 235px;
+}
+
+.onetrainrecoveryLocation {
+    width: 25px;
+    top: 222px;
+    left: 26px;
+    text-align: center;
+}
+input.onetrainrecoveryLocation {
+    top: 235px;
+}
+
+.onetrainparryLocation {
+    width: 25px;
+    top: 222px;
+    left: 51px;
+    text-align: center;
+}
+input.onetrainparryLocation {
+    top: 235px;
+}
+
+.onetraindamageLocation {
+    width: 25px;
+    top: 222px;
+    left: 76px;
+    text-align: center;
+}
+input.onetraindamageLocation {
+    top: 235px;
+}
+
+.onemiscattackLocation {
+    width: 25px;
+    top: 245px;
+    left: 1px;
+    text-align: center;
+}
+input.onemiscattackLocation {
+    top: 257px;
+}
+
+.onemiscrecoveryLocation {
+    width: 25px;
+    top: 245px;
+    left: 26px;
+    text-align: center;
+}
+input.onemiscrecoveryLocation {
+    top: 257px;
+}
+
+.onemiscparryLocation {
+    width: 25px;
+    top: 245px;
+    left: 51px;
+    text-align: center;
+}
+input.onemiscparryLocation {
+    top: 257px;
+}
+
+.onemiscdamageLocation {
+    width: 25px;
+    top: 245px;
+    left: 76px;
+    text-align: center;
+}
+input.onemiscdamageLocation {
+    top: 257px;
+}
+
+.onemiscinitLocation {
+    width: 25px;
+    top: 245px;
+    left: 101px;
+    text-align: center;
+}
+input.onemiscinitLocation {
+    top: 257px;
+}
 @media(max-width: 835px) {
 
     .corner-button {
