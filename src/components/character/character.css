@@ -273,6 +273,12 @@ textarea.drawbackLocation {
     width: 80px;
     text-align: center;
 }
+.shownGearCarryLocation {
+    left: 621px;
+    top: 476px;
+    width: 80px;
+    text-align: center;
+}
 
 .strDamageLocation {
     left: 252px;

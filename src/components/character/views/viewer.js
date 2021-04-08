@@ -13,8 +13,8 @@ export default class CharacterViewer extends Component {
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
-        let gearArray = []
-        let cleanArray = ({value}) => {
+        let totalCarry = 0
+        let cleanArray = ({ value }) => {
             if (!isNaN(+value)) { return 0 }
             value = value.toUpperCase().replace(/\s+/g, '')
             let containsCarry = value.match(/[SML]/g)
@@ -23,7 +23,14 @@ export default class CharacterViewer extends Component {
             value.split('').forEach(character => {
                 if (character === 'S' || character === 'M' || character === 'L') {
                     currentBit = currentBit + character
-                    gearArray.push(currentBit)
+                    currentBit = currentBit.split('')
+                    if (currentBit[1] === 'S') {
+                        totalCarry += +currentBit[0]
+                    } else if (currentBit[1] === 'M') {
+                        totalCarry += (+currentBit[0] * 3)
+                    } else if (currentBit[1] === 'L') {
+                        totalCarry += (+currentBit[0] * 9)
+                    }
                     currentBit = ''
                 } else if (!isNaN(+character)) {
                     currentBit = currentBit + character
@@ -36,21 +43,6 @@ export default class CharacterViewer extends Component {
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
 
-        return this.convertFromCarryToEncumb(gearArray)
-    }
-
-    convertFromCarryToEncumb = (gearArray) => {
-        let totalCarry = 0
-        gearArray.forEach(value => {
-            value = value.split('')
-            if (value[1] === 'S') {
-                totalCarry += +value[0]
-            } else if (value[1] === 'M') {
-                totalCarry += (+value[0] * 3)
-            } else if (value[1] === 'L') {
-                totalCarry += (+value[0] * 9)
-            }
-        })
         return totalCarry
     }
 
@@ -68,12 +60,13 @@ export default class CharacterViewer extends Component {
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour } = this.state.character
-        , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
-        , shownHonor = honor ? honor : chaData.honor
-        , shownCarry = this.convertFromEncumbToCarry(strData.carry)
-        , { downloadMode, changeEditStatus } = this.props
-        , left = calculateLeft(shownHonor)
-        , circleFill = calculateHumanHonorDice(race, shownHonor)
+            , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
+            , shownHonor = honor ? honor : chaData.honor
+            , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
+            , shownCarry = this.convertFromEncumbToCarry(strData.carry)
+            , { downloadMode, changeEditStatus } = this.props
+            , left = calculateLeft(shownHonor)
+            , circleFill = calculateHumanHonorDice(race, shownHonor)
 
         return (
             <div>
@@ -153,11 +146,12 @@ export default class CharacterViewer extends Component {
                         <p className="silverLocation">{silver}</p>
                         <p className="goldLocation">{gold}</p>
                         <p className="platiniumLocation">{platinium}</p>
-                        <p className="strCarryLocation">{shownCarry}</p>
                         <ViewPairList stylings={{ top: '367px', left: '20px', width: '201px' }} listArray={gearone} />
                         <ViewPairList stylings={{ top: '367px', left: '221px', width: '199px' }} listArray={geartwo} />
                         <ViewPairList stylings={{ top: '367px', left: '422px', width: '198px' }} listArray={gearthree} />
                         <ViewPairList stylings={{ top: '367px', left: '619px', width: '175px' }} listArray={gearfour} />
+                        <p className="shownGearCarryLocation">{shownGearCarry}</p>
+                        <p className="strCarryLocation">{shownCarry}</p>
 
                         <p className="attackLocation"><strong>{dexData.attack + intData.attack}</strong> = {dexData.attack} + {intData.attack}</p>
                         <p className="defenseLocation"><strong>{dexData.defense + wisData.defense}</strong> = {dexData.defense} + {wisData.defense} </p>
