@@ -60,8 +60,9 @@ export default class CharacterViewer extends Component {
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, 
-            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twoweaponid, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threeweaponid, threetrainattack, 
-            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize } = this.state.character
+            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, 
+            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
+            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -251,6 +252,29 @@ export default class CharacterViewer extends Component {
                             <p className="totalparryLocation">{threetrainparry + threemiscparry}</p>
                             <p className="totaldamageLocation">{threetraindamage + threemiscdamage}</p>
                             <p className="totalinitLocation">{threemiscinit}</p>
+                        </div>
+                        
+                        <div className="weaponProfilefour">
+                            <p className="weaponnameLocation">{fourname}</p>
+                            <p className="basedamageLocation">{fourbasedamage}</p>
+                            <p className="baserecoveryLocation">{fourbaserecovery}</p>
+                            <p className="typeLocation typefour">{fourtype}</p>
+                            <p className="bonusLocation bonusfour">{fourbonus}</p>
+                            <p className="traitsLocation traitsfour">{fourtraits}</p>
+
+                            <p className="trainattackLocation">{fourtrainattack}</p>
+                            <p className="trainrecoveryLocation">{fourtrainrecovery}</p>
+                            <p className="traindamageLocation">{fourtraindamage}</p>
+                            
+                            <p className="miscattackLocation">{fourmiscattack}</p>
+                            <p className="miscrecoveryLocation">{fourmiscrecovery}</p>
+                            <p className="miscinitLocation initFour">{fourmiscinit}</p>
+                            <p className="miscdamageLocation">{fourmiscdamage}</p>
+                            
+                            <p className="totalattackLocation">{fourtrainattack + fourmiscattack}</p>
+                            <p className="totalrecoveryLocation">{fourtrainrecovery + fourmiscrecovery}</p>
+                            <p className="totalinitLocation initFour">{fourmiscinit}</p>
+                            <p className="totaldamageLocation">{fourtraindamage + fourmiscdamage}</p>
                         </div>
                     </div>
                 </div>

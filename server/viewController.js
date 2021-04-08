@@ -89,6 +89,10 @@ viewController = {
         character = {...weaponthree[0], ...character}
         return true
       }))
+      promiseArray.push(db.get.weaponfour(character.id).then(weaponfour => {
+        character = {...weaponfour[0], ...character}
+        return true
+      }))
       return Promise.all(promiseArray).then(_=> {
         return character
       })

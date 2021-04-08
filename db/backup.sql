@@ -352,3 +352,22 @@ create table weaponthree (
     threetraits VARCHAR(50),
     threesize varchar(1)
 );
+
+create table weaponfour (
+    fourweaponid serial primary key,
+    characterid int UNIQUE,
+    fourtrainattack int,
+    fourtrainrecovery int,
+    fourtraindamage int,
+    fourmiscattack int,
+    fourmiscrecovery int,
+    fourmiscdamage int,
+    fourmiscinit int,
+    fourname varchar(50),
+    fourbasedamage varchar(50),
+    fourbaserecovery int,
+    fourtype varchar(1),
+    fourbonus varchar(100),
+    fourtraits VARCHAR(50),
+    foursize varchar(1)
+);

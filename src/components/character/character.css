@@ -839,11 +839,21 @@ input.platiniumLocation {
     top: 745px;
     left: 471px;
 }
+.weaponProfilefour {
+    position: absolute;
+    height: 303px;
+    width: 174px;
+    top: 745px;
+    left: 621px;
+}
 
 .weaponnameLocation {
     width: 149px;
     left: 1px;
     top: -12px
+}
+.weaponnamefour {
+    width: 173px
 }
 input.weaponnameLocation {
     top: 0px
@@ -854,6 +864,9 @@ input.weaponnameLocation {
     left: 54px;
     text-align: center;
     top: 9px
+}
+.basedamagefour {
+    width: 120px
 }
 input.basedamageLocation {
     top: 21px;
@@ -896,6 +909,14 @@ input.basemeasureLocation {
 input.typeLocation {
     top: 87px;
 }
+.typefour {
+    top: 43px !important;
+    left: 137px;
+    width: 37px;
+}
+p.typefour {
+    top: 33px !important;
+}
 
 .bonusLocation {
     width: 149px;
@@ -913,6 +934,16 @@ input.typeLocation {
 textarea.bonusLocation {
     top: 108px;
 }
+.bonusfour {
+    max-width: 173px;
+    min-width: 173px;
+    max-height: 87px;
+    min-height: 87px;
+    top: 65px !important;
+}
+p.bonusfour {
+    top: 55px !important;
+}
 
 .traitsLocation {
     width: 149px;
@@ -929,6 +960,16 @@ textarea.bonusLocation {
 }
 textarea.traitsLocation {
     top: 104px;
+}
+.traitsfour {
+    top: 61px !important;
+    max-width: 173px;
+    min-width: 173px;
+    max-height: 60px;
+    min-height: 60px;
+}
+p.traitsfour {
+    top: 138px !important;
 }
 
 .trainattackLocation {
@@ -989,6 +1030,9 @@ input.miscattackLocation {
 }
 input.miscrecoveryLocation {
     top: 257px;
+}
+.initFour {
+    left: 50px !important
 }
 
 .miscparryLocation {
