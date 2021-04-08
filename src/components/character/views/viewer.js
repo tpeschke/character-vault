@@ -187,6 +187,12 @@ export default class CharacterViewer extends Component {
                             <p className="onemiscparryLocation">{onemiscparry}</p>
                             <p className="onemiscdamageLocation">{onemiscdamage}</p>
                             <p className="onemiscinitLocation">{onemiscinit}</p>
+                            
+                            <p className="onetotalattackLocation">{onetrainattack + onemiscattack}</p>
+                            <p className="onetotalrecoveryLocation">{onetrainrecovery + onemiscrecovery}</p>
+                            <p className="onetotalparryLocation">{onetrainparry + onemiscparry}</p>
+                            <p className="onetotaldamageLocation">{onetraindamage + onemiscdamage}</p>
+                            <p className="onetotalinitLocation">{onemiscinit}</p>
                         </div>
                     </div>
                 </div>

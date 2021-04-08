@@ -1006,6 +1006,38 @@ input.onemiscdamageLocation {
 input.onemiscinitLocation {
     top: 257px;
 }
+
+.onetotalattackLocation {
+    width: 25px;
+    top: 270px;
+    left: 1px;
+    text-align: center;
+}
+.onetotalrecoveryLocation {
+    width: 25px;
+    top: 270px;
+    left: 26px;
+    text-align: center;
+}
+.onetotalparryLocation {
+    width: 25px;
+    top: 270px;
+    left: 51px;
+    text-align: center;
+}
+.onetotaldamageLocation {
+    width: 25px;
+    top: 270px;
+    left: 76px;
+    text-align: center;
+}
+.onetotalinitLocation {
+    width: 25px;
+    top: 270px;
+    left: 101px;
+    text-align: center;
+}
+
 @media(max-width: 835px) {
 
     .corner-button {
