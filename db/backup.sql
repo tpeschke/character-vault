@@ -22,6 +22,7 @@ add column contacts varchar(250),
 add column abilitiesone varchar(500), add column abilitiestwo varchar(500), add column abilitiesthree varchar(500),
 add column removedability varchar(50),
 add column maxrange int,
+add column crawl varchar(20), add column walk varchar(20), add column jog varchar(20), add column run varchar(20), add column sprint varchar(20),
 add column generalnotes varchar(500),
 add column copper int, add column silver int, add column gold int, add column platinium int,
 add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10);

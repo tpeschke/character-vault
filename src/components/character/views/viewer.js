@@ -59,7 +59,7 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour } = this.state.character
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -96,6 +96,12 @@ export default class CharacterViewer extends Component {
                         <p className="wisConfrontationLocation">{wisData.confrontation}</p>
                         <p className="chaLocation">{cha}</p>
                         <p className="chaConfrontationLocation">{chaData.confrontation}</p>
+
+                        <p className="crawlLocation">{crawl}</p>
+                        <p className="walkLocation">{walk}</p>
+                        <p className="jogLocation">{jog}</p>
+                        <p className="runLocation">{run}</p>
+                        <p className="sprintLocation">{sprint}</p>
 
                         <p className="honorLocation">{shownHonor}</p>
                         <p className="extrahonordiceLocation">{extrahonordice}</p>

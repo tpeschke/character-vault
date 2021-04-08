@@ -279,7 +279,6 @@ textarea.drawbackLocation {
     width: 80px;
     text-align: center;
 }
-
 .strDamageLocation {
     left: 252px;
     top: 607px;
@@ -293,7 +292,6 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
-
 .dexConfrontationLocation {
     left: 98px;
     top: 181px;
@@ -335,7 +333,6 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
-
 .conConfrontationLocation {
     left: 98px;
     top: 202px;
@@ -349,7 +346,6 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
-
 .intConfrontationLocation {
     left: 98px;
     top: 223px;
@@ -363,7 +359,6 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
-
 .wisConfrontationLocation {
     left: 98px;
     top: 244px;
@@ -377,7 +372,6 @@ textarea.drawbackLocation {
     width: 48px;
     text-align: center;
 }
-
 .chaConfrontationLocation {
     left: 98px;
     top: 265px;
@@ -388,25 +382,66 @@ textarea.drawbackLocation {
 input.strLocation {
     top: 171px;
 }
-
 input.dexLocation {
     top: 192px;
 }
-
 input.conLocation {
     top: 213px;
 }
-
 input.intLocation {
     top: 234px;
 }
-
 input.wisLocation {
     top: 255px;
 }
-
 input.chaLocation {
     top: 276px;
+}
+
+.crawlLocation {
+    left: 220px;
+    top: 160px;
+    width: 48px;
+    text-align: center;
+}
+input.crawlLocation {
+    top: 171px;
+}
+.walkLocation {
+    left: 220px;
+    top: 179px;
+    width: 48px;
+    text-align: center;
+}
+input.walkLocation {
+    top: 192px;
+}
+.jogLocation {
+    left: 220px;
+    top: 202px;
+    width: 48px;
+    text-align: center;
+}
+input.jogLocation {
+    top: 213px;
+}
+.runLocation {
+    left: 220px;
+    top: 223px;
+    width: 48px;
+    text-align: center;
+}
+input.runLocation {
+    top: 234px;
+}
+.sprintLocation {
+    left: 220px;
+    top: 244px;
+    width: 48px;
+    text-align: center;
+}
+input.sprintLocation {
+    top: 255px;
 }
 
 .honorLocation {
