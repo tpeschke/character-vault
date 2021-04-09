@@ -14,7 +14,8 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
         onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, 
         twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, 
         threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
-        fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb } = characterCopy
+        fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, 
+        armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -76,6 +77,26 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <EditPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={updateAttribute} type={"geartwo"} />
                     <EditPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={updateAttribute} type={"gearthree"} />
                     <EditPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
+
+                    <input className="armornameLocation" type="text" defaultValue={armorname} onChange={event => updateAttribute(event.target.value, "armorname")} />
+                    <input className="armordrLocation" type="text" defaultValue={armordr} onChange={event => updateAttribute(event.target.value, "armordr")} />
+                    <input className="armorskilladjLocation" type="number" defaultValue={armorskilladj} onChange={event => updateAttribute(event.target.value, "armorskilladj")} />
+                    <textarea className="armorbonusLocation armorbonustextArea" defaultValue={armorbonus} onChange={event => updateAttribute(event.target.value, "armorbonus")} maxLength={"45"}></textarea>
+                   
+                    <input className="armorbasedefLocation" type="number" defaultValue={armorbasedef} onChange={event => updateAttribute(event.target.value, "armorbasedef")} />
+                    <input className="armorbaseencumbLocation" type="number" defaultValue={armorbaseencumb} onChange={event => updateAttribute(event.target.value, "armorbaseencumb")} />
+                    <input className="armorbaserecoveryLocation" type="number" defaultValue={armorbaserecovery} onChange={event => updateAttribute(event.target.value, "armorbaserecovery")} />
+                    <input className="armorbaseinitLocation" type="number" defaultValue={armorbaseinit} onChange={event => updateAttribute(event.target.value, "armorbaseinit")} />
+
+                    <input className="armortrainingdefLocation" type="number" defaultValue={armortrainingdef} onChange={event => updateAttribute(event.target.value, "armortrainingdef")} />
+                    <input className="armortrainencumbLocation" type="number" defaultValue={armortrainencumb} onChange={event => updateAttribute(event.target.value, "armortrainencumb")} />
+                    <input className="armortrainrecoveryLocation" type="number" defaultValue={armortrainrecovery} onChange={event => updateAttribute(event.target.value, "armortrainrecovery")} />
+                    <input className="armortraininitLocation" type="number" defaultValue={armortraininit} onChange={event => updateAttribute(event.target.value, "armortraininit")} />
+
+                    <input className="armormiscdefLocation" type="number" defaultValue={armormiscdef} onChange={event => updateAttribute(event.target.value, "armormiscdef")} />
+                    <input className="armormiscencumbLocation" type="number" defaultValue={armormiscencumb} onChange={event => updateAttribute(event.target.value, "armormiscencumb")} />
+                    <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onChange={event => updateAttribute(event.target.value, "armormiscrecovery")} />
+                    <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
 
                     <div className="weaponProfileOne">
                         <input className="weaponnameLocation" type="text" defaultValue={onename} onChange={event => updateAttribute(event.target.value, "onename")} />

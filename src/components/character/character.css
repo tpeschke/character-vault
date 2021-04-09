@@ -565,6 +565,7 @@ input.excurrentLocation {
     width: 426px;
 }
 .contactstextArea {
+    top: 634px;
     left: 20px;
     width: 426px;
     max-width: 426px;
@@ -698,6 +699,141 @@ input.excurrentLocation {
     width: 28px;
 }
 
+.armornameLocation {
+    top: 555px;
+    left: 21px;
+    width: 150px;
+}
+
+.armordrLocation {
+    top: 576px;
+    left: 42px;
+    width: 129px;
+    text-align: center;
+}
+
+.armorskilladjLocation {
+    top: 597px;
+    left: 80px;
+    width: 91px;
+    text-align: center;
+}
+
+.armorbonusLocation {
+    width: 150px;
+    top: 619px;
+    left: 21px;
+    text-indent: 60px;
+} 
+.armorbonustextArea {
+    position: absolute;
+    max-width: 150px;
+    min-width: 150px;
+    max-height: 62px;
+    min-height: 62px;
+    overflow: hidden;
+}
+
+.armorbasedefLocation {
+    top: 702px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.armorbaseencumbLocation {
+    top: 702px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.armorbaserecoveryLocation {
+    top: 702px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.armorbaseinitLocation {
+    top: 702px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.armortrainingdefLocation {
+    top: 724px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.armortrainencumbLocation {
+    top: 724px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.armortrainrecoveryLocation {
+    top: 724px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.armortraininitLocation {
+    top: 724px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.armormiscdefLocation {
+    top: 746px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.armormiscencumbLocation {
+    top: 746px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.armormiscrecoveryLocation {
+    top: 746px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.armormiscinitLocation {
+    top: 746px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.armortotaldefLocation {
+    top: 768px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.armortotalencumbLocation {
+    top: 768px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.armortotalrecoveryLocation {
+    top: 768px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.armortotalinitLocation {
+    top: 768px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
 .weaponProfileOne {
     position: absolute;
     height: 303px;
@@ -810,12 +946,18 @@ input.excurrentLocation {
     min-height: 42px;
     overflow: hidden;
 }
+textarea.traitsLocation {
+    top: 104px;
+}
 .traitsfour {
     top: 148px !important;
     max-width: 173px;
     min-width: 173px;
     max-height: 60px;
     min-height: 60px;
+}
+textarea.traitsfour {
+    top: 61px !important;
 }
 
 .trainattackLocation {

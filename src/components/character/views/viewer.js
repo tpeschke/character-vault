@@ -84,7 +84,8 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, 
             onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, 
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
-            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize } = this.state
+            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, 
+            armorbaserecovery, armorbaseencumb, armorbaseinit } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -191,6 +192,31 @@ export default class CharacterViewer extends Component {
                         <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
 
                         <p className="generalnotesLocation">{generalnotes}</p>
+
+                        <p className="armornameLocation">{armorname}</p>
+                        <p className="armordrLocation">{armordr}</p>
+                        <p className="armorskilladjLocation">{armorskilladj}</p>
+                        <p className="armorbonusLocation">{armorbonus}</p>
+
+                        <p className="armorbasedefLocation">{armorbasedef}</p>
+                        <p className="armorbaseencumbLocation">{armorbaseencumb}</p>
+                        <p className="armorbaserecoveryLocation">{armorbaserecovery}</p>
+                        <p className="armorbaseinitLocation">{armorbaseinit}</p>
+
+                        <p className="armortrainingdefLocation">{armortrainingdef}</p>
+                        <p className="armortrainencumbLocation">{armortrainencumb}</p>
+                        <p className="armortrainrecoveryLocation">{armortrainrecovery}</p>
+                        <p className="armortraininitLocation">{armortraininit}</p>
+
+                        <p className="armormiscdefLocation">{armormiscdef}</p>
+                        <p className="armormiscencumbLocation">{armormiscencumb}</p>
+                        <p className="armormiscrecoveryLocation">{armormiscrecovery}</p>
+                        <p className="armormiscinitLocation">{armormiscinit}</p>
+
+                        <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
+                        <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
+                        <p className="armortotalrecoveryLocation">{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
+                        <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit}</p>
 
                         <div className="weaponProfileOne">
                             <p className="weaponnameLocation">{onename}</p>

@@ -18,6 +18,9 @@ class Character extends Component {
     }
 
     componentWillMount() {
+        if (this.state.downloadMode) {
+            this.setState({isEditingMode: false})
+        }
         let id = this.props.match.params.id.split('.')[0]
         axios.get(`/api/view/${id}`).then(({ data: character }) => {
             console.log(character)

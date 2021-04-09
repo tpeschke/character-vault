@@ -94,7 +94,7 @@ viewController = {
         return true
       }))
       promiseArray.push(db.get.armor(character.id).then(armor => {
-        character = {...armor, ...character}
+        character = {...armor[0], ...character}
       }))
       return Promise.all(promiseArray).then(_=> {
         return character
