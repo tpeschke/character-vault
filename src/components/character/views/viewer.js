@@ -7,9 +7,14 @@ export default class CharacterViewer extends Component {
         super(props)
 
         this.state = {
-            character: props.character,
-            adjustedEncumb: this.reduceAndCleanGearArrays(props.character.gearone, props.character.geartwo, props.character.gearthree, props.character.gearfour)
+            ...props.character,
+            adjustedEncumb: null
         }
+    }
+
+    componentWillMount() {
+        let {gearone, geartwo, gearthree, gearfour} = this.state
+        this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -24,15 +29,32 @@ export default class CharacterViewer extends Component {
                 if (character === 'S' || character === 'M' || character === 'L') {
                     currentBit = currentBit + character
                     currentBit = currentBit.split('')
-                    if (currentBit[1] === 'S') {
-                        totalCarry += +currentBit[0]
-                    } else if (currentBit[1] === 'M') {
-                        totalCarry += (+currentBit[0] * 3)
-                    } else if (currentBit[1] === 'L') {
-                        totalCarry += (+currentBit[0] * 9)
+                    let number, type, container = false
+                    if (currentBit.includes('+')) {
+                        container = true
+                        number = +currentBit[1]
+                        type = currentBit[2]
+                    } else {
+                        number = +currentBit[0]
+                        type = currentBit[1]
+                    }
+                    let adjustedAmount = 0
+                    if (type === 'S') {
+                        adjustedAmount += +number
+                    } else if (type === 'M') {
+                        adjustedAmount += (+number * 3)
+                    } else if (type === 'L') {
+                        adjustedAmount += (+number * 9)
+                    }
+                    if (container) {
+                        let strDataCopy = {...this.state.strData}
+                        strDataCopy.carry += adjustedAmount
+                        this.setState({strData: strDataCopy})
+                    } else {
+                        totalCarry += adjustedAmount
                     }
                     currentBit = ''
-                } else if (!isNaN(+character)) {
+                } else if (!isNaN(+character) || character === '+') {
                     currentBit = currentBit + character
                 }
             })
@@ -43,7 +65,7 @@ export default class CharacterViewer extends Component {
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
 
-        return totalCarry
+        this.setState({adjustedEncumb: totalCarry})
     }
 
     convertFromEncumbToCarry = (value) => {
@@ -62,7 +84,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, 
             onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, 
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
-            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize } = this.state.character
+            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
