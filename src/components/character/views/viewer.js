@@ -216,7 +216,7 @@ export default class CharacterViewer extends Component {
                         <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
                         <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
                         <p className="armortotalrecoveryLocation">{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
-                        <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit}</p>
+                        <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0}</p>
 
                         <div className="weaponProfileOne">
                             <p className="weaponnameLocation">{onename}</p>
