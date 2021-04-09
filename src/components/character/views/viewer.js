@@ -132,11 +132,11 @@ export default class CharacterViewer extends Component {
                         <p className="extrahonordiceLocation">{extrahonordice}</p>
                         <div className="circle" style={{ left }}>{circleFill}</div>
                         <p className="temperamentLocation">{temperament}</p>
-                        <ViewList stylings={{ top: '392px', left: '20px', width: '224px' }} listArray={goals} />
-                        <ViewPairList stylings={{ top: '476px', left: '20px', width: '224px' }} listArray={devotions} />
-                        <ViewPairList stylings={{ top: '559px', left: '20px', width: '224px' }} listArray={flaws} />
-                        <ViewPairList stylings={{ top: '349px', left: '246px', width: '200px' }} listArray={traits} />
-                        <ViewList stylings={{ top: '642px', left: '107px', width: '340px' }} listArray={reputation} />
+                        <ViewList stylings={{ top: '405px', left: '20px', width: '224px' }} listArray={goals} />
+                        <ViewPairList stylings={{ top: '488px', left: '20px', width: '224px' }} listArray={devotions} />
+                        <ViewPairList stylings={{ top: '572px', left: '20px', width: '224px' }} listArray={flaws} />
+                        <ViewPairList stylings={{ top: '362px', left: '246px', width: '200px' }} listArray={traits} />
+                        <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
                         <p className="contactsLocation">{contacts}</p>
 
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
@@ -177,10 +177,10 @@ export default class CharacterViewer extends Component {
                         <p className="silverLocation">{silver}</p>
                         <p className="goldLocation">{gold}</p>
                         <p className="platiniumLocation">{platinium}</p>
-                        <ViewPairList stylings={{ top: '367px', left: '20px', width: '201px' }} listArray={gearone} />
-                        <ViewPairList stylings={{ top: '367px', left: '221px', width: '199px' }} listArray={geartwo} />
-                        <ViewPairList stylings={{ top: '367px', left: '422px', width: '198px' }} listArray={gearthree} />
-                        <ViewPairList stylings={{ top: '367px', left: '619px', width: '175px' }} listArray={gearfour} />
+                        <ViewPairList stylings={{ top: '379px', left: '20px', width: '201px' }} listArray={gearone} />
+                        <ViewPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} />
+                        <ViewPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} />
+                        <ViewPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} />
                         <p className="shownGearCarryLocation">{shownGearCarry}</p>
                         <p className="strCarryLocation">{shownCarry}</p>
 

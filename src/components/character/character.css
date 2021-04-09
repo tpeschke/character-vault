@@ -132,6 +132,7 @@ input[type=number] {
 .pageBase p, .pageBase input {
     position: absolute;
     font-size: 13px;
+    margin: 0
 }
 
 input, textarea {
@@ -143,111 +144,93 @@ input, textarea {
 
 .nameLocation {
     left: 123px;
-    top: 7px;
-}
-
-input.nameLocation {
     top: 20px;
+}
+input.nameLocation {
     width: 271px;
 }
 
 .raceLocation {
     left: 53px;
-    top: 31px;
-}
-
-input.raceLocation {
     top: 43px;
+}
+input.raceLocation {
     width: 68px;
 }
 
 .levelLocation {
     left: 489px;
-    top: 31px;
-}
-
-input.levelLocation {
     top: 43px;
+}
+input.levelLocation {
     left: 470px;
     width: 51px;
 }
 
 .primaryLocation {
     left: 195px;
-    top: 31px;
-}
-
-input.primaryLocation {
     top: 43px;
+}
+input.primaryLocation {
     width: 86px;
 }
 
 .primarylevelLocation {
     left: 276px;
-    top: 31px;
+    top: 43px;
 }
-
 input.primarylevelLocation {
     left: 282px;
-    top: 43px;
     width: 35px;
 }
 
 .secondaryLocation {
     left: 319px;
-    top: 31px;
-}
-
-input.secondaryLocation {
     top: 43px;
+}
+input.secondaryLocation {
     width: 93px;
 }
 
 .secondarylevelLocation {
     left: 420px;
-    top: 31px;
+    top: 43px;
 }
-
 input.secondarylevelLocation {
     left: 413px;
-    top: 43px;
     width: 35px;
 }
 
 .crpLocation {
     left: 545px;
-    top: 31px;
+    top: 43px;
     width: 51px;
     text-align: center;
 }
-
 input.crpLocation {
-    top: 43px;
     width: 51px;
 }
 
 .excurrentLocation {
     left: 319px;
-    top: 53px;
+    top: 66px;
     width: 127px;
     text-align: center;
 }
-
 input.excurrentLocation {
-    top: 66px;
     width: 127px;
 }
 
 .extolevelLocation {
     left: 95px;
-    top: 53px;
+    top: 66px;
     width: 151px;
     text-align: center;
 }
 
 .drawbackLocation {
     left: 20px;
-    top: 74px;
+    top: 87px;
     text-indent: 123px;
     width: 426px;
 }
@@ -261,389 +244,316 @@ input.excurrentLocation {
     text-indent: 122px;
     overflow: hidden;
 }
-textarea.drawbackLocation {
-    top: 87px;
-}
 
 .strLocation {
     left: 20px;
-    top: 160px;
+    top: 171px;
     width: 48px;
     text-align: center;
 }
-
 .strConfrontationLocation {
     left: 98px;
-    top: 160px;
+    top: 171px;
     width: 48px;
     text-align: center;
 }
 
 .strCarryLocation {
     left: 713px;
-    top: 476px;
+    top: 488px;
     width: 80px;
     text-align: center;
 }
 .shownGearCarryLocation {
     left: 621px;
-    top: 476px;
+    top: 488px;
     width: 80px;
     text-align: center;
 }
 .strDamageLocation {
     left: 252px;
-    top: 607px;
+    top: 618px;
     width: 117px;
     text-align: center;
 }
 
 .dexLocation {
     left: 20px;
-    top: 181px;
+    top: 192px;
     width: 48px;
     text-align: center;
 }
 .dexConfrontationLocation {
     left: 98px;
-    top: 181px;
+    top: 192px;
     width: 48px;
     text-align: center;
 }
 
 .attackLocation {
     left: 254px;
-    top: 543px;
+    top: 555px;
     width: 116px;
     text-align: center;
 }
 
 .defenseLocation {
     left: 254px;
-    top: 563px;
+    top: 576px;
     width: 116px;
     text-align: center;
 }
 
 .initLocation {
     left: 254px;
-    top: 583px;
+    top: 597px;
     width: 116px;
     text-align: center;
 }
 
 .encumbLocation {
     left: 254px;
-    top: 626px;
+    top: 640px;
     width: 116px;
     text-align: center;
 }
 
 .conLocation {
     left: 20px;
-    top: 202px;
+    top: 213px;
     width: 48px;
     text-align: center;
 }
 .conConfrontationLocation {
     left: 98px;
-    top: 202px;
+    top: 213px;
     width: 48px;
     text-align: center;
 }
 
 .intLocation {
     left: 20px;
-    top: 223px;
+    top: 234px;
     width: 48px;
     text-align: center;
 }
 .intConfrontationLocation {
     left: 98px;
-    top: 223px;
+    top: 234px;
     width: 48px;
     text-align: center;
 }
 
 .wisLocation {
     left: 20px;
-    top: 244px;
+    top: 255px;
     width: 48px;
     text-align: center;
 }
 .wisConfrontationLocation {
     left: 98px;
-    top: 244px;
+    top: 255px;
     width: 48px;
     text-align: center;
 }
 
 .chaLocation {
     left: 20px;
-    top: 265px;
+    top: 276px;
     width: 48px;
     text-align: center;
 }
 .chaConfrontationLocation {
     left: 98px;
-    top: 265px;
+    top: 276px;
     width: 48px;
     text-align: center;
-}
-
-input.strLocation {
-    top: 171px;
-}
-input.dexLocation {
-    top: 192px;
-}
-input.conLocation {
-    top: 213px;
-}
-input.intLocation {
-    top: 234px;
-}
-input.wisLocation {
-    top: 255px;
-}
-input.chaLocation {
-    top: 276px;
 }
 
 .crawlLocation {
     left: 220px;
-    top: 160px;
+    top: 171px;
     width: 48px;
     text-align: center;
-}
-input.crawlLocation {
-    top: 171px;
 }
 .walkLocation {
     left: 220px;
-    top: 179px;
+    top: 192px;
     width: 48px;
     text-align: center;
-}
-input.walkLocation {
-    top: 192px;
 }
 .jogLocation {
     left: 220px;
-    top: 202px;
+    top: 213px;
     width: 48px;
     text-align: center;
-}
-input.jogLocation {
-    top: 213px;
 }
 .runLocation {
     left: 220px;
-    top: 223px;
+    top: 234px;
     width: 48px;
     text-align: center;
-}
-input.runLocation {
-    top: 234px;
 }
 .sprintLocation {
     left: 220px;
-    top: 244px;
+    top: 255px;
     width: 48px;
     text-align: center;
-}
-input.sprintLocation {
-    top: 255px;
 }
 
 .honorLocation {
     left: 20px;
-    top: 330px;
+    top: 342px;
     width: 48px;
     text-align: center;
-}
-input.honorLocation {
-    top: 342px;
 }
 
 .temperamentLocation {
     left: 20px;
-    top: 372px;
-    width: 224px;
-}
-input.temperamentLocation {
     top: 383px;
+    width: 224px;
 }
 
 .extrahonordiceLocation {
     left: 220px;
-    top: 330px;
+    top: 342px;
     width: 48px;
     text-align: center;
 }
 
-input.extrahonordiceLocation {
-    top: 342px;
-}
-
 .takingabreatherLocation {
-    top: 423px;
+    top: 437px;
     left: 546px;
     width: 74px;
     text-align: center;
 }
 
 .stressthresholdLocation {
-    top: 476px;
+    top: 488px;
     left: 546px;
     width: 74px;
     text-align: center;
 }
 
-input.stressthresholdLocation {
-    top: 488px;
-}
-
 .favormaxLocation {
-    top: 538px;
+    top: 551px;
     left: 521px;
     width: 50px;
     text-align: center;
 }
-input.favormaxLocation {
-    top: 551px;
-}
 
 .favorminLocation {
-    top: 538px;
+    top: 551px;
     left: 571px;
     width: 50px;
     text-align: center;
 }
 
 .maxrangeLocation {
-    top: 540px;
+    top: 552px;
     left: 745px;
     width: 50px;
     text-align: center;
 }
-input.maxrangeLocation {
-    top: 552px;
-}
 
 .one {
-    top: 434px;
+    top: 446px;
     left: 674px;
 }
 .two {
-    top: 434px;
+    top: 446px;
 }
 .three {
-    top: 455px;
+    top: 468px;
     left: 674px;
 }
 .four {
-    top: 455px;
+    top: 468px;
 }
 .five {
-    top: 476px;
+    top: 490px;
     left: 674px;
 }
 .six {
-    top: 476px;
+    top: 490px;
 }
 .seven {
-    top: 497px;
+    top: 510px;
     left: 674px;
 }
 .eight {
-    top: 497px;
+    top: 510px;
 }
 .nine {
-    top: 518px;
+    top: 530px;
     left: 674px;
 }
 .ten {
-    top: 518px;
+    top: 530px;
 }
 .eleven {
-    top: 539px;
+    top: 552px;
     left: 674px;
 }
 
 .sizemodLocation {
-    top: 813px;
+    top: 824px;
     width: 48px;
     left: 524px;
     text-align: center;
 }
 
-input.sizemodLocation {
-    top: 824px;
-}
-
 .criticalLocation {
-    top: 601px;
+    top: 614px;
     left: 722px;
     width: 74px;
     text-align: center;
 }
 
-input.criticalLocation {
-    top: 614px;
-}
-
 .hurtLocation {
-    top: 601px;
+    top: 614px;
     left: 479px;
     width: 74px;
     text-align: center;
 }
 
 .bloodiedLocation {
-    top: 601px;
+    top: 614px;
     left: 555px;
     width: 74px;
     text-align: center;
 }
 
 .woundedLocation {
-    top: 601px;
+    top: 614px;
     left: 630px;
     width: 74px;
     text-align: center;
 }
 
 .traumaLocation {
-    top: 642px;
+    top: 655px;
     left: 621px;
     width: 74px;
     text-align: center;
 }
 
 .vitalityrollLocation {
-    top: 813px;
+    top: 824px;
     width: 47px;
     left: 599px;
     text-align: center;
 }
 
-input.vitalityrollLocation {
-    top: 824px;
-}
-
 .vitalitydiceLocation {
-    top: 813px;
+    top: 824px;
     width: 36px;
     left: 685px;
     text-align: center;
 }
-input.vitalitydiceLocation {
-    top: 824px;
-}
 
 .vitalityminLocation {
-    top: 813px;
+    top: 824px;
     width: 36px;
     left: 761px;
     text-align: center;
@@ -651,7 +561,7 @@ input.vitalitydiceLocation {
 
 .contactsLocation {
     left: 20px;
-    top: 750px;
+    top: 762px;
     width: 426px;
 }
 .contactstextArea {
@@ -663,13 +573,10 @@ input.vitalitydiceLocation {
     min-height: 105px;
     overflow: hidden;
 }
-textarea.contactsLocation {
-    top: 635px;
-}
 
 .abilitiesoneLocation {
     left: -406px;
-    top: 762px;
+    top: 822px;
     width: 250px;
 }
 .abilitiesonetextArea {
@@ -681,12 +588,9 @@ textarea.contactsLocation {
     min-height: 165px;
     overflow: hidden;
 }
-textarea.abilitiesoneLocation {
-    top: 822px;
-}
 .abilitiesoneAdjustment {
     left: 20px;
-    top: 877px;
+    top: 890px;
 }
 
 .abilitiestwoLocation {
@@ -703,12 +607,9 @@ textarea.abilitiesoneLocation {
     min-height: 165px;
     overflow: hidden;
 }
-textarea.abilitiestwoLocation {
-    top: 651px;
-}
 .abilitiestwoAdjustment {
     left: 272px;
-    top: 877px;
+    top: 890px;
 }
 
 .abilitiesthreeLocation {
@@ -725,27 +626,21 @@ textarea.abilitiestwoLocation {
     min-height: 126px;
     overflow: hidden;
 }
-textarea.abilitiesthreeLocation {
-    top: 612px;
-}
 .abilitiesthreeAdjustment {
     left: 547px;
-    top: 877px;
+    top: 890px;
 }
 
 .removedabilityLocation {
-    top: 1003px;
+    top: 1016px;
     width: 125px;
     left: 671px;
     text-align: center;
 }
-input.removedabilityLocation {
-    top: 1016px;
-}
 
 .generalnotesLocation {
     left: 396px;
-    top: 544px;
+    top: 555px;
     width: 401px;
 }
 .generalnotestextArea {
@@ -757,48 +652,33 @@ input.removedabilityLocation {
     min-height: 167px;
     overflow: hidden;
 }
-textarea.generalnotesLocation {
-    top: 555px;
-}
 
 .copperLocation {
-    top: 324px;
+    top: 336px;
     width: 54px;
     left: 516px;
     text-align: center;
 }
-input.copperLocation {
-    top: 336px;
-}
 
 .silverLocation {
-    top: 324px;
+    top: 336px;
     width: 54px;
     left: 592px;
     text-align: center;
 }
-input.silverLocation {
-    top: 336px;
-}
 
 .goldLocation {
-    top: 324px;
+    top: 336px;
     width: 54px;
     left: 666px;
     text-align: center;
 }
-input.goldLocation {
-    top: 336px;
-}
 
 .platiniumLocation {
-    top: 324px;
+    top: 336px;
     width: 54px;
     left: 742px;
     text-align: center;
-}
-input.platiniumLocation {
-    top: 336px;
 }
 
 .circle {
@@ -850,77 +730,55 @@ input.platiniumLocation {
 .weaponnameLocation {
     width: 149px;
     left: 1px;
-    top: -12px
+    top: -0px
 }
 .weaponnamefour {
     width: 173px
-}
-input.weaponnameLocation {
-    top: 0px
 }
 
 .basedamageLocation {
     width: 96px;
     left: 54px;
     text-align: center;
-    top: 9px
+    top: 21px
 }
 .basedamagefour {
     width: 120px
 }
-input.basedamageLocation {
-    top: 21px;
-}
 
 .baserecoveryLocation {
     width: 32px;
-    top: 32px;
+    top: 43px;
     left: 43px;
     text-align: center;
 }
-input.baserecoveryLocation {
-    top: 43px;
-}
 .baseparryLocation {
     width: 32px;
-    top: 32px;
+    top: 43px;
     left: 118px;
     text-align: center;
 }
-input.baseparryLocation {
-    top: 43px;
-}
-
 .basemeasureLocation {
     width: 90px;
-    top: 54px;
+    top: 66px;
     left: 60px;
     text-align: center;
 }
-input.basemeasureLocation {
-    top: 66px;
-}
 .typeLocation {
     width: 65px;
-    top: 76px;
+    top: 87px;
     left: 84px;
     text-align: center;
-}
-input.typeLocation {
-    top: 87px;
 }
 .typefour {
     top: 43px !important;
     left: 137px;
     width: 37px;
 }
-p.typefour {
-    top: 33px !important;
-}
 
 .bonusLocation {
     width: 149px;
-    top: 95px;
+    top: 108px;
     left: 1px;
     text-indent: 60px;
 } 
@@ -931,9 +789,6 @@ p.typefour {
     min-height: 62px;
     overflow: hidden;
 }
-textarea.bonusLocation {
-    top: 108px;
-}
 .bonusfour {
     max-width: 173px;
     min-width: 173px;
@@ -941,13 +796,10 @@ textarea.bonusLocation {
     min-height: 87px;
     top: 65px !important;
 }
-p.bonusfour {
-    top: 55px !important;
-}
 
 .traitsLocation {
     width: 149px;
-    top: 159px;
+    top: 171px;
     left: 1px;
     text-indent: 46px;
 } 
@@ -958,78 +810,54 @@ p.bonusfour {
     min-height: 42px;
     overflow: hidden;
 }
-textarea.traitsLocation {
-    top: 104px;
-}
 .traitsfour {
-    top: 61px !important;
+    top: 148px !important;
     max-width: 173px;
     min-width: 173px;
     max-height: 60px;
     min-height: 60px;
 }
-p.traitsfour {
-    top: 138px !important;
-}
 
 .trainattackLocation {
     width: 25px;
-    top: 222px;
+    top: 235px;
     left: 1px;
     text-align: center;
-}
-input.trainattackLocation {
-    top: 235px;
 }
 
 .trainrecoveryLocation {
     width: 25px;
-    top: 222px;
+    top: 235px;
     left: 26px;
     text-align: center;
-}
-input.trainrecoveryLocation {
-    top: 235px;
 }
 
 .trainparryLocation {
     width: 25px;
-    top: 222px;
+    top: 235px;
     left: 51px;
     text-align: center;
-}
-input.trainparryLocation {
-    top: 235px;
 }
 
 .traindamageLocation {
     width: 25px;
-    top: 222px;
+    top: 235px;
     left: 76px;
     text-align: center;
-}
-input.traindamageLocation {
-    top: 235px;
 }
 
 .miscattackLocation {
     width: 25px;
-    top: 245px;
+    top: 257px;
     left: 1px;
     text-align: center;
-}
-input.miscattackLocation {
-    top: 257px;
 }
 
 .miscrecoveryLocation {
     width: 25px;
-    top: 245px;
+    top: 257px;
     left: 26px;
     text-align: center;
-}
-input.miscrecoveryLocation {
-    top: 257px;
 }
 .initFour {
     left: 50px !important
@@ -1037,61 +865,52 @@ input.miscrecoveryLocation {
 
 .miscparryLocation {
     width: 25px;
-    top: 245px;
+    top: 257px;
     left: 51px;
     text-align: center;
-}
-input.miscparryLocation {
-    top: 257px;
 }
 
 .miscdamageLocation {
     width: 25px;
-    top: 245px;
+    top: 257px;
     left: 76px;
     text-align: center;
-}
-input.miscdamageLocation {
-    top: 257px;
 }
 
 .miscinitLocation {
     width: 25px;
-    top: 245px;
+    top: 257px;
     left: 101px;
     text-align: center;
-}
-input.miscinitLocation {
-    top: 257px;
 }
 
 .totalattackLocation {
     width: 25px;
-    top: 270px;
+    top: 282px;
     left: 1px;
     text-align: center;
 }
 .totalrecoveryLocation {
     width: 25px;
-    top: 270px;
+    top: 282px;
     left: 26px;
     text-align: center;
 }
 .totalparryLocation {
     width: 25px;
-    top: 270px;
+    top: 282px;
     left: 51px;
     text-align: center;
 }
 .totaldamageLocation {
     width: 25px;
-    top: 270px;
+    top: 282px;
     left: 76px;
     text-align: center;
 }
 .totalinitLocation {
     width: 25px;
-    top: 270px;
+    top: 282px;
     left: 101px;
     text-align: center;
 }

@@ -371,3 +371,20 @@ create table weaponfour (
     fourtraits VARCHAR(50),
     foursize varchar(1)
 );
+
+create table cvarmor (
+    armorid serial primary key,
+    characterid int UNIQUE,
+    armorname varchar(25),
+    armordr varchar(10),
+    armorskilladj int,
+    armorbonus varchar(300),
+    armortrainingdef int,
+    armortrainrecovery int,
+    armortrainencumb int,
+    armortraininit int,
+    armormiscdef int,
+    armormiscrecovery int,
+    armormiscinit int,
+    armormiscencumb int
+)

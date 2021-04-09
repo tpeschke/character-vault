@@ -1,0 +1,1 @@
+select * from cvarmor where characterid = $1
