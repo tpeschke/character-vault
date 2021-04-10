@@ -834,6 +834,141 @@ input.excurrentLocation {
     left: 96px;
 }
 
+.shieldnameLocation {
+    top: 811px;
+    left: 21px;
+    width: 150px;
+}
+.shielddrLocation {
+    top: 832px;
+    left: 41px;
+    width: 55px;
+}
+.shieldcoverLocation {
+    top: 832px;
+    left: 138px;
+    width: 33px;
+}
+.shieldsizeLocation {
+    top: 853px;
+    left: 51px;
+    width: 44px;
+}
+.shieldbonusLocation {
+    width: 150px;
+    top: 875px;
+    left: 21px;
+    text-indent: 60px;
+} 
+.shieldbonustextArea {
+    position: absolute;
+    max-width: 150px;
+    min-width: 150px;
+    max-height: 62px;
+    min-height: 62px;
+    overflow: hidden;
+}
+
+.shieldbasedefLocation {
+    top: 957px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.shieldbaseparryLocation {
+    top: 957px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.shieldbaseencumbLocation {
+    top: 957px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.shieldbasebreakLocation {
+    top: 957px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.shieldtraindefLocation {
+    top: 979px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.shieldtrainparryLocation {
+    top: 979px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.shieldtrainencumbLocation {
+    top: 979px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.shieldtrainbreakLocation {
+    top: 979px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.shieldmiscdefLocation {
+    top: 1002px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.shieldmiscparryLocation {
+    top: 1002px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.shieldmiscencumbLocation {
+    top: 1002px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.shieldmiscbreakLocation {
+    top: 1002px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
+.shieldtotaldefLocation {
+    top: 1028px;
+    text-align: center;
+    width: 25px;
+    left: 21px;
+}
+.shieldtotalparryLocation {
+    top: 1028px;
+    text-align: center;
+    width: 25px;
+    left: 46px;
+}
+.shieldtotalencumbLocation {
+    top: 1028px;
+    text-align: center;
+    width: 25px;
+    left: 71px;
+}
+.shieldtotalbreakLocation {
+    top: 1028px;
+    text-align: center;
+    width: 25px;
+    left: 96px;
+}
+
 .weaponProfileOne {
     position: absolute;
     height: 303px;

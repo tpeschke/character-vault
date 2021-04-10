@@ -391,4 +391,26 @@ create table cvarmor (
     armormiscrecovery int,
     armormiscinit int,
     armormiscencumb int
-)
+);
+
+create table cvshield (
+    shieldid serial primary key,
+    characterid int UNIQUE,
+    shieldname varchar(25),
+    shielddr varchar(10),
+    shieldsize varchar(1),
+    shieldcover varchar(10),
+    shieldbonus varchar(300),
+    shieldbasedef int,
+    shieldbaseparry int,
+    shieldbaseencumb int,
+    shieldbasebreak int,
+    shieldtraindef int,
+    shieldtrainparry int,
+    shieldtrainencumb int,
+    shieldtrainbreak int,
+    shieldmiscdef int,
+    shieldmiscparry int,
+    shieldmiscbreak int,
+    shieldmiscencumb int
+);

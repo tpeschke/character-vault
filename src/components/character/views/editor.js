@@ -15,7 +15,8 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
         twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, 
         threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
         fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, 
-        armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit } = characterCopy
+        armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, 
+        shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb } = characterCopy
     return (
         <div>
             <div id="pdf" className='pdfViewStylings'>
@@ -77,6 +78,27 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <EditPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={updateAttribute} type={"geartwo"} />
                     <EditPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={updateAttribute} type={"gearthree"} />
                     <EditPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
+
+                    <input className="shieldnameLocation" type="text" defaultValue={shieldname} onChange={event => updateAttribute(event.target.value, "shieldname")} />
+                    <input className="shielddrLocation" type="text" defaultValue={shielddr} onChange={event => updateAttribute(event.target.value, "shielddr")} />
+                    <input className="shieldcoverLocation" type="text" defaultValue={shieldcover} onChange={event => updateAttribute(event.target.value, "shieldcover")} />
+                    <input className="shieldsizeLocation" type="text" defaultValue={shieldsize} onChange={event => updateAttribute(event.target.value, "shieldsize")} />
+                    <textarea className="shieldbonusLocation shieldbonustextArea" defaultValue={shieldbonus} onChange={event => updateAttribute(event.target.value, "shieldbonus")} maxLength={"45"}></textarea>
+                   
+                    <input className="shieldbasedefLocation" type="number" defaultValue={shieldbasedef} onChange={event => updateAttribute(event.target.value, "shieldbasedef")} />
+                    <input className="shieldbaseparryLocation" type="number" defaultValue={shieldbaseparry} onChange={event => updateAttribute(event.target.value, "shieldbaseparry")} />
+                    <input className="shieldbaseencumbLocation" type="number" defaultValue={shieldbaseencumb} onChange={event => updateAttribute(event.target.value, "shieldbaseencumb")} />
+                    <input className="shieldbasebreakLocation" type="number" defaultValue={shieldbasebreak} onChange={event => updateAttribute(event.target.value, "shieldbasebreak")} />
+
+                    <input className="shieldtraindefLocation" type="number" defaultValue={shieldtraindef} onChange={event => updateAttribute(event.target.value, "shieldtraindef")} />
+                    <input className="shieldtrainparryLocation" type="number" defaultValue={shieldtrainparry} onChange={event => updateAttribute(event.target.value, "shieldtrainparry")} />
+                    <input className="shieldtrainencumbLocation" type="number" defaultValue={shieldtrainencumb} onChange={event => updateAttribute(event.target.value, "shieldtrainencumb")} />
+                    <input className="shieldtrainbreakLocation" type="number" defaultValue={shieldtrainbreak} onChange={event => updateAttribute(event.target.value, "shieldtrainbreak")} />
+
+                    <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onChange={event => updateAttribute(event.target.value, "shieldmiscdef")} />
+                    <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onChange={event => updateAttribute(event.target.value, "shieldmiscparry")} />
+                    <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onChange={event => updateAttribute(event.target.value, "shieldmiscencumb")} />
+                    <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onChange={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
 
                     <input className="armornameLocation" type="text" defaultValue={armorname} onChange={event => updateAttribute(event.target.value, "armorname")} />
                     <input className="armordrLocation" type="text" defaultValue={armordr} onChange={event => updateAttribute(event.target.value, "armordr")} />

@@ -85,7 +85,7 @@ export default class CharacterViewer extends Component {
             onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, 
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, 
-            armorbaserecovery, armorbaseencumb, armorbaseinit } = this.state
+            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -217,6 +217,32 @@ export default class CharacterViewer extends Component {
                         <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
                         <p className="armortotalrecoveryLocation">{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
                         <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0}</p>
+
+                        <p className="shieldnameLocation">{shieldname}</p>
+                        <p className="shielddrLocation">{shielddr}</p>
+                        <p className="shieldsizeLocation">{shieldsize}</p>
+                        <p className="shieldcoverLocation">{shieldcover}</p>
+                        <p className="shieldbonusLocation">{shieldbonus}</p>
+
+                        <p className="shieldbasedefLocation">{shieldbasedef}</p>
+                        <p className="shieldbaseparryLocation">{shieldbaseparry}</p>
+                        <p className="shieldbaseencumbLocation">{shieldbaseencumb}</p>
+                        <p className="shieldbasebreakLocation">{shieldbasebreak}</p>
+
+                        <p className="shieldtraindefLocation">{shieldtraindef}</p>
+                        <p className="shieldtrainparryLocation">{shieldtrainparry}</p>
+                        <p className="shieldtrainencumbLocation">{shieldtrainencumb}</p>
+                        <p className="shieldtrainbreakLocation">{shieldtrainbreak}</p>
+
+                        <p className="shieldmiscdefLocation">{shieldmiscdef}</p>
+                        <p className="shieldmiscparryLocation">{shieldmiscparry}</p>
+                        <p className="shieldmiscencumbLocation">{shieldmiscencumb}</p>
+                        <p className="shieldmiscbreakLocation">{shieldmiscbreak}</p>
+
+                        <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
+                        <p className="shieldtotalparryLocation">{shieldbaseparry + shieldtrainparry + shieldmiscparry > 0 ? shieldbaseparry + shieldtrainparry + shieldmiscparry : 0}</p>
+                        <p className="shieldtotalencumbLocation">{shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0}</p>
+                        <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak + shieldmiscbreak > 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0}</p>
 
                         <div className="weaponProfileOne">
                             <p className="weaponnameLocation">{onename}</p>
