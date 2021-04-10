@@ -93,7 +93,7 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , left = calculateLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
-
+            
         return (
             <div>
                 <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
@@ -141,7 +141,20 @@ export default class CharacterViewer extends Component {
                         <p className="contactsLocation">{contacts}</p>
 
                         <div className="weaponsquare weaponone">
+                            <p className="recovery">{onebaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (onetrainrecovery + onemiscrecovery)}</p>
+                            <p className="attack">{onetrainattack + onemiscattack + dexData.attack + intData.attack}</p>
+                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + onemiscinit}</p>
 
+                            <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+                            <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
+                            <div className="drshell">
+                                <p id="armorDr">{armordr}</p>
+                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                            </div>
+
+                            <p className="measure">{onebasemeasure}</p>
+                            <p className="damage">{onebasedamage}+{onetraindamage + onemiscdamage + strData.damage}</p>
+                            <p className="parry">{shieldbaseparry ? shieldbaseparry + shieldbaseparry + shieldtrainparry + shieldmiscparry : onebaseparry}</p>
                         </div>
 
                         <div className="weaponsquare weapontwo">
@@ -255,7 +268,7 @@ export default class CharacterViewer extends Component {
                         <p className="shieldmiscbreakLocation">{shieldmiscbreak}</p>
 
                         <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
-                        <p className="shieldtotalparryLocation">{shieldbaseparry + shieldtrainparry + shieldmiscparry > 0 ? shieldbaseparry + shieldtrainparry + shieldmiscparry : 0}</p>
+                        <p className="shieldtotalparryLocation">{shieldbaseparry + shieldtrainparry + shieldmiscparry}</p>
                         <p className="shieldtotalencumbLocation">{shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0}</p>
                         <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak + shieldmiscbreak > 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0}</p>
 
