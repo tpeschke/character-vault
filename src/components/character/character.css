@@ -518,18 +518,13 @@ input.excurrentLocation {
     text-align: center;
 }
 
-.weaponsquare .damage {
-    position: absolute;
-    top: 85px;
-    left: 38px;
+.weaponsquare .damage {top: 89px;
+    left: 46px;
     height: 38px;
-    width: 69px;
+    width: 51px;
     word-wrap: break-word;
     text-align: center;
     font-size: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .weaponsquare .parry {

@@ -160,16 +160,61 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weapontwo">
+                            <p className="recovery">{twobaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (twotrainrecovery + twomiscrecovery)}</p>
+                            <p className="attack">{twotrainattack + twomiscattack + dexData.attack + intData.attack}</p>
+                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + twomiscinit}</p>
 
+                            <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+                            <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
+                            <div className="drshell">
+                                <p id="armorDr">{armordr}</p>
+                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                            </div>
+
+                            <p className="measure">{twobasemeasure}</p>
+                            <p className="damage">{twobasedamage}+{twotraindamage + twomiscdamage + strData.damage}</p>
+                            <p className="parry">{shieldbaseparry ? shieldbaseparry + shieldbaseparry + shieldtrainparry + shieldmiscparry : twobaseparry}</p>
+
+                            <p className="name">{twoname}</p>
                         </div>
 
                         <div className="weaponsquare weaponthree">
+                            <p className="recovery">{threebaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (threetrainrecovery + threemiscrecovery)}</p>
+                            <p className="attack">{threetrainattack + threemiscattack + dexData.attack + intData.attack}</p>
+                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + threemiscinit}</p>
 
+                            <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+                            <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
+                            <div className="drshell">
+                                <p id="armorDr">{armordr}</p>
+                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                            </div>
+
+                            <p className="measure">{threebasemeasure}</p>
+                            <p className="damage">{threebasedamage}+{threetraindamage + threemiscdamage + strData.damage}</p>
+                            <p className="parry">{shieldbaseparry ? shieldbaseparry + shieldbaseparry + shieldtrainparry + shieldmiscparry : threebaseparry}</p>
+
+                            <p className="name">{threename}</p>
                         </div>
 
                         <div className="weaponsquare weaponfour">
+                            <p className="recovery">{fourbaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (fourtrainrecovery + fourmiscrecovery)}</p>
+                            <p className="attack">{fourtrainattack + fourmiscattack + dexData.attack + intData.attack}</p>
+                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + fourmiscinit}</p>
 
+                            <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+                            <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
+                            <div className="drshell">
+                                <p id="armorDr">{armordr}</p>
+                            </div>
+
+                            <p className="measure">n/a</p>
+                            <p className="damage">{fourbasedamage}+{fourtraindamage + fourmiscdamage + strData.damage}</p>
+                            <p className="parry">n/a</p>
+
+                            <p className="name">{fourname}</p>
                         </div>
+
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
                         <p className="favormaxLocation">{favormax}</p>
