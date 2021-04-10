@@ -421,6 +421,32 @@ input.excurrentLocation {
     text-align: center;
 }
 
+.weaponsquare {
+    position: absolute;
+    height: 137px;
+    width: 143px;
+}
+
+.weaponone {
+    top: 75px;
+    left: 471px;
+}
+
+.weapontwo {
+    top: 75px;
+    left: 648px;
+}
+
+.weaponthree {
+    top: 250px;
+    left: 472px;
+}
+
+.weaponfour {
+    left: 648px;
+    top: 250px;
+}
+
 .takingabreatherLocation {
     top: 437px;
     left: 546px;

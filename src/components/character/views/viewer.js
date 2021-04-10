@@ -140,6 +140,21 @@ export default class CharacterViewer extends Component {
                         <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
                         <p className="contactsLocation">{contacts}</p>
 
+                        <div className="weaponsquare weaponone">
+
+                        </div>
+
+                        <div className="weaponsquare weapontwo">
+
+                        </div>
+
+                        <div className="weaponsquare weaponthree">
+
+                        </div>
+
+                        <div className="weaponsquare weaponfour">
+
+                        </div>
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
                         <p className="favormaxLocation">{favormax}</p>
