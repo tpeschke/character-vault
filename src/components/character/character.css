@@ -541,6 +541,14 @@ input.excurrentLocation {
     text-align: center;
 }
 
+.weaponsquare .name {
+    position: absolute;
+    top: 151px;
+    left: 1px;
+    height: 20px;
+    width: 144px;
+    text-align: left;
+}
 
 .takingabreatherLocation {
     top: 437px;

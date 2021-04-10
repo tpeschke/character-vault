@@ -155,6 +155,8 @@ export default class CharacterViewer extends Component {
                             <p className="measure">{onebasemeasure}</p>
                             <p className="damage">{onebasedamage}+{onetraindamage + onemiscdamage + strData.damage}</p>
                             <p className="parry">{shieldbaseparry ? shieldbaseparry + shieldbaseparry + shieldtrainparry + shieldmiscparry : onebaseparry}</p>
+
+                            <p className="name">{onename}</p>
                         </div>
 
                         <div className="weaponsquare weapontwo">
