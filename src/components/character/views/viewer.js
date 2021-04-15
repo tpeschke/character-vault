@@ -149,7 +149,7 @@ export default class CharacterViewer extends Component {
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
                             <div className="drshell">
                                 <p id="armorDr">{armordr}</p>
-                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                                <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p>
                             </div>
 
                             <p className="measure">{onebasemeasure}</p>
@@ -168,7 +168,7 @@ export default class CharacterViewer extends Component {
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
                             <div className="drshell">
                                 <p id="armorDr">{armordr}</p>
-                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                                <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p>
                             </div>
 
                             <p className="measure">{twobasemeasure}</p>
@@ -187,7 +187,7 @@ export default class CharacterViewer extends Component {
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
                             <div className="drshell">
                                 <p id="armorDr">{armordr}</p>
-                                <p id="shieldDr"><i class="fas fa-shield-alt"></i>{shielddr}</p>
+                                <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p>
                             </div>
 
                             <p className="measure">{threebasemeasure}</p>

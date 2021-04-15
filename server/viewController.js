@@ -99,6 +99,9 @@ viewController = {
       promiseArray.push(db.get.shield(character.id).then(shield => {
         character = {...shield[0], ...character}
       }))
+      promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
+        character.skillsuites = skillsuites
+      }))
       
       return Promise.all(promiseArray).then(_=> {
         return character
