@@ -414,3 +414,25 @@ create table cvshield (
     shieldmiscbreak int,
     shieldmiscencumb int
 );
+
+create table cvskillsuites (
+    skillsuiteid serial primary key,
+    skillsuitename varchar(50),
+    skillsuitebasecost int
+);
+
+insert into cvskillsuites (skillsuitename, skillsuitebasecost) values 
+('Athletics', 30),
+('Lore', 47),
+('Streetwise', 54),
+('Survival', 61),
+('Tactics', 53),
+('Trades', 56),
+('Weirdcraft', 84);
+
+create table cvcharacterskillsuites (
+    characterskillsuitesid serial primary key,
+    skillsuiteid int,
+    characterid int,
+    rank int
+);
