@@ -1316,8 +1316,47 @@ textarea.traitsfour {
     text-align: center;
 }
 
-@media(max-width: 835px) {
+.skillsuiteShell {
+    height: 147px;
+    width: 135px;
+    top: 41px;
+    position: absolute;
+    left: 135px;
+}
+.skillsuiteShell {
+    position: absolute;
+}
+.skillcost, .skillrank {
+    width: 50%;
+    text-align: center;
+}
+.skillrank { 
+    left: 70px
+}
 
+.skillRow .athletics {
+    top: 0
+}
+.skillRow .lore {
+    top: 21px
+}
+.skillRow .streetwise {
+    top: 42px
+}
+.skillRow .survival {
+    top: 63px
+}
+.skillRow .tactics {
+    top: 84px
+}
+.skillRow .trades {
+    top: 105px
+}
+.skillRow .weirdcraft {
+    top: 126px
+}
+
+@media(max-width: 835px) {
     .corner-button {
         background: transparent
     }

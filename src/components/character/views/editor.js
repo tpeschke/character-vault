@@ -7,15 +7,22 @@ function updateAttribute(value, type) {
     characterCopy[type] = value
 }
 
+function updateSkillsuites(value, index) {
+    let skillsuites = characterCopy.skillsuites.map(skillsuite => { return { ...skillsuite } })
+    skillsuites[index].rank = +value
+    characterCopy = { ...characterCopy, skillsuites}
+    console.log(characterCopy)
+}
+
 export default function CharacterEditor({ character, updateCharacter, downloadMode }) {
     characterCopy = { ...character }
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, 
-        onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, 
-        twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, 
-        threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
-        fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, 
-        armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, 
+        abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry,
+        onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage,
+        twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage,
+        threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
+        fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
+        armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
         shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites } = characterCopy
     return (
         <div>
@@ -70,6 +77,37 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => updateAttribute(event.target.value, "removedability")} />
                 </div>
                 <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
+                    <div className="skillsuiteShell">
+                        <div className="skillRow athletics">
+                            <p className="skillcost athletics">{skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 2)}</p>
+                            <input className="skillrank athletics" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} />
+                        </div>
+                        <div className="skillRow lore">
+                            <p className="skillcost lore">{skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 2)}</p>
+                            <input className="skillrank lore" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} />
+                        </div>
+                        <div className="skillRow streetwise">
+                            <p className="skillcost streetwise">{skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 2)}</p>
+                            <input className="skillrank streetwise" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} />
+                        </div>
+                        <div className="skillRow survival">
+                            <p className="skillcost survival">{skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 2)}</p>
+                            <input className="skillrank survival" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} />
+                        </div>
+                        <div className="skillRow tactics">
+                            <p className="skillcost tactics">{skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 2)}</p>
+                            <input className="skillrank tactics" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} />
+                        </div>
+                        <div className="skillRow trades">
+                            <p className="skillcost trades">{skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 2)}</p>
+                            <input className="skillrank trades" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} />
+                        </div>
+                        <div className="skillRow weirdcraft">
+                            <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 2)}</p>
+                            <input className="skillrank weirdcraft" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} />
+                        </div>
+                    </div>
+
                     <input className="copperLocation" type="text" defaultValue={copper} onChange={event => updateAttribute(event.target.value, "copper")} />
                     <input className="silverLocation" type="text" defaultValue={silver} onChange={event => updateAttribute(event.target.value, "silver")} />
                     <input className="goldLocation" type="text" defaultValue={gold} onChange={event => updateAttribute(event.target.value, "gold")} />
@@ -84,7 +122,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="shieldcoverLocation" type="text" defaultValue={shieldcover} onChange={event => updateAttribute(event.target.value, "shieldcover")} />
                     <input className="shieldsizeLocation" type="text" defaultValue={shieldsize} onChange={event => updateAttribute(event.target.value, "shieldsize")} />
                     <textarea className="shieldbonusLocation shieldbonustextArea" defaultValue={shieldbonus} onChange={event => updateAttribute(event.target.value, "shieldbonus")} maxLength={"45"}></textarea>
-                   
+
                     <input className="shieldbasedefLocation" type="number" defaultValue={shieldbasedef} onChange={event => updateAttribute(event.target.value, "shieldbasedef")} />
                     <input className="shieldbaseparryLocation" type="number" defaultValue={shieldbaseparry} onChange={event => updateAttribute(event.target.value, "shieldbaseparry")} />
                     <input className="shieldbaseencumbLocation" type="number" defaultValue={shieldbaseencumb} onChange={event => updateAttribute(event.target.value, "shieldbaseencumb")} />
@@ -104,7 +142,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                     <input className="armordrLocation" type="text" defaultValue={armordr} onChange={event => updateAttribute(event.target.value, "armordr")} />
                     <input className="armorskilladjLocation" type="number" defaultValue={armorskilladj} onChange={event => updateAttribute(event.target.value, "armorskilladj")} />
                     <textarea className="armorbonusLocation armorbonustextArea" defaultValue={armorbonus} onChange={event => updateAttribute(event.target.value, "armorbonus")} maxLength={"45"}></textarea>
-                   
+
                     <input className="armorbasedefLocation" type="number" defaultValue={armorbasedef} onChange={event => updateAttribute(event.target.value, "armorbasedef")} />
                     <input className="armorbaseencumbLocation" type="number" defaultValue={armorbaseencumb} onChange={event => updateAttribute(event.target.value, "armorbaseencumb")} />
                     <input className="armorbaserecoveryLocation" type="number" defaultValue={armorbaserecovery} onChange={event => updateAttribute(event.target.value, "armorbaserecovery")} />
@@ -134,14 +172,14 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                         <input className="trainrecoveryLocation" type="number" defaultValue={onetrainrecovery} onChange={event => updateAttribute(event.target.value, "onetrainrecovery")} />
                         <input className="trainparryLocation" type="number" defaultValue={onetrainparry} onChange={event => updateAttribute(event.target.value, "onetrainparry")} />
                         <input className="traindamageLocation" type="number" defaultValue={onetraindamage} onChange={event => updateAttribute(event.target.value, "onetraindamage")} />
-                        
+
                         <input className="miscattackLocation" type="number" defaultValue={onemiscattack} onChange={event => updateAttribute(event.target.value, "onemiscattack")} />
                         <input className="miscrecoveryLocation" type="number" defaultValue={onemiscrecovery} onChange={event => updateAttribute(event.target.value, "onemiscrecovery")} />
                         <input className="miscparryLocation" type="number" defaultValue={onemiscparry} onChange={event => updateAttribute(event.target.value, "onemiscparry")} />
                         <input className="miscdamageLocation" type="number" defaultValue={onemiscdamage} onChange={event => updateAttribute(event.target.value, "onemiscdamage")} />
                         <input className="miscinitLocation" type="number" defaultValue={onemiscinit} onChange={event => updateAttribute(event.target.value, "onemiscinit")} />
                     </div>
-                    
+
                     <div className="weaponProfiletwo">
                         <input className="weaponnameLocation" type="text" defaultValue={twoname} onChange={event => updateAttribute(event.target.value, "twoname")} />
                         <input className="basedamageLocation" type="text" defaultValue={twobasedamage} onChange={event => updateAttribute(event.target.value, "twobasedamage")} />
@@ -156,7 +194,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                         <input className="trainrecoveryLocation" type="number" defaultValue={twotrainrecovery} onChange={event => updateAttribute(event.target.value, "twotrainrecovery")} />
                         <input className="trainparryLocation" type="number" defaultValue={twotrainparry} onChange={event => updateAttribute(event.target.value, "twotrainparry")} />
                         <input className="traindamageLocation" type="number" defaultValue={twotraindamage} onChange={event => updateAttribute(event.target.value, "twotraindamage")} />
-                        
+
                         <input className="miscattackLocation" type="number" defaultValue={twomiscattack} onChange={event => updateAttribute(event.target.value, "twomiscattack")} />
                         <input className="miscrecoveryLocation" type="number" defaultValue={twomiscrecovery} onChange={event => updateAttribute(event.target.value, "twomiscrecovery")} />
                         <input className="miscparryLocation" type="number" defaultValue={twomiscparry} onChange={event => updateAttribute(event.target.value, "twomiscparry")} />
@@ -178,7 +216,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                         <input className="trainrecoveryLocation" type="number" defaultValue={threetrainrecovery} onChange={event => updateAttribute(event.target.value, "threetrainrecovery")} />
                         <input className="trainparryLocation" type="number" defaultValue={threetrainparry} onChange={event => updateAttribute(event.target.value, "threetrainparry")} />
                         <input className="traindamageLocation" type="number" defaultValue={threetraindamage} onChange={event => updateAttribute(event.target.value, "threetraindamage")} />
-                        
+
                         <input className="miscattackLocation" type="number" defaultValue={threemiscattack} onChange={event => updateAttribute(event.target.value, "threemiscattack")} />
                         <input className="miscrecoveryLocation" type="number" defaultValue={threemiscrecovery} onChange={event => updateAttribute(event.target.value, "threemiscrecovery")} />
                         <input className="miscparryLocation" type="number" defaultValue={threemiscparry} onChange={event => updateAttribute(event.target.value, "threemiscparry")} />
@@ -197,7 +235,7 @@ export default function CharacterEditor({ character, updateCharacter, downloadMo
                         <input className="trainattackLocation" type="number" defaultValue={fourtrainattack} onChange={event => updateAttribute(event.target.value, "fourtrainattack")} />
                         <input className="trainrecoveryLocation" type="number" defaultValue={fourtrainrecovery} onChange={event => updateAttribute(event.target.value, "fourtrainrecovery")} />
                         <input className="traindamageLocation" type="number" defaultValue={fourtraindamage} onChange={event => updateAttribute(event.target.value, "fourtraindamage")} />
-                        
+
                         <input className="miscattackLocation" type="number" defaultValue={fourmiscattack} onChange={event => updateAttribute(event.target.value, "fourmiscattack")} />
                         <input className="miscrecoveryLocation" type="number" defaultValue={fourmiscrecovery} onChange={event => updateAttribute(event.target.value, "fourmiscrecovery")} />
                         <input className="miscinitLocation initFour" type="number" defaultValue={fourmiscinit} onChange={event => updateAttribute(event.target.value, "fourmiscinit")} />

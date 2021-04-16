@@ -432,7 +432,7 @@ insert into cvskillsuites (skillsuitename, skillsuitebasecost) values
 
 create table cvcharacterskillsuites (
     characterskillsuitesid serial primary key,
-    skillsuiteid int,
-    characterid int,
+    skillsuiteid int REFERENCES cvskillsuites(skillsuiteid),
+    characterid int REFERENCES cvcharactermain(id),
     rank int
 );

@@ -99,8 +99,13 @@ module.exports = {
             promiseArray.push(db.upsert.armor(armorid, id, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit))
             promiseArray.push(db.upsert.shield(shieldid, id, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb))
 
-            let { skillsuiteid, rank, characterskillsuitesid } = skillsuites
-            promiseArray.push(db.upsert.skillsuites(characterskillsuitesid, characterid, skillsuiteid, rank))
+            skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid }) => {
+                if (characterskillsuitesid && rank) {
+                    promiseArray.push(db.upsert.insert.skillsuites(rank, characterskillsuitesid))
+                } else if (!characterskillsuitesid && rank) {
+                    promiseArray.push(db.upsert.add.skillsuites(skillsuiteid, id, rank))
+                }
+            })
 
             Promise.all(promiseArray).then(_=> {
                 assembleCharacter(req).then((character) => {

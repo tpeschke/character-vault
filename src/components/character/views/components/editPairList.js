@@ -14,9 +14,7 @@ export default class EditPairList extends Component {
             defaultValue: props.defaultValue || null
         }
     }
-
-    //{id, characterid, title, value}
-
+    
     deepCopyListArray = () => {
         return this.state.listArray.map(item => { return { ...item } })
     }

@@ -1,0 +1,1 @@
+insert into cvcharacterskillsuites (skillsuiteid, characterid, rank) values ($1, $2, $3)
