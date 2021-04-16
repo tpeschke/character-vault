@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EditList from './components/editList'
 import EditPairList from './components/editPairList'
+import EditSkillList from './components/editSkillList'
 
 export default class CharacterEditor extends Component {
     constructor(props) {
@@ -122,6 +123,7 @@ render() {
                             <input className="skillrank weirdcraft" type="number" defaultValue={skillsuites[6].rank} onChange={event => this.updateSkillsuites(event.target.value, 6)} />
                         </div>
                     </div>
+                    <EditSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={gearone} limit={4} updateFunction={this.updateAttribute} type={"gearone"} />
 
                     <input className="copperLocation" type="text" defaultValue={copper} onChange={event => this.updateAttribute(event.target.value, "copper")} />
                     <input className="silverLocation" type="text" defaultValue={silver} onChange={event => this.updateAttribute(event.target.value, "silver")} />

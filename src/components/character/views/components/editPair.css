@@ -27,3 +27,24 @@
 .border-right {
     border-left: 1px solid #799aa4;
 }
+
+
+.skillInput {
+    padding: 0 4px;
+    width: 45%;
+    position: unset !important;
+}
+
+.costInput {
+    padding: 0 4px;
+    position: unset !important;
+    text-align: left;
+    width: 29%;
+}
+
+.rankInput {
+    padding: 0 4px;
+    position: unset !important;
+    text-align: center;
+    width: 26%;
+}
