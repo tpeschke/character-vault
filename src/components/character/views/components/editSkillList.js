@@ -29,7 +29,7 @@ export default class EditSkillList extends Component {
         cost = cost ? cost : this.state.defaultCost
         rank = rank ? rank : this.state.defaultRank
         if (skill || cost || rank) {
-            listArray.push({ skill, cost, rank })
+            listArray.push({ skill, cost: +cost, rank: +rank })
             this.setState({ listArray }, _ => {
                 this.state.updateFunction(this.state.listArray, this.state.type)
                 document.getElementById(`addNewSkillInputskill${this.state.type}`).value = null;
@@ -44,7 +44,11 @@ export default class EditSkillList extends Component {
         if (this.shouldDelete(type, value, index, listArray)) {
             listArray.splice(index, 1)
         } else {
-            listArray[index] = { ...listArray[index], [type]: value }
+            if (type === 'rank' || type === 'cost') {
+                listArray[index] = { ...listArray[index], [type]: +value }
+            } else {
+                listArray[index] = { ...listArray[index], [type]: value }
+            }
         }
         this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
     }
@@ -60,8 +64,6 @@ export default class EditSkillList extends Component {
     }
 
     render() {
-        //NEEDS TO DISPLAY CURRENT COST
-
         let { stylings, listArray, limit } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let rowStyles = {
@@ -70,6 +72,7 @@ export default class EditSkillList extends Component {
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
                 <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
+                <p className="totalCost">({item.cost + (item.rank * 2)})</p>
                 <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
             </div>)
         })

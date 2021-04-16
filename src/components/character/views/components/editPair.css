@@ -40,6 +40,7 @@
     position: unset !important;
     text-align: left;
     width: 29%;
+    z-index: 1;
 }
 
 .rankInput {
@@ -47,4 +48,13 @@
     position: unset !important;
     text-align: center;
     width: 26%;
+}
+
+.totalCost {
+    padding: 0 4px;
+    position: absolute;
+    text-align: right;
+    width: 29%;
+    left: 113px;
+    z-index: 0;
 }
