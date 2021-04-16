@@ -452,3 +452,11 @@ create table cvskilltwo (
     cost int,
     rank int
 );
+
+create table cvskillthree (
+    id serial primary key,
+    characterid int,
+    skill varchar(150),
+    cost int,
+    rank int
+);

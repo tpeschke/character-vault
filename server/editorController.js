@@ -14,7 +14,7 @@ module.exports = {
             run, sprint, oneweaponid, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twoweaponid, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, 
             twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threeweaponid, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourweaponid, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorid, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, 
-            shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, shieldid, skillsuites, skillone, skilltwo} = req.body
+            shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, shieldid, skillsuites, skillone, skilltwo, skillthree } = req.body
         primarylevel = setToMin(primarylevel, 1)
         secondarylevel = setToMin(secondarylevel, 1)
         level = setToMin(level, 1)
@@ -114,6 +114,11 @@ module.exports = {
             promiseArray.push(db.delete.skilltwo([id, [0, ...skilltwo.map(skilltwo=>skilltwo.id)]]).then(_=> {
                 return skilltwo.map(({id: skilltwoid, cost, skill, rank}) => {
                     return db.upsert.skilltwo(skilltwoid, id, skill, cost, rank)
+                })
+            }))
+            promiseArray.push(db.delete.skillthree([id, [0, ...skillthree.map(skillthree=>skillthree.id)]]).then(_=> {
+                return skillthree.map(({id: skillthreeid, cost, skill, rank}) => {
+                    return db.upsert.skillthree(skillthreeid, id, skill, cost, rank)
                 })
             }))
 
