@@ -19,6 +19,7 @@ app.get('/api/view/:id', viewCtrl.viewCharacter)
 app.get('/api/download/:id', viewCtrl.downloadCharacters);
 
 app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
+app.post('/api/AddCharacter', editCtrl.addCharacter)
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './index.html'));

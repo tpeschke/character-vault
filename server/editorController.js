@@ -8,6 +8,15 @@ function setToMax (value, max) {
     return +value <= max ? +value : max
 }
 module.exports = { 
+    addCharacter: (req, res) => {
+        const db = req.app.get('db')
+        db.upsert.add.character(req.user.id).then(data => {
+            req.params.id = data[0].id
+            assembleCharacter(req).then((character) => {
+                res.send(data[0])
+            })
+        })
+    },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
         let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,

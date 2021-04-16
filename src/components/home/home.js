@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './home.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import newCharacter from './newCharacter'
 
 export default class Home extends Component {
     constructor() {
@@ -20,8 +19,9 @@ export default class Home extends Component {
     }
 
     createNewCharacter = () => {
-        axios.post('/api/upsertCharacter', newCharacter).then(({ data: character }) => {
-            console.log(character)
+        axios.post('/api/addCharacter').then(({data}) => {
+            console.log(data)
+            this.props.history.push(`/view/${data.id}`)
         })
     }
 
