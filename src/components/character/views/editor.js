@@ -37,7 +37,7 @@ render() {
         threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
         fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
         armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-        shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites } = this.state.character
+        shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone } = this.state.character
     let { downloadMode, updateCharacter } = this.state
 
     return (
@@ -123,7 +123,7 @@ render() {
                             <input className="skillrank weirdcraft" type="number" defaultValue={skillsuites[6].rank} onChange={event => this.updateSkillsuites(event.target.value, 6)} />
                         </div>
                     </div>
-                    <EditSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={gearone} limit={4} updateFunction={this.updateAttribute} type={"gearone"} />
+                    <EditSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={skillone} limit={4} updateFunction={this.updateAttribute} type={"skillone"} />
 
                     <input className="copperLocation" type="text" defaultValue={copper} onChange={event => this.updateAttribute(event.target.value, "copper")} />
                     <input className="silverLocation" type="text" defaultValue={silver} onChange={event => this.updateAttribute(event.target.value, "silver")} />

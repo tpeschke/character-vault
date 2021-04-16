@@ -436,3 +436,11 @@ create table cvcharacterskillsuites (
     characterid int REFERENCES cvcharactermain(id),
     rank int
 );
+
+create table cvskillone (
+    id serial primary key,
+    characterid int,
+    skill varchar(150),
+    cost int,
+    rank int
+);

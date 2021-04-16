@@ -11,7 +11,8 @@ export default class EditSkillList extends Component {
             limit: props.limit,
             updateFunction: props.updateFunction,
             type: props.type,
-            defaultValue: props.defaultValue || null
+            defaultCost: props.defaultCost || 1,
+            defaultRank: props.defaultRank || 0
         }
     }
     
@@ -23,44 +24,48 @@ export default class EditSkillList extends Component {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
 
-    addNewItem = (title, value) => {
+    addNewItem = (skill, cost, rank) => {
         let listArray = this.deepCopyListArray()
-        value = value ? value : this.state.defaultValue
-        if (title || value) {
-            listArray.push({ title, value })
+        cost = cost ? cost : this.state.defaultCost
+        rank = rank ? rank : this.state.defaultRank
+        if (skill || cost || rank) {
+            listArray.push({ skill, cost, rank })
             this.setState({ listArray }, _ => {
                 this.state.updateFunction(this.state.listArray, this.state.type)
-                document.getElementById(`addNewItemInputTitle${this.state.type}`).value = null;
-                document.getElementById(`addNewItemInputValue${this.state.type}`).value = null;
+                document.getElementById(`addNewSkillInputskill${this.state.type}`).value = null;
+                document.getElementById(`addNewSkillInputcost${this.state.type}`).value = null;
+                document.getElementById(`addNewSkillInputrank${this.state.type}`).value = null;
             })
         }
     }
 
-    updateValue = (titleOrValue, value, index) => {
+    updateValue = (type, value, index) => {
         let listArray = this.deepCopyListArray()
-        if (this.shouldDelete(titleOrValue, value, index, listArray)) {
+        if (this.shouldDelete(type, value, index, listArray)) {
             listArray.splice(index, 1)
         } else {
-            listArray[index] = { ...listArray[index], [titleOrValue]: value }
+            listArray[index] = { ...listArray[index], [type]: value }
         }
         this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
-    shouldDelete(titleOrValue, value, index, listArray) {
-        if (titleOrValue === 'title') {
-            return (!listArray[index].value || listArray[index].value === '') && (value === '' || !value)
-        } else if (titleOrValue === 'value') {
-            return (!value || value === '') && (listArray[index].title === '' || !listArray[index].title)
+    shouldDelete(type, value, index, listArray) {
+        if (type === 'skill') {
+            return !listArray[index].cost && !listArray[index].cost && (value === '' || !value)
+        } else if (type === 'cost') {
+            return (!value || value === '') && !listArray[index].skill && !listArray[index].rank
+        } else if (type === 'rank') {
+            return (!value || value === '') && !listArray[index].skill && !listArray[index].cost
         }
     }
 
     render() {
-        //NEEDS A PLACE TO PUT THE BASE COST AND A PLACE TO DISPLAY CURRENT COST
+        //NEEDS TO DISPLAY CURRENT COST
 
         let { stylings, listArray, limit } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let rowStyles = {
-                top: `${i * 20.5}px`
+                top: `${i * 21}px`
             }
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
@@ -72,7 +77,7 @@ export default class EditSkillList extends Component {
         let rowStyles = {
             position: 'absolute',
             width: '100%',
-            top: `${listOfInputs.length * 20}px`,
+            top: `${listOfInputs.length * 21}px`,
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
@@ -80,9 +85,9 @@ export default class EditSkillList extends Component {
             <div style={stylings}>
                 {listOfInputs}
                 <div className="editPairRow" style={rowStyles}>
-                    <input id={`addNewItemInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewItemInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null,e.target.value, null)} />
-                    <input id={`addNewItemInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
+                    <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
+                    <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null,e.target.value, null)} />
+                    <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
                 </div>
             </div>
         )
