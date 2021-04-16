@@ -16,7 +16,7 @@ export default class ViewSkillList extends Component {
     };
 
     render() {
-        let { stylings, listArray, limit } = this.state
+        let { stylings, listArray } = this.state
         let listOfSkills = listArray.map((item, i) => {
             let rowStyles = {
                 top: `${i * 21}px`

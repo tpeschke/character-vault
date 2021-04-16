@@ -80,6 +80,18 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
+    calculateRecovery = (recovery, size, isMelee) => {
+        let minimumRecovery
+        if (size.toUpperCase() === 'S') {
+            isMelee ? minimumRecovery = 2 : minimumRecovery = 3
+        } else if (size.toUpperCase() === 'M') {
+            isMelee ? minimumRecovery = 3 : minimumRecovery = 4
+        } else {
+            isMelee ? minimumRecovery = 4 : minimumRecovery = 5
+        }
+        return recovery < minimumRecovery ? minimumRecovery : recovery
+    }
+
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
@@ -95,6 +107,11 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , left = calculateLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
+            , weaponOneRecovery = onebaserecovery + onetrainrecovery + onemiscrecovery
+            , weaponTwoRecovery = twobaserecovery + twotrainrecovery + twomiscrecovery
+            , weaponThreeRecovery = threebaserecovery + threetrainrecovery + threemiscrecovery
+            , weaponFourRecovery = fourbaserecovery + fourtrainrecovery + fourmiscrecovery
+            , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
 
         return (
             <div>
@@ -143,7 +160,7 @@ export default class CharacterViewer extends Component {
                         <p className="contactsLocation">{contacts}</p>
 
                         <div className="weaponsquare weaponone">
-                            <p className="recovery">{onebaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (onetrainrecovery + onemiscrecovery)}</p>
+                            <p className="recovery">{this.calculateRecovery(weaponOneRecovery + armorRecovery, onesize, true)}</p>
                             <p className="attack">{onetrainattack + onemiscattack + dexData.attack + intData.attack}</p>
                             <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + onemiscinit}</p>
 
@@ -162,7 +179,7 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weapontwo">
-                            <p className="recovery">{twobaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (twotrainrecovery + twomiscrecovery)}</p>
+                            <p className="recovery">{this.calculateRecovery(weaponTwoRecovery + armorRecovery, twosize, true)}</p>
                             <p className="attack">{twotrainattack + twomiscattack + dexData.attack + intData.attack}</p>
                             <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + twomiscinit}</p>
 
@@ -181,7 +198,7 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weaponthree">
-                            <p className="recovery">{threebaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (threetrainrecovery + threemiscrecovery)}</p>
+                            <p className="recovery">{this.calculateRecovery(weaponThreeRecovery + armorRecovery, threesize, true)}</p>
                             <p className="attack">{threetrainattack + threemiscattack + dexData.attack + intData.attack}</p>
                             <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + threemiscinit}</p>
 
@@ -200,7 +217,7 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weaponfour">
-                            <p className="recovery">{fourbaserecovery - (armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0) + (fourtrainrecovery + fourmiscrecovery)}</p>
+                            <p className="recovery">{this.calculateRecovery(weaponFourRecovery + armorRecovery, foursize, false)}</p>
                             <p className="attack">{fourtrainattack + fourmiscattack + dexData.attack + intData.attack}</p>
                             <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + fourmiscinit}</p>
 
@@ -332,7 +349,7 @@ export default class CharacterViewer extends Component {
 
                         <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
                         <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
-                        <p className="armortotalrecoveryLocation">{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
+                        <p className="armortotalrecoveryLocation">{armorRecovery}</p>
                         <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0}</p>
 
                         <p className="shieldnameLocation">{shieldname}</p>
@@ -367,6 +384,7 @@ export default class CharacterViewer extends Component {
                             <p className="baserecoveryLocation">{onebaserecovery}</p>
                             <p className="baseparryLocation">{onebaseparry}</p>
                             <p className="basemeasureLocation">{onebasemeasure}</p>
+                            <p className="basesizeLocation">{onesize}</p>
                             <p className="typeLocation">{onetype}</p>
                             <p className="bonusLocation">{onebonus}</p>
                             <p className="traitsLocation">{onetraits}</p>
@@ -383,7 +401,7 @@ export default class CharacterViewer extends Component {
                             <p className="miscinitLocation">{onemiscinit}</p>
 
                             <p className="totalattackLocation">{onetrainattack + onemiscattack}</p>
-                            <p className="totalrecoveryLocation">{onetrainrecovery + onemiscrecovery}</p>
+                            <p className="totalrecoveryLocation">{weaponOneRecovery}</p>
                             <p className="totalparryLocation">{onetrainparry + onemiscparry}</p>
                             <p className="totaldamageLocation">{onetraindamage + onemiscdamage}</p>
                             <p className="totalinitLocation">{onemiscinit}</p>
@@ -395,6 +413,7 @@ export default class CharacterViewer extends Component {
                             <p className="baserecoveryLocation">{twobaserecovery}</p>
                             <p className="baseparryLocation">{twobaseparry}</p>
                             <p className="basemeasureLocation">{twobasemeasure}</p>
+                            <p className="basesizeLocation">{twosize}</p>
                             <p className="typeLocation">{twotype}</p>
                             <p className="bonusLocation">{twobonus}</p>
                             <p className="traitsLocation">{twotraits}</p>
@@ -423,6 +442,7 @@ export default class CharacterViewer extends Component {
                             <p className="baserecoveryLocation">{threebaserecovery}</p>
                             <p className="baseparryLocation">{threebaseparry}</p>
                             <p className="basemeasureLocation">{threebasemeasure}</p>
+                            <p className="basesizeLocation">{threesize}</p>
                             <p className="typeLocation">{threetype}</p>
                             <p className="bonusLocation">{threebonus}</p>
                             <p className="traitsLocation">{threetraits}</p>
@@ -450,6 +470,7 @@ export default class CharacterViewer extends Component {
                             <p className="basedamageLocation">{fourbasedamage}</p>
                             <p className="baserecoveryLocation">{fourbaserecovery}</p>
                             <p className="typeLocation typefour">{fourtype}</p>
+                            <p className="basesizeLocation sizefour">{foursize}</p>
                             <p className="bonusLocation bonusfour">{fourbonus}</p>
                             <p className="traitsLocation traitsfour">{fourtraits}</p>
 

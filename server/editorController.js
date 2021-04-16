@@ -1,11 +1,11 @@
 const { assembleCharacter } = require('./viewController')
 
 function setToMin (value, min) {
-    return value >= min ? value : min
+    return +value >= min ? +value : min
 }
 
 function setToMax (value, max) {
-    return value <= max ? value : max
+    return +value <= max ? +value : max
 }
 module.exports = { 
     updateOrAddCharacter: (req, res) => {
@@ -91,8 +91,8 @@ module.exports = {
                     return db.upsert.gearfour(gearfourid, id, title, value)
                 })
             }))
-            promiseArray.push(db.upsert.weaponone(oneweaponid, id, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize))
-            promiseArray.push(db.upsert.weapontwo(twoweaponid, id, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize))
+            promiseArray.push(db.upsert.weaponone(oneweaponid, id, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, +onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize))
+            promiseArray.push(db.upsert.weapontwo(twoweaponid, id, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, +twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize))
             promiseArray.push(db.upsert.weaponthree(threeweaponid, id, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize))
             promiseArray.push(db.upsert.weaponfour(fourweaponid, id, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize))
 

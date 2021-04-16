@@ -428,23 +428,23 @@ input.excurrentLocation {
 }
 
 .weaponone {
-    top: 75px;
+    top: 106px;
     left: 471px;
 }
 
 .weapontwo {
-    top: 75px;
+    top: 106px;
     left: 648px;
 }
 
 .weaponthree {
-    top: 250px;
+    top: 275px;
     left: 472px;
 }
 
 .weaponfour {
     left: 648px;
-    top: 250px;
+    top: 275px;
 }
 
 .weaponsquare .attack {
@@ -538,7 +538,7 @@ input.excurrentLocation {
 
 .weaponsquare .name {
     position: absolute;
-    top: 151px;
+    top: -23px;
     left: 1px;
     height: 20px;
     width: 144px;
@@ -969,14 +969,14 @@ input.excurrentLocation {
     width: 55px;
 }
 .shieldcoverLocation {
+    top: 853px;
+    left: 65px;
+    width: 104px;
+}
+.shieldsizeLocation {
     top: 832px;
     left: 138px;
     width: 33px;
-}
-.shieldsizeLocation {
-    top: 853px;
-    left: 51px;
-    width: 44px;
 }
 .shieldbonusLocation {
     width: 150px;
@@ -1154,10 +1154,21 @@ input.excurrentLocation {
     text-align: center;
 }
 .basemeasureLocation {
-    width: 90px;
+    width: 35px;
     top: 66px;
-    left: 60px;
+    left: 40px;
     text-align: center;
+}
+.basesizeLocation {
+    width: 43px;
+    top: 66px;
+    left: 106px;
+    text-align: center;
+}
+.sizefour {
+    left: 35px;
+    text-align: left;
+    width: 139px;
 }
 .typeLocation {
     width: 65px;
@@ -1187,9 +1198,10 @@ input.excurrentLocation {
 .bonusfour {
     max-width: 173px;
     min-width: 173px;
-    max-height: 87px;
-    min-height: 87px;
-    top: 65px !important;
+    max-height: 63px;
+    min-height: 63px;
+    overflow: hidden;
+    top: 88px !important;
 }
 
 .traitsLocation {
@@ -1216,7 +1228,7 @@ textarea.traitsLocation {
     min-height: 60px;
 }
 textarea.traitsfour {
-    top: 61px !important;
+    top: 83px !important;
 }
 
 .trainattackLocation {
