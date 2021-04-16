@@ -13,7 +13,7 @@ export default class CharacterViewer extends Component {
     }
 
     componentWillMount() {
-        let {gearone, geartwo, gearthree, gearfour} = this.state
+        let { gearone, geartwo, gearthree, gearfour } = this.state
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
     }
 
@@ -47,9 +47,9 @@ export default class CharacterViewer extends Component {
                         adjustedAmount += (+number * 9)
                     }
                     if (container) {
-                        let strDataCopy = {...this.state.strData}
+                        let strDataCopy = { ...this.state.strData }
                         strDataCopy.carry += adjustedAmount
-                        this.setState({strData: strDataCopy})
+                        this.setState({ strData: strDataCopy })
                     } else {
                         totalCarry += adjustedAmount
                     }
@@ -65,7 +65,7 @@ export default class CharacterViewer extends Component {
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
 
-        this.setState({adjustedEncumb: totalCarry})
+        this.setState({ adjustedEncumb: totalCarry })
     }
 
     convertFromEncumbToCarry = (value) => {
@@ -81,11 +81,11 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, 
-            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, 
-            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, 
-            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, 
-            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb } = this.state
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
+            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack,
+            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
+            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
+            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -93,7 +93,7 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , left = calculateLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
-            
+
         return (
             <div>
                 <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
@@ -249,6 +249,37 @@ export default class CharacterViewer extends Component {
                         <p className="removedabilityLocation">{removedability}</p>
                     </div>
                     <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
+                        <div className="skillsuiteShell">
+                            <div className="skillRow athletics">
+                                <p className="skillcost athletics">{skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 2)}</p>
+                                <p className="skillrank athletics">{skillsuites[0].rank}</p>
+                            </div>
+                            <div className="skillRow lore">
+                                <p className="skillcost lore">{skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 2)}</p>
+                                <p className="skillrank lore">{skillsuites[1].rank}</p>
+                            </div>
+                            <div className="skillRow streetwise">
+                                <p className="skillcost streetwise">{skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 2)}</p>
+                                <p className="skillrank streetwise">{skillsuites[2].rank}</p>
+                            </div>
+                            <div className="skillRow survival">
+                                <p className="skillcost survival">{skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 2)}</p>
+                                <p className="skillrank survival">{skillsuites[3].rank}</p>
+                            </div>
+                            <div className="skillRow tactics">
+                                <p className="skillcost tactics">{skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 2)}</p>
+                                <p className="skillrank tactics">{skillsuites[4].rank}</p>
+                            </div>
+                            <div className="skillRow trades">
+                                <p className="skillcost trades">{skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 2)}</p>
+                                <p className="skillrank trades">{skillsuites[5].rank}</p>
+                            </div>
+                            <div className="skillRow weirdcraft">
+                                <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 2)}</p>
+                                <p className="skillrank weirdcraft">{skillsuites[6].rank}</p>
+                            </div>
+                        </div>
+
                         <p className="copperLocation">{copper}</p>
                         <p className="silverLocation">{silver}</p>
                         <p className="goldLocation">{gold}</p>
@@ -333,20 +364,20 @@ export default class CharacterViewer extends Component {
                             <p className="trainrecoveryLocation">{onetrainrecovery}</p>
                             <p className="trainparryLocation">{onetrainparry}</p>
                             <p className="traindamageLocation">{onetraindamage}</p>
-                            
+
                             <p className="miscattackLocation">{onemiscattack}</p>
                             <p className="miscrecoveryLocation">{onemiscrecovery}</p>
                             <p className="miscparryLocation">{onemiscparry}</p>
                             <p className="miscdamageLocation">{onemiscdamage}</p>
                             <p className="miscinitLocation">{onemiscinit}</p>
-                            
+
                             <p className="totalattackLocation">{onetrainattack + onemiscattack}</p>
                             <p className="totalrecoveryLocation">{onetrainrecovery + onemiscrecovery}</p>
                             <p className="totalparryLocation">{onetrainparry + onemiscparry}</p>
                             <p className="totaldamageLocation">{onetraindamage + onemiscdamage}</p>
                             <p className="totalinitLocation">{onemiscinit}</p>
                         </div>
-                        
+
                         <div className="weaponProfiletwo">
                             <p className="weaponnameLocation">{twoname}</p>
                             <p className="basedamageLocation">{twobasedamage}</p>
@@ -361,20 +392,20 @@ export default class CharacterViewer extends Component {
                             <p className="trainrecoveryLocation">{twotrainrecovery}</p>
                             <p className="trainparryLocation">{twotrainparry}</p>
                             <p className="traindamageLocation">{twotraindamage}</p>
-                            
+
                             <p className="miscattackLocation">{twomiscattack}</p>
                             <p className="miscrecoveryLocation">{twomiscrecovery}</p>
                             <p className="miscparryLocation">{twomiscparry}</p>
                             <p className="miscdamageLocation">{twomiscdamage}</p>
                             <p className="miscinitLocation">{twomiscinit}</p>
-                            
+
                             <p className="totalattackLocation">{twotrainattack + twomiscattack}</p>
                             <p className="totalrecoveryLocation">{twotrainrecovery + twomiscrecovery}</p>
                             <p className="totalparryLocation">{twotrainparry + twomiscparry}</p>
                             <p className="totaldamageLocation">{twotraindamage + twomiscdamage}</p>
                             <p className="totalinitLocation">{twomiscinit}</p>
                         </div>
-                        
+
                         <div className="weaponProfilethree">
                             <p className="weaponnameLocation">{threename}</p>
                             <p className="basedamageLocation">{threebasedamage}</p>
@@ -389,20 +420,20 @@ export default class CharacterViewer extends Component {
                             <p className="trainrecoveryLocation">{threetrainrecovery}</p>
                             <p className="trainparryLocation">{threetrainparry}</p>
                             <p className="traindamageLocation">{threetraindamage}</p>
-                            
+
                             <p className="miscattackLocation">{threemiscattack}</p>
                             <p className="miscrecoveryLocation">{threemiscrecovery}</p>
                             <p className="miscparryLocation">{threemiscparry}</p>
                             <p className="miscdamageLocation">{threemiscdamage}</p>
                             <p className="miscinitLocation">{threemiscinit}</p>
-                            
+
                             <p className="totalattackLocation">{threetrainattack + threemiscattack}</p>
                             <p className="totalrecoveryLocation">{threetrainrecovery + threemiscrecovery}</p>
                             <p className="totalparryLocation">{threetrainparry + threemiscparry}</p>
                             <p className="totaldamageLocation">{threetraindamage + threemiscdamage}</p>
                             <p className="totalinitLocation">{threemiscinit}</p>
                         </div>
-                        
+
                         <div className="weaponProfilefour">
                             <p className="weaponnameLocation">{fourname}</p>
                             <p className="basedamageLocation">{fourbasedamage}</p>
@@ -414,12 +445,12 @@ export default class CharacterViewer extends Component {
                             <p className="trainattackLocation">{fourtrainattack}</p>
                             <p className="trainrecoveryLocation">{fourtrainrecovery}</p>
                             <p className="traindamageLocation">{fourtraindamage}</p>
-                            
+
                             <p className="miscattackLocation">{fourmiscattack}</p>
                             <p className="miscrecoveryLocation">{fourmiscrecovery}</p>
                             <p className="miscinitLocation initFour">{fourmiscinit}</p>
                             <p className="miscdamageLocation">{fourmiscdamage}</p>
-                            
+
                             <p className="totalattackLocation">{fourtrainattack + fourmiscattack}</p>
                             <p className="totalrecoveryLocation">{fourtrainrecovery + fourmiscrecovery}</p>
                             <p className="totalinitLocation initFour">{fourmiscinit}</p>
