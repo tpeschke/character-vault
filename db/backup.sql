@@ -460,3 +460,10 @@ create table cvskillthree (
     cost int,
     rank int
 );
+
+create table cvnativelanguage (
+    nativeid serial primary key,
+    characterid int unique,
+    language varchar(150),
+    rank int
+);

@@ -114,6 +114,9 @@ viewController = {
         character.skillthree = skillthree
         return true
       }))
+      promiseArray.push(db.get.nativeLanguage(character.id).then(nativelanguage => {
+        character.nativelanguage = nativelanguage[0] || {}
+      }))
       
       return Promise.all(promiseArray).then(_=> {
         return character

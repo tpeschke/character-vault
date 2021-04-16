@@ -29,6 +29,17 @@ updateSkillsuites = (value, index) => {
     this.setState({character})
 }
 
+updateNativeLanguage = (value, type) => {
+    let updatedValue
+    if (type !== 'language') {
+        updatedValue = {[type]: +value}
+    } else {
+        updatedValue = {[type]: value}
+    }
+    let character = {...this.state.character, nativelanguage: {...this.state.character.nativelanguage, ...updatedValue}}
+    this.setState({character})
+}
+
 render() {
     let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
         abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry,
@@ -37,9 +48,8 @@ render() {
         threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
         fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
         armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-        shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree } = this.state.character
+        shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree, nativelanguage} = this.state.character
     let { downloadMode, updateCharacter } = this.state
-    , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
 
     return (
         <div>
@@ -122,6 +132,11 @@ render() {
                         <div className="skillRow weirdcraft">
                             <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 2)}</p>
                             <input className="skillrank weirdcraft" type="number" defaultValue={skillsuites[6].rank} onChange={event => this.updateSkillsuites(event.target.value, 6)} />
+                        </div>
+                        <div className="nativeRow">
+                            <input id="nativename" type="text" defaultValue={nativelanguage.language} onChange={event => this.updateNativeLanguage(event.target.value, 'language')} />
+                            <p id="nativecost">{5 + (nativelanguage.rank || 0 * 2)}</p>
+                            <input id="nativerank" type="number" placeholder={Math.ceil(int / 2)} defaultValue={nativelanguage.rank} onChange={event => this.updateNativeLanguage(event.target.value, 'rank')} />
                         </div>
                     </div>
                     <EditSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={skillone} limit={4} updateFunction={this.updateAttribute} type={"skillone"} />

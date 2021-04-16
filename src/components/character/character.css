@@ -1356,6 +1356,30 @@ textarea.traitsfour {
     top: 126px
 }
 
+.nativeRow {
+    position: absolute;
+    top: 168px;
+    left: -51px;
+    width: 185px;
+    display: flex;
+    justify-content: space-between;
+}
+#nativename {
+    width: 30%;
+    position: unset;
+    font-size: 10px;
+}
+#nativecost {
+    width: 30%;
+    position: unset;
+    text-align: center;
+}
+#nativerank {
+    width: 30%;
+    position: unset;
+    text-align: center;
+}
+
 @media(max-width: 835px) {
     .corner-button {
         background: transparent
