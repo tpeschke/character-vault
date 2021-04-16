@@ -17,28 +17,28 @@ viewController = {
     return db.get.character(req.params.id).then(data=> {
       let character = data[0]
         , promiseArray = []
-      promiseArray.push(db.get.stats.str(character?.str || 0).then(strData => {
-        character.strData = strData[0] || {}
+      promiseArray.push(db.get.stats.str(character?.str || 1).then(strData => {
+        character.strData = strData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.dex(character?.dex || 0).then(dexData => {
-        character.dexData = dexData[0] || {}
+      promiseArray.push(db.get.stats.dex(character?.dex || 1).then(dexData => {
+        character.dexData = dexData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.cons(character?.con || 0).then(conData => {
-        character.conData = conData[0] || {}
+      promiseArray.push(db.get.stats.cons(character?.con || 1).then(conData => {
+        character.conData = conData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.int(character?.int || 0).then(intData => {
-        character.intData = intData[0] || {}
+      promiseArray.push(db.get.stats.int(character?.int || 1).then(intData => {
+        character.intData = intData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.wis(character?.wis || 0).then(wisData => {
-        character.wisData = wisData[0] || {}
+      promiseArray.push(db.get.stats.wis(character?.wis || 1).then(wisData => {
+        character.wisData = wisData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.cha(character?.cha || 0).then(chaData => {
-        character.chaData = chaData[0] || {}
+      promiseArray.push(db.get.stats.cha(character?.cha || 1).then(chaData => {
+        character.chaData = chaData[0]
         return true
       }))
       promiseArray.push(db.get.goals(character.id).then(goals => {
@@ -100,7 +100,21 @@ viewController = {
         character = {...shield[0], ...character}
       }))
       promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
-        character.skillsuites = skillsuites
+        let emptySkillSuites = [
+          {skillsuiteid: 1, skillsuitename:	'Athletics', skillsuitebasecost: 30, rank: 0},
+          {skillsuiteid: 2, skillsuitename:	'Lore', skillsuitebasecost: 47, rank: 0},
+          {skillsuiteid: 3, skillsuitename:	'Streetwise', skillsuitebasecost: 54, rank: 0},
+          {skillsuiteid: 4, skillsuitename:	'Survival', skillsuitebasecost: 61, rank: 0},
+          {skillsuiteid: 5, skillsuitename:	'Tactics', skillsuitebasecost: 53, rank: 0},
+          {skillsuiteid: 6, skillsuitename:	'Trades', skillsuitebasecost: 56, rank: 0},
+          {skillsuiteid: 7, skillsuitename:	'Weirdcraft', skillsuitebasecost: 84, rank: 0},
+        ]
+
+        skillsuites.forEach(skillsuite => {
+          emptySkillSuites[skillsuite.skillsuiteid] = skillsuite
+        })
+        
+        character.skillsuites = emptySkillSuites
       }))
       promiseArray.push(db.get.skillone(character.id).then(skillone => {
         character.skillone = skillone

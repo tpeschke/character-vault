@@ -80,7 +80,7 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
-    calculateRecovery = (recovery, size, isMelee) => {
+    calculateRecovery = (recovery, size = "placeholder", isMelee) => {
         let minimumRecovery
         if (size.toUpperCase() === 'S') {
             isMelee ? minimumRecovery = 2 : minimumRecovery = 3
@@ -90,6 +90,13 @@ export default class CharacterViewer extends Component {
             isMelee ? minimumRecovery = 4 : minimumRecovery = 5
         }
         return recovery < minimumRecovery ? minimumRecovery : recovery
+    }
+
+    returnZeroIfNaN = (thing) => {
+        if (isNaN(+thing)) {
+            return 0
+        }
+        return thing
     }
 
     render() {
@@ -160,9 +167,9 @@ export default class CharacterViewer extends Component {
                         <p className="contactsLocation">{contacts}</p>
 
                         <div className="weaponsquare weaponone">
-                            <p className="recovery">{this.calculateRecovery(weaponOneRecovery + armorRecovery, onesize, true)}</p>
-                            <p className="attack">{onetrainattack + onemiscattack + dexData.attack + intData.attack}</p>
-                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + onemiscinit}</p>
+                            <p className="recovery">{this.returnZeroIfNaN(this.calculateRecovery(weaponOneRecovery + armorRecovery, onesize, true))}</p>
+                            <p className="attack">{this.returnZeroIfNaN(onetrainattack + onemiscattack + dexData.attack + intData.attack)}</p>
+                            <p className="init">{this.returnZeroIfNaN(dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + onemiscinit)}</p>
 
                             <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
@@ -179,9 +186,9 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weapontwo">
-                            <p className="recovery">{this.calculateRecovery(weaponTwoRecovery + armorRecovery, twosize, true)}</p>
-                            <p className="attack">{twotrainattack + twomiscattack + dexData.attack + intData.attack}</p>
-                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + twomiscinit}</p>
+                            <p className="recovery">{this.returnZeroIfNaN(this.calculateRecovery(weaponTwoRecovery + armorRecovery, twosize, true))}</p>
+                            <p className="attack">{this.returnZeroIfNaN(twotrainattack + twomiscattack + dexData.attack + intData.attack)}</p>
+                            <p className="init">{this.returnZeroIfNaN(dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + twomiscinit)}</p>
 
                             <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
@@ -198,9 +205,9 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weaponthree">
-                            <p className="recovery">{this.calculateRecovery(weaponThreeRecovery + armorRecovery, threesize, true)}</p>
-                            <p className="attack">{threetrainattack + threemiscattack + dexData.attack + intData.attack}</p>
-                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + threemiscinit}</p>
+                            <p className="recovery">{this.returnZeroIfNaN(this.calculateRecovery(weaponThreeRecovery + armorRecovery, threesize, true))}</p>
+                            <p className="attack">{this.returnZeroIfNaN(threetrainattack + threemiscattack + dexData.attack + intData.attack)}</p>
+                            <p className="init">{this.returnZeroIfNaN(dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + threemiscinit)}</p>
 
                             <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
@@ -217,9 +224,9 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <div className="weaponsquare weaponfour">
-                            <p className="recovery">{this.calculateRecovery(weaponFourRecovery + armorRecovery, foursize, false)}</p>
-                            <p className="attack">{fourtrainattack + fourmiscattack + dexData.attack + intData.attack}</p>
-                            <p className="init">{dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + fourmiscinit}</p>
+                            <p className="recovery">{this.returnZeroIfNaN(this.calculateRecovery(weaponFourRecovery + armorRecovery, foursize, false))}</p>
+                            <p className="attack">{this.returnZeroIfNaN(fourtrainattack + fourmiscattack + dexData.attack + intData.attack)}</p>
+                            <p className="init">{this.returnZeroIfNaN(dexData.init + wisData.init + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + fourmiscinit)}</p>
 
                             <p className="def">{dexData.defense + wisData.defense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
                             <p className="encumb">{conData.encumb + wisData.encumb + (armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0) + (shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0) + Math.floor(this.state.adjustedEncumb / 3)}</p>
@@ -374,7 +381,7 @@ export default class CharacterViewer extends Component {
                         <p className="shieldmiscbreakLocation">{shieldmiscbreak}</p>
 
                         <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
-                        <p className="shieldtotalparryLocation">{shieldbaseparry + shieldtrainparry + shieldmiscparry}</p>
+                        <p className="shieldtotalparryLocation">{this.returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
                         <p className="shieldtotalencumbLocation">{shieldmiscencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldmiscencumb + shieldtrainencumb + shieldmiscencumb : 0}</p>
                         <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak + shieldmiscbreak > 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0}</p>
 
@@ -400,10 +407,10 @@ export default class CharacterViewer extends Component {
                             <p className="miscdamageLocation">{onemiscdamage}</p>
                             <p className="miscinitLocation">{onemiscinit}</p>
 
-                            <p className="totalattackLocation">{onetrainattack + onemiscattack}</p>
-                            <p className="totalrecoveryLocation">{weaponOneRecovery}</p>
-                            <p className="totalparryLocation">{onetrainparry + onemiscparry}</p>
-                            <p className="totaldamageLocation">{onetraindamage + onemiscdamage}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(onetrainattack + onemiscattack)}</p>
+                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponOneRecovery)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + onemiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + onemiscdamage)}</p>
                             <p className="totalinitLocation">{onemiscinit}</p>
                         </div>
 
@@ -429,10 +436,10 @@ export default class CharacterViewer extends Component {
                             <p className="miscdamageLocation">{twomiscdamage}</p>
                             <p className="miscinitLocation">{twomiscinit}</p>
 
-                            <p className="totalattackLocation">{twotrainattack + twomiscattack}</p>
-                            <p className="totalrecoveryLocation">{twotrainrecovery + twomiscrecovery}</p>
-                            <p className="totalparryLocation">{twotrainparry + twomiscparry}</p>
-                            <p className="totaldamageLocation">{twotraindamage + twomiscdamage}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(twotrainattack + twomiscattack)}</p>
+                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponTwoRecovery)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(twotrainparry + twomiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(twotraindamage + twomiscdamage)}</p>
                             <p className="totalinitLocation">{twomiscinit}</p>
                         </div>
 
@@ -458,10 +465,10 @@ export default class CharacterViewer extends Component {
                             <p className="miscdamageLocation">{threemiscdamage}</p>
                             <p className="miscinitLocation">{threemiscinit}</p>
 
-                            <p className="totalattackLocation">{threetrainattack + threemiscattack}</p>
-                            <p className="totalrecoveryLocation">{threetrainrecovery + threemiscrecovery}</p>
-                            <p className="totalparryLocation">{threetrainparry + threemiscparry}</p>
-                            <p className="totaldamageLocation">{threetraindamage + threemiscdamage}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(threetrainattack + threemiscattack)}</p>
+                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponThreeRecovery)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(threetrainparry + threemiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(threetraindamage + threemiscdamage)}</p>
                             <p className="totalinitLocation">{threemiscinit}</p>
                         </div>
 
@@ -483,10 +490,10 @@ export default class CharacterViewer extends Component {
                             <p className="miscinitLocation initFour">{fourmiscinit}</p>
                             <p className="miscdamageLocation">{fourmiscdamage}</p>
 
-                            <p className="totalattackLocation">{fourtrainattack + fourmiscattack}</p>
-                            <p className="totalrecoveryLocation">{fourtrainrecovery + fourmiscrecovery}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(fourtrainattack + fourmiscattack)}</p>
+                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(fourtrainrecovery + fourmiscrecovery)}</p>
                             <p className="totalinitLocation initFour">{fourmiscinit}</p>
-                            <p className="totaldamageLocation">{fourtraindamage + fourmiscdamage}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(fourtraindamage + fourmiscdamage)}</p>
                         </div>
                     </div>
                 </div>
@@ -506,7 +513,7 @@ export default class CharacterViewer extends Component {
 
 
 function calculateLeft(honor) {
-    let left = '0'
+    let left = '141px'
     if (honor >= 0 && honor <= 5) {
         left = '141px'
     } else if (honor >= 6 && honor <= 10) {
@@ -522,7 +529,7 @@ function calculateLeft(honor) {
 }
 
 function calculateHumanHonorDice(race, honor) {
-    if (race.toUpperCase().trim() === "HUMAN") {
+    if (race && race.toUpperCase().trim() === "HUMAN") {
         if (honor >= 0 && honor <= 5) {
             return (<div></div>)
         } else if (honor >= 6 && honor <= 10) {
