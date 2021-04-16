@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './home.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import newCharacter from './newCharacter'
 
 export default class Home extends Component {
     constructor() {
@@ -13,8 +14,14 @@ export default class Home extends Component {
     }
 
     componentWillMount() {
-        axios.get('/api/characters').then(({data:characters}) => {
-            this.setState({characters})
+        axios.get('/api/characters').then(({ data: characters }) => {
+            this.setState({ characters })
+        })
+    }
+
+    createNewCharacter = () => {
+        axios.post('/api/upsertCharacter', newCharacter).then(({ data: character }) => {
+            console.log(character)
         })
     }
 
@@ -23,8 +30,8 @@ export default class Home extends Component {
         if (!characters) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
-        
-        let characterList = characters.map(({name, race, primarya, secondarya, level, id}) => {
+
+        let characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
                 <Link className="character" key={id} to={`/view/${id}`}>
                     <p>{name}</p>
@@ -41,7 +48,7 @@ export default class Home extends Component {
                 <div>
                     {characterList}
                 </div>
-                <i className="fas fa-plus"></i>
+                <i className="fas fa-plus" onClick={this.createNewCharacter}></i>
             </div>)
     }
 }

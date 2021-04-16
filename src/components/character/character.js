@@ -32,8 +32,8 @@ class Character extends Component {
         this.setState({ isEditingMode: !this.state.isEditingMode })
     }
 
-    updateCharacter = function (newCharacter) {
-        axios.post('/api/upsertCharacter', newCharacter).then(({ data: character }) => {
+    updateCharacter = function (updatedCharacter) {
+        axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
             console.log(character)
             this.setState({character, isEditingMode: !this.state.isEditingMode})
         })
