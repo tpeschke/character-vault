@@ -39,6 +39,7 @@ render() {
         armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
         shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree } = this.state.character
     let { downloadMode, updateCharacter } = this.state
+    , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
 
     return (
         <div>
@@ -77,7 +78,7 @@ render() {
                     <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={this.updateAttribute} type={"reputation"} />
                     <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
-                    <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
+                    <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : (int + wis) * 2} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
                     <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => this.updateAttribute(event.target.value, "favormax")} />
 
                     <input className="maxrangeLocation" type="number" defaultValue={maxrange} onChange={event => this.updateAttribute(event.target.value, "maxrange")} />
