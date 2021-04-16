@@ -1363,6 +1363,7 @@ textarea.traitsfour {
     width: 185px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 #nativename {
     width: 30%;
@@ -1378,10 +1379,4 @@ textarea.traitsfour {
     width: 30%;
     position: unset;
     text-align: center;
-}
-
-@media(max-width: 835px) {
-    .corner-button {
-        background: transparent
-    }
 }

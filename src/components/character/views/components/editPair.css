@@ -43,6 +43,13 @@
     z-index: 1;
 }
 
+.costView {
+    padding: 0 4px;
+    position: unset !important;
+    text-align: center;
+    width: 29%;
+}
+
 .rankInput {
     padding: 0 4px;
     position: unset !important;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ViewList from './components/viewList'
 import ViewPairList from './components/viewPairList'
+import ViewSkillList from './components/viewSkillList'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
@@ -85,7 +86,8 @@ export default class CharacterViewer extends Component {
             onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack,
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
-            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites } = this.state
+            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
+            skillone, skilltwo, skillthree } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -278,7 +280,16 @@ export default class CharacterViewer extends Component {
                                 <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 2)}</p>
                                 <p className="skillrank weirdcraft">{skillsuites[6].rank}</p>
                             </div>
+
+                            <div className="nativeRow">
+                                <p id="nativename">{nativelanguage.language}</p>
+                                <p id="nativecost">{5 + (nativelanguage.rank || 0 * 2)}</p>
+                                <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : Math.ceil(int / 2)}</p>
+                            </div>
                         </div>
+                        <ViewSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={skillone} />
+                        <ViewSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} />
+                        <ViewSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} />
 
                         <p className="copperLocation">{copper}</p>
                         <p className="silverLocation">{silver}</p>
