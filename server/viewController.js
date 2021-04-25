@@ -3,13 +3,18 @@ const puppeteer = require('puppeteer')
 viewController = {
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
-    db.get.allUsersCharacters(req.user.id).then(data=> {
+    let {id} = req.user
+    db.get.allUsersCharacters(id).then(data=> {
       res.send(data)
     })
   },
   viewAllCharacters: function (req, res) {
     const db = req.app.get('db')
-    db.get.allCharacters(req.user.id).then(data=> {
+    let id = 0
+    if (req.user && req.user.id) {
+      id = req.user.id
+    }
+    db.get.allCharacters(id).then(data=> {
       res.send(data)
     })
   },
@@ -139,7 +144,7 @@ viewController = {
       }))
       
       return Promise.all(promiseArray).then(_=> {
-        character.owned = req.user.id === character.userid
+        character.owned = req.user ? req.user.id === character.userid : null
         return character
       })
     })

@@ -51,19 +51,26 @@ export default class Home extends Component {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
 
-        let characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
-            return (
-                <div className="character">
-                    <Link className="characterLink" key={id} to={`/view/${id}`}>
-                        <p>{name}</p>
-                        <p>{race}</p>
-                        <p>{primarya}/{secondarya}</p>
-                        <p>Level: {level}</p>
-                    </Link>
-                    <i className="fas fa-minus" onClick={_ => this.toggleModel(true, id)}></i>
-                </div>
-            )
-        })
+        let characterList
+        if (!characters.length) {
+            characterList = (<div className="loginShell">You Need to Log On to Add Characters
+                <button>Log On</button>
+            </div>)
+        } else {
+            characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
+                return (
+                    <div className="character">
+                        <Link className="characterLink" key={id} to={`/view/${id}`}>
+                            <p>{name}</p>
+                            <p>{race}</p>
+                            <p>{primarya}/{secondarya}</p>
+                            <p>Level: {level}</p>
+                        </Link>
+                        <i className="fas fa-minus" onClick={_ => this.toggleModel(true, id)}></i>
+                    </div>
+                )
+            })
+        }
         let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
                 <div className="character">
@@ -80,11 +87,11 @@ export default class Home extends Component {
         return (
             <div className="homeShell">
                 <div className="characterShell">
-                    <h4>Here are your characters:</h4>
+                    <h4 className={!characters.length ? "displayNone" : ""}>Here are your characters:</h4>
                     <div>
                         {characterList}
                     </div>
-                    <i className="fas fa-plus" onClick={this.createNewCharacter}></i>
+                    <i className={!characters.length ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
                 </div>
                 <div className="characterShell">
                     <h4>Character Vault:</h4>

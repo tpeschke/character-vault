@@ -6,6 +6,17 @@
     margin-bottom: 15px;
 }
 
+.loginShell {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loginShell button {
+    margin-top: 15px;
+}
+
 .characterShell {
     padding: 30px;
     background-color: white;
@@ -33,10 +44,12 @@
 
 .character p {
     min-width: 24%;
+    text-align: center;
 }
 
 .character p:first-child {
     font-weight: 700;
+    text-align: left;
 }
 
 .character p {
@@ -93,7 +106,7 @@
     margin-top: 25px;
 }
 
-.modelButtons button {
+button {
     border: none;
     background: lightgray;
     border-radius: 15px;
@@ -101,7 +114,7 @@
     cursor: pointer;
 }
 
-.modelButtons .yes:hover {
+button:hover {
     background: purple;
     color: whitesmoke;
 }
