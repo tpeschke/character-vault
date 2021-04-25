@@ -275,33 +275,41 @@ export default class CharacterViewer extends Component {
                         <p className="removedabilityLocation">{removedability}</p>
                     </div>
                     <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
+                        <div className="skillDiscount">
+                            <p className="strDiscount">{strData.skill}</p>
+                            <p className="dexDiscount">{dexData.skill}</p>
+                            <p className="conDiscount">{conData.skill}</p>
+                            <p className="intDiscount">{intData.skill}</p>
+                            <p className="wisDiscount">{wisData.skill}</p>
+                            <p className="chaDiscount">{chaData.skill}</p>
+                        </div>
                         <div className="skillsuiteShell">
                             <div className="skillRow athletics">
-                                <p className="skillcost athletics">{skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 2)}</p>
+                                <p className="skillcost athletics">{skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)}</p>
                                 <p className="skillrank athletics">{skillsuites[0].rank}</p>
                             </div>
                             <div className="skillRow lore">
-                                <p className="skillcost lore">{skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 2)}</p>
+                                <p className="skillcost lore">{skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)}</p>
                                 <p className="skillrank lore">{skillsuites[1].rank}</p>
                             </div>
                             <div className="skillRow streetwise">
-                                <p className="skillcost streetwise">{skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 2)}</p>
+                                <p className="skillcost streetwise">{skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)}</p>
                                 <p className="skillrank streetwise">{skillsuites[2].rank}</p>
                             </div>
                             <div className="skillRow survival">
-                                <p className="skillcost survival">{skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 2)}</p>
+                                <p className="skillcost survival">{skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)}</p>
                                 <p className="skillrank survival">{skillsuites[3].rank}</p>
                             </div>
                             <div className="skillRow tactics">
-                                <p className="skillcost tactics">{skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 2)}</p>
+                                <p className="skillcost tactics">{skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)}</p>
                                 <p className="skillrank tactics">{skillsuites[4].rank}</p>
                             </div>
                             <div className="skillRow trades">
-                                <p className="skillcost trades">{skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 2)}</p>
+                                <p className="skillcost trades">{skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)}</p>
                                 <p className="skillrank trades">{skillsuites[5].rank}</p>
                             </div>
                             <div className="skillRow weirdcraft">
-                                <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 2)}</p>
+                                <p className="skillcost weirdcraft">{skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)}</p>
                                 <p className="skillrank weirdcraft">{skillsuites[6].rank}</p>
                             </div>
 

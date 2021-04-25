@@ -28,6 +28,10 @@ class Character extends Component {
         })
     }
 
+    componentWillUnmount() {
+        this.setState({ isEditingMode: false })
+    }
+
     changeEditStatus = () => {
         this.setState({ isEditingMode: !this.state.isEditingMode })
     }

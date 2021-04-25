@@ -1328,6 +1328,47 @@ textarea.traitsfour {
     text-align: center;
 }
 
+.skillDiscount {
+    height: 42px;
+    width: 250px;
+    top: 41px;
+    position: absolute;
+    left: 20px;
+}
+.strDiscount {
+    left: 25px;
+    width: 53px;
+    text-align: center;
+}
+.dexDiscount {
+    left: 101px;
+    width: 53px;
+    text-align: center;
+}
+.conDiscount {
+    left: 179px;
+    width: 71px;
+    text-align: center;
+}
+.intDiscount {
+    left: 25px;
+    width: 53px;
+    text-align: center;
+    top: 22px
+}
+.wisDiscount {
+    left: 101px;
+    width: 53px;
+    text-align: center;
+    top: 22px
+}
+.chaDiscount {
+    left: 179px;
+    width: 71px;
+    text-align: center;
+    top: 22px
+}
+
 .skillsuiteShell {
     height: 147px;
     width: 135px;
