@@ -15,9 +15,17 @@
 
 .character {
     display: flex;
+    align-items: center;
+    padding: 0px 15px;
 }
 
-.character:hover, .character:hover p {
+.characterLink {
+    display: flex;
+    width: 100%;
+}
+
+
+.characterLink:hover, .characterLink:hover p {
     background: purple;
     color: white;
     cursor: pointer;
@@ -35,14 +43,66 @@
     margin-left: 5px
 }
 
-.fa-plus {
+.fa-plus, .fa-minus {
     margin: 15px 5px;
     padding: 5px;
 }
 
-.fa-plus:hover {
+.fa-plus:hover, .fa-minus:hover {
     background: purple;
     border-radius: 15px;
     padding: 5px;
+    color: whitesmoke;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000075;
+}
+
+.modelBody {
+    width: 422px;
+    padding: 30px;
+    background: white;
+    margin: 125px auto;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.modelBody h5, .modelBody p {
+    margin: 0;
+    text-align: center;
+}
+
+.modelBody h5 {
+    margin-bottom: 15px;
+}
+
+.modelButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.modelButtons button {
+    border: none;
+    background: lightgray;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.modelButtons .yes:hover {
+    background: purple;
+    color: whitesmoke;
+}
+
+.modelButtons .no:hover {
+    background: red;
     color: whitesmoke;
 }

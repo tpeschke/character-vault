@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './home.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Model from './model'
 
 export default class Home extends Component {
     constructor() {
@@ -38,22 +39,27 @@ export default class Home extends Component {
 
         let characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
-                <Link className="character" key={id} to={`/view/${id}`}>
-                    <p>{name}</p>
-                    <p>{race}</p>
-                    <p>{primarya}/{secondarya}</p>
-                    <p>Level: {level}</p>
-                </Link>
+                <div className="character">
+                    <Link className="characterLink" key={id} to={`/view/${id}`}>
+                        <p>{name}</p>
+                        <p>{race}</p>
+                        <p>{primarya}/{secondarya}</p>
+                        <p>Level: {level}</p>
+                    </Link>
+                    <i class="fas fa-minus"></i>
+                </div>
             )
         })
         let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
-                <Link className="character" key={id} to={`/view/${id}`}>
-                    <p>{name}</p>
-                    <p>{race}</p>
-                    <p>{primarya}/{secondarya}</p>
-                    <p>Level: {level}</p>
-                </Link>
+                <div className="character">
+                    <Link className="characterLink" key={id} to={`/view/${id}`}>
+                        <p>{name}</p>
+                        <p>{race}</p>
+                        <p>{primarya}/{secondarya}</p>
+                        <p>Level: {level}</p>
+                    </Link>
+                </div>
             )
         })
 
@@ -72,6 +78,7 @@ export default class Home extends Component {
                         {vaultList}
                     </div>
                 </div>
+                <Model/>
             </div>)
     }
 }

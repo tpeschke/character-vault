@@ -4,6 +4,7 @@
     padding: 10px;
     align-items: center;
     background-color: whitesmoke;
+    position: relative;
 }
 
 .fa-home {
