@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer')
+    , { puppeteerEndpoint } = require('./server-config')
 
 viewController = {
   viewUsersCharacters: function (req, res) {
@@ -153,7 +154,7 @@ viewController = {
     const db = req.app.get('db')
     puppeteer.launch().then(browser => {
       browser.newPage().then(page => {
-        page.goto(`http://localhost:3000/download/${req.params.id}`, {
+        page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
           waitUntil: "networkidle2"
         }).then(_=> {
           page.waitForSelector('div#loaded').then(_=>{
