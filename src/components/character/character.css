@@ -86,6 +86,10 @@ input[type=number] {
     right: 5px
 }
 
+.displayNone {
+    display: none;
+}
+
 .editButton {
     position: sticky;
     bottom: 10px;

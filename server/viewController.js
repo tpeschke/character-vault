@@ -7,6 +7,12 @@ viewController = {
       res.send(data)
     })
   },
+  viewAllCharacters: function (req, res) {
+    const db = req.app.get('db')
+    db.get.allCharacters(req.user.id).then(data=> {
+      res.send(data)
+    })
+  },
   viewCharacter: function (req, res) {
     viewController.assembleCharacter(req).then(character => {
       res.send(character)
@@ -133,6 +139,7 @@ viewController = {
       }))
       
       return Promise.all(promiseArray).then(_=> {
+        character.owned = req.user.id === character.userid
         return character
       })
     })

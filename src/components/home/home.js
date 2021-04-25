@@ -8,7 +8,8 @@ export default class Home extends Component {
         super()
 
         this.state = {
-            characters: null
+            characters: null,
+            vault: null
         }
     }
 
@@ -16,18 +17,22 @@ export default class Home extends Component {
         axios.get('/api/characters').then(({ data: characters }) => {
             this.setState({ characters })
         })
+        axios.get('/api/allCharacters').then(({ data: vault }) => {
+            this.setState({ vault })
+        })
     }
 
     createNewCharacter = () => {
-        axios.post('/api/addCharacter').then(({data}) => {
+        axios.post('/api/addCharacter').then(({ data }) => {
             console.log(data)
             this.props.history.push(`/view/${data.id}`)
         })
     }
 
     render = () => {
-        let { characters } = this.state
-        if (!characters) {
+        let { characters, vault } = this.state
+        console.log(vault)
+        if (!characters || !vault) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
 
@@ -41,14 +46,32 @@ export default class Home extends Component {
                 </Link>
             )
         })
+        let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
+            return (
+                <Link className="character" key={id} to={`/view/${id}`}>
+                    <p>{name}</p>
+                    <p>{race}</p>
+                    <p>{primarya}/{secondarya}</p>
+                    <p>Level: {level}</p>
+                </Link>
+            )
+        })
 
         return (
             <div className="homeShell">
-                <h4>Here are your characters:</h4>
-                <div>
-                    {characterList}
+                <div className="characterShell">
+                    <h4>Here are your characters:</h4>
+                    <div>
+                        {characterList}
+                    </div>
+                    <i className="fas fa-plus" onClick={this.createNewCharacter}></i>
                 </div>
-                <i className="fas fa-plus" onClick={this.createNewCharacter}></i>
+                <div className="characterShell">
+                    <h4>Character Vault:</h4>
+                    <div>
+                        {vaultList}
+                    </div>
+                </div>
             </div>)
     }
 }

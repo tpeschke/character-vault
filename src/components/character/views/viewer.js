@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import character from '../character'
 import ViewList from './components/viewList'
 import ViewPairList from './components/viewPairList'
 import ViewSkillList from './components/viewSkillList'
@@ -106,7 +107,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree } = this.state
+            skillone, skilltwo, skillthree, owned } = this.state
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -510,7 +511,7 @@ export default class CharacterViewer extends Component {
                     <div className="left-corner-button corner-button">
                         <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
                     </div>
-                    <div className="right-corner-button corner-button">
+                    <div className={owned ? "right-corner-button corner-button" : "displayNone"}>
                         <i onClick={changeEditStatus} className="fas fa-edit"></i>
                     </div>
                 </div>

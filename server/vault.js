@@ -15,6 +15,7 @@ app.use(cors())
 app.use(config.fakeAuth)
 
 app.get('/api/characters', viewCtrl.viewUsersCharacters)
+app.get('/api/allCharacters', viewCtrl.viewAllCharacters)
 app.get('/api/view/:id', viewCtrl.viewCharacter)
 app.get('/api/download/:id', viewCtrl.downloadCharacters);
 
