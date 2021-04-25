@@ -81,8 +81,11 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
-    calculateRecovery = (recovery, size = "placeholder", isMelee) => {
+    calculateRecovery = (recovery, size, isMelee) => {
         let minimumRecovery
+        if (!size) {
+            size = "L"
+        }
         if (size.toUpperCase() === 'S') {
             isMelee ? minimumRecovery = 2 : minimumRecovery = 3
         } else if (size.toUpperCase() === 'M') {

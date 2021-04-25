@@ -1,16 +1,14 @@
 const { assembleCharacter } = require('./viewController')
 
-function setToMin (value, min) {
-    if (!value) {
-        value = 0
-    }
+function setToMinAndMax (value = 0, min, max) {
+    return setToMax(setToMin(value, min), max)
+}
+
+function setToMin (value = 0, min) {
     return +value >= min ? +value : min
 }
 
-function setToMax (value, max) {
-    if (!value) {
-        value = 0
-    }
+function setToMax (value = 0, max) {
     return +value <= max ? +value : max
 }
 module.exports = { 
@@ -46,24 +44,16 @@ module.exports = {
         gold = setToMin(gold, 0)
         platinium = setToMin(platinium, 0)
         excurrent = setToMin(excurrent, 0)
-        str = setToMin(str, 1)
-        dex = setToMin(dex, 1)
-        con = setToMin(con, 1)
-        int = setToMin(int, 1)
-        wis = setToMin(wis, 1)
-        cha = setToMin(cha, 1)
-        honor = setToMin(honor, 0)
+        str = setToMinAndMax(str, 1, 20)
+        dex = setToMinAndMax(dex, 1, 20)
+        con = setToMinAndMax(con, 1, 20)
+        int = setToMinAndMax(int, 1, 20)
+        wis = setToMinAndMax(wis, 1, 20)
+        cha = setToMinAndMax(cha, 1, 20)
+        honor = setToMinAndMax(honor, 0, 25)
         stressthreshold = setToMin(stressthreshold, 0)
         sizemod = setToMin(sizemod, 0)
         vitalityroll = setToMin(vitalityroll, 0)
-
-        str = setToMax(str, 20)
-        dex = setToMax(dex, 20)
-        con = setToMax(con, 20)
-        int = setToMax(int, 20)
-        wis = setToMax(wis, 20)
-        cha = setToMax(cha, 20)
-        honor = setToMax(honor, 25)
 
         db.upsert.character(id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint).then((data)=>{
             req.params.id = id
@@ -75,7 +65,7 @@ module.exports = {
             }))
             promiseArray.push(db.delete.devotions([id, [0, ...devotions.map(devotions=>devotions.id)]]).then(_=> {
                 return devotions.map(({id: devotionid, value, title}) => {
-                    return db.upsert.devotions(devotionid, id, title, value)
+                    return db.upsert.devotions(devotionid, id, title, setToMin(value, 0))
                 })
             }))
             promiseArray.push(db.delete.flaws([id, [0, ...flaws.map(flaws=>flaws.id)]]).then(_=> {
@@ -113,10 +103,10 @@ module.exports = {
                     return db.upsert.gearfour(gearfourid, id, title, value)
                 })
             }))
-            promiseArray.push(db.upsert.weaponone(oneweaponid, id, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, +onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize))
-            promiseArray.push(db.upsert.weapontwo(twoweaponid, id, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, +twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize))
-            promiseArray.push(db.upsert.weaponthree(threeweaponid, id, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize))
-            promiseArray.push(db.upsert.weaponfour(fourweaponid, id, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize))
+            promiseArray.push(db.upsert.weaponone(oneweaponid, id, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, setToMin(onemiscrecovery, 0), onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize))
+            promiseArray.push(db.upsert.weapontwo(twoweaponid, id, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, setToMin(twomiscrecovery, 0), twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize))
+            promiseArray.push(db.upsert.weaponthree(threeweaponid, id, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, setToMin(threemiscparry, 0), threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize))
+            promiseArray.push(db.upsert.weaponfour(fourweaponid, id, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, setToMin(fourmiscrecovery, 0), fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize))
 
             promiseArray.push(db.upsert.armor(armorid, id, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit))
             promiseArray.push(db.upsert.shield(shieldid, id, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb))
