@@ -22,6 +22,8 @@ app.get('/api/download/:id', viewCtrl.downloadCharacters);
 app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
 app.post('/api/AddCharacter', editCtrl.addCharacter)
 
+app.patch('/api/removeCharacter/:characterid', editCtrl.removeCharacter)
+
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './index.html'));
 // });

@@ -1,10 +1,16 @@
 const { assembleCharacter } = require('./viewController')
 
 function setToMin (value, min) {
+    if (!value) {
+        value = 0
+    }
     return +value >= min ? +value : min
 }
 
 function setToMax (value, max) {
+    if (!value) {
+        value = 0
+    }
     return +value <= max ? +value : max
 }
 module.exports = { 
@@ -15,6 +21,12 @@ module.exports = {
             assembleCharacter(req).then((character) => {
                 res.send(data[0])
             })
+        })
+    },
+    removeCharacter: (req, res) => {
+        const db = req.app.get('db')
+        db.update.removeCharacter(req.params.characterid).then(data => {
+            res.send({message: 'character removed'})
         })
     },
     updateOrAddCharacter: (req, res) => {

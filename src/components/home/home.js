@@ -10,11 +10,17 @@ export default class Home extends Component {
 
         this.state = {
             characters: null,
-            vault: null
+            vault: null,
+            showModel: false,
+            characterId: null
         }
     }
 
     componentWillMount() {
+        this.getCharactersAndVault()
+    }
+
+    getCharactersAndVault = () => {
         axios.get('/api/characters').then(({ data: characters }) => {
             this.setState({ characters })
         })
@@ -30,9 +36,17 @@ export default class Home extends Component {
         })
     }
 
+    toggleModel = (showModel, characterId = null) => {
+        if (!characterId && this.state.characterId) {
+            this.getCharactersAndVault()
+            this.setState({ showModel, characterId })
+        } else {
+            this.setState({ showModel, characterId })
+        }
+    }
+
     render = () => {
         let { characters, vault } = this.state
-        console.log(vault)
         if (!characters || !vault) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
@@ -46,7 +60,7 @@ export default class Home extends Component {
                         <p>{primarya}/{secondarya}</p>
                         <p>Level: {level}</p>
                     </Link>
-                    <i class="fas fa-minus"></i>
+                    <i className="fas fa-minus" onClick={_ => this.toggleModel(true, id)}></i>
                 </div>
             )
         })
@@ -78,7 +92,7 @@ export default class Home extends Component {
                         {vaultList}
                     </div>
                 </div>
-                <Model/>
+                <Model showModel={this.state.showModel} toggleModel={this.toggleModel} characterId={this.state.characterId} />
             </div>)
     }
 }
