@@ -311,7 +311,7 @@ export default class CharacterViewer extends Component {
                                 <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : Math.ceil(int / 2)}</p>
                             </div>
                         </div>
-                        <ViewSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={skillone} />
+                        <ViewSkillList stylings={{ top: '294px', left: '20px', width: '251px' }} listArray={skillone} />
                         <ViewSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} />
                         <ViewSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} />
 

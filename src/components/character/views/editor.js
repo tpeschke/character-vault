@@ -139,7 +139,7 @@ render() {
                             <input id="nativerank" type="number" placeholder={Math.ceil(int / 2)} defaultValue={nativelanguage.rank} onChange={event => this.updateNativeLanguage(event.target.value, 'rank')} />
                         </div>
                     </div>
-                    <EditSkillList stylings={{ top: '230px', left: '20px', width: '251px' }} listArray={skillone} limit={4} updateFunction={this.updateAttribute} type={"skillone"} />
+                    <EditSkillList stylings={{ top: '294px', left: '20px', width: '251px' }} listArray={skillone} limit={1} updateFunction={this.updateAttribute} type={"skillone"} />
                     <EditSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} limit={13} updateFunction={this.updateAttribute} type={"skilltwo"} />
                     <EditSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} limit={13} updateFunction={this.updateAttribute} type={"skillthree"} />
 

@@ -25,7 +25,7 @@ app.post('/api/AddCharacter', editCtrl.addCharacter)
 //   res.sendFile(path.join(__dirname, './index.html'));
 // });
 
-massive(config.connection).then(dbI => {
+massive(config.databaseCredentials).then(dbI => {
   app.set('db', dbI)
   app.listen(config.port, async () => {
     console.log(`Weep a thousand tears and you won't drown the desert ${config.port}`);
