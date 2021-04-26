@@ -3,6 +3,7 @@ import './home.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Model from './model'
+import local from '../../local.js'
 
 export default class Home extends Component {
     constructor() {
@@ -54,7 +55,9 @@ export default class Home extends Component {
         let characterList
         if (!characters.length) {
             characterList = (<div className="loginShell">You Need to Log On to Add Characters
-                <button>Log On</button>
+                <button>  <a href={local.loginEndpoint}>
+                    <div className="logindiv">Log In</div>
+                </a></button>
             </div>)
         } else {
             characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {

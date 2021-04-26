@@ -24,4 +24,5 @@ yarn-error.log*
 
 .env
 server-config.js
+local.js
 stratch.txt
