@@ -73,10 +73,6 @@ app.get('/api/allCharacters', viewCtrl.viewAllCharacters)
 app.get('/api/view/:id', viewCtrl.viewCharacter)
 app.get('/api/download/:id', viewCtrl.downloadCharacters);
 
-app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
-app.post('/api/AddCharacter', editCtrl.addCharacter)
-
-
 app.use(function checkLogin (req, res, next) {
   if (req.user && req.user.id) {
     next()
@@ -87,6 +83,9 @@ app.use(function checkLogin (req, res, next) {
 
 app.get('/api/characters', viewCtrl.viewUsersCharacters)
 app.patch('/api/removeCharacter/:characterid', editCtrl.removeCharacter)
+
+app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
+app.post('/api/AddCharacter', editCtrl.addCharacter)
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './index.html'));
