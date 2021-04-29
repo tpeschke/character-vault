@@ -28,6 +28,7 @@ h4 {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    padding-top: 30px;
 }
 
 .loginShell button {
