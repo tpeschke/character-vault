@@ -55,9 +55,24 @@ module.exports = {
             }
             idname = 'characterid'
         }
-        db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
-            res.send({messsage: "updated"})
-        })
+        
+        if (body[keyName].length) {
+            let promiseArray = []
+            promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table=>table.id)]]).then(_=> {
+                return body[keyName].map(({id, value, title}) => {
+                    return db.upsert[keyName](id, characterid, title, value)
+                })
+            }))
+
+            Promise.all(promiseArray).then(_=> {
+                res.send({messsage: "updated"})
+            })
+        } else {
+            db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
+                res.send({messsage: "updated"})
+            })
+        }
+
     },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')

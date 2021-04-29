@@ -28,6 +28,10 @@
     border-left: 1px solid #799aa4;
 }
 
+.viewer .border-right {
+    border-left: none
+}
+
 
 .skillInput {
     padding: 0 4px;

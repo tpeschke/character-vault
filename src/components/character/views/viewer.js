@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ViewList from './pairComponents/viewList'
 import ViewPairList from './pairComponents/viewPairList'
 import ViewSkillList from './pairComponents/viewSkillList'
+import EditPairList from './pairComponents/editPairList'
 import WeaponSquare from './weaponsquare'
 
 export default class CharacterViewer extends Component {
@@ -110,13 +111,19 @@ export default class CharacterViewer extends Component {
         if (!isNaN(+value)) {
             value = +value
         }
+
         if (character[type] !== value) {
             this.setState({ isUpdating: true }, _ => {
                 axios.patch(`/api/updateSingleThing/${this.state.character.id}`, { [type]: value }).then(result => {
                     this.setState({ isUpdating: false })
                 })
                 character[type] = value
-                this.setState({ character })
+                this.setState({ character }, _ => {
+                    if (type.includes('gear')) {
+                        let { gearone, geartwo, gearthree, gearfour } = this.state.character
+                        this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
+                    }
+                })
             })
         }
     }
@@ -200,9 +207,9 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
-                            measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry} 
+                            measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry}
                             shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true}/>
+                            thrownweapon={true} />
 
                         <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
                             armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -212,9 +219,9 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
-                            measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry} 
+                            measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry}
                             shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true}/>
+                            thrownweapon={true} />
 
                         <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
                             armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -224,10 +231,10 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
-                            measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry} 
+                            measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry}
                             shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true}/>
-                        
+                            thrownweapon={true} />
+
                         <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
                             armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
@@ -237,7 +244,7 @@ export default class CharacterViewer extends Component {
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={fourname} basedamage={fourbasedamage} traindamage={fourtraindamage} miscdamage={fourmiscdamage} strdamage={strData.damage}
                             measure={'n/a'} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={'n/a'} updateAttribute={this.updateAttribute}
-                            shieldbaseencumb={shieldbaseencumb} usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon}/>
+                            shieldbaseencumb={shieldbaseencumb} usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon} />
 
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <input className="currentstressLocation stressAdjust" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
@@ -329,10 +336,10 @@ export default class CharacterViewer extends Component {
                         <input className="silverLocation" type="text" defaultValue={silver} onBlur={event => this.updateAttribute(event.target.value, "silver")} />
                         <input className="goldLocation" type="text" defaultValue={gold} onBlur={event => this.updateAttribute(event.target.value, "gold")} />
                         <input className="platiniumLocation" type="text" defaultValue={platinium} onBlur={event => this.updateAttribute(event.target.value, "platinium")} />
-                        <ViewPairList stylings={{ top: '379px', left: '20px', width: '201px' }} listArray={gearone} />
-                        <ViewPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} />
-                        <ViewPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} />
-                        <ViewPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} />
+                        <EditPairList stylings={{ top: '379px', left: '20px', width: '201px' }} listArray={gearone} limit={6} updateFunction={this.updateAttribute} type={"gearone"} />
+                        <EditPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={this.updateAttribute} type={"geartwo"} />
+                        <EditPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={this.updateAttribute} type={"gearthree"} />
+                        <EditPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={this.updateAttribute} type={"gearfour"} />
                         <p className="shownGearCarryLocation">{shownGearCarry}</p>
                         <p className="strCarryLocation">{shownCarry}</p>
 

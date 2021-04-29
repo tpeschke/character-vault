@@ -53,8 +53,12 @@ viewController = {
         character.chaData = chaData[0]
         return true
       }))
-      promiseArray.push(db.get.damage(character.id).then(damage => {
-        character.damage = damage
+      promiseArray.push(db.get.damageone(character.id).then(damageone => {
+        character.damageone = damageone
+        return true
+      }))
+      promiseArray.push(db.get.damagetwo(character.id).then(damagetwo => {
+        character.damagetwo = damagetwo
         return true
       }))
       promiseArray.push(db.get.goals(character.id).then(goals => {

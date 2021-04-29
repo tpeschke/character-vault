@@ -1,4 +1,4 @@
-INSERT INTO cvvitality (characterid, title, value)
+INSERT INTO damagetwo (characterid, title, value)
 VALUES($2, $3, $4) 
 ON CONFLICT (id)
 DO 
