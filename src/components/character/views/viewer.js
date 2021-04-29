@@ -159,6 +159,10 @@ export default class CharacterViewer extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
+        let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
+        , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
+        , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
+
         return (
             <div>
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
@@ -209,48 +213,40 @@ export default class CharacterViewer extends Component {
                             armorRecovery={armorRecovery} size={onesize} trainattack={onetrainattack} miscattack={onemiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={onemiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} conencumb={conData.encumb}
-                            wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
-                            shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
+                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb} armordr={armordr}
                             shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
                             measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry}
-                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
+                            usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
                             thrownweapon={true} />
 
                         <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
                             armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={twomiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} conencumb={conData.encumb}
-                            wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
-                            shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
-                            shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
+                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef}  totalEncumb={totalEncumb} 
+                            armordr={armordr} shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
                             measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry}
-                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
+                            usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
                             thrownweapon={true} />
 
                         <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
                             armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={threemiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} conencumb={conData.encumb}
-                            wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
-                            shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
-                            shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
+                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef}
+                            totalEncumb={totalEncumb} armordr={armordr} shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
                             measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry}
-                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
+                            usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
                             thrownweapon={true} />
 
                         <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
                             armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={fourmiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} conencumb={conData.encumb}
-                            wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
-                            shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
+                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb} armordr={armordr}
                             shielddr={shielddr} name={fourname} basedamage={fourbasedamage} traindamage={fourtraindamage} miscdamage={fourmiscdamage} strdamage={strData.damage}
                             measure={'n/a'} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={'n/a'} updateAttribute={this.updateAttribute}
-                            shieldbaseencumb={shieldbaseencumb} usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon} />
+                            usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon} />
 
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <input className="currentstressLocation stressAdjust" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
