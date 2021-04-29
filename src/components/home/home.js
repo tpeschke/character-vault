@@ -90,14 +90,14 @@ export default class Home extends Component {
         return (
             <div className="homeShell">
                 <div className="characterShell">
-                    <h4 className={!characters.length ? "displayNone" : ""}>Here are your characters:</h4>
+                    <h4 className={!characters.length ? "displayNone" : ""}><i class="fas fa-users"></i>Your Characters</h4>
                     <div>
                         {characterList}
                     </div>
                     <i className={!characters.length ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
                 </div>
                 <div className="characterShell">
-                    <h4>Character Vault:</h4>
+                    <h4><i class="fas fa-cogs"></i>Character Vault</h4>
                     <div>
                         {vaultList}
                     </div>

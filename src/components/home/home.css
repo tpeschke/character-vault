@@ -1,5 +1,22 @@
+h4 { 
+    background: #222;
+    padding: 10px 30px 10px 66px;
+    color: whitesmoke;
+    position: relative;
+    overflow: hidden;
+}
+
+.fa-users, .fa-cogs {
+    position: absolute;
+    color: white;
+    font-size: 61px;
+    left: -21px;
+    top: -5px;
+}
+
 .homeShell {
-    margin: 30px;
+    margin: 30px auto;
+    max-width: 816px;
 }
 
 .homeShell .characterShell:first-child {
@@ -18,7 +35,7 @@
 }
 
 .characterShell {
-    padding: 30px;
+    padding-bottom: 30px;
     background-color: white;
     -webkit-box-shadow: 5px 5px 15px 5px #000000;
     box-shadow: 5px 5px 15px 5px #000000;
@@ -27,12 +44,13 @@
 .character {
     display: flex;
     align-items: center;
-    padding: 0px 15px;
+    padding: 0px 45px;
 }
 
 .characterLink {
     display: flex;
     width: 100%;
+    justify-content: space-between;
 }
 
 
@@ -50,15 +68,16 @@
 .character p:first-child {
     font-weight: 700;
     text-align: left;
-}
-
-.character p {
-    margin-left: 5px
+    padding-left: 15px;
 }
 
 .fa-plus, .fa-minus {
     margin: 15px 5px;
     padding: 5px;
+}
+
+.fa-plus {
+    margin: 15px 5px 15px 60px
 }
 
 .fa-plus:hover, .fa-minus:hover {
