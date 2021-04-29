@@ -11,7 +11,7 @@ function setToMin (value = 0, min) {
 function setToMax (value = 0, max) {
     return +value <= max ? +value : max
 }
-module.exports = { 
+editController = { 
     addCharacter: (req, res) => {
         const db = req.app.get('db')
         db.upsert.add.character(req.user.id).then(data => {
@@ -23,8 +23,47 @@ module.exports = {
     },
     removeCharacter: (req, res) => {
         const db = req.app.get('db')
-        db.update.removeCharacter(req.params.characterid).then(data => {
-            res.send({message: 'character removed'})
+        editController.checkToSeeIfDeleteWorthy(req).then(shouldDelete => {
+            if (shouldDelete) {
+                db.delete.all(req.params.characterid).then(_ => {
+                    res.send({message: 'character removed'})
+                })
+            } else {
+                db.update.removeCharacter(req.params.characterid).then(data => {
+                    res.send({message: 'character removed'})
+                })
+            }
+        })
+    },
+    checkToSeeIfDeleteWorthy: async (req) => {
+        const db = req.app.get('db')
+        let { characterid } = req.params
+        return db.get.character(characterid).then(character => {
+            let {race, primarya, secondarya, level, honor, str, con, dex, int, wis, cha, drawback, temperament, abilitiesone, abilitiestwo, abilitiesthree} = character[0]
+            let abilities = (!!abilitiesone || !!abilitiestwo || !!abilitiesthree)
+            if (race && primarya && secondarya && level && drawback && honor && str && con && dex && int && wis && cha && drawback && temperament && abilities) {
+                let promiseArray = []
+                , gearArray = []
+                , otherArray = []
+                promiseArray.push(db.get.devotions(characterid).then(result => otherArray.push(result)))
+                promiseArray.push(db.get.flaws(characterid).then(result => otherArray.push(result)))
+                promiseArray.push(db.get.traits(characterid).then(result => otherArray.push(result)))
+                promiseArray.push(db.get.gearone(characterid).then(result => gearArray = [...gearArray, ...result]))
+                promiseArray.push(db.get.geartwo(characterid).then(result => gearArray = [...gearArray, ...result]))
+                promiseArray.push(db.get.gearthree(characterid).then(result => gearArray = [...gearArray, ...result]))
+                promiseArray.push(db.get.gearfour(characterid).then(result => gearArray = [...gearArray, ...result]))
+                
+                return Promise.all(promiseArray).then(_=> {
+                    for(let i = 0; i< otherArray.length; i++) {
+                        if (otherArray[i].length === 0) {
+                            return true
+                        }
+                    }
+                    return gearArray.length < 0
+                })
+            } else {
+                return true
+            }
         })
     },
     updateSingleThing: (req, res) => {
@@ -192,3 +231,5 @@ module.exports = {
         })
     }
 }
+
+module.exports = editController
