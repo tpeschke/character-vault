@@ -88,9 +88,11 @@ app.patch('/api/updateSingleThing/:characterid', editCtrl.updateSingleThing)
 app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
 app.post('/api/AddCharacter', editCtrl.addCharacter)
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'));
-});
+const root = require('path').join(__dirname, '../build')
+app.use(express.static(root));
+app.get("*", (req, res) => {
+    res.sendFile('index.html', { root });
+})
 
 massive(config.databaseCredentials).then(dbI => {
   app.set('db', dbI)
