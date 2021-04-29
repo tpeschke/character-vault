@@ -58,7 +58,7 @@ passport.serializeUser((id, done) => {
     done(null, id)
 })
 passport.deserializeUser((id, done) => {
-    app.get('db').get.findUserSession([id]).then((user) => {
+    app.get('db').findUserSession([id]).then((user) => {
         return done(null, user[0]);
     })
 })
