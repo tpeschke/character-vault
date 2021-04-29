@@ -102,20 +102,34 @@ h4 {
 
 .modelBody {
     width: 422px;
-    padding: 30px;
+    padding: 0px 0px 30px;
     background: white;
     margin: 125px auto;
     -webkit-box-shadow: 5px 5px 15px 5px #000000;
     box-shadow: 5px 5px 15px 5px #000000;
 }
 
-.modelBody h5, .modelBody p {
+.modelInnards {
+    padding: 0 30px;
+}
+
+.modelBody p {
     margin: 0;
-    text-align: center;
+    text-align: left;
+    text-indent: 23px;
 }
 
 .modelBody h5 {
+    margin: 0;
+    font-weight: 700;
     margin-bottom: 15px;
+    text-align: center;
+    background-color: #990000;
+    color: whitesmoke;
+    padding: 15px 20px;
+}
+.fa-exclamation-triangle {
+    margin-right: 5px;
 }
 
 .modelButtons {
@@ -134,11 +148,11 @@ button {
 }
 
 button:hover {
-    background: purple;
+    background: darkgreen;
     color: whitesmoke;
 }
 
 .modelButtons .no:hover {
-    background: red;
+    background: #990000;
     color: whitesmoke;
 }

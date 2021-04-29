@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'ancient';
+  src: url('./assets/jancient.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'north';
+  src: url('./assets/north.ttf') format("truetype");
+}
+
 body {
   margin: 0;
   background-color: gray;
@@ -10,4 +19,22 @@ code {
 
 a {
   text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "north";
+}
+
+h1 {
+  font-size: 25px;
+}
+
+a:hover h1, a:hover p {
+  color: purple;
+}
+
+.beta {
+  margin-left: 10px
 }
