@@ -88,9 +88,9 @@ app.patch('/api/updateSingleThing/:characterid', editCtrl.updateSingleThing)
 app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
 app.post('/api/AddCharacter', editCtrl.addCharacter)
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, './index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './index.html'));
+});
 
 massive(config.databaseCredentials).then(dbI => {
   app.set('db', dbI)
