@@ -608,10 +608,15 @@ input.excurrentLocation {
     z-index: 0;
 }
 .stressthresholdLocation {
-    top: 488px;
+    top: 489px;
     left: 546px;
     width: 74px;
     text-align: center;
+}
+
+.mentalBreak {
+    background-color: #990000;
+    color: whitesmoke;
 }
 
 .relaxationLocation {

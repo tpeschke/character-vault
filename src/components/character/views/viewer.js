@@ -184,6 +184,7 @@ export default class CharacterViewer extends Component {
             , weaponThreeRecovery = threetrainrecovery + +threemiscrecovery
             , weaponFourRecovery = fourtrainrecovery + +fourmiscrecovery
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
+            , shownThreshold = stressthreshold ? stressthreshold : (int + wis) * 2
 
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
@@ -282,7 +283,7 @@ export default class CharacterViewer extends Component {
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <input className="currentstressLocation stressAdjust" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
                         <p className="totalstressLocation">+{totalEncumb * woundMultiplier}</p>
-                        <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
+                        <p className={(totalEncumb * woundMultiplier) + currentstress > shownThreshold ? "stressthresholdLocation mentalBreak" : "stressthresholdLocation"}>{shownThreshold}</p>
                         <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => this.updateAttribute(event.target.value, "relaxation")} />
                         <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => this.updateAttribute(event.target.value, "currentfavor")} />
                         <p className="favormaxLocation">{favormax}</p>
