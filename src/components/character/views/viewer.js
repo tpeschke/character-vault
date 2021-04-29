@@ -84,6 +84,11 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
+    calculateCurrentDamage = () => {
+        let { damageone, damagetwo } = this.state.character
+        return damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
+    }
+
     calculateRecovery = (recovery, size, isMelee) => {
         let minimumRecovery
         if (!size) {
@@ -135,7 +140,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon } = this.state.character
+            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -153,6 +158,7 @@ export default class CharacterViewer extends Component {
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
+
         return (
             <div>
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
@@ -271,7 +277,12 @@ export default class CharacterViewer extends Component {
                         <p className="woundedLocation">{(shownVitality * .75).toFixed(0)}</p>
                         <p className="bloodiedLocation">{(shownVitality * .50).toFixed(0)}</p>
                         <p className="hurtLocation">{(shownVitality * .25).toFixed(0)}</p>
+                        <p className="currentDamageLocation">{this.calculateCurrentDamage()}</p>
                         <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
+                        
+                        <EditPairList stylings={{ top: '545px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damageone"} />
+                        <EditPairList stylings={{ top: '545px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damagetwo"} />
+
                         <p className="sizemodLocation">{sizemod}</p>
                         <p className="vitalityrollLocation">{vitalityroll}</p>
                         <p className="vitalitydiceLocation">{vitalitydice}</p>

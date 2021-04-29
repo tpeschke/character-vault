@@ -712,6 +712,13 @@ input.excurrentLocation {
     text-align: center;
 }
 
+.currentDamageLocation {
+    top: 655px;
+    left: 470px;
+    width: 51px;
+    text-align: center;
+}
+
 .traumaLocation {
     top: 655px;
     left: 621px;

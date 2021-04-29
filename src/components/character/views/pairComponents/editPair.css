@@ -8,7 +8,6 @@
 
 .titleInput {
     padding: 0 4px;
-    width: 75%;
     position: unset !important;
 }
 
@@ -16,7 +15,6 @@
     padding: 0 4px;
     position: unset !important;
     text-align: right;
-    width: 25%;
 }
 
 .valueDisplay {
