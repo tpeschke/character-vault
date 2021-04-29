@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EditList from './components/editList'
-import EditPairList from './components/editPairList'
-import EditSkillList from './components/editSkillList'
+import EditList from './pairComponents/editList'
+import EditPairList from './pairComponents/editPairList'
+import EditSkillList from './pairComponents/editSkillList'
 
 export default class CharacterEditor extends Component {
     constructor(props) {
