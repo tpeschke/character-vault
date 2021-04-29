@@ -73,20 +73,20 @@ app.get('/api/allCharacters', viewCtrl.viewAllCharacters)
 app.get('/api/view/:id', viewCtrl.viewCharacter)
 app.get('/api/download/:id', viewCtrl.downloadCharacters);
 
-app.use(function checkLogin (req, res, next) {
+function checkLogin (req, res, next) {
   if (req.user && req.user.id) {
     next()
   } else {
     res.send({message: 'log on'})
   }
-})
+}
 
-app.get('/api/characters', viewCtrl.viewUsersCharacters)
-app.patch('/api/removeCharacter/:characterid', editCtrl.removeCharacter)
-app.patch('/api/updateSingleThing/:characterid', editCtrl.updateSingleThing)
+app.get('/api/characters', checkLogin, viewCtrl.viewUsersCharacters)
+app.patch('/api/removeCharacter/:characterid', checkLogin, editCtrl.removeCharacter)
+app.patch('/api/updateSingleThing/:characterid', checkLogin, editCtrl.updateSingleThing)
 
-app.post('/api/upsertCharacter', editCtrl.updateOrAddCharacter)
-app.post('/api/AddCharacter', editCtrl.addCharacter)
+app.post('/api/upsertCharacter', checkLogin, editCtrl.updateOrAddCharacter)
+app.post('/api/AddCharacter', checkLogin, editCtrl.addCharacter)
 
 const root = require('path').join(__dirname, '../build')
 app.use(express.static(root));
