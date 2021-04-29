@@ -34,9 +34,13 @@ module.exports = {
         , keyName = Object.keys( body )[0]
         , table = 'cvcharactermain'
         , idname = 'id'
-        
+
         if (keyName.includes('misc')) {
-            if (keyName.includes('one')) {
+            if (keyName.includes('armor')) {
+                table = 'cvarmor'
+            } else if (keyName.includes('shield')) {
+                table = 'cvshield'
+            } else if (keyName.includes('one')) {
                 table = 'weaponone'
             } else if (keyName.includes('two')) {
                 table = 'weapontwo'

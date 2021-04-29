@@ -107,6 +107,9 @@ export default class CharacterViewer extends Component {
 
     updateAttribute = (value, type) => {
         let character = { ...this.state.character }
+        if (!isNaN(+value)) {
+            value = +value
+        }
         if (character[type] !== value) {
             this.setState({ isUpdating: true }, _ => {
                 axios.patch(`/api/updateSingleThing/${this.state.character.id}`, { [type]: value }).then(result => {
@@ -349,10 +352,10 @@ export default class CharacterViewer extends Component {
                         <p className="armortrainrecoveryLocation">{armortrainrecovery}</p>
                         <p className="armortraininitLocation">{armortraininit}</p>
 
-                        <p className="armormiscdefLocation">{armormiscdef}</p>
-                        <p className="armormiscencumbLocation">{armormiscencumb}</p>
-                        <p className="armormiscrecoveryLocation">{armormiscrecovery}</p>
-                        <p className="armormiscinitLocation">{armormiscinit}</p>
+                        <input className="armormiscdefLocation" type="number" defaultValue={armormiscdef} onBlur={event => this.updateAttribute(event.target.value, "armormiscdef")} />
+                        <input className="armormiscencumbLocation" type="number" defaultValue={armormiscencumb} onBlur={event => this.updateAttribute(event.target.value, "armormiscencumb")} />
+                        <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onBlur={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
+                        <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
 
                         <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
                         <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
@@ -375,10 +378,10 @@ export default class CharacterViewer extends Component {
                         <p className="shieldtrainencumbLocation">{shieldtrainencumb}</p>
                         <p className="shieldtrainbreakLocation">{shieldtrainbreak}</p>
 
-                        <p className="shieldmiscdefLocation">{shieldmiscdef}</p>
-                        <p className="shieldmiscparryLocation">{shieldmiscparry}</p>
-                        <p className="shieldmiscencumbLocation">{shieldmiscencumb}</p>
-                        <p className="shieldmiscbreakLocation">{shieldmiscbreak}</p>
+                        <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
+                        <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscencumb")} />
+                        <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
 
                         <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
                         <p className="shieldtotalparryLocation">{this.returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
