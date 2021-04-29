@@ -56,7 +56,7 @@ module.exports = {
             idname = 'characterid'
         }
         
-        if (body[keyName].length) {
+        if (body[keyName].length || body[keyName].length === 0) {
             let promiseArray = []
             promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table=>table.id)]]).then(_=> {
                 return body[keyName].map(({id, value, title}) => {

@@ -4,10 +4,12 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
     miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
     armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, conencumb, wisencumb, adjustedEncumb, armordr, shielddr, name, basedamage, traindamage,
     miscdamage, strdamage, measure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
-    weaponmiscparry, thrownweapon, updateAttribute, totalEncumb }) {
+    weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment }) {
 
     let parryShown = parry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : parry + weapontrainparry + weaponmiscparry
         , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p> : <div></div>
+        , stressAdjustmentAttack = dead ? stressAdjustment : 0
+        , stressAdjustmentDefense = dead ? 0 : stressAdjustment
 
     let drShell = (<div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
                         <p id="armorDr">{armordr}</p>
@@ -31,10 +33,10 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
     return (
         <div className={`weaponsquare weapon${position}`}>
             <p className="recovery">{returnZeroIfNaN(calculateRecovery(weaponRecovery + armorRecovery, size, false))}</p>
-            <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
+            <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack - stressAdjustmentAttack)}</p>
             <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
 
-            <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+            <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0) - stressAdjustmentDefense}</p>
             <p className="encumb">{totalEncumb}</p>
 
             {drShell}

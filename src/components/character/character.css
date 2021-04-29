@@ -595,6 +595,17 @@ input.excurrentLocation {
     left: 546px;
     width: 74px;
     text-align: center;
+    z-index: 1;
+}
+.totalstressLocation {
+    top: 468px;
+    left: 546px;
+    width: 74px;
+    font-weight: 800;
+    color: #990000;
+    text-align: right;
+    padding-right: 5px;
+    z-index: 0;
 }
 .stressthresholdLocation {
     top: 488px;
