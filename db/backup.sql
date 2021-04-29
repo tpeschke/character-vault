@@ -229,6 +229,13 @@ insert into cvcha (score, favor, honorstart, skill, confrontation) values
 (19, 8, 20, 3, 'D20!'),
 (20, 9, 25, 3, 'D20!+d4!')
 
+create table cvvitality (
+    id serial primary key,
+    characterid int,
+    title varchar(50),
+    value varchar(25)
+)
+
 create table cvgoals (
     id serial primary key,
     characterId int,
