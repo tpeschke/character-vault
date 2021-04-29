@@ -33,8 +33,21 @@ module.exports = {
         , { characterid } = req.params
         , keyName = Object.keys( body )[0]
         , table = 'cvcharactermain'
+        , idname = 'id'
         
-        db.query(`update ${table} set ${keyName} = $1 where id = $2`, [body[keyName], characterid]).then(result => {
+        if (keyName.includes('misc')) {
+            if (keyName.includes('one')) {
+                table = 'weaponone'
+            } else if (keyName.includes('two')) {
+                table = 'weapontwo'
+            } else if (keyName.includes('three')) {
+                table = 'weaponthree'
+            } else if (keyName.includes('four')) {
+                table = 'weaponfour'
+            }
+            idname = 'characterid'
+        }
+        db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
             res.send({messsage: "updated"})
         })
     },

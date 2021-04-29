@@ -133,10 +133,10 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , left = calculateLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
-            , weaponOneRecovery = onetrainrecovery + onemiscrecovery
-            , weaponTwoRecovery = twotrainrecovery + twomiscrecovery
-            , weaponThreeRecovery = threetrainrecovery + threemiscrecovery
-            , weaponFourRecovery = fourtrainrecovery + fourmiscrecovery
+            , weaponOneRecovery = onetrainrecovery + +onemiscrecovery
+            , weaponTwoRecovery = twotrainrecovery + +twomiscrecovery
+            , weaponThreeRecovery = threetrainrecovery + +threemiscrecovery
+            , weaponFourRecovery = fourtrainrecovery + +fourmiscrecovery
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
 
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
@@ -209,7 +209,7 @@ export default class CharacterViewer extends Component {
                             shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
                             measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry} shieldbaseencumb={shieldbaseencumb} />
 
-                        <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponTwoRecovery}
+                        <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
                             armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={threemiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
@@ -219,7 +219,7 @@ export default class CharacterViewer extends Component {
                             shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
                             measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry} shieldbaseencumb={shieldbaseencumb} />
                         
-                        <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponTwoRecovery}
+                        <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
                             armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={fourmiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
@@ -401,16 +401,16 @@ export default class CharacterViewer extends Component {
                             <p className="trainparryLocation">{onetrainparry}</p>
                             <p className="traindamageLocation">{onetraindamage}</p>
 
-                            <p className="miscattackLocation">{onemiscattack}</p>
-                            <p className="miscrecoveryLocation">{onemiscrecovery}</p>
-                            <p className="miscparryLocation">{onemiscparry}</p>
-                            <p className="miscdamageLocation">{onemiscdamage}</p>
-                            <p className="miscinitLocation">{onemiscinit}</p>
+                            <input className="miscattackLocation" type="number" defaultValue={onemiscattack} onBlur={event => this.updateAttribute(event.target.value, "onemiscattack")} />
+                            <input className="miscrecoveryLocation" type="number" defaultValue={onemiscrecovery} onBlur={event => this.updateAttribute(event.target.value, "onemiscrecovery")} />
+                            <input className="miscparryLocation" type="number" defaultValue={onemiscparry} onBlur={event => this.updateAttribute(event.target.value, "onemiscparry")} />
+                            <input className="miscdamageLocation" type="number" defaultValue={onemiscdamage} onBlur={event => this.updateAttribute(event.target.value, "onemiscdamage")} />
+                            <input className="miscinitLocation" type="number" defaultValue={onemiscinit} onBlur={event => this.updateAttribute(event.target.value, "onemiscinit")} />
 
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(onetrainattack + onemiscattack)}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(onetrainattack + +onemiscattack)}</p>
                             <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponOneRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + onemiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + onemiscdamage)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + +onemiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + +onemiscdamage)}</p>
                             <p className="totalinitLocation">{onemiscinit}</p>
                         </div>
 
@@ -430,16 +430,16 @@ export default class CharacterViewer extends Component {
                             <p className="trainparryLocation">{twotrainparry}</p>
                             <p className="traindamageLocation">{twotraindamage}</p>
 
-                            <p className="miscattackLocation">{twomiscattack}</p>
-                            <p className="miscrecoveryLocation">{twomiscrecovery}</p>
-                            <p className="miscparryLocation">{twomiscparry}</p>
-                            <p className="miscdamageLocation">{twomiscdamage}</p>
-                            <p className="miscinitLocation">{twomiscinit}</p>
+                            <input className="miscattackLocation" type="number" defaultValue={twomiscattack} onBlur={event => this.updateAttribute(+event.target.value, "twomiscattack")} />
+                            <input className="miscrecoveryLocation" type="number" defaultValue={twomiscrecovery} onBlur={event => this.updateAttribute(+event.target.value, "twomiscrecovery")} />
+                            <input className="miscparryLocation" type="number" defaultValue={twomiscparry} onBlur={event => this.updateAttribute(+event.target.value, "twomiscparry")} />
+                            <input className="miscdamageLocation" type="number" defaultValue={twomiscdamage} onBlur={event => this.updateAttribute(+event.target.value, "twomiscdamage")} />
+                            <input className="miscinitLocation" type="number" defaultValue={twomiscinit} onBlur={event => this.updateAttribute(+event.target.value, "twomiscinit")} />
 
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(twotrainattack + twomiscattack)}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(twotrainattack + +twomiscattack)}</p>
                             <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponTwoRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(twotrainparry + twomiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(twotraindamage + twomiscdamage)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(twotrainparry + +twomiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(twotraindamage + +twomiscdamage)}</p>
                             <p className="totalinitLocation">{twomiscinit}</p>
                         </div>
 
@@ -459,16 +459,16 @@ export default class CharacterViewer extends Component {
                             <p className="trainparryLocation">{threetrainparry}</p>
                             <p className="traindamageLocation">{threetraindamage}</p>
 
-                            <p className="miscattackLocation">{threemiscattack}</p>
-                            <p className="miscrecoveryLocation">{threemiscrecovery}</p>
-                            <p className="miscparryLocation">{threemiscparry}</p>
-                            <p className="miscdamageLocation">{threemiscdamage}</p>
-                            <p className="miscinitLocation">{threemiscinit}</p>
+                            <input className="miscattackLocation" type="number" defaultValue={threemiscattack} onChange={event => this.updateAttribute(+event.target.value, "threemiscattack")} />
+                            <input className="miscrecoveryLocation" type="number" defaultValue={threemiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "threemiscrecovery")} />
+                            <input className="miscparryLocation" type="number" defaultValue={threemiscparry} onChange={event => this.updateAttribute(+event.target.value, "threemiscparry")} />
+                            <input className="miscdamageLocation" type="number" defaultValue={threemiscdamage} onChange={event => this.updateAttribute(+event.target.value, "threemiscdamage")} />
+                            <input className="miscinitLocation" type="number" defaultValue={threemiscinit} onChange={event => this.updateAttribute(+event.target.value, "threemiscinit")} />
 
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(threetrainattack + threemiscattack)}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(threetrainattack + +threemiscattack)}</p>
                             <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponThreeRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(threetrainparry + threemiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(threetraindamage + threemiscdamage)}</p>
+                            <p className="totalparryLocation">{this.returnZeroIfNaN(threetrainparry + +threemiscparry)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(threetraindamage + +threemiscdamage)}</p>
                             <p className="totalinitLocation">{threemiscinit}</p>
                         </div>
 
@@ -485,15 +485,15 @@ export default class CharacterViewer extends Component {
                             <p className="trainrecoveryLocation">{fourtrainrecovery}</p>
                             <p className="traindamageLocation">{fourtraindamage}</p>
 
-                            <p className="miscattackLocation">{fourmiscattack}</p>
-                            <p className="miscrecoveryLocation">{fourmiscrecovery}</p>
-                            <p className="miscinitLocation initFour">{fourmiscinit}</p>
-                            <p className="miscdamageLocation">{fourmiscdamage}</p>
+                            <input className="miscattackLocation" type="number" defaultValue={fourmiscattack} onChange={event => this.updateAttribute(+event.target.value, "fourmiscattack")} />
+                            <input className="miscrecoveryLocation" type="number" defaultValue={fourmiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "fourmiscrecovery")} />
+                            <input className="miscinitLocation initFour" type="number" defaultValue={fourmiscinit} onChange={event => this.updateAttribute(+event.target.value, "fourmiscinit")} />
+                            <input className="miscdamageLocation" type="number" defaultValue={fourmiscdamage} onChange={event => this.updateAttribute(+event.target.value, "fourmiscdamage")} />
 
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(fourtrainattack + fourmiscattack)}</p>
-                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(fourtrainrecovery + fourmiscrecovery)}</p>
+                            <p className="totalattackLocation">{this.returnZeroIfNaN(fourtrainattack + +fourmiscattack)}</p>
+                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponFourRecovery)}</p>
                             <p className="totalinitLocation initFour">{fourmiscinit}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(fourtraindamage + fourmiscdamage)}</p>
+                            <p className="totaldamageLocation">{this.returnZeroIfNaN(fourtraindamage + +fourmiscdamage)}</p>
                         </div>
                     </div>
                 </div>

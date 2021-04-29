@@ -14,8 +14,8 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
     return (
         <div className={`weaponsquare weapon${position}`}>
             <p className="recovery">{returnZeroIfNaN(calculateRecovery(weaponRecovery + armorRecovery, size, false))}</p>
-            <p className="attack">{returnZeroIfNaN(trainattack + miscattack + dexattack + intattack)}</p>
-            <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + miscinit)}</p>
+            <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
+            <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
 
             <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
             <p className="encumb">{conencumb + wisencumb + armorEncumb + shieldEncumb + Math.floor(adjustedEncumb / 3)}</p>
@@ -25,7 +25,7 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
             </div>
 
             <p className="measure">{measure}</p>
-            <p className="damage">{basedamage}+{traindamage + miscdamage + strdamage}</p>
+            <p className="damage">{basedamage}+{traindamage + +miscdamage + strdamage}</p>
             <p className="parry">{parryShown}</p>
 
             <p className="name">{name}</p>
