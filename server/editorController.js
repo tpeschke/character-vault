@@ -27,6 +27,17 @@ module.exports = {
             res.send({message: 'character removed'})
         })
     },
+    updateSingleThing: (req, res) => {
+        const db = req.app.get('db')
+        let { body } = req
+        , { characterid } = req.params
+        , keyName = Object.keys( body )[0]
+        , table = 'cvcharactermain'
+        
+        db.query(`update ${table} set ${keyName} = $1 where id = $2`, [body[keyName], characterid]).then(result => {
+            res.send({messsage: "updated"})
+        })
+    },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
         let {id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,

@@ -146,6 +146,15 @@ input, textarea {
     font-size: 13px;
 }
 
+.viewer input {
+    background-color: transparent;
+}
+
+.viewer input:hover {
+    background: rgba(173, 216, 230, 0.50);
+    transition: .8s
+}
+
 .nameLocation {
     left: 123px;
     top: 20px;

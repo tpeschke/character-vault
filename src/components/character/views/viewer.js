@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { Component } from 'react'
 import character from '../character'
 import ViewList from './components/viewList'
@@ -9,13 +10,13 @@ export default class CharacterViewer extends Component {
         super(props)
 
         this.state = {
-            ...props.character,
+            character: props.character,
             adjustedEncumb: null
         }
     }
 
     componentWillMount() {
-        let { gearone, geartwo, gearthree, gearfour } = this.state
+        let { gearone, geartwo, gearthree, gearfour } = this.state.character
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
     }
 
@@ -103,6 +104,17 @@ export default class CharacterViewer extends Component {
         return thing
     }
 
+    updateAttribute = (value, type) => {
+        let character = {...this.state.character}
+        if (character[type] !== value) {
+            axios.patch(`/api/updateSingleThing/${this.state.character.id}`, {[type]:value}).then(result => {
+                console.log('should be saved')
+            })
+            character[type] = value
+            this.setState({character})
+        }
+    }
+    
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
@@ -110,7 +122,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree, owned } = this.state
+            skillone, skilltwo, skillthree, owned } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -126,7 +138,7 @@ export default class CharacterViewer extends Component {
 
         return (
             <div>
-                <div id="pdf" className={downloadMode ? '' : 'pdfViewStylings'}>
+                <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
                     <div className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
                         <p className="nameLocation">{name}</p>
                         <p className="raceLocation">{race}</p>
@@ -159,7 +171,7 @@ export default class CharacterViewer extends Component {
                         <p className="runLocation">{run}</p>
                         <p className="sprintLocation">{sprint}</p>
 
-                        <p className="honorLocation">{shownHonor}</p>
+                        <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => this.updateAttribute(event.target.value, "honor")} />
                         <p className="extrahonordiceLocation">{extrahonordice}</p>
                         <div className="circle" style={{ left }}>{circleFill}</div>
                         <p className="temperamentLocation">{temperament}</p>
