@@ -11,7 +11,8 @@ export default class CharacterViewer extends Component {
 
         this.state = {
             character: props.character,
-            adjustedEncumb: null
+            adjustedEncumb: null,
+            isUpdating: false
         }
     }
 
@@ -105,16 +106,18 @@ export default class CharacterViewer extends Component {
     }
 
     updateAttribute = (value, type) => {
-        let character = {...this.state.character}
+        let character = { ...this.state.character }
         if (character[type] !== value) {
-            axios.patch(`/api/updateSingleThing/${this.state.character.id}`, {[type]:value}).then(result => {
-                console.log('should be saved')
+            this.setState({ isUpdating: true }, _ => {
+                axios.patch(`/api/updateSingleThing/${this.state.character.id}`, { [type]: value }).then(result => {
+                    this.setState({ isUpdating: false })
+                })
+                character[type] = value
+                this.setState({ character })
             })
-            character[type] = value
-            this.setState({character})
         }
     }
-    
+
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
@@ -122,7 +125,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree, owned } = this.state.character
+            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -136,6 +139,10 @@ export default class CharacterViewer extends Component {
             , weaponFourRecovery = fourbaserecovery + fourtrainrecovery + fourmiscrecovery
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
 
+        let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
+        if (this.state.isUpdating) {
+            editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
+        }
         return (
             <div>
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
@@ -149,7 +156,7 @@ export default class CharacterViewer extends Component {
                         <p className="levelLocation">{level}</p>
                         <p className="crpLocation">{crp}</p>
                         <p className="extolevelLocation">{extolevel}</p>
-                        <p className="excurrentLocation">{excurrent}</p>
+                        <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
                         <p className="drawbackLocation">{drawback}</p>
 
                         <p className="strLocation">{str}</p>
@@ -172,15 +179,15 @@ export default class CharacterViewer extends Component {
                         <p className="sprintLocation">{sprint}</p>
 
                         <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => this.updateAttribute(event.target.value, "honor")} />
-                        <p className="extrahonordiceLocation">{extrahonordice}</p>
                         <div className="circle" style={{ left }}>{circleFill}</div>
+                        <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => this.updateAttribute(event.target.value, "extrahonordice")} />
                         <p className="temperamentLocation">{temperament}</p>
                         <ViewList stylings={{ top: '405px', left: '20px', width: '224px' }} listArray={goals} />
                         <ViewPairList stylings={{ top: '488px', left: '20px', width: '224px' }} listArray={devotions} />
                         <ViewPairList stylings={{ top: '572px', left: '20px', width: '224px' }} listArray={flaws} />
                         <ViewPairList stylings={{ top: '362px', left: '246px', width: '200px' }} listArray={traits} />
                         <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
-                        <p className="contactsLocation">{contacts}</p>
+                        <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
                         <div className="weaponsquare weaponone">
                             <p className="recovery">{this.returnZeroIfNaN(this.calculateRecovery(weaponOneRecovery + armorRecovery, onesize, true))}</p>
@@ -258,7 +265,10 @@ export default class CharacterViewer extends Component {
                         </div>
 
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
+                        <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
                         <p className="stressthresholdLocation">{stressthreshold ? stressthreshold : (int + wis) * 2}</p>
+                        <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => this.updateAttribute(event.target.value, "relaxation")} />
+                        <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => this.updateAttribute(event.target.value, "currentfavor")} />
                         <p className="favormaxLocation">{favormax}</p>
                         <p className="favorminLocation">{chaData.favor}</p>
 
@@ -339,10 +349,11 @@ export default class CharacterViewer extends Component {
                         <ViewSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} />
                         <ViewSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} />
 
-                        <p className="copperLocation">{copper}</p>
-                        <p className="silverLocation">{silver}</p>
-                        <p className="goldLocation">{gold}</p>
-                        <p className="platiniumLocation">{platinium}</p>
+
+                        <input className="copperLocation" type="text" defaultValue={copper} onBlur={event => this.updateAttribute(event.target.value, "copper")} />
+                        <input className="silverLocation" type="text" defaultValue={silver} onBlur={event => this.updateAttribute(event.target.value, "silver")} />
+                        <input className="goldLocation" type="text" defaultValue={gold} onBlur={event => this.updateAttribute(event.target.value, "gold")} />
+                        <input className="platiniumLocation" type="text" defaultValue={platinium} onBlur={event => this.updateAttribute(event.target.value, "platinium")} />
                         <ViewPairList stylings={{ top: '379px', left: '20px', width: '201px' }} listArray={gearone} />
                         <ViewPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} />
                         <ViewPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} />
@@ -356,7 +367,7 @@ export default class CharacterViewer extends Component {
                         <p className="strDamageLocation"><strong>{strData.damage}</strong></p>
                         <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
 
-                        <p className="generalnotesLocation">{generalnotes}</p>
+                        <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
 
                         <p className="armornameLocation">{armorname}</p>
                         <p className="armordrLocation">{armordr}</p>
@@ -527,7 +538,7 @@ export default class CharacterViewer extends Component {
                         <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
                     </div>
                     <div className={owned ? "right-corner-button corner-button" : "displayNone"}>
-                        <i onClick={changeEditStatus} className="fas fa-edit"></i>
+                        {editButton}
                     </div>
                 </div>
             </div>

@@ -33,6 +33,11 @@ input[type=number] {
     margin: 45px auto;
 }
 
+.spinner-tiny {
+    font-size: 30px;
+    color: black;
+}
+
 #pdf {
     width: 816px;
 }
@@ -146,13 +151,17 @@ input, textarea {
     font-size: 13px;
 }
 
-.viewer input {
+.viewer input, .viewer textarea {
     background-color: transparent;
 }
 
-.viewer input:hover {
+.viewer input:hover, .viewer textarea:hover {
     background: rgba(173, 216, 230, 0.50);
     transition: .8s
+}
+
+.viewer .contactstextArea {
+    top: 739px; 
 }
 
 .nameLocation {
@@ -428,9 +437,9 @@ input.excurrentLocation {
 }
 
 .extrahonordiceLocation {
-    left: 220px;
+    left: 418px;
     top: 342px;
-    width: 48px;
+    width: 28px;
     text-align: center;
 }
 
@@ -565,10 +574,29 @@ input.excurrentLocation {
     text-align: center;
 }
 
+.currentstressLocation {
+    top: 468px;
+    left: 546px;
+    width: 74px;
+    text-align: center;
+}
 .stressthresholdLocation {
     top: 488px;
     left: 546px;
     width: 74px;
+    text-align: center;
+}
+
+.relaxationLocation {
+    top: 510px;
+    left: 546px;
+    width: 74px;
+    text-align: center;
+}
+.currentfavorLocation {
+    top: 551px;
+    left: 470px;
+    width: 50px;
     text-align: center;
 }
 

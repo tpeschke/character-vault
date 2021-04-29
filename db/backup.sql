@@ -25,7 +25,10 @@ add column maxrange int,
 add column crawl varchar(20), add column walk varchar(20), add column jog varchar(20), add column run varchar(20), add column sprint varchar(20),
 add column generalnotes varchar(500),
 add column copper int, add column silver int, add column gold int, add column platinium int,
-add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10);
+add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10)
+add column currentfavor int
+add column currentstress int
+add column relaxation int;
 
 insert into cvcharactermain (userid, name, race, primarya, secondarya, level) values 
 (1, 'Luke', 'Human', 'Theif', 'Fighter', 2), (1, 'Martin', 'Minotaur', 'Champion', 'Assassin', 20), (1, 'Riley', 'Changeling', 'Runegalder', 'Runegalder', 5)
