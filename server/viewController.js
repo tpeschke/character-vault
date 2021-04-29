@@ -29,27 +29,27 @@ viewController = {
     return db.get.character(req.params.id).then(data=> {
       let character = data[0]
         , promiseArray = []
-      promiseArray.push(db.get.stats.str(character?.str || 1).then(strData => {
+      promiseArray.push(db.get.stats.str(character.str || 1).then(strData => {
         character.strData = strData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.dex(character?.dex || 1).then(dexData => {
+      promiseArray.push(db.get.stats.dex(character.dex || 1).then(dexData => {
         character.dexData = dexData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.cons(character?.con || 1).then(conData => {
+      promiseArray.push(db.get.stats.cons(character.con || 1).then(conData => {
         character.conData = conData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.int(character?.int || 1).then(intData => {
+      promiseArray.push(db.get.stats.int(character.int || 1).then(intData => {
         character.intData = intData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.wis(character?.wis || 1).then(wisData => {
+      promiseArray.push(db.get.stats.wis(character.wis || 1).then(wisData => {
         character.wisData = wisData[0]
         return true
       }))
-      promiseArray.push(db.get.stats.cha(character?.cha || 1).then(chaData => {
+      promiseArray.push(db.get.stats.cha(character.cha || 1).then(chaData => {
         character.chaData = chaData[0]
         return true
       }))
