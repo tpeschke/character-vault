@@ -38,6 +38,18 @@ input[type=number] {
     color: black;
 }
 
+.fakebutton:hover {
+    background:rgba(173, 216, 230, 0.50);
+    transition: .8s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fakebutton:active {
+    background:rgba(173, 216, 230, 0.75);
+    transition: 0s;
+}
+
 #pdf {
     width: 816px;
 }

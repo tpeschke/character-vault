@@ -128,7 +128,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation } = this.state.character
+            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon } = this.state.character
             , shownVitality = vitality ? vitality : sizemod + vitalityroll + con
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -200,7 +200,9 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
-                            measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry} shieldbaseencumb={shieldbaseencumb} />
+                            measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry} 
+                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
+                            thrownweapon={true}/>
 
                         <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
                             armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -210,7 +212,9 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
-                            measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry} shieldbaseencumb={shieldbaseencumb} />
+                            measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry} 
+                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
+                            thrownweapon={true}/>
 
                         <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
                             armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -220,7 +224,9 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
-                            measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry} shieldbaseencumb={shieldbaseencumb} />
+                            measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry} 
+                            shieldbaseencumb={shieldbaseencumb} usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
+                            thrownweapon={true}/>
                         
                         <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
                             armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -230,7 +236,8 @@ export default class CharacterViewer extends Component {
                             wisencumb={wisData.encumb} armorbaseencumb={armorbaseencumb} armortrainencumb={armortrainencumb} armormiscencumb={armormiscencumb}
                             shieldmiscencumb={shieldmiscencumb} shieldtrainencumb={shieldtrainencumb} adjustedEncumb={this.state.adjustedEncumb} armordr={armordr}
                             shielddr={shielddr} name={fourname} basedamage={fourbasedamage} traindamage={fourtraindamage} miscdamage={fourmiscdamage} strdamage={strData.damage}
-                            measure={'n/a'} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={'n/a'} shieldbaseencumb={shieldbaseencumb} />
+                            measure={'n/a'} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={'n/a'} updateAttribute={this.updateAttribute}
+                            shieldbaseencumb={shieldbaseencumb} usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon}/>
 
                         <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
                         <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
