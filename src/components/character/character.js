@@ -11,7 +11,8 @@ class Character extends Component {
         this.state = {
             downloadMode: props.match.path === "/download/:id",
             character: null,
-            isEditingMode: false
+            isEditingMode: false,
+            isUpdating: false
         }
 
         this.updateCharacter = this.updateCharacter.bind(this)
@@ -36,20 +37,22 @@ class Character extends Component {
     }
 
     updateCharacter = function (updatedCharacter) {
-        axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
-            this.setState({character, isEditingMode: !this.state.isEditingMode})
+        this.setState({isUpdating: true}, _=> {
+            axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
+                this.setState({character, isEditingMode: !this.state.isEditingMode, isUpdating: false})
+            })
         })
     }
 
     render() {
-        let { downloadMode, character, isEditingMode } = this.state
+        let { downloadMode, character, isEditingMode, isUpdating } = this.state
         if (!character) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
         let view = <CharacterViewer character={character} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
 
         if (isEditingMode) {
-            view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} downloadMode={downloadMode}/>
+            view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} downloadMode={downloadMode} isUpdating={isUpdating}/>
         }
         return (
             <div id="loaded">

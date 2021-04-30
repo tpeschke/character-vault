@@ -203,9 +203,9 @@ export default class CharacterViewer extends Component {
                         <p className="nameLocation">{name}</p>
                         <p className="raceLocation">{race}</p>
                         <p className="primaryLocation">{primarya}</p>
-                        <p className="primarylevelLocation">{primarylevel}</p>
+                        <p className="primarylevelLocation">{primarylevel === 0 ? "" : primarylevel}</p>
                         <p className="secondaryLocation">{secondarya}</p>
-                        <p className="secondarylevelLocation">{secondarylevel}</p>
+                        <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
                         <p className="levelLocation">{level}</p>
                         <p className="crpLocation">{crp}</p>
                         <p className="extolevelLocation">{extolevel}</p>

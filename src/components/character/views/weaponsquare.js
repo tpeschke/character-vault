@@ -7,6 +7,7 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
     weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname }) {
 
         if (!shielddr) {shielddr = ' 2/d'}
+        if (!armordr) {armordr = 0}
     let parryShown = parry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : parry + weapontrainparry + weaponmiscparry
         , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p> : <div></div>
         , stressAdjustmentAttack = dead ? stressAdjustment : 0
@@ -17,17 +18,28 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
                         {shieldDrShown}
                     </div>)
     let mathOperator = getMathOperator(traindamage + +miscdamage + strdamage)
-    let damageShell = (<p className="damage">{basedamage}{mathOperator}{traindamage + +miscdamage + strdamage}</p>)
+        , totalDamageModifier = traindamage + +miscdamage + strdamage
+
+        if (parry === 'n/a' && !thrownweapon) {
+            mathOperator = getMathOperator(traindamage + +miscdamage)
+            totalDamageModifier = traindamage + +miscdamage
+        }
+
+        if (totalDamageModifier === 0) {
+            totalDamageModifier = ""
+        } else {
+            totalDamageModifier = mathOperator + totalDamageModifier
+        }
+    let damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
 
     if (parry === 'n/a') {
         drShell = (<div className="drshell">
                     <p id="armorDr">{armordr}</p>
                 </div>)
         if (thrownweapon) {
-            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{mathOperator}{traindamage + +miscdamage + strdamage}</p>)
+            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
         } else {
-            mathOperator = getMathOperator(traindamage + +miscdamage)
-            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{mathOperator}{traindamage + +miscdamage}</p>)
+            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
         }
     }
 
@@ -52,7 +64,7 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
 }
 
 function getMathOperator(total) {
-    if (total < 0) {
+    if (total <= 0) {
         return ''
     } 
     return '+'

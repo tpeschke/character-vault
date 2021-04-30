@@ -50,6 +50,12 @@ export default class CharacterEditor extends Component {
             armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
             shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree, nativelanguage } = this.state.character
         let { downloadMode, updateCharacter } = this.state
+        ,   {isUpdating} = this.props
+
+        let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
+        if (isUpdating) {
+            editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
+        }
 
         return (
             <div>
@@ -287,7 +293,7 @@ export default class CharacterEditor extends Component {
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
                     <div></div>
                     <div className="right-corner-button corner-button">
-                        <i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>
+                        {editButton}
                     </div>
                 </div>
             </div>

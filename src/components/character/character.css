@@ -35,7 +35,7 @@ input[type=number] {
 
 .spinner-tiny {
     font-size: 30px;
-    color: black;
+    color: #2192b8;
 }
 
 .fakebutton:hover {
@@ -80,8 +80,7 @@ input[type=number] {
 }
 
 .corner-button {
-    position: relative;
-    background-color: whitesmoke;
+    background-color: white;
     height: 50px;
     width: 50px;
 }
@@ -119,11 +118,11 @@ input[type=number] {
 
 .fa-file-download, .fa-edit, .fa-save {
     font-size: 30px;
-    color: black;
+    color: gray
 }
 
 .fa-file-download:hover, .fa-edit:hover, .fa-save:hover {
-    color: purple
+    color: #2192b8;
 }
 
 .pageBase {
@@ -157,7 +156,7 @@ input[type=number] {
 .pageBase p, .pageBase input {
     position: absolute;
     font-size: 12px;
-    margin: 0;
+    margin: 0 0 2px;
     white-space: pre-wrap;
 }
 

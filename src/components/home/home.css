@@ -1,5 +1,5 @@
 h4 { 
-    background: #222;
+    background: grey;
     padding: 10px 30px 10px 66px;
     color: whitesmoke;
     position: relative;
@@ -59,17 +59,17 @@ h4 {
     width: 100%;
     justify-content: space-around;
 }
-.character:nth-child(2) {
+.character:nth-child(even) {
     background: lightgray
 }
 
 .characterLink:hover {
-    background: purple;
+    background: #2192b8;
     cursor: pointer;
     transition: .6s;
 }
 .characterLink:hover p, .characterLink:hover .fa-minus {
-    color: white;
+    color:whitesmoke;
     transition: .6s;
 }
 
@@ -95,9 +95,9 @@ h4 {
 }
 
 .fa-plus:hover {
-    background: purple;
-    color: whitesmoke;
+    background: #2192b8;
     transition: .6s;
+    color: whitesmoke;
 }
 
 .fa-minus {
@@ -106,7 +106,7 @@ h4 {
     margin-right: 70px;
 }
 .fa-minus:hover {
-    color: purple !important;
+    color: #2192b8 !important;
     background: whitesmoke;
     transition: .6s;
 }
@@ -172,7 +172,7 @@ button {
 }
 
 button:hover {
-    background: purple;
+    background: #2192b8;
     color: whitesmoke;
 }
 
