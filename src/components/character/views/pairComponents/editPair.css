@@ -2,12 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
     width: 100%
 }
 
 .titleInput {
-    padding: 0 4px;
+    padding: 1px 4px;
     position: unset !important;
 }
 

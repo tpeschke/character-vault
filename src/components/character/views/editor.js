@@ -82,9 +82,9 @@ export default class CharacterEditor extends Component {
                         <input className="honorLocation" type="number" max="25" min="0" defaultValue={honor} onChange={event => this.updateAttribute(event.target.value, "honor")} />
                         <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => this.updateAttribute(event.target.value, "temperament")} />
                         <EditList stylings={{ top: '358px', left: '20px', width: '224px' }} listArray={goals} limit={3} updateFunction={this.updateAttribute} type={"goals"} />
-                        <EditPairList stylings={{ top: '442px', left: '20px', width: '224px' }} listArray={devotions} limit={3} updateFunction={this.updateAttribute} type={"devotions"} />
-                        <EditPairList stylings={{ top: '525px', left: '20px', width: '224px' }} listArray={flaws} limit={3} updateFunction={this.updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
-                        <EditPairList stylings={{ top: '316px', left: '246px', width: '200px' }} listArray={traits} limit={13} updateFunction={this.updateAttribute} type={"traits"} />
+                        <EditPairList stylings={{ top: '508px', left: '20px', width: '224px' }} listArray={devotions} limit={3} updateFunction={this.updateAttribute} type={"devotions"} />
+                        <EditPairList stylings={{ top: '593px', left: '20px', width: '224px' }} listArray={flaws} limit={3} updateFunction={this.updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
+                        <EditPairList stylings={{ top: '383px', left: '246px', width: '200px' }} listArray={traits} limit={13} updateFunction={this.updateAttribute} type={"traits"} />
                         <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={this.updateAttribute} type={"reputation"} />
                         <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 

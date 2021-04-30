@@ -235,9 +235,9 @@ export default class CharacterViewer extends Component {
                         <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => this.updateAttribute(event.target.value, "extrahonordice")} />
                         <p className="temperamentLocation">{temperament}</p>
                         <ViewList stylings={{ top: '405px', left: '20px', width: '224px' }} listArray={goals} />
-                        <ViewPairList stylings={{ top: '488px', left: '20px', width: '224px' }} listArray={devotions} />
-                        <ViewPairList stylings={{ top: '572px', left: '20px', width: '224px' }} listArray={flaws} />
-                        <ViewPairList stylings={{ top: '362px', left: '246px', width: '200px' }} listArray={traits} />
+                        <ViewPairList stylings={{ top: '507px', left: '20px', width: '224px' }} listArray={devotions} />
+                        <ViewPairList stylings={{ top: '593px', left: '20px', width: '224px' }} listArray={flaws} />
+                        <ViewPairList stylings={{ top: '384px', left: '246px', width: '200px' }} listArray={traits} />
                         <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
                         <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
@@ -309,8 +309,8 @@ export default class CharacterViewer extends Component {
                         <p className="currentDamageLocation">{currentDamage}</p>
                         <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
                         
-                        <EditPairList stylings={{ top: '545px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damageone"} />
-                        <EditPairList stylings={{ top: '545px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damagetwo"} />
+                        <EditPairList stylings={{ top: '677px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damageone"} />
+                        <EditPairList stylings={{ top: '677px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damagetwo"} />
 
                         <p className="sizemodLocation">{sizemod}</p>
                         <p className="vitalityrollLocation">{vitalityroll}</p>
@@ -376,10 +376,10 @@ export default class CharacterViewer extends Component {
                         <input className="silverLocation" type="text" defaultValue={silver} onBlur={event => this.updateAttribute(event.target.value, "silver")} />
                         <input className="goldLocation" type="text" defaultValue={gold} onBlur={event => this.updateAttribute(event.target.value, "gold")} />
                         <input className="platiniumLocation" type="text" defaultValue={platinium} onBlur={event => this.updateAttribute(event.target.value, "platinium")} />
-                        <EditPairList stylings={{ top: '379px', left: '20px', width: '201px' }} listArray={gearone} limit={6} updateFunction={this.updateAttribute} type={"gearone"} />
-                        <EditPairList stylings={{ top: '379px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={this.updateAttribute} type={"geartwo"} />
-                        <EditPairList stylings={{ top: '379px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={this.updateAttribute} type={"gearthree"} />
-                        <EditPairList stylings={{ top: '379px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={this.updateAttribute} type={"gearfour"} />
+                        <EditPairList stylings={{ top: '380px', left: '20px', width: '201px' }} listArray={gearone} limit={6} updateFunction={this.updateAttribute} type={"gearone"} />
+                        <EditPairList stylings={{ top: '380px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={this.updateAttribute} type={"geartwo"} />
+                        <EditPairList stylings={{ top: '380px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={this.updateAttribute} type={"gearthree"} />
+                        <EditPairList stylings={{ top: '380px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={this.updateAttribute} type={"gearfour"} />
                         <p className="shownGearCarryLocation">{shownGearCarry}</p>
                         <p className="strCarryLocation">{shownCarry}</p>
 

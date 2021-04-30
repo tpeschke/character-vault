@@ -6,7 +6,12 @@ export default class EditPairList extends Component {
         super(props)
 
         this.state = {
-            stylings: { position: 'relative', ...props.stylings },
+            stylings: {
+                position: 'absolute',
+                display: 'flex',
+                flexDirection: 'column',
+                ...props.stylings
+            },
             listArray: props.listArray || [],
             limit: props.limit,
             updateFunction: props.updateFunction,
@@ -17,7 +22,7 @@ export default class EditPairList extends Component {
             titleSameAsValue: props.titleSameAsValue || false
         }
     }
-    
+
     deepCopyListArray = () => {
         return this.state.listArray.map(item => { return { ...item } })
     }
@@ -27,7 +32,7 @@ export default class EditPairList extends Component {
     };
 
     addNewItem = (title, value) => {
-        let { titleSameAsValue, defaultValue, updateFunction, type} = this.state
+        let { titleSameAsValue, defaultValue, updateFunction, type } = this.state
         let listArray = this.deepCopyListArray()
         value = value ? value : defaultValue
         if (titleSameAsValue && title) {
@@ -66,19 +71,14 @@ export default class EditPairList extends Component {
     render() {
         let { stylings, listArray, limit, titleWidth, valueWidth } = this.state
         let listOfInputs = listArray.map((item, i) => {
-            let rowStyles = {
-                top: `${i * 20.5}px`
-            }
-            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
-                <input className="titleInput" style={{width: `${titleWidth}%`}} defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
-                <input className="valueInput border-right" style={{width: `${valueWidth}%`}} defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
+            return (<div className="editPairRow" key={`${this.makeId()}`}>
+                <input className="titleInput" style={{ width: `${titleWidth}%` }} defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
+                <input className="valueInput border-right" style={{ width: `${valueWidth}%` }} defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
             </div>)
         })
 
         let rowStyles = {
-            position: 'absolute',
             width: '100%',
-            top: `${listOfInputs.length * 20}px`,
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
@@ -86,8 +86,8 @@ export default class EditPairList extends Component {
             <div style={stylings}>
                 {listOfInputs}
                 <div className="editPairRow" style={rowStyles}>
-                    <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{width: `${titleWidth}%`}} onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{width: `${valueWidth}%`}} onBlur={e => this.addNewItem(null, e.target.value)} />
+                    <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
+                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} />
                 </div>
             </div>
         )
