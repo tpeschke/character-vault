@@ -29,7 +29,7 @@ export default class Home extends Component {
             if (!characters.message) {
                 this.setState({ characters, needsToLogOn: false, isCheckingLogin: false })
             } else {
-                this.setState({isCheckingLogin: false})
+                this.setState({ isCheckingLogin: false })
             }
         })
         axios.get('/api/allCharacters').then(({ data: vault }) => {

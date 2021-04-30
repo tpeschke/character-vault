@@ -184,7 +184,7 @@ export default class CharacterViewer extends Component {
             , weaponThreeRecovery = threetrainrecovery + +threemiscrecovery
             , weaponFourRecovery = fourtrainrecovery + +fourmiscrecovery
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
-            , shownThreshold = stressthreshold ? stressthreshold : (int + wis) * 2
+            , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {

@@ -38,7 +38,6 @@ export default class Modal extends Component {
                             <li>Race</li>
                             <li>Archetypes</li>
                             <li>Level</li>
-                            <li>Primary Drawback</li>
                             <li>Stats</li>
                             <li>Honor</li>
                             <li>Temperament</li>

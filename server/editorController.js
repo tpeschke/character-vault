@@ -39,9 +39,9 @@ editController = {
         const db = req.app.get('db')
         let { characterid } = req.params
         return db.get.character(characterid).then(character => {
-            let {race, primarya, secondarya, level, honor, str, con, dex, int, wis, cha, drawback, temperament, abilitiesone, abilitiestwo, abilitiesthree, userid} = character[0]
+            let {race, primarya, secondarya, level, honor, str, con, dex, int, wis, cha, temperament, abilitiesone, abilitiestwo, abilitiesthree, userid} = character[0]
             let abilities = (!!abilitiesone || !!abilitiestwo || !!abilitiesthree)
-            if ((race && primarya && secondarya && level && drawback && honor && str && con && dex && int && wis && cha && drawback && temperament && abilities) || !userid) {
+            if ((race && primarya && secondarya && level && honor && str && con && dex && int && wis && cha && temperament && abilities) || !userid) {
                 let promiseArray = []
                 , gearArray = []
                 , otherArray = []

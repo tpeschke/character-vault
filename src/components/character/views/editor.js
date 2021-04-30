@@ -88,7 +88,7 @@ export default class CharacterEditor extends Component {
                         <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={this.updateAttribute} type={"reputation"} />
                         <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
 
-                        <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : (int + wis) * 2} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
+                        <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : +wis * 3} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
                         <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => this.updateAttribute(event.target.value, "favormax")} />
 
                         <input className="maxrangeLocation" type="number" defaultValue={maxrange} onChange={event => this.updateAttribute(event.target.value, "maxrange")} />
