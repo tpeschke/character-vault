@@ -23,7 +23,6 @@ class Character extends Component {
         }
         let id = this.props.match.params.id.split('.')[0]
         axios.get(`/api/view/${id}`).then(({ data: character }) => {
-            console.log(character)
             this.setState({ character })
         })
     }
@@ -38,7 +37,6 @@ class Character extends Component {
 
     updateCharacter = function (updatedCharacter) {
         axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
-            console.log(character)
             this.setState({character, isEditingMode: !this.state.isEditingMode})
         })
     }

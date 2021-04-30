@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Model from './model'
 import local from '../../local.js'
+import character from '../character/character';
 
 export default class Home extends Component {
     constructor() {
@@ -13,7 +14,9 @@ export default class Home extends Component {
             characters: null,
             vault: null,
             showModel: false,
-            characterId: null
+            characterId: null,
+            needsToLogOn: true,
+            isCheckingLogin: true
         }
     }
 
@@ -23,7 +26,11 @@ export default class Home extends Component {
 
     getCharactersAndVault = () => {
         axios.get('/api/characters').then(({ data: characters }) => {
-            this.setState({ characters })
+            if (!characters.message) {
+                this.setState({ characters, needsToLogOn: false, isCheckingLogin: false })
+            } else {
+                this.setState({isCheckingLogin: false})
+            }
         })
         axios.get('/api/allCharacters').then(({ data: vault }) => {
             this.setState({ vault })
@@ -32,7 +39,6 @@ export default class Home extends Component {
 
     createNewCharacter = () => {
         axios.post('/api/addCharacter').then(({ data }) => {
-            console.log(data)
             this.props.history.push(`/view/${data.id}`)
         })
     }
@@ -52,32 +58,36 @@ export default class Home extends Component {
     }
 
     render = () => {
-        let { characters, vault } = this.state
-        if (!characters || !vault) {
+        let { characters, vault, needsToLogOn, isCheckingLogin } = this.state
+        if (isCheckingLogin || !vault) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
 
         let characterList
-        if (!characters.length) {
+        if (needsToLogOn) {
             characterList = (<div className="loginShell">You Need to Log On to Add Characters
                 <button>  <a href={local.loginEndpoint}>
                     <div className="logindiv">Log In</div>
                 </a></button>
             </div>)
         } else {
-            characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
-                return (
-                    <div className="character">
-                        <Link className="characterLink" key={id} to={`/view/${id}`}>
-                            <p>{name}</p>
-                            <p>{race}</p>
-                            <p>{primarya}/{secondarya}</p>
-                            <p>Level: {level}</p>
-                            <i className="fas fa-minus" onClick={e => this.toggleModelWithNoBubbling(true, id, e)}></i>
-                        </Link>
-                    </div>
-                )
-            })
+            if (characters.length > 0) {
+                characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
+                    return (
+                        <div className="character">
+                            <Link className="characterLink" key={id} to={`/view/${id}`}>
+                                <p>{name}</p>
+                                <p>{race}</p>
+                                <p>{primarya}/{secondarya}</p>
+                                <p>Level: {level}</p>
+                                <i className="fas fa-minus" onClick={e => this.toggleModelWithNoBubbling(true, id, e)}></i>
+                            </Link>
+                        </div>
+                    )
+                })
+            } else {
+                characterList = (<div className="noCharacters"><i class="fas fa-arrow-down"></i> Looks like you need to add some characters. Hit the + icon below to get started.</div>)
+            }
         }
         let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
@@ -95,14 +105,14 @@ export default class Home extends Component {
         return (
             <div className="homeShell">
                 <div className="characterShell">
-                    <h4 className={!characters.length ? "displayNone" : ""}><i class="fas fa-users"></i>Your Characters</h4>
+                    <h4><i className="fas fa-users"></i>Your Characters</h4>
                     <div>
                         {characterList}
                     </div>
-                    <i className={!characters.length ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
+                    <i className={needsToLogOn ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
                 </div>
                 <div className="characterShell">
-                    <h4><i class="fas fa-cogs"></i>Character Vault</h4>
+                    <h4><i className="fas fa-cogs"></i>Character Vault</h4>
                     <div>
                         {vaultList}
                     </div>

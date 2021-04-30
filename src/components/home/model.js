@@ -31,7 +31,7 @@ export default class Modal extends Component {
         return (
             <div className={showModel ? "overlay" : "displayNone"}>
                 <div className="modelBody">
-                    <h5><i class="fas fa-exclamation-triangle"></i>Sure You Want to Remove This Character?</h5>
+                    <h5><i className="fas fa-exclamation-triangle"></i>Sure You Want to Remove This Character?</h5>
                     <div className="modelInnards">
                         <p>You'll still be able to access it through the Vault if you've filled out the following:</p>
                         <ul>

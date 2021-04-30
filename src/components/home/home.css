@@ -6,6 +6,11 @@ h4 {
     margin: -1px 0;
 }
 
+.noCharacters {
+    padding: 15px 66px;
+    text-align: left;
+}
+
 .fa-users, .fa-cogs {
     position: absolute;
     color: white;
