@@ -4,9 +4,9 @@ delete from damageone where characterid = $1;
 delete from damagetwo where characterid = $1;
 
 delete from cvgoals where characterid = $1;
-delete from cvdevotions where characterid = $1;;
-delete from cvflaws where characterid = $1;;
-delete from cvtraits where characterid = $1;;
+delete from cvdevotions where characterid = $1;
+delete from cvflaws where characterid = $1;
+delete from cvtraits where characterid = $1;
 delete from cvreputation where characterid = $1;
 
 delete from cvgearone where characterid = $1;
