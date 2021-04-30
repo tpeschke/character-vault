@@ -156,8 +156,9 @@ input[type=number] {
 
 .pageBase p, .pageBase input {
     position: absolute;
-    font-size: 13px;
-    margin: 0
+    font-size: 12px;
+    margin: 0;
+    white-space: pre-wrap;
 }
 
 input, textarea {

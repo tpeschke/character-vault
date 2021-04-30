@@ -41,13 +41,16 @@ export default class CharacterViewer extends Component {
                     currentBit = currentBit + character
                     currentBit = currentBit.split('')
                     let number, type, container = false
-                    if (currentBit.includes('+')) {
+                    if (currentBit.includes('+') || currentBit.includes('-')) {
                         container = true
                         number = +currentBit[1]
                         type = currentBit[2]
-                    } else {
+                    } else if (+currentBit[0]) {
                         number = +currentBit[0]
                         type = currentBit[1]
+                    } else {
+                        number = 1
+                        type = currentBit[0]
                     }
                     let adjustedAmount = 0
                     if (type === 'S') {
@@ -58,9 +61,7 @@ export default class CharacterViewer extends Component {
                         adjustedAmount += (+number * 9)
                     }
                     if (container) {
-                        let strDataCopy = { ...this.state.strData }
-                        strDataCopy.carry += adjustedAmount
-                        this.setState({ strData: strDataCopy })
+                        totalCarry -= adjustedAmount
                     } else {
                         totalCarry += adjustedAmount
                     }
@@ -249,7 +250,7 @@ export default class CharacterViewer extends Component {
                             shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
                             measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry}
                             usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} />
+                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname}/>
 
                         <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
                             armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -259,7 +260,7 @@ export default class CharacterViewer extends Component {
                             armordr={armordr} shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
                             measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry}
                             usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} />
+                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} />
 
                         <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
                             armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
@@ -269,7 +270,7 @@ export default class CharacterViewer extends Component {
                             totalEncumb={totalEncumb} armordr={armordr} shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
                             measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry}
                             usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} />
+                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} />
 
                         <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
                             armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}

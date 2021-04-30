@@ -156,7 +156,7 @@ export default class CharacterEditor extends Component {
                         <input className="shielddrLocation" type="text" defaultValue={shielddr} onChange={event => this.updateAttribute(event.target.value, "shielddr")} />
                         <input className="shieldcoverLocation" type="text" defaultValue={shieldcover} onChange={event => this.updateAttribute(event.target.value, "shieldcover")} />
                         <input className="shieldsizeLocation" type="text" defaultValue={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
-                        <textarea className="shieldbonusLocation shieldbonustextArea" defaultValue={shieldbonus} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"45"}></textarea>
+                        <textarea className="shieldbonusLocation shieldbonustextArea" defaultValue={shieldbonus} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
 
                         <input className="shieldbasedefLocation" type="number" defaultValue={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
                         <input className="shieldbaseparryLocation" type="number" defaultValue={shieldbaseparry} onChange={event => this.updateAttribute(event.target.value, "shieldbaseparry")} />
@@ -176,7 +176,7 @@ export default class CharacterEditor extends Component {
                         <input className="armornameLocation" type="text" defaultValue={armorname} onChange={event => this.updateAttribute(event.target.value, "armorname")} />
                         <input className="armordrLocation" type="text" defaultValue={armordr} onChange={event => this.updateAttribute(event.target.value, "armordr")} />
                         <input className="armorskilladjLocation" type="number" defaultValue={armorskilladj} onChange={event => this.updateAttribute(event.target.value, "armorskilladj")} />
-                        <textarea className="armorbonusLocation armorbonustextArea" defaultValue={armorbonus} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"45"}></textarea>
+                        <textarea className="armorbonusLocation armorbonustextArea" defaultValue={armorbonus} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"60"}></textarea>
 
                         <input className="armorbasedefLocation" type="number" defaultValue={armorbasedef} onChange={event => this.updateAttribute(event.target.value, "armorbasedef")} />
                         <input className="armorbaseencumbLocation" type="number" defaultValue={armorbaseencumb} onChange={event => this.updateAttribute(event.target.value, "armorbaseencumb")} />
@@ -201,7 +201,7 @@ export default class CharacterEditor extends Component {
                             <input className="basemeasureLocation" type="text" defaultValue={onebasemeasure} onChange={event => this.updateAttribute(event.target.value, "onebasemeasure")} />
                             <input className="basesizeLocation" type="text" defaultValue={onesize} onChange={event => this.updateAttribute(event.target.value, "onesize")} />
                             <input className="typeLocation" type="text" defaultValue={onetype} onChange={event => this.updateAttribute(event.target.value, "onetype")} />
-                            <textarea className="bonusLocation bonustextArea" defaultValue={onebonus} onChange={event => this.updateAttribute(event.target.value, "onebonus")} maxLength={"55"}></textarea>
+                            <textarea className="bonusLocation bonustextArea" defaultValue={onebonus} onChange={event => this.updateAttribute(event.target.value, "onebonus")} maxLength={"75"}></textarea>
                             <textarea className="traitsLocation traitstextArea" defaultValue={onetraits} onChange={event => this.updateAttribute(event.target.value, "onetraits")} maxLength={"35"}></textarea>
 
                             <input className="trainattackLocation" type="number" defaultValue={onetrainattack} onChange={event => this.updateAttribute(event.target.value, "onetrainattack")} />
@@ -224,7 +224,7 @@ export default class CharacterEditor extends Component {
                             <input className="basemeasureLocation" type="text" defaultValue={twobasemeasure} onChange={event => this.updateAttribute(event.target.value, "twobasemeasure")} />
                             <input className="basesizeLocation" type="text" defaultValue={twosize} onChange={event => this.updateAttribute(event.target.value, "twosize")} />
                             <input className="typeLocation" type="text" defaultValue={twotype} onChange={event => this.updateAttribute(event.target.value, "twotype")} />
-                            <textarea className="bonusLocation bonustextArea" defaultValue={twobonus} onChange={event => this.updateAttribute(event.target.value, "twobonus")} maxLength={"55"}></textarea>
+                            <textarea className="bonusLocation bonustextArea" defaultValue={twobonus} onChange={event => this.updateAttribute(event.target.value, "twobonus")} maxLength={"75"}></textarea>
                             <textarea className="traitsLocation traitstextArea" defaultValue={twotraits} onChange={event => this.updateAttribute(event.target.value, "twotraits")} maxLength={"35"}></textarea>
 
                             <input className="trainattackLocation" type="number" defaultValue={twotrainattack} onChange={event => this.updateAttribute(+event.target.value, "twotrainattack")} />
