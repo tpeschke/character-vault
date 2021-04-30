@@ -37,6 +37,11 @@ export default class Home extends Component {
         })
     }
 
+    toggleModelWithNoBubbling = (showModel, characterId, event) => {
+        event.preventDefault()
+        this.toggleModel(showModel, characterId)
+    }
+
     toggleModel = (showModel, characterId = null) => {
         if (!characterId && this.state.characterId) {
             this.getCharactersAndVault()
@@ -68,8 +73,8 @@ export default class Home extends Component {
                             <p>{race}</p>
                             <p>{primarya}/{secondarya}</p>
                             <p>Level: {level}</p>
+                            <i className="fas fa-minus" onClick={e => this.toggleModelWithNoBubbling(true, id, e)}></i>
                         </Link>
-                        <i className="fas fa-minus" onClick={_ => this.toggleModel(true, id)}></i>
                     </div>
                 )
             })
