@@ -1,11 +1,11 @@
 const puppeteer = require('puppeteer')
-    , { puppeteerEndpoint } = require('./server-config')
+  , { puppeteerEndpoint } = require('./server-config')
 
 viewController = {
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
-    let {id} = req.user
-    db.get.allUsersCharacters(id).then(data=> {
+    let { id } = req.user
+    db.get.allUsersCharacters(id).then(data => {
       res.send(data)
     })
   },
@@ -15,7 +15,7 @@ viewController = {
     if (req.user && req.user.id) {
       id = req.user.id
     }
-    db.get.allCharacters(id).then(data=> {
+    db.get.allCharacters(id).then(data => {
       res.send(data)
     })
   },
@@ -26,7 +26,7 @@ viewController = {
   },
   assembleCharacter: async function (req) {
     const db = req.app.get('db')
-    return db.get.character(req.params.id).then(data=> {
+    return db.get.character(req.params.id).then(data => {
       let character = data[0]
         , promiseArray = []
       promiseArray.push(db.get.stats.str(character.str || 1).then(strData => {
@@ -98,42 +98,46 @@ viewController = {
         return true
       }))
       promiseArray.push(db.get.weaponone(character.id).then(weaponone => {
-        character = {...weaponone[0], ...character}
+        character = { ...weaponone[0], ...character }
         return true
       }))
       promiseArray.push(db.get.weapontwo(character.id).then(weapontwo => {
-        character = {...weapontwo[0], ...character}
+        character = { ...weapontwo[0], ...character }
         return true
       }))
       promiseArray.push(db.get.weaponthree(character.id).then(weaponthree => {
-        character = {...weaponthree[0], ...character}
+        character = { ...weaponthree[0], ...character }
         return true
       }))
       promiseArray.push(db.get.weaponfour(character.id).then(weaponfour => {
-        character = {...weaponfour[0], ...character}
+        character = { ...weaponfour[0], ...character }
         return true
       }))
       promiseArray.push(db.get.armor(character.id).then(armor => {
-        character = {...armor[0], ...character}
+        character = { ...armor[0], ...character }
       }))
       promiseArray.push(db.get.shield(character.id).then(shield => {
-        character = {...shield[0], ...character}
+        character = { ...shield[0], ...character }
       }))
       promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
         let emptySkillSuites = [
-          {skillsuiteid: 1, skillsuitename:	'Athletics', skillsuitebasecost: 30, rank: 0},
-          {skillsuiteid: 2, skillsuitename:	'Lore', skillsuitebasecost: 47, rank: 0},
-          {skillsuiteid: 3, skillsuitename:	'Streetwise', skillsuitebasecost: 54, rank: 0},
-          {skillsuiteid: 4, skillsuitename:	'Survival', skillsuitebasecost: 61, rank: 0},
-          {skillsuiteid: 5, skillsuitename:	'Tactics', skillsuitebasecost: 53, rank: 0},
-          {skillsuiteid: 6, skillsuitename:	'Trades', skillsuitebasecost: 56, rank: 0},
-          {skillsuiteid: 7, skillsuitename:	'Weirdcraft', skillsuitebasecost: 84, rank: 0},
+          { skillsuiteid: 1, skillsuitename: 'Athletics', skillsuitebasecost: 30, rank: 0 },
+          { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 47, rank: 0 },
+          { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 54, rank: 0 },
+          { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 61, rank: 0 },
+          { skillsuiteid: 5, skillsuitename: 'Tactics', skillsuitebasecost: 53, rank: 0 },
+          { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 56, rank: 0 },
+          { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 84, rank: 0 },
         ]
 
-        skillsuites.forEach(skillsuite => {
-          emptySkillSuites[skillsuite.skillsuiteid] = skillsuite
-        })
-        
+        for (let i = 0; i < emptySkillSuites.length; i++) {
+          for (let x = 0; x < skillsuites.length; x++) {
+            if (skillsuites[x].skillsuiteid === emptySkillSuites[i].skillsuiteid) {
+              emptySkillSuites[i] = skillsuites[x]
+              x = skillsuites.length
+            }
+          }
+        }
         character.skillsuites = emptySkillSuites
       }))
       promiseArray.push(db.get.skillone(character.id).then(skillone => {
@@ -151,8 +155,8 @@ viewController = {
       promiseArray.push(db.get.nativeLanguage(character.id).then(nativelanguage => {
         character.nativelanguage = nativelanguage[0] || {}
       }))
-      
-      return Promise.all(promiseArray).then(_=> {
+
+      return Promise.all(promiseArray).then(_ => {
         character.owned = req.user ? req.user.id === character.userid : null
         return character
       })
@@ -164,12 +168,12 @@ viewController = {
       browser.newPage().then(page => {
         page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
           waitUntil: "networkidle2"
-        }).then(_=> {
-          page.waitForSelector('div#loaded').then(_=>{
+        }).then(_ => {
+          page.waitForSelector('div#loaded').then(_ => {
             page.pdf({
               format: "Letter",
               printBackground: true
-            }).then(pdf=> {
+            }).then(pdf => {
               db.get.characterName(req.params.id.split('.')[0]).then(data => {
                 res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
                 res.send(pdf)
