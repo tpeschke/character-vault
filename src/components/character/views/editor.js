@@ -10,7 +10,8 @@ export default class CharacterEditor extends Component {
         this.state = {
             character: { ...props.character },
             updateCharacter: props.updateCharacter,
-            downloadMode: props.downloadMode
+            downloadMode: props.downloadMode,
+            cancelUpdate: props.cancelUpdate
         }
     }
 
@@ -49,8 +50,8 @@ export default class CharacterEditor extends Component {
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
             armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
             shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree, nativelanguage } = this.state.character
-        let { downloadMode, updateCharacter } = this.state
-        ,   {isUpdating} = this.props
+        let { updateCharacter, cancelUpdate } = this.state
+            , { isUpdating } = this.props
 
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
@@ -290,8 +291,10 @@ export default class CharacterEditor extends Component {
                     </div>
 
                 </div>
-                <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
-                    <div></div>
+                <div className='Buttons'>
+                    <div className="left-corner-button corner-button">
+                        <i onClick={cancelUpdate} className="fas fa-window-close"></i>
+                    </div>
                     <div className="right-corner-button corner-button">
                         {editButton}
                     </div>

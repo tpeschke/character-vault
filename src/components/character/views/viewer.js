@@ -557,7 +557,6 @@ export default class CharacterViewer extends Component {
                     </div>
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
-                    {/* ADD LOADING INDICATOR */}
                     <div className="left-corner-button corner-button">
                         <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
                     </div>

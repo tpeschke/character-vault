@@ -121,7 +121,12 @@ input[type=number] {
     color: gray
 }
 
-.fa-file-download:hover, .fa-edit:hover, .fa-save:hover {
+.fa-window-close {
+    font-size: 26px;
+    color: gray
+}
+
+.fa-file-download:hover, .fa-edit:hover, .fa-save:hover, .fa-window-close:hover {
     color: #2192b8;
 }
 

@@ -44,6 +44,16 @@ class Character extends Component {
         })
     }
 
+    cancelUpdate = () => {
+        console.log('hello')
+        this.setState({isUpdating: true}, _=> {
+            let id = this.props.match.params.id.split('.')[0]
+            axios.get(`/api/view/${id}`).then(({ data: character }) => {
+                this.setState({ character, isEditingMode: !this.state.isEditingMode })
+            })
+        })
+    }
+
     render() {
         let { downloadMode, character, isEditingMode, isUpdating } = this.state
         if (!character) {
@@ -52,7 +62,7 @@ class Character extends Component {
         let view = <CharacterViewer character={character} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
 
         if (isEditingMode) {
-            view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} downloadMode={downloadMode} isUpdating={isUpdating}/>
+            view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} cancelUpdate={this.cancelUpdate} isUpdating={isUpdating}/>
         }
         return (
             <div id="loaded">
