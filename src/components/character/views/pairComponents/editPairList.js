@@ -10,6 +10,7 @@ export default class EditPairList extends Component {
                 position: 'absolute',
                 display: 'flex',
                 flexDirection: 'column',
+                flexWrap: 'wrap',
                 ...props.stylings
             },
             listArray: props.listArray || [],
@@ -19,7 +20,8 @@ export default class EditPairList extends Component {
             titleWidth: props.titleWidth || 75,
             valueWidth: 100 - props.titleWidth || 25,
             defaultValue: props.defaultValue || null,
-            titleSameAsValue: props.titleSameAsValue || false
+            titleSameAsValue: props.titleSameAsValue || false,
+            rowWidth: props.rowWidth || '100%'
         }
     }
 
@@ -69,23 +71,26 @@ export default class EditPairList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, titleWidth, valueWidth } = this.state
+        let { stylings, listArray, limit, titleWidth, valueWidth, rowWidth } = this.state
+        let rowStyles = {
+            width: rowWidth
+        }
         let listOfInputs = listArray.map((item, i) => {
-            return (<div className="editPairRow" key={`${this.makeId()}`}>
+            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="titleInput" style={{ width: `${titleWidth}%` }} defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
                 <input className="valueInput border-right" style={{ width: `${valueWidth}%` }} defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
             </div>)
         })
 
-        let rowStyles = {
-            width: '100%',
+        let inputRowStyles = {
+            width: rowWidth,
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
         return (
             <div style={stylings}>
                 {listOfInputs}
-                <div className="editPairRow" style={rowStyles}>
+                <div className="editPairRow" style={inputRowStyles}>
                     <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
                     <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} placeholder={this.state.defaultValue} />
                 </div>

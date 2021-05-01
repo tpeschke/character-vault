@@ -4,10 +4,12 @@ export default function weaponsquare({ position, returnZeroIfNaN, calculateRecov
     miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
     armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
     miscdamage, strdamage, measure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
-    weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname }) {
+    weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname, type }) {
 
         if (!shielddr) {shielddr = ' 2/d'}
         if (!armordr) {armordr = 0}
+        if (name && type) { name = `${name} (${type})`}
+
     let parryShown = parry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : parry + weapontrainparry + weaponmiscparry
         , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p> : <div></div>
         , stressAdjustmentAttack = dead ? stressAdjustment : 0
