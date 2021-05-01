@@ -31,9 +31,9 @@ export default class EditSkillList extends Component {
 
     addNewItem = (skill, cost, rank) => {
         let listArray = this.deepCopyListArray()
-        cost = cost ? cost : this.state.defaultCost
-        rank = rank ? rank : this.state.defaultRank
         if (skill || cost || rank) {
+            cost = cost ? cost : this.state.defaultCost
+            rank = rank ? rank : this.state.defaultRank
             listArray.push({ skill, cost: +cost, rank: +rank })
             this.setState({ listArray }, _ => {
                 this.state.updateFunction(this.state.listArray, this.state.type)

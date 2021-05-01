@@ -16,6 +16,9 @@ export default class Routes extends Component {
                         path='/download/:id'
                         component={Character} />
                     <Route
+                        path='/new/:id'
+                        component={Header(Character)} />
+                    <Route
                         exact path='*'
                         component={Header(Home)} />
                 </Switch>

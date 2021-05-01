@@ -87,7 +87,7 @@ export default class EditPairList extends Component {
                 {listOfInputs}
                 <div className="editPairRow" style={rowStyles}>
                     <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} />
+                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} placeholder={this.state.defaultValue} />
                 </div>
             </div>
         )

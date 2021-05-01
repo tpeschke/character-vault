@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Model from './model'
 import local from '../../local.js'
-import character from '../character/character';
 
 export default class Home extends Component {
     constructor() {
@@ -39,7 +38,7 @@ export default class Home extends Component {
 
     createNewCharacter = () => {
         axios.post('/api/addCharacter').then(({ data }) => {
-            this.props.history.push(`/view/${data.id}`)
+            this.props.history.push(`/new/${data.id}`)
         })
     }
 
@@ -66,7 +65,7 @@ export default class Home extends Component {
         let characterList
         if (needsToLogOn) {
             characterList = (<div className="loginShell">You Need to Log On to Add Characters
-                <button>  <a href={local.loginEndpoint}>
+                <button className="reverseColors">  <a href={local.loginEndpoint}>
                     <div className="logindiv">Log In</div>
                 </a></button>
             </div>)
