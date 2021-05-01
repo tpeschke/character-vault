@@ -46,18 +46,18 @@ export default class CharacterEditor extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry,
             onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage,
             twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage,
-            threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, skills , 
+            threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, skills, skilladept,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
             armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree, nativelanguage } = this.state.character
-        let { updateCharacter, cancelUpdate} = this.state
+            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage } = this.state.character
+        let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
 
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
-        
+
         return (
             <div>
                 <div id="pdf" className='pdfViewStylings'>
@@ -111,6 +111,9 @@ export default class CharacterEditor extends Component {
                         <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => this.updateAttribute(event.target.value, "removedability")} />
                     </div>
                     <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
+                        <div className="skillDiscount">
+                            <input className="skilladeptLocation" type="number" defaultValue={skilladept} onChange={event => this.updateAttribute(event.target.value, "skilladept")} />
+                        </div>
                         <div className="skillsuiteShell">
                             <div className="skillRow athletics">
                                 <p className="skillcost athletics">{skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 2)}</p>
@@ -146,7 +149,7 @@ export default class CharacterEditor extends Component {
                                 <input id="nativerank" type="number" placeholder={Math.ceil(int / 2)} defaultValue={nativelanguage.rank} onChange={event => this.updateNativeLanguage(event.target.value, 'rank')} />
                             </div>
                         </div>
-                        <EditSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} limit={26} listArray={skills} updateFunction={this.updateAttribute} type={"skills"}/>
+                        <EditSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} limit={26} listArray={skills} updateFunction={this.updateAttribute} type={"skills"} />
 
                         <input className="copperLocation" type="text" defaultValue={copper} onChange={event => this.updateAttribute(event.target.value, "copper")} />
                         <input className="silverLocation" type="text" defaultValue={silver} onChange={event => this.updateAttribute(event.target.value, "silver")} />

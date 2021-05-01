@@ -1453,6 +1453,12 @@ textarea.traitsfour {
     text-align: center;
     top: 22px
 }
+.skilladeptLocation {
+    left: 87px;
+    width: 71px;
+    text-align: center;
+    top: 44px;
+}
 
 .skillsuiteShell {
     height: 147px;

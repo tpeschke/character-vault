@@ -29,7 +29,7 @@ add column vitality int, add column sizemod int, add column vitalityroll int, ad
 add column currentfavor int
 add column currentstress int
 add column relaxation int
-add column skilladept int;
+add column skilladept int default 0;
 
 insert into cvcharactermain (userid, name, race, primarya, secondarya, level) values 
 (1, 'Luke', 'Human', 'Theif', 'Fighter', 2), (1, 'Martin', 'Minotaur', 'Champion', 'Assassin', 20), (1, 'Riley', 'Changeling', 'Runegalder', 'Runegalder', 5)
