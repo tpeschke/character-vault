@@ -45,7 +45,6 @@ class Character extends Component {
     }
 
     cancelUpdate = () => {
-        console.log('hello')
         this.setState({isUpdating: true}, _=> {
             let id = this.props.match.params.id.split('.')[0]
             axios.get(`/api/view/${id}`).then(({ data: character }) => {
