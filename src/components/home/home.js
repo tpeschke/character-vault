@@ -31,6 +31,10 @@ export default class Home extends Component {
                 this.setState({ isCheckingLogin: false })
             }
         })
+        this.getVault()
+    }
+
+    getVault = () => {
         axios.get('/api/allCharacters').then(({ data: vault }) => {
             this.setState({ vault })
         })
@@ -115,6 +119,7 @@ export default class Home extends Component {
                     <div>
                         {vaultList}
                     </div>
+                    <i class="fas fa-redo-alt" onClick={this.getVault}></i>
                 </div>
                 <Model showModel={this.state.showModel} toggleModel={this.toggleModel} characterId={this.state.characterId} />
             </div>)

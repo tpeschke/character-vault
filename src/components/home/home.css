@@ -88,13 +88,13 @@ h4 {
     padding-right: 70px;
 }
 
-.fa-plus {
+.fa-plus, .fa-redo-alt {
     margin: 15px 5px 0px 60px;
     padding: 5px;
     border-radius: 15px;
 }
 
-.fa-plus:hover {
+.fa-plus:hover, .fa-redo-alt:hover {
     background: #2192b8;
     transition: .6s;
     color: whitesmoke;
