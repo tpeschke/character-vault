@@ -158,6 +158,7 @@ viewController = {
 
       return Promise.all(promiseArray).then(_ => {
         character.owned = req.user ? req.user.id === character.userid : null
+        character.skills = [...character.skillone, ...character.skilltwo, ...character.skillthree]
         return character
       })
     })

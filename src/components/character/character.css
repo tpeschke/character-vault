@@ -1456,20 +1456,17 @@ textarea.traitsfour {
 
 .skillsuiteShell {
     height: 147px;
-    width: 135px;
-    top: 103px;
+    width: 110px;
+    top: 125px;
     position: absolute;
     left: 135px;
-}
-.skillsuiteShell {
-    position: absolute;
 }
 .skillcost, .skillrank {
     width: 50%;
     text-align: center;
 }
 .skillrank { 
-    left: 70px
+    left: 55px
 }
 
 .skillRow .athletics {
@@ -1498,7 +1495,7 @@ textarea.traitsfour {
     position: absolute;
     top: 170px;
     left: -51px;
-    width: 185px;
+    width: 160px;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -173,7 +173,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo } = this.state.character
+            skillone, skilltwo, skillthree, owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo, skills } = this.state.character
             , { currentDamage, shownVitality, woundMultiplier, dead } = this.state
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -369,9 +369,7 @@ export default class CharacterViewer extends Component {
                                 <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : Math.ceil(int / 2)}</p>
                             </div>
                         </div>
-                        <ViewSkillList stylings={{ top: '294px', left: '20px', width: '251px' }} listArray={skillone} />
-                        <ViewSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} />
-                        <ViewSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} />
+                        <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} />
 
 
                         <input className="copperLocation" type="text" defaultValue={copper} onBlur={event => this.updateAttribute(event.target.value, "copper")} />

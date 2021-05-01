@@ -6,11 +6,15 @@ export default class ViewSkillList extends Component {
         super(props)
 
         this.state = {
-            stylings: { position: 'absolute',
-            display: 'flex',
-            flexDirection: 'column',
-             ...props.stylings },
+            stylings: {
+                position: 'absolute',
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+                ...props.stylings
+            },
             listArray: props.listArray || [],
+            rowWidth: props.rowWidth || '100%'
         }
     }
 
@@ -19,9 +23,12 @@ export default class ViewSkillList extends Component {
     };
 
     render() {
-        let { stylings, listArray } = this.state
+        let { stylings, listArray, rowWidth } = this.state
+        let rowStyles = {
+            width: rowWidth
+        }
         let listOfSkills = listArray.map((item, i) => {
-            return (<div className="editPairRow" key={`${this.makeId()}`}>
+            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <p className="skillInput">{item.skill}</p>
                 <p className="costView">{item.cost + (item.rank * 2)}</p>
                 <p className="rankInput">{item.rank}</p>

@@ -46,18 +46,18 @@ export default class CharacterEditor extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry,
             onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage,
             twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage,
-            threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
+            threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, skills , 
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
             armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
             shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, skillone, skilltwo, skillthree, nativelanguage } = this.state.character
-        let { updateCharacter, cancelUpdate } = this.state
+        let { updateCharacter, cancelUpdate} = this.state
             , { isUpdating } = this.props
 
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
-
+        
         return (
             <div>
                 <div id="pdf" className='pdfViewStylings'>
@@ -146,9 +146,7 @@ export default class CharacterEditor extends Component {
                                 <input id="nativerank" type="number" placeholder={Math.ceil(int / 2)} defaultValue={nativelanguage.rank} onChange={event => this.updateNativeLanguage(event.target.value, 'rank')} />
                             </div>
                         </div>
-                        <EditSkillList stylings={{ top: '294px', left: '20px', width: '251px' }} listArray={skillone} limit={1} updateFunction={this.updateAttribute} type={"skillone"} />
-                        <EditSkillList stylings={{ top: '42px', left: '272px', width: '273px' }} listArray={skilltwo} limit={13} updateFunction={this.updateAttribute} type={"skilltwo"} />
-                        <EditSkillList stylings={{ top: '42px', left: '547px', width: '250px' }} listArray={skillthree} limit={13} updateFunction={this.updateAttribute} type={"skillthree"} />
+                        <EditSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} limit={26} listArray={skills} updateFunction={this.updateAttribute} type={"skills"}/>
 
                         <input className="copperLocation" type="text" defaultValue={copper} onChange={event => this.updateAttribute(event.target.value, "copper")} />
                         <input className="silverLocation" type="text" defaultValue={silver} onChange={event => this.updateAttribute(event.target.value, "silver")} />

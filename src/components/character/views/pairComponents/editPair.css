@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%
+    width: 100%;
+    position: relative;
 }
 
 .titleInput {
@@ -32,7 +33,7 @@
 
 .skillInput {
     padding: 0 4px;
-    width: 45%;
+    width: 77%;
     position: unset !important;
 }
 
@@ -63,6 +64,6 @@
     position: absolute;
     text-align: right;
     width: 29%;
-    left: 113px;
+    left: 140px;
     z-index: 0;
 }

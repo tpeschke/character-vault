@@ -10,6 +10,7 @@ export default class EditSkillList extends Component {
                 position: 'absolute',
                 display: 'flex',
                 flexDirection: 'column',
+                flexWrap: 'wrap',
                 ...props.stylings
             },
             listArray: props.listArray || [],
@@ -17,7 +18,8 @@ export default class EditSkillList extends Component {
             updateFunction: props.updateFunction,
             type: props.type,
             defaultCost: props.defaultCost || 1,
-            defaultRank: props.defaultRank || 0
+            defaultRank: props.defaultRank || 0,
+            rowWidth: props.rowWidth || '100%'
         }
     }
 
@@ -69,9 +71,12 @@ export default class EditSkillList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit } = this.state
+        let { stylings, listArray, limit, rowWidth } = this.state
+        let rowStyles = {
+            width: rowWidth
+        }
         let listOfInputs = listArray.map((item, i) => {
-            return (<div className="editPairRow" key={`${this.makeId()}`}>
+            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
                 <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
                 <p className="totalCost">({item.cost + (item.rank * 2)})</p>
@@ -79,15 +84,15 @@ export default class EditSkillList extends Component {
             </div>)
         })
 
-        let rowStyles = {
-            width: '100%',
+        let inputRowStyles = {
+            width: rowWidth,
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
         return (
             <div style={stylings}>
                 {listOfInputs}
-                <div className="editPairRow" style={rowStyles}>
+                <div className="editPairRow" style={inputRowStyles}>
                     <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
                     <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
                     <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
