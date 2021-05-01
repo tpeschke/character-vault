@@ -1,4 +1,4 @@
-INSERT INTO cvskillthree (characterid, skill, cost, rank)
+INSERT INTO cvskills (characterid, skill, cost, rank)
 VALUES($2, $3, $4, $5) 
 ON CONFLICT (id)
 DO 

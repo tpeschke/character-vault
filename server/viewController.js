@@ -140,16 +140,8 @@ viewController = {
         }
         character.skillsuites = emptySkillSuites
       }))
-      promiseArray.push(db.get.skillone(character.id).then(skillone => {
-        character.skillone = skillone
-        return true
-      }))
-      promiseArray.push(db.get.skilltwo(character.id).then(skilltwo => {
-        character.skilltwo = skilltwo
-        return true
-      }))
-      promiseArray.push(db.get.skillthree(character.id).then(skillthree => {
-        character.skillthree = skillthree
+      promiseArray.push(db.get.skills(character.id).then(skills => {
+        character.skills = skills
         return true
       }))
       promiseArray.push(db.get.nativeLanguage(character.id).then(nativelanguage => {
@@ -158,7 +150,6 @@ viewController = {
 
       return Promise.all(promiseArray).then(_ => {
         character.owned = req.user ? req.user.id === character.userid : null
-        character.skills = [...character.skillone, ...character.skilltwo, ...character.skillthree]
         return character
       })
     })

@@ -28,7 +28,8 @@ add column copper int, add column silver int, add column gold int, add column pl
 add column vitality int, add column sizemod int, add column vitalityroll int, add column vitalitydice varchar(10)
 add column currentfavor int
 add column currentstress int
-add column relaxation int;
+add column relaxation int
+add column skilladept int;
 
 insert into cvcharactermain (userid, name, race, primarya, secondarya, level) values 
 (1, 'Luke', 'Human', 'Theif', 'Fighter', 2), (1, 'Martin', 'Minotaur', 'Champion', 'Assassin', 20), (1, 'Riley', 'Changeling', 'Runegalder', 'Runegalder', 5)
@@ -451,6 +452,14 @@ create table cvcharacterskillsuites (
     characterskillsuitesid serial primary key,
     skillsuiteid int REFERENCES cvskillsuites(skillsuiteid),
     characterid int REFERENCES cvcharactermain(id),
+    rank int
+);
+
+create table cvskills (
+    id serial primary key,
+    characterid int,
+    skill varchar(150),
+    cost int,
     rank int
 );
 
