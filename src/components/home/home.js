@@ -89,7 +89,7 @@ export default class Home extends Component {
                     )
                 })
             } else {
-                characterList = (<div className="noCharacters"><i class="fas fa-arrow-down"></i> Looks like you need to add some characters. Hit the + icon below to get started.</div>)
+                characterList = (<div className="noCharacters"><i className="fas fa-arrow-down"></i> Looks like you need to add some characters. Hit the + icon below to get started.</div>)
             }
         }
         let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
@@ -119,7 +119,7 @@ export default class Home extends Component {
                     <div>
                         {vaultList}
                     </div>
-                    <i class="fas fa-redo-alt" onClick={this.getVault}></i>
+                    <i className="fas fa-redo-alt" onClick={this.getVault}></i>
                 </div>
                 <Model showModel={this.state.showModel} toggleModel={this.toggleModel} characterId={this.state.characterId} />
             </div>)

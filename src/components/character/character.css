@@ -437,11 +437,23 @@ input.excurrentLocation {
     width: 48px;
     text-align: center;
 }
+.runLengthLocation {
+    left: 274px;
+    top: 235px;
+    background: #f1f1f1;
+    width: 153px;
+}
 .sprintLocation {
     left: 220px;
     top: 255px;
     width: 48px;
     text-align: center;
+}
+.sprintLengthLocation {
+    left: 274px;
+    top: 255px;
+    background: white;
+    width: 153px;
 }
 
 .honorLocation {

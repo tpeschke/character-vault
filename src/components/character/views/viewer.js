@@ -17,15 +17,22 @@ export default class CharacterViewer extends Component {
             currentDamage: 0,
             woundMultiplier: 0,
             dead: false,
-            shownVitality: 0
+            shownVitality: 0,
+            endurance: 0
         }
     }
 
     componentWillMount() {
-        let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con } = this.state.character
+        let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
         this.calculateCurrentDamage()
-        this.setState({shownVitality: vitality ? vitality : sizemod + vitalityroll + con})
+        let endurance = skills.filter(({skill}) => skill.toUpperCase() === "ENDURANCE")
+        if (endurance[0]) {
+            endurance = endurance[0].rank
+        } else {
+            endurance = 0
+        }
+        this.setState({shownVitality: vitality ? vitality : sizemod + vitalityroll + con, endurance})
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -72,17 +79,22 @@ export default class CharacterViewer extends Component {
                 }
             })
         }
-
+        
+        let quarterMastering = this.state.character.skills.filter(({skill}) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING")
+        if (quarterMastering[0]) {
+            totalCarry -= quarterMastering[0].rank
+        }
+        
         gearone.forEach(cleanArray)
         geartwo.forEach(cleanArray)
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
-
+        
         this.setState({ adjustedEncumb: totalCarry })
     }
 
     convertFromEncumbToCarry = (value) => {
-        if (!value) { return 0 }
+        if (value <= 0) { return "0S 0M 0L" }
         let large = Math.floor(value / 9)
         let largeRemainder = value % 9
         let medium = Math.floor(largeRemainder / 3)
@@ -174,7 +186,7 @@ export default class CharacterViewer extends Component {
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo, skills, skilladept } = this.state.character
-            , { currentDamage, shownVitality, woundMultiplier, dead } = this.state
+            , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
             , shownCarry = this.convertFromEncumbToCarry(strData.carry)
@@ -188,6 +200,8 @@ export default class CharacterViewer extends Component {
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
+            , modifiedRunLength = 10 - endurance - Math.floor(currentstress/10)
+            , modifiedSprintLength = 5 - endurance - Math.floor(currentstress/10)
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
@@ -229,7 +243,9 @@ export default class CharacterViewer extends Component {
                         <p className="walkLocation">{walk}</p>
                         <p className="jogLocation">{jog}</p>
                         <p className="runLocation">{run}</p>
+                        <p className="runLengthLocation">{modifiedRunLength > 0 ? modifiedRunLength : 0} seconds</p>
                         <p className="sprintLocation">{sprint}</p>
+                        <p className="sprintLengthLocation">{modifiedSprintLength > 0 ? modifiedSprintLength : 0} seconds</p>
 
                         <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => this.updateAttribute(event.target.value, "honor")} />
                         <div className="circle" style={{ left }}>{circleFill}</div>
