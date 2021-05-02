@@ -26,13 +26,13 @@ export default class CharacterViewer extends Component {
         let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
         this.calculateCurrentDamage()
-        let endurance = skills.filter(({skill}) => skill.toUpperCase() === "ENDURANCE")
+        let endurance = skills.filter(({ skill }) => skill.toUpperCase() === "ENDURANCE")
         if (endurance[0]) {
             endurance = endurance[0].rank
         } else {
             endurance = 0
         }
-        this.setState({shownVitality: vitality ? vitality : sizemod + vitalityroll + con, endurance})
+        this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con, endurance })
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -79,17 +79,17 @@ export default class CharacterViewer extends Component {
                 }
             })
         }
-        
-        let quarterMastering = this.state.character.skills.filter(({skill}) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING")
+
+        let quarterMastering = this.state.character.skills.filter(({ skill }) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING")
         if (quarterMastering[0]) {
             totalCarry -= quarterMastering[0].rank
         }
-        
+
         gearone.forEach(cleanArray)
         geartwo.forEach(cleanArray)
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
-        
+
         this.setState({ adjustedEncumb: totalCarry })
     }
 
@@ -107,23 +107,23 @@ export default class CharacterViewer extends Component {
     calculateCurrentDamage = () => {
         let { damageone, damagetwo } = this.state.character
         let currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
-        this.setState({currentDamage}, this.calculateDamageStress)
+        this.setState({ currentDamage }, this.calculateDamageStress)
     }
 
     calculateDamageStress = () => {
         let { currentDamage, shownVitality } = this.state
-        if (currentDamage > shownVitality ) {
-            this.setState({woundMultiplier: 4, dead: true})
+        if (currentDamage > shownVitality) {
+            this.setState({ woundMultiplier: 4, dead: true })
         } else if (currentDamage > +(shownVitality * .75).toFixed(0)) {
-            this.setState({woundMultiplier: 4, dead: false})
+            this.setState({ woundMultiplier: 4, dead: false })
         } else if (currentDamage > +(shownVitality * .5).toFixed(0)) {
-            this.setState({woundMultiplier: 3, dead: false})
+            this.setState({ woundMultiplier: 3, dead: false })
         } else if (currentDamage > +(shownVitality * .25).toFixed(0)) {
-            this.setState({woundMultiplier: 2, dead: false})
+            this.setState({ woundMultiplier: 2, dead: false })
         } else if (currentDamage > 1) {
-            this.setState({woundMultiplier: 1, dead: false})
+            this.setState({ woundMultiplier: 1, dead: false })
         } else {
-            this.setState({woundMultiplier: 0, dead: false})
+            this.setState({ woundMultiplier: 0, dead: false })
         }
     }
 
@@ -191,7 +191,7 @@ export default class CharacterViewer extends Component {
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
             , shownCarry = this.convertFromEncumbToCarry(strData.carry)
             , { downloadMode, changeEditStatus } = this.props
-            , left = calculateLeft(shownHonor)
+            , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
             , weaponOneRecovery = onetrainrecovery + +onemiscrecovery
             , weaponTwoRecovery = twotrainrecovery + +twomiscrecovery
@@ -200,16 +200,16 @@ export default class CharacterViewer extends Component {
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
-            , modifiedRunLength = 10 - endurance - Math.floor(currentstress/10)
-            , modifiedSprintLength = 5 - endurance - Math.floor(currentstress/10)
+            , modifiedRunLength = 10 - endurance - Math.floor(currentstress / 10)
+            , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
         let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
-        , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
-        , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
+            , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
+            , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
         return (
             <div>
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
@@ -248,12 +248,12 @@ export default class CharacterViewer extends Component {
                         <p className="sprintLengthLocation">{modifiedSprintLength > 0 ? modifiedSprintLength : 0} seconds</p>
 
                         <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => this.updateAttribute(event.target.value, "honor")} />
-                        <div className="circle" style={{ left }}>{circleFill}</div>
+                        <div className="circle" style={{ left: honorDiceLeft }}>{circleFill}</div>
                         <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => this.updateAttribute(event.target.value, "extrahonordice")} />
                         <p className="temperamentLocation">{temperament}</p>
                         <ViewList stylings={{ top: '405px', left: '20px', width: '224px' }} listArray={goals} />
                         <ViewPairList stylings={{ top: '507px', left: '20px', width: '224px' }} listArray={devotions} />
-                        <ViewPairList stylings={{ top: '593px', left: '20px', width: '427px', height: '67px'  }} rowWidth={'212px'} listArray={flaws} />
+                        <ViewPairList stylings={{ top: '593px', left: '20px', width: '427px', height: '67px' }} rowWidth={'212px'} listArray={flaws} />
                         <ViewPairList stylings={{ top: '384px', left: '246px', width: '200px' }} listArray={traits} />
                         <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
                         <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
@@ -266,13 +266,13 @@ export default class CharacterViewer extends Component {
                             shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
                             measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry}
                             usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} type={onetype}/>
+                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} type={onetype} />
 
                         <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
                             armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
                             dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
                             miscinit={twomiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef}  totalEncumb={totalEncumb} 
+                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb}
                             armordr={armordr} shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
                             measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry}
                             usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
@@ -320,12 +320,13 @@ export default class CharacterViewer extends Component {
                         <p className="maxrangeLocation">{maxrange}</p>
 
                         <p className="criticalLocation">{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>
-                        <p className="woundedLocation">{(shownVitality * .50).toFixed(0)} - {(shownVitality * .75).toFixed(0) -1}</p>
-                        <p className="bloodiedLocation">{(shownVitality * .25).toFixed(0)} - {(shownVitality * .5).toFixed(0) -1}</p>
-                        <p className="hurtLocation">1 - {(shownVitality * .25).toFixed(0) -1}</p>
+                        <p className="woundedLocation">{(shownVitality * .50).toFixed(0)} - {(shownVitality * .75).toFixed(0) - 1}</p>
+                        <p className="bloodiedLocation">{(shownVitality * .25).toFixed(0)} - {(shownVitality * .5).toFixed(0) - 1}</p>
+                        <p className="hurtLocation">1 - {(shownVitality * .25).toFixed(0) - 1}</p>
                         <p className="currentDamageLocation">{currentDamage}</p>
                         <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
-                        
+                        <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+
                         <EditPairList stylings={{ top: '677px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damageone"} />
                         <EditPairList stylings={{ top: '677px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damagetwo"} />
 
@@ -385,7 +386,7 @@ export default class CharacterViewer extends Component {
                                 <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : Math.ceil(int / 2)}</p>
                             </div>
                         </div>
-                        <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} skilladept={skilladept}/>
+                        <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} skilladept={skilladept} />
 
 
                         <input className="copperLocation" type="text" defaultValue={copper} onBlur={event => this.updateAttribute(event.target.value, "copper")} />
@@ -584,7 +585,7 @@ export default class CharacterViewer extends Component {
 }
 
 
-function calculateLeft(honor) {
+function calculateHonorDiceLeft(honor) {
     let left = '141px'
     if (honor >= 0 && honor <= 5) {
         left = '141px'
@@ -598,6 +599,24 @@ function calculateLeft(honor) {
         left = '340px'
     }
     return left
+}
+
+function calculatePanickedLeft(honor) {
+    let left = '466px'
+    ,   display = 'inherit'
+    if (honor >= 0 && honor <= 5) {
+        left = '466px'
+    } else if (honor >= 6 && honor <= 10) {
+        left = '541px'
+    } else if (honor >= 11 && honor <= 15) {
+        left = '618px'
+    } else if (honor >= 16 && honor <= 20) {
+        left = '695px'
+    } else if (honor >= 21 && honor <= 25) {
+        left = '792px'
+        display = 'none'
+    }
+    return {left, display}
 }
 
 function calculateHumanHonorDice(race, honor) {

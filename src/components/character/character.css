@@ -911,6 +911,10 @@ input.excurrentLocation {
     top: 341px;
     position: relative;
 }
+.panickedCircle {
+    top: 483px;
+    width: 24px;
+}
 
 .circle-fill {
     background: whitesmoke;
