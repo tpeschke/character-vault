@@ -207,12 +207,9 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
-            onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage, twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack,
-            threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
-            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo, skills, skilladept, weaponone } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
             , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -220,9 +217,6 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
-            , weaponTwoRecovery = twotrainrecovery + +twomiscrecovery
-            , weaponThreeRecovery = threetrainrecovery + +threemiscrecovery
-            , weaponFourRecovery = fourtrainrecovery + +fourmiscrecovery
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
@@ -230,6 +224,9 @@ export default class CharacterViewer extends Component {
             , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
 
             weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
+            weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
+            weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
+            weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
         let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
             , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
             , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
@@ -245,29 +242,26 @@ export default class CharacterViewer extends Component {
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponone
             }
-            , weapontwo = {
-                position: 'two', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: twobaserecovery + weaponTwoRecovery,
-                armorRecovery, size: twosize, trainattack: twotrainattack, miscattack: twomiscattack, dexattack: dexData.attack, intattack: intData.attack,
-                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: twomiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
-                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: twoname, basedamage: twobasedamage, traindamage: twotraindamage, miscdamage: twomiscdamage, strdamage: strData.damage,
-                measure: twobasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: twobaseparry, usingshield, weapontrainparry: twotrainparry, weaponmiscparry: twomiscparry, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: twotype
+            , weapontwoobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weapontwo
             }
-            , weaponthree = {
-                position: 'three', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: threebaserecovery + weaponThreeRecovery,
-                armorRecovery, size: threesize, trainattack: threetrainattack, miscattack: threemiscattack, dexattack: dexData.attack, intattack: intData.attack,
-                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: threemiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
-                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: threename, basedamage: threebasedamage, traindamage: threetraindamage, miscdamage: threemiscdamage, strdamage: strData.damage,
-                measure: threebasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: threebaseparry, usingshield, weapontrainparry: threetrainparry, weaponmiscparry: threemiscparry, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: threetype
+            , weaponthreeobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponthree
             }
-            , weaponfour = {
-                position: 'four', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: fourbaserecovery + weaponFourRecovery,
-                armorRecovery, size: foursize, trainattack: fourtrainattack, miscattack: fourmiscattack, dexattack: dexData.attack, intattack: intData.attack,
-                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: fourmiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
-                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: fourname, basedamage: fourbasedamage, traindamage: fourtraindamage, miscdamage: fourmiscdamage, strdamage: strData.damage,
-                measure: 'n/a', shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: 'n/a', usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: fourtype
+            , weaponfourobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponfour
             }
             , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
@@ -301,9 +295,9 @@ export default class CharacterViewer extends Component {
                         <Social social={social} />
 
                         <WeaponSquare weapon={weapononeobject} />
-                        <WeaponSquare weapon={weapontwo} />
-                        <WeaponSquare weapon={weaponthree} />
-                        <WeaponSquare weapon={weaponfour} />
+                        <WeaponSquare weapon={weapontwoobject} />
+                        <WeaponSquare weapon={weaponthreeobject} />
+                        <WeaponSquare weapon={weaponfourobject} />
 
                         <MiscVitals miscVitals={miscVitals} />
 
@@ -327,116 +321,9 @@ export default class CharacterViewer extends Component {
                         <ShieldBlock shield={shield} />
 
                         <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
-                        {/* <div className="weaponProfileOne">
-                            <p className="weaponnameLocation">{onename}</p>
-                            <p className="basedamageLocation">{onebasedamage}</p>
-                            <p className="baserecoveryLocation">{onebaserecovery}</p>
-                            <p className="baseparryLocation">{onebaseparry}</p>
-                            <p className="basemeasureLocation">{onebasemeasure}</p>
-                            <p className="basesizeLocation">{onesize}</p>
-                            <p className="typeLocation">{onetype}</p>
-                            <p className="bonusLocation">{onebonus}</p>
-                            <p className="traitsLocation">{onetraits}</p>
-
-                            <p className="trainattackLocation">{onetrainattack}</p>
-                            <p className="trainrecoveryLocation">{onetrainrecovery}</p>
-                            <p className="trainparryLocation">{onetrainparry}</p>
-                            <p className="traindamageLocation">{onetraindamage}</p>
-
-                            <input className="miscattackLocation" type="number" defaultValue={onemiscattack} onBlur={event => this.updateAttribute(event.target.value, "onemiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={onemiscrecovery} onBlur={event => this.updateAttribute(event.target.value, "onemiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={onemiscparry} onBlur={event => this.updateAttribute(event.target.value, "onemiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={onemiscdamage} onBlur={event => this.updateAttribute(event.target.value, "onemiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={onemiscinit} onBlur={event => this.updateAttribute(event.target.value, "onemiscinit")} />
-
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(onetrainattack + +onemiscattack)}</p>
-                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponOneRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + +onemiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + +onemiscdamage)}</p>
-                            <p className="totalinitLocation">{onemiscinit}</p>
-                        </div> */}
-
-                        <div className="weaponProfiletwo">
-                            <p className="weaponnameLocation">{twoname}</p>
-                            <p className="basedamageLocation">{twobasedamage}</p>
-                            <p className="baserecoveryLocation">{twobaserecovery}</p>
-                            <p className="baseparryLocation">{twobaseparry}</p>
-                            <p className="basemeasureLocation">{twobasemeasure}</p>
-                            <p className="basesizeLocation">{twosize}</p>
-                            <p className="typeLocation">{twotype}</p>
-                            <p className="bonusLocation">{twobonus}</p>
-                            <p className="traitsLocation">{twotraits}</p>
-
-                            <p className="trainattackLocation">{twotrainattack}</p>
-                            <p className="trainrecoveryLocation">{twotrainrecovery}</p>
-                            <p className="trainparryLocation">{twotrainparry}</p>
-                            <p className="traindamageLocation">{twotraindamage}</p>
-
-                            <input className="miscattackLocation" type="number" defaultValue={twomiscattack} onBlur={event => this.updateAttribute(+event.target.value, "twomiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={twomiscrecovery} onBlur={event => this.updateAttribute(+event.target.value, "twomiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={twomiscparry} onBlur={event => this.updateAttribute(+event.target.value, "twomiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={twomiscdamage} onBlur={event => this.updateAttribute(+event.target.value, "twomiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={twomiscinit} onBlur={event => this.updateAttribute(+event.target.value, "twomiscinit")} />
-
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(twotrainattack + +twomiscattack)}</p>
-                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponTwoRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(twotrainparry + +twomiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(twotraindamage + +twomiscdamage)}</p>
-                            <p className="totalinitLocation">{twomiscinit}</p>
-                        </div>
-
-                        <div className="weaponProfilethree">
-                            <p className="weaponnameLocation">{threename}</p>
-                            <p className="basedamageLocation">{threebasedamage}</p>
-                            <p className="baserecoveryLocation">{threebaserecovery}</p>
-                            <p className="baseparryLocation">{threebaseparry}</p>
-                            <p className="basemeasureLocation">{threebasemeasure}</p>
-                            <p className="basesizeLocation">{threesize}</p>
-                            <p className="typeLocation">{threetype}</p>
-                            <p className="bonusLocation">{threebonus}</p>
-                            <p className="traitsLocation">{threetraits}</p>
-
-                            <p className="trainattackLocation">{threetrainattack}</p>
-                            <p className="trainrecoveryLocation">{threetrainrecovery}</p>
-                            <p className="trainparryLocation">{threetrainparry}</p>
-                            <p className="traindamageLocation">{threetraindamage}</p>
-
-                            <input className="miscattackLocation" type="number" defaultValue={threemiscattack} onChange={event => this.updateAttribute(+event.target.value, "threemiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={threemiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "threemiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={threemiscparry} onChange={event => this.updateAttribute(+event.target.value, "threemiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={threemiscdamage} onChange={event => this.updateAttribute(+event.target.value, "threemiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={threemiscinit} onChange={event => this.updateAttribute(+event.target.value, "threemiscinit")} />
-
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(threetrainattack + +threemiscattack)}</p>
-                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponThreeRecovery)}</p>
-                            <p className="totalparryLocation">{this.returnZeroIfNaN(threetrainparry + +threemiscparry)}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(threetraindamage + +threemiscdamage)}</p>
-                            <p className="totalinitLocation">{threemiscinit}</p>
-                        </div>
-
-                        <div className="weaponProfilefour">
-                            <p className="weaponnameLocation">{fourname}</p>
-                            <p className="basedamageLocation">{fourbasedamage}</p>
-                            <p className="baserecoveryLocation">{fourbaserecovery}</p>
-                            <p className="typeLocation typefour">{fourtype}</p>
-                            <p className="basesizeLocation sizefour">{foursize}</p>
-                            <p className="bonusLocation bonusfour">{fourbonus}</p>
-                            <p className="traitsLocation traitsfour">{fourtraits}</p>
-
-                            <p className="trainattackLocation">{fourtrainattack}</p>
-                            <p className="trainrecoveryLocation">{fourtrainrecovery}</p>
-                            <p className="traindamageLocation">{fourtraindamage}</p>
-
-                            <input className="miscattackLocation" type="number" defaultValue={fourmiscattack} onChange={event => this.updateAttribute(+event.target.value, "fourmiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={fourmiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "fourmiscrecovery")} />
-                            <input className="miscinitLocation initFour" type="number" defaultValue={fourmiscinit} onChange={event => this.updateAttribute(+event.target.value, "fourmiscinit")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={fourmiscdamage} onChange={event => this.updateAttribute(+event.target.value, "fourmiscdamage")} />
-
-                            <p className="totalattackLocation">{this.returnZeroIfNaN(fourtrainattack + +fourmiscattack)}</p>
-                            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponFourRecovery)}</p>
-                            <p className="totalinitLocation initFour">{fourmiscinit}</p>
-                            <p className="totaldamageLocation">{this.returnZeroIfNaN(fourtraindamage + +fourmiscdamage)}</p>
-                        </div>
+                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
+                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
+                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
                     </div>
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
