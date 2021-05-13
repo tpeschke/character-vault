@@ -1,10 +1,16 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import ViewList from './components/pairComponents/viewList'
-import ViewPairList from './components/pairComponents/viewPairList'
 import ViewSkillList from './components/pairComponents/viewSkillList'
 import EditPairList from './components/pairComponents/editPairList'
-import WeaponSquare from './components/weaponsquare'
+import WeaponSquare from './components/pageOne/weaponsquare'
+import CharacterInfo from './components/pageOne/characterInfo'
+import Stats from './components/pageOne/stats'
+import Movement from './components/pageOne/movement'
+import Social from './components/pageOne/social'
+import MiscVitals from './components/pageOne/miscVitals'
+import Ranges from './components/pageOne/ranges'
+import Vitality from './components/pageOne/vitality'
+import Abilities from './components/pageOne/abilities'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
@@ -202,143 +208,77 @@ export default class CharacterViewer extends Component {
 
             , modifiedRunLength = 10 - endurance - Math.floor(currentstress / 10)
             , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
+
+        let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
+            , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
+            , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
+
+        let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
+            , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
+            , movement = { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint }
+            , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
+            , weaponone = {
+                position: 'one', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: onebaserecovery + weaponTwoRecovery,
+                armorRecovery, size: onesize, trainattack: onetrainattack, miscattack: onemiscattack, dexattack: dexData.attack, intattack: intData.attack,
+                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: onemiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
+                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: onename, basedamage: onebasedamage, traindamage: onetraindamage, miscdamage: onemiscdamage, strdamage: strData.damage,
+                measure: onebasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: onebaseparry, usingshield, weapontrainparry: onetrainparry, weaponmiscparry: onemiscparry, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: onetype
+            }
+            , weapontwo = {
+                position: 'two', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: twobaserecovery + weaponTwoRecovery,
+                armorRecovery, size: twosize, trainattack: twotrainattack, miscattack: twomiscattack, dexattack: dexData.attack, intattack: intData.attack,
+                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: twomiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
+                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: twoname, basedamage: twobasedamage, traindamage: twotraindamage, miscdamage: twomiscdamage, strdamage: strData.damage,
+                measure: twobasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: twobaseparry, usingshield, weapontrainparry: twotrainparry, weaponmiscparry: twomiscparry, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: twotype
+            } 
+            , weaponthree = {
+                position: 'three', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: threebaserecovery + weaponThreeRecovery,
+                armorRecovery, size: threesize, trainattack: threetrainattack, miscattack: threemiscattack, dexattack: dexData.attack, intattack: intData.attack,
+                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: threemiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
+                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: threename, basedamage: threebasedamage, traindamage: threetraindamage, miscdamage: threemiscdamage, strdamage: strData.damage,
+                measure: threebasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: threebaseparry, usingshield, weapontrainparry: threetrainparry, weaponmiscparry: threemiscparry, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: threetype
+            }
+            , weaponfour = {
+                position: 'four', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: fourbaserecovery + weaponFourRecovery,
+                armorRecovery, size: foursize, trainattack: fourtrainattack, miscattack: fourmiscattack, dexattack: dexData.attack, intattack: intData.attack,
+                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: fourmiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
+                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: fourname, basedamage: fourbasedamage, traindamage: fourtraindamage, miscdamage: fourmiscdamage, strdamage: strData.damage,
+                measure: 'n/a', shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: 'n/a', usingshield:false, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: fourtype
+            }
+            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
+            , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
+            , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
+
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
-        let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
-            , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
-            , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
         return (
             <div>
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
                     <div className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
-                        <p className="nameLocation">{name}</p>
-                        <p className="raceLocation">{race}</p>
-                        <p className="primaryLocation">{primarya}</p>
-                        <p className="primarylevelLocation">{primarylevel === 0 ? "" : primarylevel}</p>
-                        <p className="secondaryLocation">{secondarya}</p>
-                        <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
-                        <p className="levelLocation">{level}</p>
-                        <p className="crpLocation">{crp}</p>
-                        <p className="extolevelLocation">{extolevel}</p>
-                        <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
-                        <p className="drawbackLocation">{drawback}</p>
+                        <CharacterInfo characterInfo={characterInfo} />
+                        <Stats stats={stats} />
+                        <Movement movement={movement} />
+                        <Social social={social} />
 
-                        <p className="strLocation">{str}</p>
-                        <p className="strConfrontationLocation">{strData.confrontation.toLowerCase()}</p>
-                        <p className="dexLocation">{dex}</p>
-                        <p className="dexConfrontationLocation">{dexData.confrontation.toLowerCase()}</p>
-                        <p className="conLocation">{con}</p>
-                        <p className="conConfrontationLocation">{conData.confrontation.toLowerCase()}</p>
-                        <p className="intLocation">{int}</p>
-                        <p className="intConfrontationLocation">{intData.confrontation.toLowerCase()}</p>
-                        <p className="wisLocation">{wis}</p>
-                        <p className="wisConfrontationLocation">{wisData.confrontation.toLowerCase()}</p>
-                        <p className="chaLocation">{cha}</p>
-                        <p className="chaConfrontationLocation">{chaData.confrontation.toLowerCase()}</p>
+                        <WeaponSquare weapon={weaponone} />
+                        <WeaponSquare weapon={weapontwo} />
+                        <WeaponSquare weapon={weaponthree} />
+                        <WeaponSquare weapon={weaponfour} />
 
-                        <p className="crawlLocation">{crawl}</p>
-                        <p className="walkLocation">{walk}</p>
-                        <p className="jogLocation">{jog}</p>
-                        <p className="runLocation">{run}</p>
-                        <p className="runLengthLocation">{modifiedRunLength > 0 ? modifiedRunLength : 0} seconds</p>
-                        <p className="sprintLocation">{sprint}</p>
-                        <p className="sprintLengthLocation">{modifiedSprintLength > 0 ? modifiedSprintLength : 0} seconds</p>
+                        <MiscVitals miscVitals={miscVitals}/>
 
-                        <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => this.updateAttribute(event.target.value, "honor")} />
-                        <div className="circle" style={{ left: honorDiceLeft }}>{circleFill}</div>
-                        <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => this.updateAttribute(event.target.value, "extrahonordice")} />
-                        <p className="temperamentLocation">{temperament}</p>
-                        <ViewList stylings={{ top: '405px', left: '20px', width: '224px' }} listArray={goals} />
-                        <ViewPairList stylings={{ top: '507px', left: '20px', width: '224px' }} listArray={devotions} />
-                        <ViewPairList stylings={{ top: '593px', left: '20px', width: '427px', height: '67px' }} rowWidth={'212px'} listArray={flaws} />
-                        <ViewPairList stylings={{ top: '384px', left: '246px', width: '200px' }} listArray={traits} />
-                        <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} />
-                        <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
+                        <Ranges maxrange={maxrange}/> 
 
-                        <WeaponSquare position={'one'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={onebaserecovery + weaponTwoRecovery}
-                            armorRecovery={armorRecovery} size={onesize} trainattack={onetrainattack} miscattack={onemiscattack} dexattack={dexData.attack} intattack={intData.attack}
-                            dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
-                            miscinit={onemiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb} armordr={armordr}
-                            shielddr={shielddr} name={onename} basedamage={onebasedamage} traindamage={onetraindamage} miscdamage={onemiscdamage} strdamage={strData.damage}
-                            measure={onebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={onebaseparry}
-                            usingshield={usingshield} weapontrainparry={onetrainparry} weaponmiscparry={onemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} type={onetype} />
+                        <Vitality vitality={vitality}/>
 
-                        <WeaponSquare position={'two'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={twobaserecovery + weaponTwoRecovery}
-                            armorRecovery={armorRecovery} size={twosize} trainattack={twotrainattack} miscattack={twomiscattack} dexattack={dexData.attack} intattack={intData.attack}
-                            dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
-                            miscinit={twomiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb}
-                            armordr={armordr} shielddr={shielddr} name={twoname} basedamage={twobasedamage} traindamage={twotraindamage} miscdamage={twomiscdamage} strdamage={strData.damage}
-                            measure={twobasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={twobaseparry}
-                            usingshield={usingshield} weapontrainparry={twotrainparry} weaponmiscparry={twomiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} type={twotype} />
-
-                        <WeaponSquare position={'three'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={threebaserecovery + weaponThreeRecovery}
-                            armorRecovery={armorRecovery} size={threesize} trainattack={threetrainattack} miscattack={threemiscattack} dexattack={dexData.attack} intattack={intData.attack}
-                            dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
-                            miscinit={threemiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef}
-                            totalEncumb={totalEncumb} armordr={armordr} shielddr={shielddr} name={threename} basedamage={threebasedamage} traindamage={threetraindamage} miscdamage={threemiscdamage} strdamage={strData.damage}
-                            measure={threebasemeasure} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={threebaseparry}
-                            usingshield={usingshield} weapontrainparry={threetrainparry} weaponmiscparry={threemiscparry} updateAttribute={this.updateAttribute}
-                            thrownweapon={true} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} shieldname={shieldname} type={threetype} />
-
-                        <WeaponSquare position={'four'} returnZeroIfNaN={this.returnZeroIfNaN} calculateRecovery={this.calculateRecovery} weaponRecovery={fourbaserecovery + weaponFourRecovery}
-                            armorRecovery={armorRecovery} size={foursize} trainattack={fourtrainattack} miscattack={fourmiscattack} dexattack={dexData.attack} intattack={intData.attack}
-                            dexinit={dexData.init} wisinit={wisData.init} armorbaseinit={armorbaseinit} armortraininit={armortraininit} armormiscinit={armormiscinit}
-                            miscinit={fourmiscinit} dexdefense={dexData.defense} wisdefense={wisData.defense} armorbasedef={armorbasedef} armortrainingdef={armortrainingdef}
-                            armormiscdef={armormiscdef} shieldbasedef={shieldbasedef} shieldtraindef={shieldtraindef} shieldmiscdef={shieldmiscdef} totalEncumb={totalEncumb} armordr={armordr}
-                            shielddr={shielddr} name={fourname} basedamage={fourbasedamage} traindamage={fourtraindamage} miscdamage={fourmiscdamage} strdamage={strData.damage}
-                            measure={'n/a'} shieldbaseparry={shieldbaseparry} shieldtrainparry={shieldtrainparry} shieldmiscparry={shieldmiscparry} parry={'n/a'} updateAttribute={this.updateAttribute}
-                            usingshield={false} weapontrainparry={null} weaponmiscparry={null} thrownweapon={fourthrownweapon} dead={dead} stressAdjustment={Math.floor((totalEncumb * woundMultiplier) / 10)} />
-
-                        <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
-                        <input className="currentstressLocation stressAdjust" type="number" defaultValue={currentstress} onBlur={event => this.updateAttribute(event.target.value, "currentstress")} />
-                        <p className="totalstressLocation">+{totalEncumb * woundMultiplier}</p>
-                        <p className={(totalEncumb * woundMultiplier) + currentstress > shownThreshold ? "stressthresholdLocation mentalBreak" : "stressthresholdLocation"}>{shownThreshold}</p>
-                        <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => this.updateAttribute(event.target.value, "relaxation")} />
-                        <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => this.updateAttribute(event.target.value, "currentfavor")} />
-                        <p className="favormaxLocation">{favormax}</p>
-                        <p className="favorminLocation">{chaData.favor}</p>
-
-                        <p className="maxrangeLocation one">5</p>
-                        <p className="maxrangeLocation two">{(maxrange / 6).toFixed(0)}</p>
-                        <p className="maxrangeLocation three">{+(maxrange / 6).toFixed(0) + 1}</p>
-                        <p className="maxrangeLocation four">{(maxrange / 3).toFixed(0)}</p>
-                        <p className="maxrangeLocation five">{+(maxrange / 3).toFixed(0) + 1}</p>
-                        <p className="maxrangeLocation six">{(maxrange / 2).toFixed(0)}</p>
-                        <p className="maxrangeLocation seven">{+(maxrange / 2).toFixed(0) + 1}</p>
-                        <p className="maxrangeLocation eight">{(maxrange / 1.5).toFixed(0)}</p>
-                        <p className="maxrangeLocation nine">{+(maxrange / 1.5).toFixed(0) + 1}</p>
-                        <p className="maxrangeLocation ten">{(maxrange / 1.2).toFixed(0)}</p>
-                        <p className="maxrangeLocation eleven">{+(maxrange / 1.2).toFixed(0) + 1}</p>
-                        <p className="maxrangeLocation">{maxrange}</p>
-
-                        <p className="criticalLocation">{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>
-                        <p className="woundedLocation">{(shownVitality * .50).toFixed(0)} - {(shownVitality * .75).toFixed(0) - 1}</p>
-                        <p className="bloodiedLocation">{(shownVitality * .25).toFixed(0)} - {(shownVitality * .5).toFixed(0) - 1}</p>
-                        <p className="hurtLocation">1 - {(shownVitality * .25).toFixed(0) - 1}</p>
-                        <p className="currentDamageLocation">{currentDamage}</p>
-                        <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
-                        <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
-
-                        <EditPairList stylings={{ top: '677px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damageone"} />
-                        <EditPairList stylings={{ top: '677px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={this.updateAttribute} type={"damagetwo"} />
-
-                        <p className="sizemodLocation">{sizemod}</p>
-                        <p className="vitalityrollLocation">{vitalityroll}</p>
-                        <p className="vitalitydiceLocation">{vitalitydice}</p>
-                        <p className="vitalityminLocation">{conData.vitalitymin}</p>
-
-                        <p className="abilitiesoneLocation abilitiesoneAdjustment">{abilitiesone}</p>
-                        <p className="abilitiestwoLocation abilitiestwoAdjustment">{abilitiestwo}</p>
-                        <p className="abilitiesthreeLocation abilitiesthreeAdjustment">{abilitiesthree}</p>
-                        <p className="removedabilityLocation">{removedability}</p>
+                        <Abilities abilities={abilities}/>
                     </div>
                     <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
                         <div className="skillDiscount">
@@ -603,7 +543,7 @@ function calculateHonorDiceLeft(honor) {
 
 function calculatePanickedLeft(honor) {
     let left = '466px'
-    ,   display = 'inherit'
+        , display = 'inherit'
     if (honor >= 0 && honor <= 5) {
         left = '466px'
     } else if (honor >= 6 && honor <= 10) {
@@ -616,7 +556,7 @@ function calculatePanickedLeft(honor) {
         left = '792px'
         display = 'none'
     }
-    return {left, display}
+    return { left, display }
 }
 
 function calculateHumanHonorDice(race, honor) {

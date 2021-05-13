@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default function weaponsquare({ position, returnZeroIfNaN, calculateRecovery, weaponRecovery, armorRecovery, size, trainattack,
-    miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
-    armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
-    miscdamage, strdamage, measure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
-    weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname, type }) {
+export default function weaponsquare({weapon}) {
+        let { position, returnZeroIfNaN, calculateRecovery, weaponRecovery, armorRecovery, size, trainattack,
+            miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
+            armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
+            miscdamage, strdamage, measure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
+            weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname, type } = weapon
 
         if (!shielddr) {shielddr = ' 2/d'}
         if (!armordr) {armordr = 0}
