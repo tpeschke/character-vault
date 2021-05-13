@@ -1,6 +1,7 @@
 import React from 'react';
 import "./header.css";
 import { Link } from 'react-router-dom'
+import Footer from './footer/footer'
 
 export default function Header(Page) {
     return props =>
@@ -14,5 +15,6 @@ export default function Header(Page) {
                 <Link to="/"><i className="fas fa-home"></i></Link>
             </div>
             <Page {...props} />
+            <Footer/>
         </div>
 }

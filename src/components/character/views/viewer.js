@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import ViewList from './pairComponents/viewList'
-import ViewPairList from './pairComponents/viewPairList'
-import ViewSkillList from './pairComponents/viewSkillList'
-import EditPairList from './pairComponents/editPairList'
-import WeaponSquare from './weaponsquare'
+import ViewList from './components/pairComponents/viewList'
+import ViewPairList from './components/pairComponents/viewPairList'
+import ViewSkillList from './components/pairComponents/viewSkillList'
+import EditPairList from './components/pairComponents/editPairList'
+import WeaponSquare from './components/weaponsquare'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
