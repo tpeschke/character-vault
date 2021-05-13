@@ -1,10 +1,10 @@
 import React from 'react'
 
 export default function weaponsquare({weapon}) {
-        let { position, returnZeroIfNaN, calculateRecovery, weaponRecovery, armorRecovery, size, trainattack,
+        let { position, returnZeroIfNaN, calculateRecovery, totalRecoveryModifiers, armorRecovery, size, trainattack,
             miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
             armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
-            miscdamage, strdamage, measure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
+            miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry, usingshield, weapontrainparry,
             weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, dead, stressAdjustment, shieldname, type } = weapon
 
         if (!shielddr) {shielddr = ' 2/d'}
@@ -48,7 +48,7 @@ export default function weaponsquare({weapon}) {
 
     return (
         <div className={`weaponsquare weapon${position}`}>
-            <p className="recovery">{returnZeroIfNaN(calculateRecovery(weaponRecovery + armorRecovery, size, false))}</p>
+            <p className="recovery">{returnZeroIfNaN(calculateRecovery(totalRecoveryModifiers + armorRecovery, size, false))}</p>
             <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack - stressAdjustmentAttack)}</p>
             <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
 
@@ -57,7 +57,7 @@ export default function weaponsquare({weapon}) {
 
             {drShell}
 
-            <p className="measure">{measure}</p>
+            <p className="measure">{basemeasure}</p>
             {damageShell}
             <p className="parry">{parryShown}</p>
 

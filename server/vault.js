@@ -84,6 +84,7 @@ function checkLogin (req, res, next) {
 app.get('/api/characters', checkLogin, viewCtrl.viewUsersCharacters)
 app.patch('/api/removeCharacter/:characterid', checkLogin, editCtrl.removeCharacter)
 app.patch('/api/updateSingleThing/:characterid', checkLogin, editCtrl.updateSingleThing)
+app.patch('/api/updateSingleThingOnObject/:characterid', checkLogin, editCtrl.updateSingleThingOnObject)
 
 app.post('/api/upsertCharacter', checkLogin, editCtrl.updateOrAddCharacter)
 app.post('/api/AddCharacter', checkLogin, editCtrl.addCharacter)

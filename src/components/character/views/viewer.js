@@ -15,6 +15,7 @@ import CashAndGear from './components/pageTwo/cashAndGear'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
+import WeaponBlock from './components/pageTwo/weaponBlock'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
@@ -188,6 +189,22 @@ export default class CharacterViewer extends Component {
         }
     }
 
+    updateObject = (object, key, value) => {
+        let character = { ...this.state.character }
+        if (!isNaN(+value)) {
+            value = +value
+        }
+        if (character[object][key] !== value) {
+            this.setState({ isUpdating: true }, _ => {
+                axios.patch(`/api/updateSingleThingOnObject/${this.state.character.id}`, { object, key, value }).then(result => {
+                    this.setState({ isUpdating: false })
+                })
+                character[object][key] = value
+                this.setState({ character })
+            })
+        }
+    }
+
     render() {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry, onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery,
@@ -195,7 +212,7 @@ export default class CharacterViewer extends Component {
             threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage, threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo, skills, skilladept } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, fourthrownweapon, damageone, damagetwo, skills, skilladept, weaponone } = this.state.character
             , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
@@ -203,7 +220,6 @@ export default class CharacterViewer extends Component {
             , { downloadMode, changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
-            , weaponOneRecovery = onetrainrecovery + +onemiscrecovery
             , weaponTwoRecovery = twotrainrecovery + +twomiscrecovery
             , weaponThreeRecovery = threetrainrecovery + +threemiscrecovery
             , weaponFourRecovery = fourtrainrecovery + +fourmiscrecovery
@@ -213,6 +229,7 @@ export default class CharacterViewer extends Component {
             , modifiedRunLength = 10 - endurance - Math.floor(currentstress / 10)
             , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
 
+            weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
         let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
             , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
             , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
@@ -221,13 +238,12 @@ export default class CharacterViewer extends Component {
             , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
             , movement = { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint }
             , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
-            , weaponone = {
-                position: 'one', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: onebaserecovery + weaponTwoRecovery,
-                armorRecovery, size: onesize, trainattack: onetrainattack, miscattack: onemiscattack, dexattack: dexData.attack, intattack: intData.attack,
-                dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: onemiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
-                armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: onename, basedamage: onebasedamage, traindamage: onetraindamage, miscdamage: onemiscdamage, strdamage: strData.damage,
-                measure: onebasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: onebaseparry, usingshield, weapontrainparry: onetrainparry, weaponmiscparry: onemiscparry, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: onetype
+            , weapononeobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponone
             }
             , weapontwo = {
                 position: 'two', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: twobaserecovery + weaponTwoRecovery,
@@ -284,7 +300,7 @@ export default class CharacterViewer extends Component {
                         <Movement movement={movement} />
                         <Social social={social} />
 
-                        <WeaponSquare weapon={weaponone} />
+                        <WeaponSquare weapon={weapononeobject} />
                         <WeaponSquare weapon={weapontwo} />
                         <WeaponSquare weapon={weaponthree} />
                         <WeaponSquare weapon={weaponfour} />
@@ -310,7 +326,8 @@ export default class CharacterViewer extends Component {
 
                         <ShieldBlock shield={shield} />
 
-                        <div className="weaponProfileOne">
+                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
+                        {/* <div className="weaponProfileOne">
                             <p className="weaponnameLocation">{onename}</p>
                             <p className="basedamageLocation">{onebasedamage}</p>
                             <p className="baserecoveryLocation">{onebaserecovery}</p>
@@ -337,7 +354,7 @@ export default class CharacterViewer extends Component {
                             <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + +onemiscparry)}</p>
                             <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + +onemiscdamage)}</p>
                             <p className="totalinitLocation">{onemiscinit}</p>
-                        </div>
+                        </div> */}
 
                         <div className="weaponProfiletwo">
                             <p className="weaponnameLocation">{twoname}</p>

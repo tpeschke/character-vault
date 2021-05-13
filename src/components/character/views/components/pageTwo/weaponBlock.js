@@ -1,35 +1,42 @@
 import React from 'react'
 
-export default function WeaponBlock({ weapon }) {
-    let { position } = weapon
+export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN }) {
+    let { position, name, basemeasure, basedamage, baseparry, baserecovery, size, type, bonus, traits, trainrecovery, trainattack, traindamage, trainparry,
+        miscattack, miscdamage, miscinit, miscparry, miscrecovery, totalRecoveryModifiers } = weapon
+
+    let updateValue = (value, key) => {
+        weapon[key] = value
+        updateObject(`weapon${position}`, key, value)
+    }
+
     return (
         <div className={`weaponProfile${position}`}>
-            <p className="weaponnameLocation">{onename}</p>
-            <p className="basedamageLocation">{onebasedamage}</p>
-            <p className="baserecoveryLocation">{onebaserecovery}</p>
-            <p className="baseparryLocation">{onebaseparry}</p>
-            <p className="basemeasureLocation">{onebasemeasure}</p>
-            <p className="basesizeLocation">{onesize}</p>
-            <p className="typeLocation">{onetype}</p>
-            <p className="bonusLocation">{onebonus}</p>
-            <p className="traitsLocation">{onetraits}</p>
+            <p className="weaponnameLocation">{name}</p>
+            <p className="basedamageLocation">{basedamage}</p>
+            <p className="baserecoveryLocation">{baserecovery}</p>
+            <p className="baseparryLocation">{baseparry}</p>
+            <p className="basemeasureLocation">{basemeasure}</p>
+            <p className="basesizeLocation">{size}</p>
+            <p className="typeLocation">{type}</p>
+            <p className="bonusLocation">{bonus}</p>
+            <p className="traitsLocation">{traits}</p>
 
-            <p className="trainattackLocation">{onetrainattack}</p>
-            <p className="trainrecoveryLocation">{onetrainrecovery}</p>
-            <p className="trainparryLocation">{onetrainparry}</p>
-            <p className="traindamageLocation">{onetraindamage}</p>
+            <p className="trainattackLocation">{trainattack}</p>
+            <p className="trainrecoveryLocation">{trainrecovery}</p>
+            <p className="trainparryLocation">{trainparry}</p>
+            <p className="traindamageLocation">{traindamage}</p>
 
-            <input className="miscattackLocation" type="number" defaultValue={onemiscattack} onBlur={event => this.updateAttribute(event.target.value, "onemiscattack")} />
-            <input className="miscrecoveryLocation" type="number" defaultValue={onemiscrecovery} onBlur={event => this.updateAttribute(event.target.value, "onemiscrecovery")} />
-            <input className="miscparryLocation" type="number" defaultValue={onemiscparry} onBlur={event => this.updateAttribute(event.target.value, "onemiscparry")} />
-            <input className="miscdamageLocation" type="number" defaultValue={onemiscdamage} onBlur={event => this.updateAttribute(event.target.value, "onemiscdamage")} />
-            <input className="miscinitLocation" type="number" defaultValue={onemiscinit} onBlur={event => this.updateAttribute(event.target.value, "onemiscinit")} />
+            <input className="miscattackLocation" type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
+            <input className="miscrecoveryLocation" type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
+            <input className="miscparryLocation" type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
+            <input className="miscdamageLocation" type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
+            <input className="miscinitLocation" type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
 
-            <p className="totalattackLocation">{this.returnZeroIfNaN(onetrainattack + +onemiscattack)}</p>
-            <p className="totalrecoveryLocation">{this.returnZeroIfNaN(weaponOneRecovery)}</p>
-            <p className="totalparryLocation">{this.returnZeroIfNaN(onetrainparry + +onemiscparry)}</p>
-            <p className="totaldamageLocation">{this.returnZeroIfNaN(onetraindamage + +onemiscdamage)}</p>
-            <p className="totalinitLocation">{onemiscinit}</p>
+            <p className="totalattackLocation">{returnZeroIfNaN(trainattack + +miscattack)}</p>
+            <p className="totalrecoveryLocation">{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+            <p className="totalparryLocation">{returnZeroIfNaN(trainparry + +miscparry)}</p>
+            <p className="totaldamageLocation">{returnZeroIfNaN(traindamage + +miscdamage)}</p>
+            <p className="totalinitLocation">{miscinit}</p>
         </div>
     )
 }

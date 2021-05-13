@@ -98,18 +98,22 @@ viewController = {
         return true
       }))
       promiseArray.push(db.get.weaponone(character.id).then(weaponone => {
+        weaponone[0].position = 'one'
         character.weaponone = weaponone[0]
         return true
       }))
       promiseArray.push(db.get.weapontwo(character.id).then(weapontwo => {
+        weapontwo[0].position = 'two'
         character.weapontwo = weapontwo[0]
         return true
       }))
       promiseArray.push(db.get.weaponthree(character.id).then(weaponthree => {
+        weaponthree[0].position = 'three'
         character.weaponthree = weaponthree[0]
         return true
       }))
       promiseArray.push(db.get.weaponfour(character.id).then(weaponfour => {
+        weaponfour[0].position = 'four'
         character.weaponfour = weaponfour[0]
         return true
       }))
