@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import ViewSkillList from './components/pairComponents/viewSkillList'
-import EditPairList from './components/pairComponents/editPairList'
+
 import WeaponSquare from './components/pageOne/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo'
 import Stats from './components/pageOne/stats'
@@ -11,6 +10,11 @@ import MiscVitals from './components/pageOne/miscVitals'
 import Ranges from './components/pageOne/ranges'
 import Vitality from './components/pageOne/vitality'
 import Abilities from './components/pageOne/abilities'
+import Skills from './components/pageTwo/skill'
+import CashAndGear from './components/pageTwo/cashAndGear'
+import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
+import ArmorBlock from './components/pageTwo/armorBlock'
+import ShieldBlock from './components/pageTwo/shieldBlock'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
@@ -232,7 +236,7 @@ export default class CharacterViewer extends Component {
                 armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: twoname, basedamage: twobasedamage, traindamage: twotraindamage, miscdamage: twomiscdamage, strdamage: strData.damage,
                 measure: twobasemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: twobaseparry, usingshield, weapontrainparry: twotrainparry, weaponmiscparry: twomiscparry, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: twotype
-            } 
+            }
             , weaponthree = {
                 position: 'three', returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, weaponRecovery: threebaserecovery + weaponThreeRecovery,
                 armorRecovery, size: threesize, trainattack: threetrainattack, miscattack: threemiscattack, dexattack: dexData.attack, intattack: intData.attack,
@@ -246,12 +250,25 @@ export default class CharacterViewer extends Component {
                 armorRecovery, size: foursize, trainattack: fourtrainattack, miscattack: fourmiscattack, dexattack: dexData.attack, intattack: intData.attack,
                 dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, miscinit: fourmiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, armorbasedef, armortrainingdef,
                 armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, name: fourname, basedamage: fourbasedamage, traindamage: fourtraindamage, miscdamage: fourmiscdamage, strdamage: strData.damage,
-                measure: 'n/a', shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: 'n/a', usingshield:false, updateAttribute: this.updateAttribute,
+                measure: 'n/a', shieldbaseparry, shieldtrainparry, shieldmiscparry, parry: 'n/a', usingshield: false, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, type: fourtype
             }
             , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
+            , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }
+            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry }
+            , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
+            , armor = {
+                armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbaseencumb, armorbaserecovery, armorbaseinit,
+                armortrainingdef, armortrainencumb, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscencumb,
+                armormiscrecovery, armormiscinit, armorRecovery
+            }
+            , shield = {
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbaseencumb, shieldbasebreak,
+                shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscencumb, shieldmiscbreak,
+                returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
+            }
 
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
@@ -272,132 +289,26 @@ export default class CharacterViewer extends Component {
                         <WeaponSquare weapon={weaponthree} />
                         <WeaponSquare weapon={weaponfour} />
 
-                        <MiscVitals miscVitals={miscVitals}/>
+                        <MiscVitals miscVitals={miscVitals} />
 
-                        <Ranges maxrange={maxrange}/> 
+                        <Ranges maxrange={maxrange} />
 
-                        <Vitality vitality={vitality}/>
+                        <Vitality vitality={vitality} />
 
-                        <Abilities abilities={abilities}/>
+                        <Abilities abilities={abilities} />
                     </div>
                     <div className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
-                        <div className="skillDiscount">
-                            <p className="strDiscount">{strData.skill}</p>
-                            <p className="dexDiscount">{dexData.skill}</p>
-                            <p className="conDiscount">{conData.skill}</p>
-                            <p className="intDiscount">{intData.skill}</p>
-                            <p className="wisDiscount">{wisData.skill}</p>
-                            <p className="chaDiscount">{chaData.skill}</p>
-                            <p className="skilladeptLocation">{skilladept}</p>
-                        </div>
-                        <div className="skillsuiteShell">
-                            <div className="skillRow athletics">
-                                <p className="skillcost athletics">{(skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank athletics">{skillsuites[0].rank}</p>
-                            </div>
-                            <div className="skillRow lore">
-                                <p className="skillcost lore">{(skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank lore">{skillsuites[1].rank}</p>
-                            </div>
-                            <div className="skillRow streetwise">
-                                <p className="skillcost streetwise">{(skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank streetwise">{skillsuites[2].rank}</p>
-                            </div>
-                            <div className="skillRow survival">
-                                <p className="skillcost survival">{(skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank survival">{skillsuites[3].rank}</p>
-                            </div>
-                            <div className="skillRow tactics">
-                                <p className="skillcost tactics">{(skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank tactics">{skillsuites[4].rank}</p>
-                            </div>
-                            <div className="skillRow trades">
-                                <p className="skillcost trades">{(skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank trades">{skillsuites[5].rank}</p>
-                            </div>
-                            <div className="skillRow weirdcraft">
-                                <p className="skillcost weirdcraft">{(skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)) * (1 - (skilladept / 10)).toFixed(0)}</p>
-                                <p className="skillrank weirdcraft">{skillsuites[6].rank}</p>
-                            </div>
+                        <Skills skillsObject={skillsObject} />
 
-                            <div className="nativeRow">
-                                <p id="nativename">{nativelanguage.language}</p>
-                                <p id="nativecost">{5 + (nativelanguage.rank || 0 * 2)}</p>
-                                <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : Math.ceil(int / 2)}</p>
-                            </div>
-                        </div>
-                        <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} skilladept={skilladept} />
+                        <CashAndGear cashAndGear={cashAndGear} />
 
-
-                        <input className="copperLocation" type="text" defaultValue={copper} onBlur={event => this.updateAttribute(event.target.value, "copper")} />
-                        <input className="silverLocation" type="text" defaultValue={silver} onBlur={event => this.updateAttribute(event.target.value, "silver")} />
-                        <input className="goldLocation" type="text" defaultValue={gold} onBlur={event => this.updateAttribute(event.target.value, "gold")} />
-                        <input className="platiniumLocation" type="text" defaultValue={platinium} onBlur={event => this.updateAttribute(event.target.value, "platinium")} />
-                        <EditPairList stylings={{ top: '380px', left: '20px', width: '201px' }} listArray={gearone} limit={6} updateFunction={this.updateAttribute} type={"gearone"} />
-                        <EditPairList stylings={{ top: '380px', left: '221px', width: '199px' }} listArray={geartwo} limit={6} updateFunction={this.updateAttribute} type={"geartwo"} />
-                        <EditPairList stylings={{ top: '380px', left: '422px', width: '198px' }} listArray={gearthree} limit={6} updateFunction={this.updateAttribute} type={"gearthree"} />
-                        <EditPairList stylings={{ top: '380px', left: '619px', width: '175px' }} listArray={gearfour} limit={6} updateFunction={this.updateAttribute} type={"gearfour"} />
-                        <p className="shownGearCarryLocation">{shownGearCarry}</p>
-                        <p className="strCarryLocation">{shownCarry}</p>
-
-                        <p className="attackLocation"><strong>{dexData.attack + intData.attack}</strong> = {dexData.attack} + {intData.attack}</p>
-                        <p className="defenseLocation"><strong>{dexData.defense + wisData.defense}</strong> = {dexData.defense} + {wisData.defense} </p>
-                        <p className="initLocation"><strong>{dexData.init + wisData.init}</strong> = {dexData.init} + {wisData.init}</p>
-                        <p className="strDamageLocation"><strong>{strData.damage}</strong></p>
-                        <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
+                        <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
                         <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
 
-                        <p className="armornameLocation">{armorname}</p>
-                        <p className="armordrLocation">{armordr}</p>
-                        <p className="armorskilladjLocation">{armorskilladj}</p>
-                        <p className="armorbonusLocation">{armorbonus}</p>
+                        <ArmorBlock armor={armor} />
 
-                        <p className="armorbasedefLocation">{armorbasedef}</p>
-                        <p className="armorbaseencumbLocation">{armorbaseencumb}</p>
-                        <p className="armorbaserecoveryLocation">{armorbaserecovery}</p>
-                        <p className="armorbaseinitLocation">{armorbaseinit}</p>
-
-                        <p className="armortrainingdefLocation">{armortrainingdef}</p>
-                        <p className="armortrainencumbLocation">{armortrainencumb}</p>
-                        <p className="armortrainrecoveryLocation">{armortrainrecovery}</p>
-                        <p className="armortraininitLocation">{armortraininit}</p>
-
-                        <input className="armormiscdefLocation" type="number" defaultValue={armormiscdef} onBlur={event => this.updateAttribute(event.target.value, "armormiscdef")} />
-                        <input className="armormiscencumbLocation" type="number" defaultValue={armormiscencumb} onBlur={event => this.updateAttribute(event.target.value, "armormiscencumb")} />
-                        <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onBlur={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
-                        <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
-
-                        <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
-                        <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
-                        <p className="armortotalrecoveryLocation">{armorRecovery}</p>
-                        <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0}</p>
-
-                        <p className="shieldnameLocation">{shieldname}</p>
-                        <p className="shielddrLocation">{shielddr}</p>
-                        <p className="shieldsizeLocation">{shieldsize}</p>
-                        <p className="shieldcoverLocation">{shieldcover}</p>
-                        <p className="shieldbonusLocation">{shieldbonus}</p>
-
-                        <p className="shieldbasedefLocation">{shieldbasedef}</p>
-                        <p className="shieldbaseparryLocation">{shieldbaseparry}</p>
-                        <p className="shieldbaseencumbLocation">{shieldbaseencumb}</p>
-                        <p className="shieldbasebreakLocation">{shieldbasebreak}</p>
-
-                        <p className="shieldtraindefLocation">{shieldtraindef}</p>
-                        <p className="shieldtrainparryLocation">{shieldtrainparry}</p>
-                        <p className="shieldtrainencumbLocation">{shieldtrainencumb}</p>
-                        <p className="shieldtrainbreakLocation">{shieldtrainbreak}</p>
-
-                        <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
-                        <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscencumb")} />
-                        <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
-
-                        <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
-                        <p className="shieldtotalparryLocation">{this.returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-                        <p className="shieldtotalencumbLocation">{shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0}</p>
-                        <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak + shieldmiscbreak > 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0}</p>
+                        <ShieldBlock shield={shield} />
 
                         <div className="weaponProfileOne">
                             <p className="weaponnameLocation">{onename}</p>

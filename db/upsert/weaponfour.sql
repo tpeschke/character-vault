@@ -1,6 +1,6 @@
-INSERT INTO weaponfour (characterid, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize)
+INSERT INTO weaponfour (characterid, trainattack, trainrecovery, traindamage, miscattack, miscrecovery, miscdamage, miscinit, name, basedamage, baserecovery, type, bonus, traits, size)
 VALUES($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) 
 ON CONFLICT (characterid)
 DO 
    UPDATE SET 
-    characterid = $2, fourtrainattack = $3, fourtrainrecovery = $4, fourtraindamage = $5, fourmiscattack = $6, fourmiscrecovery = $7, fourmiscdamage = $8, fourmiscinit = $9, fourname = $10, fourbasedamage = $11, fourbaserecovery = $12, fourtype = $13, fourbonus = $14, fourtraits = $15, foursize = $16
+    characterid = $2, trainattack = $3, trainrecovery = $4, traindamage = $5, miscattack = $6, miscrecovery = $7, miscdamage = $8, miscinit = $9, name = $10, basedamage = $11, baserecovery = $12, type = $13, bonus = $14, traits = $15, size = $16
