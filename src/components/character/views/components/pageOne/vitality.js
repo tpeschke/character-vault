@@ -1,8 +1,20 @@
 import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 
-export default function Vitality({ vitality }) {
-    let { shownVitality, updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData } = vitality
+export default function Vitality({ vitality, editing }) {
+    let { shownVitality, updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
+
+    if (editing) {
+        return (
+            <div>
+                <input className="criticalLocation" type="number" defaultValue={vitalityTotal} onChange={event => this.updateAttribute(event.target.value, "vitality")} />
+                <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => this.updateAttribute(event.target.value, "sizemod")} />
+                <input className="vitalityrollLocation" type="number" min="0" defaultValue={vitalityroll} onChange={event => this.updateAttribute(event.target.value, "vitalityroll")} />
+                <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => this.updateAttribute(event.target.value, "vitalitydice")} />
+            </div>
+        )
+    }
+
     return (
         <div>
             <p className="criticalLocation">{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>

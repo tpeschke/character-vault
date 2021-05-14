@@ -186,12 +186,17 @@ input, textarea {
     top: 739px; 
 }
 
+.namePlate {
+    left: 23px;
+    top: 20px;
+    font-family: 'Vollkorn SC', serif;
+}
 .nameLocation {
     left: 123px;
     top: 20px;
-}
-input.nameLocation {
-    width: 271px;
+    border-bottom: 2px solid;
+    width: 275px;
+    padding: 1px 5px;
 }
 
 .raceLocation {
@@ -787,7 +792,8 @@ input.excurrentLocation {
     width: 426px;
 }
 .contactstextArea {
-    top: 634px;
+    position: absolute;
+    top: 760px;
     left: 20px;
     width: 426px;
     max-width: 426px;
@@ -798,12 +804,12 @@ input.excurrentLocation {
 }
 
 .abilitiesoneLocation {
-    left: -406px;
-    top: 822px;
+    position: absolute;
+    left: 20px;
+    top: 889px;
     width: 250px;
 }
 .abilitiesonetextArea {
-    left: -406px;
     width: 250px;
     max-width: 250px;
     min-width: 250px;
@@ -817,12 +823,12 @@ input.excurrentLocation {
 }
 
 .abilitiestwoLocation {
+    position: absolute;
     left: 272px;
-    top: 651px;
+    top: 889px;
     width: 273px;
 }
 .abilitiestwotextArea {
-    left: 272px;
     width: 273px;
     max-width: 273px;
     min-width: 273px;
@@ -836,12 +842,12 @@ input.excurrentLocation {
 }
 
 .abilitiesthreeLocation {
-    left: 274px;
-    top: 612px;
+    position: absolute;
+    left: 547px;
+    top: 888px;
     width: 249px;
 }
 .abilitiesthreetextArea {
-    left: 274px;
     width: 249px;
     max-width: 249px;
     min-width: 249px;
@@ -913,8 +919,9 @@ input.excurrentLocation {
     position: relative;
 }
 .panickedCircle {
-    top: 483px;
+    top: 614px;
     width: 24px;
+    position: absolute;
 }
 
 .circle-fill {

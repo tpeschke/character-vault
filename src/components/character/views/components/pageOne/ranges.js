@@ -1,6 +1,14 @@
 import React from 'react'
 
-export default function Ranges({ maxrange }) {
+export default function Ranges({ maxrange, editing, updateAttribute }) {
+
+    if (editing) {
+        return (
+            <div>
+                <input className="maxrangeLocation" type="number" defaultValue={maxrange} onChange={event => updateAttribute(event.target.value, "maxrange")} />
+            </div>
+        )
+    }
     return (
         <div>
             <p className="maxrangeLocation one">5</p>

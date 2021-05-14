@@ -6,6 +6,7 @@
   font-family: 'north';
   src: url('./assets/north.ttf') format("truetype");
 }
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn+SC&display=swap');
 
 body {
   margin: 0;

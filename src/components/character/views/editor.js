@@ -1,4 +1,12 @@
 import React, { Component } from 'react'
+import Abilities from './components/pageOne/abilities'
+import CharacterInfo from './components/pageOne/characterInfo'
+import MiscVitals from './components/pageOne/miscVitals'
+import Movement from './components/pageOne/movement'
+import Ranges from './components/pageOne/ranges'
+import Social from './components/pageOne/social'
+import Stats from './components/pageOne/stats'
+import Vitality from './components/pageOne/vitality'
 import WeaponBlock from './components/pageTwo/weaponBlock'
 import EditList from './components/pairComponents/editList'
 import EditPairList from './components/pairComponents/editPairList'
@@ -49,14 +57,13 @@ export default class CharacterEditor extends Component {
     }
 
     render() {
-        let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, onetrainattack, onetrainparry, onetrainrecovery, onetraindamage, onemiscattack, onemiscparry,
-            onemiscrecovery, onemiscdamage, onemiscinit, onename, onebasedamage, onebaserecovery, onebaseparry, onebasemeasure, onetype, onebonus, onetraits, onesize, twotrainattack, twotrainparry, twotrainrecovery, twotraindamage, twomiscattack, twomiscparry, twomiscrecovery, twomiscdamage,
-            twomiscinit, twoname, twobasedamage, twobaserecovery, twobaseparry, twobasemeasure, twotype, twobonus, twotraits, twosize, threetrainattack, threetrainparry, threetrainrecovery, threetraindamage, threemiscattack, threemiscparry, threemiscrecovery, threemiscdamage,
-            threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, skills, skilladept,
-            fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
-            armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
+        let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, 
+            temperament, goals, devotions, flaws, traits, reputation, contacts,
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, skilladept,
+            armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, 
+            armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
+            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, 
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
         let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
 
@@ -65,57 +72,45 @@ export default class CharacterEditor extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
+        let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
+            , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
+            , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute }
+            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, honor }
+            , miscVitals = { con, updateAttribute: this.updateAttribute, favormax, stressthreshold, wis }
+            , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
+            , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
+            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute }
+            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
+            , armor = {
+                armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbaseencumb, armorbaserecovery, armorbaseinit,
+                armortrainingdef, armortrainencumb, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscencumb,
+                armormiscrecovery, armormiscinit
+            }
+            , shield = {
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbaseencumb, shieldbasebreak,
+                shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscencumb, shieldmiscbreak,
+                returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
+            }
+
         return (
             <div>
                 <div id="pdf" className='pdfViewStylings'>
                     <div className="pageOne pageBase pageViewStylings">
-                        <input className="nameLocation" type="text" defaultValue={name} onChange={event => this.updateAttribute(event.target.value, "name")} />
-                        <input className="raceLocation" type="text" defaultValue={race} onChange={event => this.updateAttribute(event.target.value, "race")} />
-                        <input className="primaryLocation" type="text" defaultValue={primarya} onChange={event => this.updateAttribute(event.target.value, "primarya")} />
-                        <input className="primarylevelLocation" placeholder="lvl" min="1" type="number" defaultValue={primarylevel} onChange={event => this.updateAttribute(event.target.value, "primarylevel")} />
-                        <input className="secondaryLocation" type="text" defaultValue={secondarya} onChange={event => this.updateAttribute(event.target.value, "secondarya")} />
-                        <input className="secondarylevelLocation" placeholder="lvl" min="1" type="number" defaultValue={secondarylevel} onChange={event => this.updateAttribute(event.target.value, "secondarylevel")} />
-                        <input className="levelLocation" type="number" min="1" defaultValue={level} onChange={event => this.updateAttribute(event.target.value, "level")} />
-                        <input className="crpLocation" type="number" min="0" defaultValue={crp} onChange={event => this.updateAttribute(event.target.value, "crp")} />
-                        <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onChange={event => this.updateAttribute(event.target.value, "excurrent")} />
-                        <textarea className="drawbackLocation drawbacktextArea" defaultValue={drawback} onChange={event => this.updateAttribute(event.target.value, "drawback")} maxLength="165"></textarea>
+                        <CharacterInfo characterInfo={characterInfo} editing={true}/>
 
-                        <input className="strLocation" type="number" max="20" min="1" defaultValue={str} onChange={event => this.updateAttribute(event.target.value, "str")} />
-                        <input className="dexLocation" type="number" max="20" min="1" defaultValue={dex} onChange={event => this.updateAttribute(event.target.value, "dex")} />
-                        <input className="conLocation" type="number" max="20" min="1" defaultValue={con} onChange={event => this.updateAttribute(event.target.value, "con")} />
-                        <input className="intLocation" type="number" max="20" min="1" defaultValue={int} onChange={event => this.updateAttribute(event.target.value, "int")} />
-                        <input className="wisLocation" type="number" max="20" min="1" defaultValue={wis} onChange={event => this.updateAttribute(event.target.value, "wis")} />
-                        <input className="chaLocation" type="number" max="20" min="1" defaultValue={cha} onChange={event => this.updateAttribute(event.target.value, "cha")} />
+                        <Stats stats={stats} editing={true}/>
 
-                        <input className="crawlLocation" type="text" defaultValue={crawl} onChange={event => this.updateAttribute(event.target.value, "crawl")} />
-                        <input className="walkLocation" type="text" defaultValue={walk} onChange={event => this.updateAttribute(event.target.value, "walk")} />
-                        <input className="jogLocation" type="text" defaultValue={jog} onChange={event => this.updateAttribute(event.target.value, "jog")} />
-                        <input className="runLocation" type="text" defaultValue={run} onChange={event => this.updateAttribute(event.target.value, "run")} />
-                        <input className="sprintLocation" type="text" defaultValue={sprint} onChange={event => this.updateAttribute(event.target.value, "sprint")} />
+                        <Movement movement={movement} editing={true}/>
 
-                        <input className="honorLocation" type="number" max="25" min="0" defaultValue={honor} onChange={event => this.updateAttribute(event.target.value, "honor")} />
-                        <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => this.updateAttribute(event.target.value, "temperament")} />
-                        <EditList stylings={{ top: '358px', left: '20px', width: '224px' }} listArray={goals} limit={3} updateFunction={this.updateAttribute} type={"goals"} />
-                        <EditPairList stylings={{ top: '508px', left: '20px', width: '224px' }} listArray={devotions} limit={3} updateFunction={this.updateAttribute} type={"devotions"} />
-                        <EditPairList stylings={{ top: '593px', left: '20px', width: '427px', height: '67px' }} rowWidth={'212px'} listArray={flaws} limit={6} updateFunction={this.updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
-                        <EditPairList stylings={{ top: '383px', left: '246px', width: '200px' }} listArray={traits} limit={9} updateFunction={this.updateAttribute} type={"traits"} />
-                        <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={this.updateAttribute} type={"reputation"} />
-                        <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => this.updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
+                        <Social social={social} editing={true}/>
 
-                        <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : +wis * 3} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
-                        <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => this.updateAttribute(event.target.value, "favormax")} />
+                        <MiscVitals miscVitals={miscVitals} editing={true}/>
 
-                        <input className="maxrangeLocation" type="number" defaultValue={maxrange} onChange={event => this.updateAttribute(event.target.value, "maxrange")} />
+                        <Ranges maxrange={maxrange} updateAttribute={this.updateAttribute} editing={true}/>
 
-                        <input className="criticalLocation" type="number" defaultValue={vitality} onChange={event => this.updateAttribute(event.target.value, "vitality")} />
-                        <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => this.updateAttribute(event.target.value, "sizemod")} />
-                        <input className="vitalityrollLocation" type="number" min="0" defaultValue={vitalityroll} onChange={event => this.updateAttribute(event.target.value, "vitalityroll")} />
-                        <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => this.updateAttribute(event.target.value, "vitalitydice")} />
+                        <Vitality vitality={vitality} editing={true}/>
 
-                        <textarea className="abilitiesoneLocation abilitiesonetextArea" defaultValue={abilitiesone} onChange={event => this.updateAttribute(event.target.value, "abilitiesone")} maxLength={"300"}></textarea>
-                        <textarea className="abilitiestwoLocation abilitiestwotextArea" defaultValue={abilitiestwo} onChange={event => this.updateAttribute(event.target.value, "abilitiestwo")} maxLength={"310"}></textarea>
-                        <textarea className="abilitiesthreeLocation abilitiesthreetextArea" defaultValue={abilitiesthree} onChange={event => this.updateAttribute(event.target.value, "abilitiesthree")} maxLength={"250"}></textarea>
-                        <input className="removedabilityLocation" type="text" defaultValue={removedability} onChange={event => this.updateAttribute(event.target.value, "removedability")} />
+                        <Abilities abilities={abilities} editing={true}/>
                     </div>
                     <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
                         <div className="skillDiscount">
@@ -208,10 +203,10 @@ export default class CharacterEditor extends Component {
                         <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
                         <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
 
-                        <WeaponBlock  weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
-                        <WeaponBlock  weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
-                        <WeaponBlock  weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
-                        <WeaponBlock  weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
+                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true} />
+                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true} />
+                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true} />
+                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true} />
 
                         <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onChange={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
                     </div>
