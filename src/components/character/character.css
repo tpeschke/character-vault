@@ -1069,6 +1069,7 @@ input.excurrentLocation {
     top: 832px;
     left: 41px;
     width: 55px;
+    text-align: center;
 }
 .shieldcoverLocation {
     top: 853px;
@@ -1224,6 +1225,10 @@ input.excurrentLocation {
     left: 621px;
 }
 
+.fourDisplayNone {
+    display: none;
+}
+
 .weaponnameLocation {
     width: 149px;
     left: 1px;
@@ -1374,7 +1379,7 @@ textarea.traitsfour {
     left: 26px;
     text-align: center;
 }
-.initFour {
+.initfour {
     left: 50px !important
 }
 

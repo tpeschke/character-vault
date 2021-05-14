@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import WeaponBlock from './components/pageTwo/weaponBlock'
 import EditList from './components/pairComponents/editList'
 import EditPairList from './components/pairComponents/editPairList'
 import EditSkillList from './components/pairComponents/editSkillList'
@@ -18,6 +19,12 @@ export default class CharacterEditor extends Component {
     updateAttribute = (value, type) => {
         let character = { ...this.state.character }
         character[type] = value
+        this.setState({ character })
+    }
+
+    updateObject = (object, key, value) => {
+        let character = { ...this.state.character }
+        character[object][key] = value
         this.setState({ character })
     }
 
@@ -49,7 +56,7 @@ export default class CharacterEditor extends Component {
             threemiscinit, threename, threebasedamage, threebaserecovery, threebaseparry, threebasemeasure, threetype, threebonus, threetraits, threesize, fourtrainattack, fourtrainrecovery, fourtraindamage, fourmiscattack, skills, skilladept,
             fourmiscrecovery, fourmiscdamage, fourmiscinit, fourname, fourbasedamage, fourbaserecovery, fourtype, fourbonus, fourtraits, foursize, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery,
             armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage } = this.state.character
+            shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
         let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
 
@@ -201,93 +208,11 @@ export default class CharacterEditor extends Component {
                         <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
                         <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
 
-                        <div className="weaponProfileOne">
-                            <input className="weaponnameLocation" type="text" defaultValue={onename} onChange={event => this.updateAttribute(event.target.value, "onename")} />
-                            <input className="basedamageLocation" type="text" defaultValue={onebasedamage} onChange={event => this.updateAttribute(event.target.value, "onebasedamage")} />
-                            <input className="baserecoveryLocation" type="number" defaultValue={onebaserecovery} onChange={event => this.updateAttribute(event.target.value, "onebaserecovery")} />
-                            <input className="baseparryLocation" type="number" defaultValue={onebaseparry} onChange={event => this.updateAttribute(event.target.value, "onebaseparry")} />
-                            <input className="basemeasureLocation" type="text" defaultValue={onebasemeasure} onChange={event => this.updateAttribute(event.target.value, "onebasemeasure")} />
-                            <input className="basesizeLocation" type="text" defaultValue={onesize} onChange={event => this.updateAttribute(event.target.value, "onesize")} />
-                            <input className="typeLocation" type="text" defaultValue={onetype} onChange={event => this.updateAttribute(event.target.value, "onetype")} />
-                            <textarea className="bonusLocation bonustextArea" defaultValue={onebonus} onChange={event => this.updateAttribute(event.target.value, "onebonus")} maxLength={"75"}></textarea>
-                            <textarea className="traitsLocation traitstextArea" defaultValue={onetraits} onChange={event => this.updateAttribute(event.target.value, "onetraits")} maxLength={"35"}></textarea>
+                        <WeaponBlock  weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
+                        <WeaponBlock  weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
+                        <WeaponBlock  weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
+                        <WeaponBlock  weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={null} editing={true}/>
 
-                            <input className="trainattackLocation" type="number" defaultValue={onetrainattack} onChange={event => this.updateAttribute(event.target.value, "onetrainattack")} />
-                            <input className="trainrecoveryLocation" type="number" defaultValue={onetrainrecovery} onChange={event => this.updateAttribute(event.target.value, "onetrainrecovery")} />
-                            <input className="trainparryLocation" type="number" defaultValue={onetrainparry} onChange={event => this.updateAttribute(event.target.value, "onetrainparry")} />
-                            <input className="traindamageLocation" type="number" defaultValue={onetraindamage} onChange={event => this.updateAttribute(event.target.value, "onetraindamage")} />
-
-                            <input className="miscattackLocation" type="number" defaultValue={onemiscattack} onChange={event => this.updateAttribute(event.target.value, "onemiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={onemiscrecovery} onChange={event => this.updateAttribute(event.target.value, "onemiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={onemiscparry} onChange={event => this.updateAttribute(event.target.value, "onemiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={onemiscdamage} onChange={event => this.updateAttribute(event.target.value, "onemiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={onemiscinit} onChange={event => this.updateAttribute(event.target.value, "onemiscinit")} />
-                        </div>
-
-                        <div className="weaponProfiletwo">
-                            <input className="weaponnameLocation" type="text" defaultValue={twoname} onChange={event => this.updateAttribute(event.target.value, "twoname")} />
-                            <input className="basedamageLocation" type="text" defaultValue={twobasedamage} onChange={event => this.updateAttribute(event.target.value, "twobasedamage")} />
-                            <input className="baserecoveryLocation" type="number" defaultValue={twobaserecovery} onChange={event => this.updateAttribute(+event.target.value, "twobaserecovery")} />
-                            <input className="baseparryLocation" type="number" defaultValue={twobaseparry} onChange={event => this.updateAttribute(event.target.value, "twobaseparry")} />
-                            <input className="basemeasureLocation" type="text" defaultValue={twobasemeasure} onChange={event => this.updateAttribute(event.target.value, "twobasemeasure")} />
-                            <input className="basesizeLocation" type="text" defaultValue={twosize} onChange={event => this.updateAttribute(event.target.value, "twosize")} />
-                            <input className="typeLocation" type="text" defaultValue={twotype} onChange={event => this.updateAttribute(event.target.value, "twotype")} />
-                            <textarea className="bonusLocation bonustextArea" defaultValue={twobonus} onChange={event => this.updateAttribute(event.target.value, "twobonus")} maxLength={"75"}></textarea>
-                            <textarea className="traitsLocation traitstextArea" defaultValue={twotraits} onChange={event => this.updateAttribute(event.target.value, "twotraits")} maxLength={"35"}></textarea>
-
-                            <input className="trainattackLocation" type="number" defaultValue={twotrainattack} onChange={event => this.updateAttribute(+event.target.value, "twotrainattack")} />
-                            <input className="trainrecoveryLocation" type="number" defaultValue={twotrainrecovery} onChange={event => this.updateAttribute(+event.target.value, "twotrainrecovery")} />
-                            <input className="trainparryLocation" type="number" defaultValue={twotrainparry} onChange={event => this.updateAttribute(+event.target.value, "twotrainparry")} />
-                            <input className="traindamageLocation" type="number" defaultValue={twotraindamage} onChange={event => this.updateAttribute(+event.target.value, "twotraindamage")} />
-
-                            <input className="miscattackLocation" type="number" defaultValue={twomiscattack} onChange={event => this.updateAttribute(+event.target.value, "twomiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={twomiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "twomiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={twomiscparry} onChange={event => this.updateAttribute(+event.target.value, "twomiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={twomiscdamage} onChange={event => this.updateAttribute(+event.target.value, "twomiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={twomiscinit} onChange={event => this.updateAttribute(+event.target.value, "twomiscinit")} />
-                        </div>
-
-                        <div className="weaponProfilethree">
-                            <input className="weaponnameLocation" type="text" defaultValue={threename} onChange={event => this.updateAttribute(event.target.value, "threename")} />
-                            <input className="basedamageLocation" type="text" defaultValue={threebasedamage} onChange={event => this.updateAttribute(event.target.value, "threebasedamage")} />
-                            <input className="baserecoveryLocation" type="number" defaultValue={threebaserecovery} onChange={event => this.updateAttribute(+event.target.value, "threebaserecovery")} />
-                            <input className="baseparryLocation" type="number" defaultValue={threebaseparry} onChange={event => this.updateAttribute(event.target.value, "threebaseparry")} />
-                            <input className="basemeasureLocation" type="text" defaultValue={threebasemeasure} onChange={event => this.updateAttribute(event.target.value, "threebasemeasure")} />
-                            <input className="basesizeLocation" type="text" defaultValue={threesize} onChange={event => this.updateAttribute(event.target.value, "threesize")} />
-                            <input className="typeLocation" type="text" defaultValue={threetype} onChange={event => this.updateAttribute(event.target.value, "threetype")} />
-                            <textarea className="bonusLocation bonustextArea" defaultValue={threebonus} onChange={event => this.updateAttribute(event.target.value, "threebonus")} maxLength={"55"}></textarea>
-                            <textarea className="traitsLocation traitstextArea" defaultValue={threetraits} onChange={event => this.updateAttribute(event.target.value, "threetraits")} maxLength={"35"}></textarea>
-
-                            <input className="trainattackLocation" type="number" defaultValue={threetrainattack} onChange={event => this.updateAttribute(+event.target.value, "threetrainattack")} />
-                            <input className="trainrecoveryLocation" type="number" defaultValue={threetrainrecovery} onChange={event => this.updateAttribute(+event.target.value, "threetrainrecovery")} />
-                            <input className="trainparryLocation" type="number" defaultValue={threetrainparry} onChange={event => this.updateAttribute(+event.target.value, "threetrainparry")} />
-                            <input className="traindamageLocation" type="number" defaultValue={threetraindamage} onChange={event => this.updateAttribute(+event.target.value, "threetraindamage")} />
-
-                            <input className="miscattackLocation" type="number" defaultValue={threemiscattack} onChange={event => this.updateAttribute(+event.target.value, "threemiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={threemiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "threemiscrecovery")} />
-                            <input className="miscparryLocation" type="number" defaultValue={threemiscparry} onChange={event => this.updateAttribute(+event.target.value, "threemiscparry")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={threemiscdamage} onChange={event => this.updateAttribute(+event.target.value, "threemiscdamage")} />
-                            <input className="miscinitLocation" type="number" defaultValue={threemiscinit} onChange={event => this.updateAttribute(+event.target.value, "threemiscinit")} />
-                        </div>
-
-                        <div className="weaponProfilefour">
-                            <input className="weaponnameLocation weaponnamefour" type="text" defaultValue={fourname} onChange={event => this.updateAttribute(event.target.value, "fourname")} />
-                            <input className="basedamageLocation basedamagefour" type="text" defaultValue={fourbasedamage} onChange={event => this.updateAttribute(event.target.value, "fourbasedamage")} />
-                            <input className="baserecoveryLocation" type="number" defaultValue={fourbaserecovery} onChange={event => this.updateAttribute(+event.target.value, "fourbaserecovery")} />
-                            <input className="typeLocation typefour" type="text" defaultValue={fourtype} onChange={event => this.updateAttribute(event.target.value, "fourtype")} />
-                            <input className="basesizeLocation sizefour" type="text" defaultValue={foursize} onChange={event => this.updateAttribute(event.target.value, "foursize")} />
-                            <textarea className="bonusLocation bonustextArea bonusfour" defaultValue={fourbonus} onChange={event => this.updateAttribute(event.target.value, "fourbonus")} maxLength={"80"}></textarea>
-                            <textarea className="traitsLocation traitstextArea traitsfour" defaultValue={fourtraits} onChange={event => this.updateAttribute(event.target.value, "fourtraits")} maxLength={"50"}></textarea>
-
-                            <input className="trainattackLocation" type="number" defaultValue={fourtrainattack} onChange={event => this.updateAttribute(+event.target.value, "fourtrainattack")} />
-                            <input className="trainrecoveryLocation" type="number" defaultValue={fourtrainrecovery} onChange={event => this.updateAttribute(+event.target.value, "fourtrainrecovery")} />
-                            <input className="traindamageLocation" type="number" defaultValue={fourtraindamage} onChange={event => this.updateAttribute(+event.target.value, "fourtraindamage")} />
-
-                            <input className="miscattackLocation" type="number" defaultValue={fourmiscattack} onChange={event => this.updateAttribute(+event.target.value, "fourmiscattack")} />
-                            <input className="miscrecoveryLocation" type="number" defaultValue={fourmiscrecovery} onChange={event => this.updateAttribute(+event.target.value, "fourmiscrecovery")} />
-                            <input className="miscinitLocation initFour" type="number" defaultValue={fourmiscinit} onChange={event => this.updateAttribute(+event.target.value, "fourmiscinit")} />
-                            <input className="miscdamageLocation" type="number" defaultValue={fourmiscdamage} onChange={event => this.updateAttribute(+event.target.value, "fourmiscdamage")} />
-                        </div>
                         <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onChange={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
                     </div>
 

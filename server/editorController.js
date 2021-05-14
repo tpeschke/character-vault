@@ -123,9 +123,10 @@ editController = {
     },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
-        let { id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, traits, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,
+
+        let { id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,
             run, sprint, weaponone, weapontwo, weaponthree, weaponfour, armorid, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef, armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef,
-            shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, shieldid, skillsuites, skills, nativelanguage, skilladept } = req.body
+            shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, shieldid, skillsuites, skills, nativelanguage, skilladept, traits } = req.body
         skilladept = setToMin(skilladept, 0)
         level = setToMin(level, 1)
         crp = setToMin(crp, 0)
@@ -163,8 +164,8 @@ editController = {
                     return db.upsert.flaws(flawid, id, title, value)
                 })
             }))
-            promiseArray.push(db.delete.traits([id, [0, ...traits.map(traits => traits.id)]]).then(_ => {
-                return traits.map(({ id: traitsid, value, title }) => {
+            promiseArray.push(db.delete.traits([id, [0, ...req.body.traits.map(traits => traits.id)]]).then(_ => {
+                return req.body.traits.map(({ id: traitsid, value, title }) => {
                     return db.upsert.traits(traitsid, id, title, value)
                 })
             }))

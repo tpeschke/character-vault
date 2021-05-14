@@ -223,10 +223,10 @@ export default class CharacterViewer extends Component {
             , modifiedRunLength = 10 - endurance - Math.floor(currentstress / 10)
             , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
 
-            weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
-            weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
-            weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
-            weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
+        weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
+        weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
+        weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
+        weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
         let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
             , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
             , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
@@ -237,28 +237,28 @@ export default class CharacterViewer extends Component {
             , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense, 
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponfour
