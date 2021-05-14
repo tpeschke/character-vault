@@ -19,7 +19,6 @@ class Character extends Component {
     }
 
     componentWillMount() {
-        this.setState({isEditingMode: true})
         if (this.state.downloadMode) {
             this.setState({isEditingMode: false})
         }
