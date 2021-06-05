@@ -1,5 +1,3 @@
-delete from cvcharactermain where id = $1;
-
 delete from damageone where characterid = $1;
 delete from damagetwo where characterid = $1;
 
@@ -27,3 +25,5 @@ delete from cvskillone where characterid = $1;
 delete from cvskilltwo where characterid = $1;
 delete from cvskillthree where characterid = $1;
 delete from cvnativelanguage where characterid = $1;
+
+delete from cvcharactermain where id = $1;
