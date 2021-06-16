@@ -186,68 +186,92 @@ input, textarea {
     top: 739px; 
 }
 
-.namePlate {
-    left: 23px;
-    top: 20px;
+.plates p {
     font-family: 'Vollkorn SC', serif;
 }
+.filledOut p {
+    /* border-bottom: 2px solid; */
+    padding: 1px 5px;
+}
+
+.namePlate {
+    left: 20px;
+    top: 23px;
+}
 .nameLocation {
-    left: 123px;
+    left: 128px;
     top: 20px;
-    border-bottom: 2px solid;
-    width: 275px;
+    /* border-bottom: 2px solid; */
+    width: 272px;
+    padding: 1px 5px;
+}
+
+.playerPlate {
+    left: 402px;
+    top: 23px;
+}
+.playerScorePlate {
+    left: 445px;
+    top: 38px;
+    /* border-bottom: 2px solid; */
+    width: 152px;
     padding: 1px 5px;
 }
 
 .raceLocation {
     left: 53px;
     top: 43px;
-}
-input.raceLocation {
+    /* border-bottom: 2px solid; */
     width: 68px;
+    padding: 1px 5px;
+}
+.racePlate {
+    left: 20px;
+    top: 46px;
 }
 
 .levelLocation {
     left: 489px;
     top: 43px;
+    /* border-bottom: 2px solid; */
+    width: 51px;
 }
 input.levelLocation {
     left: 470px;
-    width: 51px;
 }
 
 .primaryLocation {
     left: 195px;
     top: 43px;
-}
-input.primaryLocation {
     width: 86px;
+    /* border-bottom: 2px solid; */
 }
 
 .primarylevelLocation {
     left: 276px;
     top: 43px;
+    width: 35px;
+    /* border-bottom: 2px solid; */
 }
 input.primarylevelLocation {
     left: 282px;
-    width: 35px;
 }
 
 .secondaryLocation {
     left: 319px;
     top: 43px;
-}
-input.secondaryLocation {
     width: 93px;
+    /* border-bottom: 2px solid; */
 }
 
 .secondarylevelLocation {
     left: 420px;
     top: 43px;
+    width: 35px;
+    /* border-bottom: 2px solid; */
 }
 input.secondarylevelLocation {
     left: 413px;
-    width: 35px;
 }
 
 .crpLocation {
@@ -255,9 +279,7 @@ input.secondarylevelLocation {
     top: 43px;
     width: 51px;
     text-align: center;
-}
-input.crpLocation {
-    width: 51px;
+    /* border-bottom: 2px solid; */
 }
 
 .excurrentLocation {
@@ -265,9 +287,8 @@ input.crpLocation {
     top: 66px;
     width: 127px;
     text-align: center;
-}
-input.excurrentLocation {
     width: 127px;
+    /* border-bottom: 2px solid; */
 }
 
 .extolevelLocation {
@@ -275,6 +296,7 @@ input.excurrentLocation {
     top: 66px;
     width: 151px;
     text-align: center;
+    /* border-bottom: 2px solid; */
 }
 
 .drawbackLocation {
@@ -282,7 +304,9 @@ input.excurrentLocation {
     top: 87px;
     text-indent: 123px;
     width: 426px;
+    /* border-bottom: 2px solid; */
 }
+
 .drawbacktextArea {
     left: 20px;
     width: 426px;

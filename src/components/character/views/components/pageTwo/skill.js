@@ -8,6 +8,15 @@ export default function Skills({ skillsObject, editing }) {
         return (
             <div>
                 <div className="skillDiscount">
+                    <p className="strDiscount">{strData.skill}</p>
+                    <p className="dexDiscount">{dexData.skill}</p>
+                    <p className="conDiscount">{conData.skill}</p>
+                    <p className="intDiscount">{intData.skill}</p>
+                    <p className="wisDiscount">{wisData.skill}</p>
+                    <p className="chaDiscount">{chaData.skill}</p>
+                    <p className="skilladeptLocation">{skilladept}</p>
+                </div>
+                <div className="skillDiscount">
                     <input className="skilladeptLocation" type="number" defaultValue={skilladept} onChange={event => updateAttribute(event.target.value, "skilladept")} />
                 </div>
                 <div className="skillsuiteShell">

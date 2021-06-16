@@ -17,6 +17,8 @@ import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
 import WeaponBlock from './components/pageTwo/weaponBlock'
 
+import statTables from '../statTables';
+
 export default class CharacterViewer extends Component {
     constructor(props) {
         super(props)
@@ -206,11 +208,18 @@ export default class CharacterViewer extends Component {
     }
 
     render() {
-        let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, strData, dexData, conData, intData, wisData, chaData, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
+        let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
+        let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
             armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
             , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
+            , strData = strTable[str]
+            , dexData = dexTable[dex]
+            , conData = conTable[con]
+            , intData = intTable[int]
+            , wisData = wisTable[wis]
+            , chaData = chaTable[cha]
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
             , shownCarry = this.convertFromEncumbToCarry(strData.carry)

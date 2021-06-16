@@ -13,6 +13,8 @@ import CashAndGear from './components/pageTwo/cashAndGear'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
 
+import statTables from '../statTables';
+
 export default class CharacterEditor extends Component {
     constructor(props) {
         super(props)
@@ -58,6 +60,7 @@ export default class CharacterEditor extends Component {
     }
 
     render() {
+        let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, 
             temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, skilladept,
@@ -80,7 +83,7 @@ export default class CharacterEditor extends Component {
             , miscVitals = { con, updateAttribute: this.updateAttribute, favormax, stressthreshold, wis }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
-            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage }
+            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData: strTable[str], dexData: dexTable[dex], conData: conTable[con], intData: intTable[int], wisData: wisTable[wis], chaData: chaTable[cha] }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbaseencumb, armorbaserecovery, armorbaseinit,

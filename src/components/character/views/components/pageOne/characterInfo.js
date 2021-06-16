@@ -3,14 +3,18 @@ import React from 'react'
 export default function CharacterInfo({ characterInfo, editing }) {
     let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute } = characterInfo
     let plates = (
-        <div>
-            {/* <p className="namePlate">Character Name</p> */}
+        <div className="plates">
+            {/* <p className="namePlate">Character Name</p>
+            <p className="playerPlate">Player</p>
+            <p className="playerScorePlate"></p>
+            <p className="racePlate">Race</p> */}
         </div>
     )
 
     if (editing) {
         return (
             <div>
+                {plates}
                 <input className="nameLocation" type="text" defaultValue={name} onChange={event => updateAttribute(event.target.value, "name")} />
                 <input className="raceLocation" type="text" defaultValue={race} onChange={event => updateAttribute(event.target.value, "race")} />
                 <input className="primaryLocation" type="text" defaultValue={primarya} onChange={event => updateAttribute(event.target.value, "primarya")} />
