@@ -54,10 +54,10 @@ export default function ShieldBlock({ shield, editing }) {
             <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onBlur={event => updateAttribute(event.target.value, "shieldmiscencumb")} />
             <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
 
-            <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0}</p>
+            <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
             <p className="shieldtotalparryLocation">{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-            <p className="shieldtotalencumbLocation">{shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0}</p>
-            <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak + shieldmiscbreak > 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0}</p>
+            <p className="shieldtotalencumbLocation">{shieldbaseencumb + shieldtrainencumb < 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0 + shieldmiscencumb}</p>
+            <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
 
         </div>
     )

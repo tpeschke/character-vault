@@ -7,10 +7,10 @@ export default function Vitality({ vitality, editing }) {
     if (editing) {
         return (
             <div>
-                <input className="criticalLocation" type="number" defaultValue={vitalityTotal} onChange={event => this.updateAttribute(event.target.value, "vitality")} />
-                <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => this.updateAttribute(event.target.value, "sizemod")} />
-                <input className="vitalityrollLocation" type="number" min="0" defaultValue={vitalityroll} onChange={event => this.updateAttribute(event.target.value, "vitalityroll")} />
-                <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => this.updateAttribute(event.target.value, "vitalitydice")} />
+                <input className="criticalLocation" type="number" defaultValue={vitalityTotal} onChange={event => updateAttribute(event.target.value, "vitality")} />
+                <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => updateAttribute(event.target.value, "sizemod")} />
+                <input className="vitalityrollLocation" type="number" min="0" defaultValue={vitalityroll} onChange={event => updateAttribute(event.target.value, "vitalityroll")} />
+                <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => updateAttribute(event.target.value, "vitalitydice")} />
             </div>
         )
     }

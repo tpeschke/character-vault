@@ -52,10 +52,10 @@ export default function ArmorBlock({ armor, editing }) {
             <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onBlur={event => updateAttribute(event.target.value, "armormiscrecovery")} />
             <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
 
-            <p className="armortotaldefLocation">{armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0}</p>
-            <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0}</p>
+            <p className="armortotaldefLocation">{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 +  + armormiscdef}</p>
+            <p className="armortotalencumbLocation">{armorbaseencumb + armortrainencumb < 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0 + armormiscencumb}</p>
             <p className="armortotalrecoveryLocation">{armorRecovery}</p>
-            <p className="armortotalinitLocation">{armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0}</p>
+            <p className="armortotalinitLocation">{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
         </div>
     )
 }

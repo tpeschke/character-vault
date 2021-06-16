@@ -5,8 +5,8 @@ export default function MiscVitals({ miscVitals, editing }) {
     if (editing) {
         return (
             <div>
-                <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : +wis * 3} onChange={event => this.updateAttribute(event.target.value, "stressthreshold")} />
-                <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => this.updateAttribute(event.target.value, "favormax")} />
+                <input className="stressthresholdLocation" type="number" min="0" defaultValue={stressthreshold} placeholder={stressthreshold ? stressthreshold : +wis * 3} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
+                <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
             </div>
         )
     }
