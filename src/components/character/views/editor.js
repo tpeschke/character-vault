@@ -75,6 +75,12 @@ export default class CharacterEditor extends Component {
         if (isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
+        let strData = str ? strTable[str] : strTable[1]
+        , dexData = dex ? dexTable[dex] : dexTable[1]
+        , conData = con ? conTable[con] : conTable[1]
+        , intData = int ? intTable[int] : intTable[1]
+        , wisData = wis ? wisTable[wis] : wisTable[1]
+        , chaData = cha ? chaTable[cha] : chaTable[1]
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
@@ -83,7 +89,7 @@ export default class CharacterEditor extends Component {
             , miscVitals = { con, updateAttribute: this.updateAttribute, favormax, stressthreshold, wis }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
-            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData: strTable[str], dexData: dexTable[dex], conData: conTable[con], intData: intTable[int], wisData: wisTable[wis], chaData: chaTable[cha] }
+            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData, dexData, conData, intData, wisData, chaData }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbaseencumb, armorbaserecovery, armorbaseinit,
