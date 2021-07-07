@@ -78,7 +78,7 @@ viewController = {
           weaponone[0].position = 'one'
           character.weaponone = weaponone[0]
         } else {
-          character.weaponone = {position: 'one'}
+          character.weaponone = { position: 'one' }
         }
         return true
       }))
@@ -87,7 +87,7 @@ viewController = {
           weapontwo[0].position = 'two'
           character.weapontwo = weapontwo[0]
         } else {
-          character.weapontwo = {position: 'two'}
+          character.weapontwo = { position: 'two' }
         }
         return true
       }))
@@ -96,7 +96,7 @@ viewController = {
           weaponthree[0].position = 'three'
           character.weaponthree = weaponthree[0]
         } else {
-          character.weaponthree = {position: 'three'}
+          character.weaponthree = { position: 'three' }
         }
         return true
       }))
@@ -105,7 +105,7 @@ viewController = {
           weaponfour[0].position = 'four'
           character.weaponfour = weaponfour[0]
         } else {
-          character.weaponfour = {position: 'four'}
+          character.weaponfour = { position: 'four' }
         }
         return true
       }))
@@ -152,32 +152,34 @@ viewController = {
   },
   downloadCharacters: function (req, res) {
     const db = req.app.get('db')
-    puppeteer.launch({
-      headless:false,
-      args: ["--no-sandbox"]
-  }).then(browser => {
-      browser.newPage().then(page => {
-        page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
-          waitUntil: "networkidle2"
-        }).then(_ => {
-          page.waitForSelector('div#loaded').then(_ => {
-            page.pdf({
-              format: "Letter",
-              printBackground: true
-            }).then(pdf => {
-              db.get.characterName(req.params.id.split('.')[0]).then(data => {
-                if (data[0].name === "" || !data[0].name) {
-                  data[0].name = "Unamed Character"
-                }
-                res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
-                res.send(pdf)
-                browser.close();
-              })
-            });
-          })
+    try {
+      puppeteer.launch().then(browser => {
+        browser.newPage().then(page => {
+          page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
+            waitUntil: "networkidle2"
+          }).then(_ => {
+            page.waitForSelector('div#loaded').then(_ => {
+              await page.waitForTimeout(3000)
+              page.pdf({
+                format: "Letter",
+                printBackground: true
+              }).then(pdf => {
+                db.get.characterName(req.params.id.split('.')[0]).then(data => {
+                  if (data[0].name === "" || !data[0].name) {
+                    data[0].name = "Unamed Character"
+                  }
+                  res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
+                  res.send(pdf)
+                  browser.close();
+                })
+              });
+            })
+          });
         });
       });
-    });
+    } catch (e) {
+      res.send(e)
+    }
   }
 }
 
