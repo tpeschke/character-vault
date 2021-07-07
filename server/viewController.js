@@ -152,7 +152,10 @@ viewController = {
   },
   downloadCharacters: function (req, res) {
     const db = req.app.get('db')
-    puppeteer.launch().then(browser => {
+    puppeteer.launch({
+      headless:false,
+      args: ["--no-sandbox"]
+  }).then(browser => {
       browser.newPage().then(page => {
         page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
           waitUntil: "networkidle2"
@@ -163,6 +166,9 @@ viewController = {
               printBackground: true
             }).then(pdf => {
               db.get.characterName(req.params.id.split('.')[0]).then(data => {
+                if (data[0].name === "" || !data[0].name) {
+                  data[0].name = "Unamed Character"
+                }
                 res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
                 res.send(pdf)
                 browser.close();
