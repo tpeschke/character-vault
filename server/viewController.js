@@ -159,18 +159,19 @@ viewController = {
             waitUntil: "networkidle2"
           }).then(_ => {
             page.waitForSelector('div#loaded').then(_ => {
-              await page.waitForTimeout(3000)
-              page.pdf({
-                format: "Letter",
-                printBackground: true
-              }).then(pdf => {
-                db.get.characterName(req.params.id.split('.')[0]).then(data => {
-                  if (data[0].name === "" || !data[0].name) {
-                    data[0].name = "Unamed Character"
-                  }
-                  res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
-                  res.send(pdf)
-                  browser.close();
+              page.waitForTimeout(3000).then(_ => {
+                page.pdf({
+                  format: "Letter",
+                  printBackground: true
+                }).then(pdf => {
+                  db.get.characterName(req.params.id.split('.')[0]).then(data => {
+                    if (data[0].name === "" || !data[0].name) {
+                      data[0].name = "Unamed Character"
+                    }
+                    res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
+                    res.send(pdf)
+                    browser.close();
+                  })
                 })
               });
             })
