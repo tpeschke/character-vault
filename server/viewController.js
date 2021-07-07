@@ -166,7 +166,11 @@ viewController = {
                 }).then(pdf => {
                   db.get.characterName(req.params.id.split('.')[0]).then(data => {
                     if (data[0].name === "" || !data[0].name) {
-                      data[0].name = "Unamed Character"
+                      if (data[0].primarya) {
+                        data[0].name = `Unamed ${data[0].primarya}`
+                      } else {
+                        data[0].name = "Unamed Character"
+                      }
                     }
                     res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
                     res.send(pdf)

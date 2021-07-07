@@ -1,2 +1,2 @@
-select name from cvcharactermain
+select name, primarya from cvcharactermain
 where id = $1
