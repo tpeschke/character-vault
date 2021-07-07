@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import local from '../../../local'
 
 import WeaponSquare from './components/pageOne/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo'
@@ -337,7 +338,7 @@ export default class CharacterViewer extends Component {
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
                     <div className="left-corner-button corner-button">
-                        <a href={`http://localhost:3131/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
+                        <a href={`${local.endpointBase}/api/download/${id}.pdf`} download={name + ".pdf"}><i className="fas fa-file-download fa-lg"></i></a>
                     </div>
                     <div className={owned ? "right-corner-button corner-button" : "displayNone"}>
                         {editButton}
