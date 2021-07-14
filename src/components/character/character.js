@@ -31,6 +31,9 @@ class Character extends Component {
     }
 
     componentWillUnmount() {
+        if (this.props.match.path === "/new/:id") {
+            axios.post('/api/upsertCharacter', this.state.character)
+        }
         this.setState({ isEditingMode: false })
     }
 
