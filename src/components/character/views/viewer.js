@@ -26,12 +26,12 @@ export default class CharacterViewer extends Component {
 
         this.state = {
             character: props.character,
-            adjustedEncumb: null,
+            adjustedCarry: null,
+            overCarry: 0,
             isUpdating: false,
             currentDamage: 0,
-            woundMultiplier: 0,
             shownVitality: 0,
-            endurance: 0
+            endurance: 0,
         }
     }
 
@@ -102,8 +102,7 @@ export default class CharacterViewer extends Component {
         geartwo.forEach(cleanArray)
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
-
-        this.setState({ adjustedEncumb: totalCarry })
+        this.setState({ adjustedCarry: totalCarry })
     }
 
     convertFromEncumbToCarry = (value) => {
@@ -144,7 +143,7 @@ export default class CharacterViewer extends Component {
         }
         return thing
     }
-  
+
     calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
         return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + trainfatigue + miscfatigue)
     }
@@ -236,7 +235,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
-            , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
+            , { currentDamage, shownVitality, dead, endurance } = this.state
             , strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
@@ -244,8 +243,9 @@ export default class CharacterViewer extends Component {
             , wisData = wisTable[wis]
             , chaData = chaTable[cha]
             , shownHonor = honor ? honor : chaData.honor
-            , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedEncumb)
+            , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
             , shownCarry = this.convertFromEncumbToCarry(strData.carry)
+            , overCarry = strData.carry - this.state.adjustedCarry
             , { downloadMode, changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
@@ -266,7 +266,7 @@ export default class CharacterViewer extends Component {
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
             , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
-            , movement = { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint }
+            , movement = { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint, overCarry }
             , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
@@ -296,7 +296,7 @@ export default class CharacterViewer extends Component {
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponfour
             }
-            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
+            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Movement({ movement, editing }) {
-    let { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint, updateAttribute } = movement
+    let { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint, updateAttribute, overCarry } = movement
 
     if (editing) {
         return (
@@ -17,12 +17,21 @@ export default function Movement({ movement, editing }) {
     return (
         <div>
             <p className="crawlLocation">{crawl}</p>
+            <div className={overCarry <= -15 ? 'crawlLengthLocation crawlStrike strikeThrough' : 'displayNone'}></div>
+
             <p className="walkLocation">{walk}</p>
+            <div className={overCarry <= -12 ? 'walkLengthLocation walkStrike strikeThrough' : 'displayNone'}></div>
+
             <p className="jogLocation">{jog}</p>
+            <div className={overCarry <= -9 ? 'jogLengthLocation jogStrike strikeThrough' : 'displayNone'}></div>
+
             <p className="runLocation">{run}</p>
             <p className="runLengthLocation">{modifiedRunLength > 0 ? modifiedRunLength : 0} seconds</p>
+            <div className={overCarry <= -6 ? 'runLengthLocation runStrike strikeThrough' : 'displayNone'}></div>
+
             <p className="sprintLocation">{sprint}</p>
             <p className="sprintLengthLocation">{modifiedSprintLength > 0 ? modifiedSprintLength : 0} seconds</p>
+            <div className={overCarry <= -3 ? 'sprintLengthLocation sprintStrike strikeThrough' : 'displayNone'}></div>
         </div>
     )
 }

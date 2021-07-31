@@ -441,9 +441,14 @@ input.secondarylevelLocation {
 
 .crawlLocation {
     left: 220px;
-    top: 171px;
+    top: 180px;
     width: 48px;
     text-align: center;
+}
+.crawlLengthLocation {
+    left: 274px;
+    top: 180px;
+    width: 48px;
 }
 .walkLocation {
     left: 220px;
@@ -451,11 +456,21 @@ input.secondarylevelLocation {
     width: 48px;
     text-align: center;
 }
+.walkLengthLocation {
+    left: 274px;
+    top: 192px;
+    width: 48px;
+}
 .jogLocation {
     left: 220px;
     top: 213px;
     width: 48px;
     text-align: center;
+}
+.jogLengthLocation {
+    left: 274px;
+    top: 213px;
+    width: 48px;
 }
 .runLocation {
     left: 220px;
@@ -480,6 +495,31 @@ input.secondarylevelLocation {
     top: 255px;
     background: white;
     width: 153px;
+}
+
+.crawlStrike {
+    top: 180px;
+    width: 153px;
+}
+.walkStrike {
+    top: 203px;
+    width: 153px;
+}
+.jogStrike {
+    top: 223px;
+    width: 153px;
+}
+.runStrike {
+    top: 243px;
+}
+.sprintStrike {
+    top: 263px;
+}
+
+.strikeThrough {
+    position: absolute;
+    height: 3px;
+    background: #990000;
 }
 
 .honorLocation {
