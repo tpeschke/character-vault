@@ -72,6 +72,7 @@ export default class EditSkillList extends Component {
 
     render() {
         let { stylings, listArray, limit, rowWidth } = this.state
+        let { skilladept } = this.props
         let rowStyles = {
             width: rowWidth
         }
@@ -79,7 +80,7 @@ export default class EditSkillList extends Component {
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
                 <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                <p className="totalCost">({item.cost + (item.rank * 2)})</p>
+                <p className="totalCost">({item.cost + (item.rank * 2) - skilladept})</p>
                 <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
             </div>)
         })
