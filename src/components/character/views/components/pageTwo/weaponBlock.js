@@ -35,6 +35,12 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                 <input className={position !== "four" ? "miscparryLocation" : "miscparryLocation fourDisplayNone"} type="number" defaultValue={miscparry} onChange={event => updateValue(event.target.value, "miscparry")} />
                 <input className="miscdamageLocation" type="number" defaultValue={miscdamage} onChange={event => updateValue(event.target.value, "miscdamage")} />
                 <input className={position !== "four" ? "miscinitLocation" : "miscinitLocation initfour"} type="number" defaultValue={miscinit} onChange={event => updateValue(event.target.value, "miscinit")} />
+
+                <p className="totalattackLocation">{returnZeroIfNaN(trainattack + +miscattack)}</p>
+                <p className="totalrecoveryLocation">{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+                <p className="totalparryLocation">{returnZeroIfNaN(trainparry + +miscparry)}</p>
+                <p className="totaldamageLocation">{returnZeroIfNaN(traindamage + +miscdamage)}</p>
+                <p className={position !== "four" ? "totalinitLocation" : "totalinitLocation initfour"}>{miscinit}</p>
             </div>
         )
     }

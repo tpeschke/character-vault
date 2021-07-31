@@ -30,7 +30,6 @@ export default class CharacterViewer extends Component {
             isUpdating: false,
             currentDamage: 0,
             woundMultiplier: 0,
-            dead: false,
             shownVitality: 0,
             endurance: 0
         }
@@ -121,24 +120,7 @@ export default class CharacterViewer extends Component {
     calculateCurrentDamage = () => {
         let { damageone, damagetwo } = this.state.character
         let currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
-        this.setState({ currentDamage }, this.calculateDamageStress)
-    }
-
-    calculateDamageStress = () => {
-        let { currentDamage, shownVitality } = this.state
-        if (currentDamage > shownVitality) {
-            this.setState({ woundMultiplier: 4, dead: true })
-        } else if (currentDamage > +(shownVitality * .75).toFixed(0)) {
-            this.setState({ woundMultiplier: 4, dead: false })
-        } else if (currentDamage > +(shownVitality * .5).toFixed(0)) {
-            this.setState({ woundMultiplier: 3, dead: false })
-        } else if (currentDamage > +(shownVitality * .25).toFixed(0)) {
-            this.setState({ woundMultiplier: 2, dead: false })
-        } else if (currentDamage > 1) {
-            this.setState({ woundMultiplier: 1, dead: false })
-        } else {
-            this.setState({ woundMultiplier: 0, dead: false })
-        }
+        this.setState({ currentDamage })
     }
 
     calculateRecovery = (recovery, size, isMelee) => {
@@ -161,6 +143,46 @@ export default class CharacterViewer extends Component {
             return 0
         }
         return thing
+    }
+  
+    calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + trainfatigue + miscfatigue)
+    }
+
+    calculateTotalFatigue = (armorFatigue, shieldFatigue) => {
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(armorFatigue) + shieldFatigue)
+    }
+
+    convertFromFatigueLetter = (fatigue) => {
+        switch (fatigue) {
+            case null:
+            case 'C':
+                return 0;
+            case 'W':
+                return -1;
+            case 'B':
+                return -2;
+            case 'H':
+                return -3;
+            case 'A':
+                return -4;
+            default:
+                return fatigue
+        }
+    }
+
+    convertToFatigueLetter = (number) => {
+        if (number >= 0) {
+            return 'C';
+        } else if (number === -1) {
+            return 'W';
+        } else if (number === -2) {
+            return 'B';
+        } else if (number === -1) {
+            return 'H';
+        } else {
+            return 'A';
+        }
     }
 
     updateAttribute = (value, type) => {
@@ -211,8 +233,8 @@ export default class CharacterViewer extends Component {
     render() {
         let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainencumb, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscencumb, armorbasedef,
-            armorbaserecovery, armorbaseencumb, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbaseencumb, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscencumb, skillsuites, nativelanguage,
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
+            armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
             , { currentDamage, shownVitality, woundMultiplier, dead, endurance } = this.state
             , strData = strTable[str]
@@ -237,9 +259,10 @@ export default class CharacterViewer extends Component {
         weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
         weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
         weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
-        let shieldEncumb = shieldbaseencumb + shieldtrainencumb + shieldmiscencumb > 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0
-            , armorEncumb = armorbaseencumb + armortrainencumb + armormiscencumb > 0 ? armorbaseencumb + armortrainencumb + armormiscencumb : 0
-            , totalEncumb = usingshield ? conData.encumb + wisData.encumb + armorEncumb + shieldEncumb + Math.floor(this.state.adjustedEncumb / 3) : conData.encumb + wisData.encumb + armorEncumb + Math.floor(this.state.adjustedEncumb / 3)
+
+        let armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armortrainfatigue, armormiscfatigue);
+        let shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
+        let totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
             , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
@@ -248,46 +271,46 @@ export default class CharacterViewer extends Component {
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponone
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weapontwo
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponthree
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, totalEncumb, armordr, shielddr, strdamage: strData.damage,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, stressAdjustment: Math.floor((totalEncumb * woundMultiplier) / 10), shieldname, ...weaponfour
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponfour
             }
-            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
+            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry }
             , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
             , armor = {
-                armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbaseencumb, armorbaserecovery, armorbaseinit,
-                armortrainingdef, armortrainencumb, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscencumb,
-                armormiscrecovery, armormiscinit, armorRecovery
+                armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
+                armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
+                armormiscrecovery, armormiscinit, armorRecovery, armorFatigue
             }
             , shield = {
-                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbaseencumb, shieldbasebreak,
-                shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscencumb, shieldmiscbreak,
-                returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+                shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
+                returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue
             }
 
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)

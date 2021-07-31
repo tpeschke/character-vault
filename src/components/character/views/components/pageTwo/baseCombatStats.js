@@ -8,7 +8,6 @@ export default function BaseCombatFromStats({ baseCombatFromStats }) {
             <p className="defenseLocation"><strong>{dexData.defense + wisData.defense}</strong> = {dexData.defense} + {wisData.defense} </p>
             <p className="initLocation"><strong>{dexData.init + wisData.init}</strong> = {dexData.init} + {wisData.init}</p>
             <p className="strDamageLocation"><strong>{strData.damage}</strong></p>
-            <p className="encumbLocation"><strong>{conData.encumb + wisData.encumb}</strong> = {conData.encumb} + {wisData.encumb}</p>
         </div>
     )
 }

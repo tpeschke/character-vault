@@ -1,9 +1,9 @@
 import React from 'react'
 
 export default function ShieldBlock({ shield, editing }) {
-    let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbaseencumb, shieldbasebreak,
-        shieldtraindef, shieldtrainparry, shieldtrainencumb, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscencumb,
-        returnZeroIfNaN, updateAttribute, shieldsize } = shield
+    let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+        shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue,
+        returnZeroIfNaN, updateAttribute, shieldsize, shieldFatigue } = shield
 
     if (editing) {
         return (
@@ -16,18 +16,23 @@ export default function ShieldBlock({ shield, editing }) {
 
                 <input className="shieldbasedefLocation" type="number" defaultValue={shieldbasedef} onChange={event => updateAttribute(event.target.value, "shieldbasedef")} />
                 <input className="shieldbaseparryLocation" type="number" defaultValue={shieldbaseparry} onChange={event => updateAttribute(event.target.value, "shieldbaseparry")} />
-                <input className="shieldbaseencumbLocation" type="number" defaultValue={shieldbaseencumb} onChange={event => updateAttribute(event.target.value, "shieldbaseencumb")} />
+                <input className="shieldbaseencumbLocation" type="number" defaultValue={shieldbasefatigue} onChange={event => updateAttribute(event.target.value, "shieldbasefatigue")} />
                 <input className="shieldbasebreakLocation" type="number" defaultValue={shieldbasebreak} onChange={event => updateAttribute(event.target.value, "shieldbasebreak")} />
 
                 <input className="shieldtraindefLocation" type="number" defaultValue={shieldtraindef} onChange={event => updateAttribute(event.target.value, "shieldtraindef")} />
                 <input className="shieldtrainparryLocation" type="number" defaultValue={shieldtrainparry} onChange={event => updateAttribute(event.target.value, "shieldtrainparry")} />
-                <input className="shieldtrainencumbLocation" type="number" defaultValue={shieldtrainencumb} onChange={event => updateAttribute(event.target.value, "shieldtrainencumb")} />
+                <input className="shieldtrainencumbLocation" type="number" defaultValue={shieldtrainfatigue} onChange={event => updateAttribute(event.target.value, "shieldtrainfatigue")} />
                 <input className="shieldtrainbreakLocation" type="number" defaultValue={shieldtrainbreak} onChange={event => updateAttribute(event.target.value, "shieldtrainbreak")} />
 
                 <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onChange={event => updateAttribute(event.target.value, "shieldmiscdef")} />
                 <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onChange={event => updateAttribute(event.target.value, "shieldmiscparry")} />
-                <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onChange={event => updateAttribute(event.target.value, "shieldmiscencumb")} />
+                <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscfatigue} onChange={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
                 <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onChange={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
+
+                <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
+                <p className="shieldtotalparryLocation">{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
+                <p className="shieldtotalencumbLocation">{shieldFatigue}</p>
+                <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
             </div>
         )
     }
@@ -41,22 +46,22 @@ export default function ShieldBlock({ shield, editing }) {
 
             <p className="shieldbasedefLocation">{shieldbasedef}</p>
             <p className="shieldbaseparryLocation">{shieldbaseparry}</p>
-            <p className="shieldbaseencumbLocation">{shieldbaseencumb}</p>
+            <p className="shieldbaseencumbLocation">{shieldbasefatigue}</p>
             <p className="shieldbasebreakLocation">{shieldbasebreak}</p>
 
             <p className="shieldtraindefLocation">{shieldtraindef}</p>
             <p className="shieldtrainparryLocation">{shieldtrainparry}</p>
-            <p className="shieldtrainencumbLocation">{shieldtrainencumb}</p>
+            <p className="shieldtrainencumbLocation">{shieldtrainfatigue}</p>
             <p className="shieldtrainbreakLocation">{shieldtrainbreak}</p>
 
             <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onBlur={event => updateAttribute(event.target.value, "shieldmiscdef")} />
             <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onBlur={event => updateAttribute(event.target.value, "shieldmiscparry")} />
-            <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscencumb} onBlur={event => updateAttribute(event.target.value, "shieldmiscencumb")} />
+            <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscfatigue} onBlur={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
             <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
 
             <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
             <p className="shieldtotalparryLocation">{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-            <p className="shieldtotalencumbLocation">{shieldbaseencumb + shieldtrainencumb < 0 ? shieldbaseencumb + shieldtrainencumb + shieldmiscencumb : 0 + shieldmiscencumb}</p>
+            <p className="shieldtotalencumbLocation">{shieldFatigue}</p>
             <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
 
         </div>

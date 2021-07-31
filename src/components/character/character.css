@@ -51,10 +51,6 @@ input[type=number] {
     transition: 0s;
 }
 
-.stressAdjust {
-    padding-right: 30px;
-}
-
 #pdf {
     width: 816px;
 }
@@ -629,33 +625,16 @@ input.secondarylevelLocation {
     width: 155px;
     text-align: left;
 }
-
-.takingabreatherLocation {
-    top: 437px;
-    left: 546px;
-    width: 74px;
-    text-align: center;
-}
-
 .currentstressLocation {
-    top: 468px;
-    left: 546px;
-    width: 74px;
+    top: 446px;
+    left: 470px;
+    width: 150px;
     text-align: center;
     z-index: 1;
 }
-.totalstressLocation {
-    top: 468px;
-    left: 546px;
-    width: 74px;
-    font-weight: 800;
-    color: #990000;
-    text-align: right;
-    padding-right: 5px;
-    z-index: 0;
-}
+
 .stressthresholdLocation {
-    top: 489px;
+    top: 470px;
     left: 546px;
     width: 74px;
     text-align: center;
@@ -667,7 +646,7 @@ input.secondarylevelLocation {
 }
 
 .relaxationLocation {
-    top: 510px;
+    top: 488px;
     left: 546px;
     width: 74px;
     text-align: center;
@@ -997,7 +976,7 @@ input.secondarylevelLocation {
     width: 25px;
     left: 21px;
 }
-.armorbaseencumbLocation {
+.armorbasefatigueLocation {
     top: 702px;
     text-align: center;
     width: 25px;
@@ -1022,7 +1001,7 @@ input.secondarylevelLocation {
     width: 25px;
     left: 21px;
 }
-.armortrainencumbLocation {
+.armortrainfatigueLocation {
     top: 724px;
     text-align: center;
     width: 25px;
@@ -1047,7 +1026,7 @@ input.secondarylevelLocation {
     width: 25px;
     left: 21px;
 }
-.armormiscencumbLocation {
+.armormiscfatigueLocation {
     top: 746px;
     text-align: center;
     width: 25px;
@@ -1072,7 +1051,7 @@ input.secondarylevelLocation {
     width: 25px;
     left: 21px;
 }
-.armortotalencumbLocation {
+.armortotalfatigueLocation {
     top: 768px;
     text-align: center;
     width: 25px;

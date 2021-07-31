@@ -399,16 +399,16 @@ create table cvarmor (
     armorbonus varchar(300),
     armorbasedef int,
     armorbaserecovery int,
-    armorbaseencumb int,
+    armorbasefatigue int,
     armorbaseinit int,
     armortrainingdef int,
     armortrainrecovery int,
-    armortrainencumb int,
+    armortrainfatigue int,
     armortraininit int,
     armormiscdef int,
     armormiscrecovery int,
     armormiscinit int,
-    armormiscencumb int
+    armormiscfatigue int
 );
 
 create table cvshield (
@@ -430,7 +430,7 @@ create table cvshield (
     shieldmiscdef int,
     shieldmiscparry int,
     shieldmiscbreak int,
-    shieldmiscencumb int
+   shieldmiscfatigue int
 );
 
 create table cvskillsuites (

@@ -12,9 +12,7 @@ export default function MiscVitals({ miscVitals, editing }) {
     }
     return (
         <div>
-            <p className="takingabreatherLocation">{20 - con < 3 ? 3 : 20 - con} seconds</p>
-            <input className="currentstressLocation stressAdjust" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
-            <p className="totalstressLocation">+{totalEncumb * woundMultiplier}</p>
+            <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
             <p className={(totalEncumb * woundMultiplier) + currentstress > shownThreshold ? "stressthresholdLocation mentalBreak" : "stressthresholdLocation"}>{shownThreshold}</p>
             <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
             <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => updateAttribute(event.target.value, "currentfavor")} />
