@@ -188,43 +188,44 @@ viewController = {
   },
   getCharacterForCombatCounter: (req, res) => {
     const db = req.app.get('db')
-      db.get.characterForCombat(req.params.id).then(roughCharacter => {
-        roughCharacter = roughCharacter[0]
-        let character = {
-          name: roughCharacter.name,
-          recovery: null,
-          weapons: []
-        }
-        if (!roughCharacter.vitality || roughCharacter.vitality === 0) {
-          character.trauma = Math.floor((roughCharacter.vitalityroll + roughCharacter.sizemod + roughCharacter.con) / 2)
-        } else {
-          character.trauma = Math.floor(roughCharacter.vitality / 2)
-        }
-        
-        let finalPromise = [];
-        finalPromise.push(db.get.weaponsForCombat(req.params.id).then(result => {
-          result.forEach(val => {
-            if (val.baserecovery) {
-              character.weapons.push({
-                weaponid: val.weaponid,
-                name: val.name,
-                recovery: val.baserecovery + +val.miscrecovery+val.trainrecovery 
-              })
-            }
-          })
-          if (character.weapons[0]) {
-            character.recovery = character.weapons[0].recovery
-          }
-          return true
-        }))
-        Promise.all(finalPromise).then(actualFinal => {
-          if (character.name && character.recovery) {
-            res.send(character)
-          } else {
-            res.send({ message: "This id doesn't belong to a valid character", color: 'red' })
+    db.get.characterForCombat(req.params.id).then(roughCharacter => {
+      roughCharacter = roughCharacter[0]
+      let character = {
+        name: roughCharacter.name,
+        recovery: null,
+        weapons: []
+      }
+      if (!roughCharacter.vitality || roughCharacter.vitality === 0) {
+        character.trauma = Math.floor((roughCharacter.vitalityroll + roughCharacter.sizemod + roughCharacter.con) / 2)
+      } else {
+        character.trauma = Math.floor(roughCharacter.vitality / 2)
+      }
+
+      let finalPromise = [];
+      finalPromise.push(db.get.weaponsForCombat(req.params.id).then(result => {
+        result.forEach(val => {
+          if (val.baserecovery) {
+            character.weapons.push({
+              weaponid: val.weaponid,
+              name: val.name,
+              recovery: val.baserecovery + +val.miscrecovery + val.trainrecovery
+            })
           }
         })
+        if (character.weapons[0]) {
+          character.recovery = character.weapons[0].recovery
+          character.selectedId = character.weapons[0].weaponid
+        }
+        return true
+      }))
+      Promise.all(finalPromise).then(actualFinal => {
+        if (character.name && character.recovery) {
+          res.send(character)
+        } else {
+          res.send({ message: "This id doesn't belong to a valid character", color: 'red' })
+        }
       })
+    })
   }
 }
 
