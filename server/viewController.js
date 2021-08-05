@@ -215,6 +215,7 @@ viewController = {
         if (character.weapons[0]) {
           character.recovery = character.weapons[0].recovery
           character.selectedId = character.weapons[0].weaponid
+          character.selectedName = character.weapons[0].selectedName
         }
         return true
       }))
