@@ -1,6 +1,3 @@
-const puppeteer = require('puppeteer')
-  , { puppeteerEndpoint } = require('./server-config')
-
 viewController = {
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
@@ -149,42 +146,6 @@ viewController = {
         return character
       })
     })
-  },
-  downloadCharacters: function (req, res) {
-    const db = req.app.get('db')
-    try {
-      puppeteer.launch().then(browser => {
-        browser.newPage().then(page => {
-          page.goto(`${puppeteerEndpoint}/download/${req.params.id}`, {
-            waitUntil: "networkidle2"
-          }).then(_ => {
-            page.waitForSelector('div#loaded').then(_ => {
-              page.waitForTimeout(3000).then(_ => {
-                page.pdf({
-                  format: "Letter",
-                  printBackground: true
-                }).then(pdf => {
-                  db.get.characterName(req.params.id.split('.')[0]).then(data => {
-                    if (data[0].name === "" || !data[0].name) {
-                      if (data[0].primarya) {
-                        data[0].name = `Unamed ${data[0].primarya}`
-                      } else {
-                        data[0].name = "Unamed Character"
-                      }
-                    }
-                    res.set("Content-Disposition", `inline;filename=${data[0].name}.pdf`)
-                    res.send(pdf)
-                    browser.close();
-                  })
-                })
-              });
-            })
-          });
-        });
-      });
-    } catch (e) {
-      res.send(e)
-    }
   },
   getCharacterForCombatCounter: (req, res) => {
     const db = req.app.get('db')

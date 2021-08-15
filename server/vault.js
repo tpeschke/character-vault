@@ -71,7 +71,6 @@ app.get('/auth/logout', function (req, res) {
 // ================================== \\
 app.get('/api/allCharacters', viewCtrl.viewAllCharacters)
 app.get('/api/view/:id', viewCtrl.viewCharacter)
-app.get('/api/download/:id', viewCtrl.downloadCharacters);
 app.get('/api/character/:id', viewCtrl.getCharacterForCombatCounter)
 
 function checkLogin (req, res, next) {
