@@ -18,7 +18,7 @@ import statTables from '../statTables';
 export default class CharacterEditor extends Component {
     constructor(props) {
         super(props)
-
+        
         this.state = {
             character: { ...props.character },
             updateCharacter: props.updateCharacter,

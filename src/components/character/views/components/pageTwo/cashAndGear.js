@@ -3,6 +3,7 @@ import EditPairList from '../pairComponents/editPairList'
 
 export default function Skills({ cashAndGear, editing }) {
     let { copper, updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry } = cashAndGear
+
     if (editing) {
         return (
             <div>

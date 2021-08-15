@@ -49,6 +49,16 @@ class Character extends Component {
         })
     }
 
+    updateSharedCharacter = (object, key, value) => {
+        let character = { ...this.state.character }
+        if (key) {
+            character[object][key] = value
+        } else {
+            character[object] = value
+        }
+        this.setState({ character })
+    }
+
     cancelUpdate = () => {
         this.setState({isUpdating: true}, _=> {
             let id = this.props.match.params.id.split('.')[0]
@@ -63,7 +73,7 @@ class Character extends Component {
         if (!character) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
-        let view = <CharacterViewer character={character} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
+        let view = <CharacterViewer character={character} updateSharedCharacter={this.updateSharedCharacter} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
 
         if (isEditingMode) {
             view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} cancelUpdate={this.cancelUpdate} isUpdating={isUpdating}/>

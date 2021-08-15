@@ -201,6 +201,7 @@ export default class CharacterViewer extends Component {
                     this.setState({ isUpdating: false })
                 })
                 character[type] = value
+                this.props.updateSharedCharacter(type, null, value)
                 this.setState({ character }, _ => {
                     if (type.includes('gear')) {
                         let { gearone, geartwo, gearthree, gearfour } = this.state.character
@@ -224,6 +225,7 @@ export default class CharacterViewer extends Component {
                     this.setState({ isUpdating: false })
                 })
                 character[object][key] = value
+                this.props.updateSharedCharacter(object, key, value)
                 this.setState({ character })
             })
         }
