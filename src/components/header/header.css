@@ -5,7 +5,9 @@
     align-items: center;
     background-color: #2192b8;
     position: relative;
-    color: whitesmoke
+    color: whitesmoke;    
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
 }
 
 .fa-home {

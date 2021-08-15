@@ -39,6 +39,28 @@ input[type=number] {
     color: #2192b8;
 }
 
+.downloadingBanner {
+    position: absolute;
+    z-index: 5;
+    background: #b76400;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    top: 160px;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+  
+.downloadingBanner h4, .downloadingBanner p {
+    background: transparent;
+    color: white;
+    margin: 0;
+    padding: 5px 0;
+}
+
 .fakebutton:hover {
     background:rgba(173, 216, 230, 0.50);
     transition: .8s;

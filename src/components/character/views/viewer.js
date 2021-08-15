@@ -34,7 +34,9 @@ export default class CharacterViewer extends Component {
             currentDamage: 0,
             shownVitality: 0,
             endurance: 0,
-            downloadMode: props.downloadMode
+            downloadMode: props.downloadMode,
+            isDownloading: true,
+            isHalfwayDone: false
         }
     }
 
@@ -235,6 +237,7 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = () => {
+        this.setState({isDownloading: true})
         const pageOne = document.getElementById('pageOne');
         html2canvas(pageOne, {scale: 5})
             .then((canvasOne) => {
@@ -244,6 +247,7 @@ export default class CharacterViewer extends Component {
                 var height = pdf.internal.pageSize.getHeight();
                 pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
 
+                this.setState({isHalfwayDone: true})
                 const pageTwo = document.getElementById('pageTwo');
                 html2canvas(pageTwo, {scale: 5})
                     .then((cavansTwo) => {
@@ -252,6 +256,7 @@ export default class CharacterViewer extends Component {
                         pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
                         let name = this.state.character.name ? this.state.character.name : "Unnamed Character";
                         pdf.save(`${name}.pdf`);
+                        this.setState({isHalfwayDone: false, isDownloading: false})
                     });
             });
     }
@@ -262,7 +267,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
-            , { currentDamage, shownVitality, dead, endurance, downloadMode } = this.state
+            , { currentDamage, shownVitality, dead, endurance, downloadMode, isDownloading, isHalfwayDone } = this.state
             , strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
@@ -345,8 +350,17 @@ export default class CharacterViewer extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
+        let downloadingBanner = (<div></div>)
+        if (isDownloading) {
+            downloadingBanner = (<div class="downloadingBanner">
+            <h4>Your PDF is being prepared</h4>
+            <p>{isHalfwayDone ? "(It's currently halfway done)" : "(This will take a hot minute)"}</p>
+        </div>)
+        }
+
         return (
             <div>
+                {downloadingBanner}
                 <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
                     <div id="pageOne" className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
                         <CharacterInfo characterInfo={characterInfo} />
