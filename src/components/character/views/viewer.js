@@ -35,7 +35,7 @@ export default class CharacterViewer extends Component {
             shownVitality: 0,
             endurance: 0,
             downloadMode: props.downloadMode,
-            isDownloading: true,
+            isDownloading: false,
             isHalfwayDone: false
         }
     }
