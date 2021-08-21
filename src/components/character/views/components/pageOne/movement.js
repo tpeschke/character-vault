@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Movement({ movement, editing }) {
-    let { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint, updateAttribute, overCarry } = movement
+    let { crawl, walk, jog, run, sprint, updateAttribute, overCarry } = movement
 
     if (editing) {
         return (

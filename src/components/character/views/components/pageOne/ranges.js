@@ -9,8 +9,10 @@ export default function Ranges({ maxrange, editing, updateAttribute }) {
             </div>
         )
     }
-    return (
-        <div>
+
+    let ranges = (<div></div>)
+    if (maxrange) {
+        ranges = (<div>
             <p className="maxrangeLocation one">5</p>
             <p className="maxrangeLocation two">{(maxrange / 6).toFixed(0)}</p>
             <p className="maxrangeLocation three">{+(maxrange / 6).toFixed(0) + 1}</p>
@@ -23,6 +25,12 @@ export default function Ranges({ maxrange, editing, updateAttribute }) {
             <p className="maxrangeLocation ten">{(maxrange / 1.2).toFixed(0)}</p>
             <p className="maxrangeLocation eleven">{+(maxrange / 1.2).toFixed(0) + 1}</p>
             <p className="maxrangeLocation">{maxrange}</p>
+        </div>)
+    }
+
+    return (
+        <div>
+            {ranges}
         </div>
     )
 }

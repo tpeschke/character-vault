@@ -64,9 +64,9 @@ export default class EditPairList extends Component {
 
     shouldDelete(titleOrValue, value, index, listArray) {
         if (titleOrValue === 'title') {
-            return (!listArray[index].value || listArray[index].value === '') && (value === '' || !value)
+            return (!listArray[index].value || listArray[index].value === '' || listArray[index].value === this.state.defaultValue) && (value === '' || !value)
         } else if (titleOrValue === 'value') {
-            return (!value || value === '') && (listArray[index].title === '' || !listArray[index].title)
+            return (!value || value === '' || value === this.state.defaultValue) && (listArray[index].title === '' || !listArray[index].title)
         }
     }
 

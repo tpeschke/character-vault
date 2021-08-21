@@ -33,7 +33,6 @@ export default class CharacterViewer extends Component {
             isUpdating: false,
             currentDamage: 0,
             shownVitality: 0,
-            endurance: 0,
             downloadMode: props.downloadMode,
             isDownloading: false,
             isHalfwayDone: false
@@ -44,13 +43,7 @@ export default class CharacterViewer extends Component {
         let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
         this.calculateCurrentDamage()
-        let endurance = skills.filter(({ skill }) => skill.toUpperCase() === "ENDURANCE")
-        if (endurance[0]) {
-            endurance = endurance[0].rank
-        } else {
-            endurance = 0
-        }
-        this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con, endurance })
+        this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con })
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -96,11 +89,6 @@ export default class CharacterViewer extends Component {
                     currentBit = currentBit + character
                 }
             })
-        }
-
-        let quarterMastering = this.state.character.skills.filter(({ skill }) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING")
-        if (quarterMastering[0]) {
-            totalCarry -= quarterMastering[0].rank
         }
 
         gearone.forEach(cleanArray)
@@ -267,7 +255,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
-            , { currentDamage, shownVitality, dead, endurance, downloadMode, isDownloading, isHalfwayDone } = this.state
+            , { currentDamage, shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
             , strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
@@ -276,16 +264,19 @@ export default class CharacterViewer extends Component {
             , chaData = chaTable[cha]
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
-            , shownCarry = this.convertFromEncumbToCarry(strData.carry)
+            let quarterMastering = this.state.character.skills.filter(({ skill }) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING" || skill.toUpperCase() === "QUARTER-MASTERING")
+            if (quarterMastering[0]) {
+                quarterMastering = quarterMastering[0].rank
+            } else {
+                quarterMastering = 0
+            }
+            let shownCarry = this.convertFromEncumbToCarry(strData.carry + quarterMastering)
             , overCarry = strData.carry - this.state.adjustedCarry
             , { changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , circleFill = calculateHumanHonorDice(race, shownHonor)
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
-
-            , modifiedRunLength = 10 - endurance - Math.floor(currentstress / 10)
-            , modifiedSprintLength = 5 - endurance - Math.floor(currentstress / 10)
 
         weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
         weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
@@ -298,7 +289,7 @@ export default class CharacterViewer extends Component {
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
             , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
-            , movement = { crawl, walk, jog, run, modifiedRunLength, modifiedSprintLength, sprint, overCarry }
+            , movement = { crawl, walk, jog, run, sprint, overCarry }
             , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
