@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import axios from "axios"
 import CharacterViewer from './views/viewer'
 import CharacterEditor from './views/editor'
+
 class Character extends Component {
     constructor(props) {
         super(props)
@@ -12,8 +13,8 @@ class Character extends Component {
             downloadMode: props.match.path === "/download/:id",
             character: null,
             isEditingMode: 
-                props.match.path === "/new/:id",
-                // true,
+                // props.match.path === "/new/:id",
+                true,
             isUpdating: false
         }
 

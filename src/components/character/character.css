@@ -1563,17 +1563,20 @@ textarea.traitsfour {
 
 .skillsuiteShell {
     height: 147px;
-    width: 110px;
+    width: 132px;
     top: 125px;
     position: absolute;
-    left: 135px;
+    left: 113px;
 }
-.skillcost, .skillrank {
-    width: 50%;
+.skillcost, .skillrank, .skillmod {
+    width: 33%;
     text-align: center;
 }
 .skillrank { 
-    left: 55px
+    left: 43px
+}
+.skillmod {
+    left: 86px;
 }
 
 .skillRow .athletics {
@@ -1600,25 +1603,30 @@ textarea.traitsfour {
 
 .nativeRow {
     position: absolute;
-    top: 170px;
-    left: -51px;
-    width: 160px;
+    top: 169px;
+    left: -92px;
+    width: 224px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 #nativename {
-    width: 30%;
+    width: 92px;
     position: unset;
     font-size: 10px;
 }
 #nativecost {
-    width: 30%;
+    width: 43px;
     position: unset;
     text-align: center;
 }
 #nativerank {
-    width: 30%;
+    width: 43px;
+    position: unset;
+    text-align: center;
+}
+#nativemod {
+    width: 43px;
     position: unset;
     text-align: center;
 }
