@@ -219,8 +219,8 @@ editController = {
                 }
             })
             promiseArray.push(db.delete.skills([id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
-                return skills.map(({ id: skillsid, cost, skill, rank }) => {
-                    return db.upsert.skills(skillsid, id, skill, cost, rank)
+                return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
+                    return db.upsert.skills(skillsid, id, skill, cost, rank, mod)
                 })
             }))
 

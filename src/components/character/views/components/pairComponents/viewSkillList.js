@@ -33,6 +33,7 @@ export default class ViewSkillList extends Component {
                 <p className="skillInput">{item.skill}</p>
                 <p className="costView">{item.cost + (item.rank * 2) - skilladept}</p>
                 <p className="rankInput">{item.rank}</p>
+                <p className="modInput">{item.mod}</p>
             </div>)
         })
 

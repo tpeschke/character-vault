@@ -114,9 +114,10 @@ export default function Skills({ skillsObject, editing }) {
                     <p className="skillmod weirdcraft">{Math.min(intData.skill, wisData.skill)}</p>
                 </div>
                 <div className="nativeRow">
-                    <input id="nativename" type="text" defaultValue={nativelanguage.language} onChange={event => updateNativeLanguage(event.target.value, 'language')} />
+                    <p id="nativename">{nativelanguage.language}</p>
                     <p id="nativecost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
-                    <input id="nativerank" type="number" placeholder={int} defaultValue={nativelanguage.rank} onChange={event => updateNativeLanguage(event.target.value, 'rank')} />
+                    <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : int}</p>
+                    <p id="nativemod">{Math.min(intData.skill, wisData.skill)}</p>
                 </div>
             </div>
             <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} skilladept={skilladept} />

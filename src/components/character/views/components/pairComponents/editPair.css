@@ -22,18 +22,9 @@
     text-align: right;
 }
 
-.border-right {
-    border-left: 1px solid #799aa4;
-}
-
-.viewer .border-right {
-    border-left: none
-}
-
-
 .skillInput {
     padding: 0 4px;
-    width: 77%;
+    width: 45%;
     position: unset !important;
 }
 
@@ -41,7 +32,7 @@
     padding: 0 4px;
     position: unset !important;
     text-align: left;
-    width: 29%;
+    width: 18%;
     z-index: 1;
 }
 
@@ -49,21 +40,28 @@
     padding: 0 4px;
     position: unset !important;
     text-align: center;
-    width: 29%;
+    width: 18%;
 }
 
 .rankInput {
     padding: 0 4px;
     position: unset !important;
     text-align: center;
-    width: 26%;
+    width: 18%;
+}
+
+.modInput {
+    padding: 0 4px;
+    position: unset !important;
+    text-align: center;
+    width: 18%;
 }
 
 .totalCost {
     padding: 0 4px;
     position: absolute;
     text-align: right;
-    width: 29%;
-    left: 140px;
+    width: 18%;
+    left: 127px;
     z-index: 0;
 }

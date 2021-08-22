@@ -19,6 +19,7 @@ export default class EditSkillList extends Component {
             type: props.type,
             defaultCost: props.defaultCost || 1,
             defaultRank: props.defaultRank || 0,
+            defaultMod: props.defaultMod || 0,
             rowWidth: props.rowWidth || '100%'
         }
     }
@@ -31,17 +32,19 @@ export default class EditSkillList extends Component {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
 
-    addNewItem = (skill, cost, rank) => {
+    addNewItem = (skill, cost, rank, mod) => {
         let listArray = this.deepCopyListArray()
-        if (skill || cost || rank) {
+        if (skill || cost || rank || mod) {
             cost = cost ? cost : this.state.defaultCost
             rank = rank ? rank : this.state.defaultRank
-            listArray.push({ skill, cost: +cost, rank: +rank })
+            mod = mod ? mod : this.state.defaultMod
+            listArray.push({ skill, cost: +cost, rank: +rank, mod })
             this.setState({ listArray }, _ => {
                 this.state.updateFunction(this.state.listArray, this.state.type)
                 document.getElementById(`addNewSkillInputskill${this.state.type}`).value = null;
                 document.getElementById(`addNewSkillInputcost${this.state.type}`).value = null;
                 document.getElementById(`addNewSkillInputrank${this.state.type}`).value = null;
+                document.getElementById(`addNewSkillInputmod${this.state.type}`).value = null;
             })
         }
     }
@@ -82,6 +85,7 @@ export default class EditSkillList extends Component {
                 <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
                 <p className="totalCost">({item.cost + (item.rank * 2) - skilladept})</p>
                 <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
+                <input className="modInput border-right" defaultValue={item.mod} onBlur={e => this.updateValue('mod', e.target.value, i)} />
             </div>)
         })
 
@@ -97,6 +101,7 @@ export default class EditSkillList extends Component {
                     <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
                     <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
                     <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
+                    <input id={`addNewSkillInputmod${this.state.type}`} className="modInput border-right" onBlur={e => this.addNewItem(null, null, null, e.target.value)} />
                 </div>
             </div>
         )

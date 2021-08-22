@@ -265,7 +265,12 @@ export default class CharacterViewer extends Component {
             , chaData = chaTable[cha]
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
-            let quarterMastering = this.state.character.skills.filter(({ skill }) => skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING" || skill.toUpperCase() === "QUARTER-MASTERING")
+            let quarterMastering = this.state.character.skills.filter(({ skill }) => {
+                if (skill) {
+                    return skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING" || skill.toUpperCase() === "QUARTER-MASTERING"
+                } 
+                return false
+            })
             if (quarterMastering[0]) {
                 quarterMastering = quarterMastering[0].rank
             } else {
