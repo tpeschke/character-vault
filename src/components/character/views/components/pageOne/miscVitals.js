@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function MiscVitals({ miscVitals, editing }) {
-    let { con, currentstress, updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax, stressthreshold, wis } = miscVitals
+    let { con, currentstress, updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax, stressthreshold, wis, anointed, checkThisBox } = miscVitals
     if (editing) {
         return (
             <div>
@@ -16,6 +16,7 @@ export default function MiscVitals({ miscVitals, editing }) {
             <p className={(totalEncumb * woundMultiplier) + currentstress > shownThreshold ? "stressthresholdLocation mentalBreak" : "stressthresholdLocation"}>{shownThreshold}</p>
             <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
             <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => updateAttribute(event.target.value, "currentfavor")} />
+            <input className="favoranointed" type="checkbox" checked={anointed} onChange={event => updateAttribute(event.target.checked, "anointed")}></input>
             <p className="favormaxLocation">{favormax}</p>
             <p className="favorminLocation">{chaData.favor}</p>
         </div>

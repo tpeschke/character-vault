@@ -116,7 +116,6 @@ editController = {
         const db = req.app.get('db')
         let { object, key, value } = req.body
             , { characterid } = req.params
-
         db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
             res.send({ messsage: "updated" })
         })

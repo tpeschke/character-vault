@@ -179,6 +179,7 @@ export default class CharacterViewer extends Component {
 
     updateAttribute = (value, type) => {
         let character = { ...this.state.character }
+
         if (!isNaN(+value)) {
             value = +value
         }
@@ -254,7 +255,7 @@ export default class CharacterViewer extends Component {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed } = this.state.character
             , { currentDamage, shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
             , strData = strTable[str]
             , dexData = dexTable[dex]
@@ -296,30 +297,30 @@ export default class CharacterViewer extends Component {
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponone
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weapontwo
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponthree
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, ...weaponfour
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, ...weaponfour
             }
-            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax }
+            , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }

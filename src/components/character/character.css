@@ -714,17 +714,24 @@ input.secondarylevelLocation {
     text-align: center;
 }
 .currentfavorLocation {
-    top: 551px;
-    left: 470px;
-    width: 50px;
-    text-align: center;
-}
-
-.favormaxLocation {
     top: 489px;
     left: 545px;
     width: 75px;
     text-align: center;
+}
+
+.favormaxLocation {
+    top: 509px;
+    left: 545px;
+    width: 75px;
+    text-align: center;
+}
+
+.favoranointed {
+    top: 535px;
+    left: 577px;
+    text-align: center;
+    transform: scale(1.5);
 }
 
 .favorminLocation {

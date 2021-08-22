@@ -5,7 +5,7 @@ export default function weaponsquare({ weapon }) {
         miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, weapontrainparry,
-        weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, shieldname, type, baserecovery, totalFatigue } = weapon
+        weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, shieldname, type, baserecovery, totalFatigue, isRanged } = weapon
 
     if (!shielddr) { shielddr = ' 2/d' }
     if (!armordr) { armordr = 0 }
@@ -41,10 +41,14 @@ export default function weaponsquare({ weapon }) {
         drShell = (<div className="drshell">
             <p id="armorDr">{armordr}</p>
         </div>)
-        if (thrownweapon) {
-            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
+        if (isRanged) {
+            if (thrownweapon) {
+                damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
+            } else {
+                damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
+            }
         } else {
-            damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
+            damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
         }
     }
 
