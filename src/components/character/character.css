@@ -688,15 +688,15 @@ input.secondarylevelLocation {
     text-align: left;
 }
 .currentstressLocation {
-    top: 446px;
-    left: 470px;
-    width: 150px;
+    top: 426px;
+    left: 546px;
+    width: 74px;
     text-align: center;
     z-index: 1;
 }
 
 .stressthresholdLocation {
-    top: 470px;
+    top: 448px;
     left: 546px;
     width: 74px;
     text-align: center;
@@ -708,7 +708,7 @@ input.secondarylevelLocation {
 }
 
 .relaxationLocation {
-    top: 488px;
+    top: 468px;
     left: 546px;
     width: 74px;
     text-align: center;
@@ -721,16 +721,16 @@ input.secondarylevelLocation {
 }
 
 .favormaxLocation {
-    top: 551px;
-    left: 521px;
-    width: 50px;
+    top: 489px;
+    left: 545px;
+    width: 75px;
     text-align: center;
 }
 
 .favorminLocation {
-    top: 551px;
-    left: 571px;
-    width: 50px;
+    top: 552px;
+    left: 546px;
+    width: 74px;
     text-align: center;
 }
 
