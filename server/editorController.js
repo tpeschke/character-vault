@@ -89,13 +89,13 @@ editController = {
                 table = 'weapontwo'
             } else if (keyName.includes('three')) {
                 table = 'weaponthree'
-            } else if (keyName.includes('four')) {
+            } else if (keyName.includes('four') || keyName.includes('thrownweapon')) {
                 table = 'weaponfour'
             }
             idname = 'characterid'
         }
 
-        if (body[keyName].length || body[keyName].length === 0) {
+        if (Array.isArray(body[keyName])) {
             let promiseArray = []
             promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
                 return body[keyName].map(({ id, value, title }) => {
@@ -116,6 +116,13 @@ editController = {
         const db = req.app.get('db')
         let { object, key, value } = req.body
             , { characterid } = req.params
+            if (key === 'thrownweapon') {
+                if (value === 1) {
+                    value = true
+                } else {
+                    value = false
+                }
+            }
         db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
             res.send({ messsage: "updated" })
         })

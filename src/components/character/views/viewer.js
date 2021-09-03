@@ -190,13 +190,16 @@ export default class CharacterViewer extends Component {
         }
 
         if (character[type] !== value) {
+            console.log(type, value)
             this.setState({ isUpdating: true }, _ => {
                 axios.patch(`/api/updateSingleThing/${this.state.character.id}`, { [type]: value }).then(result => {
                     this.setState({ isUpdating: false })
                 })
                 character[type] = value
+                console.log(character[type], value)
                 this.props.updateSharedCharacter(type, null, value)
                 this.setState({ character }, _ => {
+                    console.log(character)
                     if (type.includes('gear')) {
                         let { gearone, geartwo, gearthree, gearfour } = this.state.character
                         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
@@ -323,7 +326,7 @@ export default class CharacterViewer extends Component {
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, ...weaponfour
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
             , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
             , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }

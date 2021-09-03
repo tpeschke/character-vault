@@ -20,6 +20,7 @@ export default class Home extends Component {
     }
 
     componentWillMount() {
+        document.title = "Character Vault"
         this.getCharactersAndVault()
     }
 

@@ -27,10 +27,11 @@ class Character extends Component {
         }
         let id = this.props.match.params.id.split('.')[0]
         axios.get(`/api/view/${id}`).then(({ data: character }) => {
-            this.setState({ character })
+            this.setState({ character }, _=> {
+                document.title = this.state.character.name
+            })
         })
     }
-
     componentWillUnmount() {
         if (this.props.match.path === "/new/:id") {
             axios.post('/api/upsertCharacter', this.state.character)

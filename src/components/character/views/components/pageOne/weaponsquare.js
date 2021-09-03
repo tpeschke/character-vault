@@ -5,7 +5,7 @@ export default function weaponsquare({ weapon }) {
         miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, weapontrainparry,
-        weaponmiscparry, thrownweapon, updateAttribute, totalEncumb, shieldname, type, baserecovery, totalFatigue, isRanged } = weapon
+        weaponmiscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject } = weapon
 
     if (!shielddr) { shielddr = ' 2/d' }
     if (!armordr) { armordr = 0 }
@@ -22,10 +22,11 @@ export default function weaponsquare({ weapon }) {
         <p id="armorDr">{armordr}</p>
         {shieldDrShown}
     </div>)
+
     let mathOperator = getMathOperator(traindamage + +miscdamage + strdamage)
         , totalDamageModifier = traindamage + +miscdamage + strdamage
 
-    if (baseparry === 'n/a' && !thrownweapon) {
+    if (isRanged && !thrownweapon) {
         mathOperator = getMathOperator(traindamage + +miscdamage)
         totalDamageModifier = traindamage + +miscdamage
     }
@@ -37,19 +38,12 @@ export default function weaponsquare({ weapon }) {
     }
     let damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
 
-    if (baseparry === 'n/a') {
+    if (baseparry === 'n/a' && shieldbaseparry + shieldtrainparry + shieldmiscparry === 0) {
         drShell = (<div className="drshell">
             <p id="armorDr">{armordr}</p>
         </div>)
-        if (isRanged) {
-            if (thrownweapon) {
-                damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
-            } else {
-                damageShell = (<p className="damage fakebutton" onClick={_ => updateAttribute(!thrownweapon, 'fourthrownweapon')}>{basedamage}{totalDamageModifier}</p>)
-            }
-        } else {
-            damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
-        }
+    } else if (baseparry === 'n/a' && isRanged) {
+        damageShell = (<p className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>{basedamage}{totalDamageModifier}</p>)
     }
 
     return (
