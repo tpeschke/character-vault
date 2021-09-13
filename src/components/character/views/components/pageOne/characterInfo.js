@@ -1,13 +1,23 @@
 import React from 'react'
+import "./plates.css"
 
 export default function CharacterInfo({ characterInfo, editing }) {
     let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute } = characterInfo
     let plates = (
         <div className="plates">
-            {/* <p className="namePlate">Character Name</p>
+            <p className="namePlate">Character Name</p>
             <p className="playerPlate">Player</p>
             <p className="playerScorePlate"></p>
-            <p className="racePlate">Race</p> */}
+            <p className="racePlate">Race</p>
+            <p className="archetypePlate">Archetypes</p>
+            <p className="archetypeSlashPlate">/</p>
+            <p className="levelPlate">Act. LvL</p>
+            <p className="crpPlate">CrP</p>
+            <p className="nextExPlate">Ex (To Next)</p>
+            <p className="currentExPlate">Ex (Current)</p>
+            <p className="primaryDrawbackPlate">Primary Drawback</p>
+            <p className="drawbackFirstScorePlate"></p>
+            <p className="drawbackSecondScorePlate"></p>
         </div>
     )
 

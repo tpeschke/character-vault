@@ -15,21 +15,50 @@ export default function Movement({ movement, editing }) {
         )
     }
     return (
-        <div>
-            <p className="crawlLocation">{crawl}</p>
-            <div className={overCarry <= -15 ? 'crawlLengthLocation crawlStrike strikeThrough' : 'displayNone'}></div>
-
-            <p className="walkLocation">{walk}</p>
-            <div className={overCarry <= -12 ? 'walkLengthLocation walkStrike strikeThrough' : 'displayNone'}></div>
-
-            <p className="jogLocation">{jog}</p>
-            <div className={overCarry <= -9 ? 'jogLengthLocation jogStrike strikeThrough' : 'displayNone'}></div>
-
-            <p className="runLocation">{run}</p>
-            <div className={overCarry <= -6 ? 'runLengthLocation runStrike strikeThrough' : 'displayNone'}></div>
-
-            <p className="sprintLocation">{sprint}</p>
-            <div className={overCarry <= -3 ? 'sprintLengthLocation sprintStrike strikeThrough' : 'displayNone'}></div>
+        <div className="movementShell">
+            <h1>Movement</h1>
+            <div className="movementRowsSell">
+                <div>
+                    <p>Crawl</p>
+                    <p className="crawlLocation">{crawl}</p>
+                    <div className="lengthShell">
+                        <p>∞ Seconds</p>
+                        <div className={overCarry <= -15 ? 'crawlLengthLocation crawlStrike strikeThrough' : 'displayNone'}></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Walk</p>
+                    <p className="walkLocation">{walk}</p>
+                    <div className="lengthShell">
+                        <p>∞ Seconds</p>
+                        <div className={overCarry <= -12 ? 'walkLengthLocation walkStrike strikeThrough' : 'displayNone'}></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Jog</p>
+                    <p className="jogLocation">{jog}</p>
+                    <div className="lengthShell">
+                        <p>∞ Seconds</p>
+                        <div className={overCarry <= -9 ? 'jogLengthLocation jogStrike strikeThrough' : 'displayNone'}></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Run</p>
+                    <p className="runLocation">{run}</p>
+                    <div className="lengthShell">
+                        <p>10 Second Interval</p>
+                        <div className={overCarry <= -6 ? 'runLengthLocation runStrike strikeThrough' : 'displayNone'}></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Sprint</p>
+                    <p className="sprintLocation">{sprint}</p>
+                    <div className="lengthShell">
+                        <p>5 Second Interval</p>
+                        <div className={overCarry <= -3 ? 'sprintLengthLocation sprintStrike strikeThrough' : 'displayNone'}></div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

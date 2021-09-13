@@ -1,0 +1,72 @@
+.namePlate {
+    left: 20px;
+    top: 23px;
+}
+
+.playerPlate {
+    left: 402px;
+    top: 23px;
+}
+
+.playerScorePlate {
+    left: 445px;
+    top: 38px;
+    border-bottom: 2px solid;
+    width: 152px;
+    padding: 1px 5px;
+}
+
+.racePlate {
+    left: 20px;
+    top: 47px;
+}
+
+.archetypePlate {
+    left: 127px;
+    top: 47px;
+}
+
+.archetypeSlashPlate {
+    left: 319px;
+    top: 43px;
+    font-size: 20px !important;
+}
+
+.levelPlate {
+    left: 443px;
+    top: 47px;
+}
+
+.crpPlate {
+    left: 524px;
+    top: 47px;
+}
+
+.nextExPlate {
+    left: 20px;
+    top: 67px;
+}
+
+.currentExPlate {
+    left: 250px;
+    top: 67px;
+}
+
+.primaryDrawbackPlate {
+    left: 20px;
+    top: 89px; 
+}
+
+.drawbackFirstScorePlate {
+    left: 145px;
+    top: 104px;
+    border-bottom: 2px solid;
+    width: 302px;
+}
+
+.drawbackSecondScorePlate {
+    left: 20px;
+    top: 122px;
+    border-bottom: 2px solid;
+    width: 427px;
+}

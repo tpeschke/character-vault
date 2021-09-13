@@ -16,19 +16,58 @@ export default function Stats({ stats, editing }) {
         )
     }
     return (
-        <div>
-            <p className="strLocation">{str}</p>
-            <p className="strConfrontationLocation">{strData.confrontation.toLowerCase()}</p>
-            <p className="dexLocation">{dex}</p>
-            <p className="dexConfrontationLocation">{dexData.confrontation.toLowerCase()}</p>
-            <p className="conLocation">{con}</p>
-            <p className="conConfrontationLocation">{conData.confrontation.toLowerCase()}</p>
-            <p className="intLocation">{int}</p>
-            <p className="intConfrontationLocation">{intData.confrontation.toLowerCase()}</p>
-            <p className="wisLocation">{wis}</p>
-            <p className="wisConfrontationLocation">{wisData.confrontation.toLowerCase()}</p>
-            <p className="chaLocation">{cha}</p>
-            <p className="chaConfrontationLocation">{chaData.confrontation.toLowerCase()}</p>
+        <div className="statsShell">
+            <h1>Stats</h1>
+            <div className="statRowsShell">
+                <div>
+                    <p className="strLocation">{str}</p>
+                    <p>Str</p>
+                    <div id="confDieShell">
+                        <p className="strConfrontationLocation">{strData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="dexLocation">{dex}</p>
+                    <p>Dex</p>
+                    <div id="confDieShell">
+                        <p className="dexConfrontationLocation">{dexData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="conLocation">{con}</p>
+                    <p>Con</p>
+                    <div id="confDieShell">
+                        <p className="conConfrontationLocation">{conData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="intLocation">{int}</p>
+                    <p>Int</p>
+                    <div id="confDieShell">
+                        <p className="intConfrontationLocation">{intData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="wisLocation">{wis}</p>
+                    <p>Wis</p>
+                    <div id="confDieShell">
+                        <p className="wisConfrontationLocation">{wisData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+                <div>
+                    <p className="chaLocation">{cha}</p>
+                    <p>Cha</p>
+                    <div id="confDieShell">
+                        <p className="chaConfrontationLocation">{chaData.confrontation.toLowerCase()}</p>
+                        <p>Conf Die</p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
