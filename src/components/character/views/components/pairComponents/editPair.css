@@ -15,6 +15,18 @@
     text-align: center;
 }
 
+.gearColumn .contentPairListShell input:first-child {
+    text-align: unset;
+}
+
+.gearColumn .viewPairListStriping {
+    border-left: 2px solid grey;
+}
+
+.gearColumn:first-child .viewPairListStriping {
+    border-left: none;
+}
+
 .stripesShell div:nth-child(even) {
     background: lightgray;
 }
