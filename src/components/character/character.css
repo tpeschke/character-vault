@@ -368,7 +368,7 @@ input.secondarylevelLocation {
     position: unset !important;
     z-index: 1;
     margin: 0;
-    height: 19.6px;
+    min-height: 19.6px;
 }
 
 .statRowsShell p:nth-child(2) {
@@ -777,6 +777,7 @@ input.secondarylevelLocation {
     margin: 0;
     width: 50%;
     height: unset;
+    min-height: unset;
 }
 
 .vitalShell div p:first-child {
@@ -933,7 +934,7 @@ input.secondarylevelLocation {
 }
 
 .vitalsShell {
-    top: 593px;
+    top: 580px;
     position: absolute;
     width: 325px;
     right: 20px;
@@ -1069,7 +1070,6 @@ input.secondarylevelLocation {
 .vitalyRollsShell {
     display: flex;
     justify-content: space-between;
-    background: lightgray;
 }
 
 .vitalyRollsShell div {
@@ -1077,7 +1077,7 @@ input.secondarylevelLocation {
     justify-content: space-between;
     width: 100%;
     padding: 0 2px;
-    border-right: 2px solid grey;
+    border-right: 2px solid lightgrey;
 }
 
 .vitalyRollsShell div:last-child {

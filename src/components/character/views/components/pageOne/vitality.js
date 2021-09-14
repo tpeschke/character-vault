@@ -63,8 +63,9 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                         <p>Wound</p>
+                        <p>Wound</p>
                     </div>
-                    <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                    <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
                 </div>
                 <div className="damageShellRight">
                     <div className="woundTitleShell">
@@ -75,8 +76,9 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                         <p>Wound</p>
+                        <p>Wound</p>
                     </div>
-                    <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+                    <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
                 </div>
             </div>
 
