@@ -1,7 +1,13 @@
 import React from 'react'
 
 export default function MiscVitals({ miscVitals, editing }) {
-    let { con, currentstress, updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax, stressthreshold, wis, anointed } = miscVitals
+    let { currentstress, updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax, stressthreshold, wis, anointed } = miscVitals
+
+    let anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(true, "anointed")}></div>)
+    if (anointed) {
+        anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(false, "anointed")}><i class="fas fa-check"></i></div>)
+    }
+
     if (editing) {
         return (
             <div>
@@ -37,7 +43,9 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
                 <div className="checkboxShell">
                     <p>Anointed?</p>
-                    <input className="favoranointed" type="checkbox" checked={anointed} onChange={event => updateAttribute(event.target.checked, "anointed")}></input>
+                    <div className="checkboxShellInner">
+                        {anointedDiv}
+                    </div>
                 </div>
                 <div>
                     <p>Min</p>

@@ -53,7 +53,7 @@
 
 .skillInput {
     padding: 0 4px;
-    width: 45%;
+    width: 151px;
     position: unset !important;
 }
 
@@ -61,7 +61,7 @@
     padding: 0 4px;
     position: unset !important;
     text-align: left;
-    width: 18%;
+    width: 40px;
     z-index: 1;
 }
 
@@ -69,28 +69,28 @@
     padding: 0 4px;
     position: unset !important;
     text-align: center;
-    width: 18%;
+    width: 40px;
 }
 
 .rankInput {
     padding: 0 4px;
     position: unset !important;
     text-align: center;
-    width: 18%;
+    width: 40px;
 }
 
 .modInput {
     padding: 0 4px;
     position: unset !important;
     text-align: center;
-    width: 18%;
+    width: 40px;
 }
 
 .totalCost {
     padding: 0 4px;
     position: absolute;
     text-align: right;
-    width: 18%;
+    width: 40px;
     left: 127px;
     z-index: 0;
 }

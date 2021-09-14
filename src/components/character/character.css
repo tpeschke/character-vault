@@ -364,7 +364,7 @@ input.secondarylevelLocation {
 }
 
 .statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p,
- .socialShell p, .socialShell input {
+ .socialShell p, .socialShell input, .skillShell p {
     position: unset !important;
     z-index: 1;
     margin: 0;
@@ -789,15 +789,23 @@ input.secondarylevelLocation {
 .vitalShell div:first-child p:first-child {
     background: #222;
     color: whitesmoke;
-    text-align: center;
-    padding-top: 3px;
+    padding-top: 1px;
     font-size: 13px;
-    padding-left: 0;
+    padding-left: 5px;
     margin: -1px;
 }
 
-.checkboxShell {
-    margin-top: 4px;
+.checkboxShellInner {
+    width: 50%;
+    background: none !important;
+    justify-content: space-around !important;
+}
+
+.anointedDiv {
+    padding: 1px;
+    border: 1px solid grey;
+    width: 19.6px;
+    height: 19.6px;
 }
 
 .currentstressLocation {
@@ -1861,119 +1869,178 @@ textarea.traitsfour {
     text-align: center;
 }
 
-.skillDiscount {
-    height: 42px;
-    width: 250px;
-    top: 41px;
+.skillShell {
     position: absolute;
+    top: 20px;
     left: 20px;
+    width: 776px;
+    display: flex;
+    justify-content: space-between;
 }
-.strDiscount {
-    left: 25px;
-    width: 53px;
+
+.skillLeftShell {
+    width: 30%;
+    border-right: 1px solid #222;
+}
+
+.skillLeftShell h2 {
+    text-align: left;
+    padding-left: 10px;
+    margin-right: -1px;
+}
+
+.skillRightShell {
+    width: 70%;
+    position: relative;
+}
+
+.skillMods {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.skillMods div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 33%;
+}
+
+.skillMods div:nth-child(odd) {
+    background: lightgray
+}
+
+.skillMods div p:first-child, .skillAdept p:first-child, .skillRow p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.skillMods div p:nth-child(2) {
+    width: 24px;
     text-align: center;
 }
-.dexDiscount {
-    left: 101px;
-    width: 53px;
-    text-align: center;
+
+.skillAdept {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid lightgrey;
+    height: 19.6px;
 }
-.conDiscount {
-    left: 179px;
-    width: 71px;
-    text-align: center;
-}
-.intDiscount {
-    left: 25px;
-    width: 53px;
-    text-align: center;
-    top: 22px
-}
-.wisDiscount {
-    left: 101px;
-    width: 53px;
-    text-align: center;
-    top: 22px
-}
-.chaDiscount {
-    left: 179px;
-    width: 71px;
-    text-align: center;
-    top: 22px
-}
+
 .skilladeptLocation {
-    left: 87px;
-    width: 71px;
+    width: 140px;
     text-align: center;
-    top: 44px;
 }
 
 .skillsuiteShell {
-    height: 147px;
-    width: 132px;
-    top: 125px;
-    position: absolute;
-    left: 113px;
-}
-.skillcost, .skillrank, .skillmod {
-    width: 33%;
-    text-align: center;
-}
-.skillrank { 
-    left: 43px
-}
-.skillmod {
-    left: 86px;
-}
-
-.skillRow .athletics {
-    top: 0
-}
-.skillRow .lore {
-    top: 21px
-}
-.skillRow .streetwise {
-    top: 42px
-}
-.skillRow .survival {
-    top: 63px
-}
-.skillRow .tactics {
-    top: 84px
-}
-.skillRow .trades {
-    top: 105px
-}
-.skillRow .weirdcraft {
-    top: 126px
-}
-
-.nativeRow {
-    position: absolute;
-    top: 169px;
-    left: -92px;
-    width: 224px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
-#nativename {
-    width: 92px;
+
+.skillsuiteShell .skillRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillsuiteShell .skillRow:nth-child(odd) {
+    background: lightgray
+}
+
+.skillsuiteShell .skillRow:first-child {
+    background: #222;
+}
+
+.skillRow p, .skillRow input {
+    text-align: center;
+    width: 40px;
     position: unset;
+}
+
+.skillRow p:first-child {
+    text-align: left;
+    width: 90px;
+}
+
+.skillRow h2:nth-child(2), .skillRow h2:nth-child(3), .skillRow h2:nth-child(4) {
     font-size: 10px;
-}
-#nativecost {
-    width: 43px;
-    position: unset;
+    padding-top: 3px;
+    padding-left: 0px;
+    width: 40px;
     text-align: center;
 }
-#nativerank {
-    width: 43px;
-    position: unset;
-    text-align: center;
+
+.navLang {
+    width: 95px !important;
 }
-#nativemod {
-    width: 43px;
-    position: unset;
-    text-align: center;
+
+.advSkillBackgroundShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advSkillBackgroundShell div {
+    width: 100%;
+}
+
+.advSkillBackgroundShell div .skillRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advSkillBackgroundShell div .skillRow:first-child {
+    background: #222
+}
+
+.advSkillBackgroundShell div .skillRow h2:first-child, .advSkillBackgroundShell div .skillRow p:first-child {
+    width: 151px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.advSkillBackgroundShell div .skillRow h2:nth-child(2), .advSkillBackgroundShell div .skillRow h2:nth-child(3),
+ .advSkillBackgroundShell div .skillRow h2:nth-child(4), .advSkillBackgroundShell div .skillRow p:nth-child(2),
+  .advSkillBackgroundShell div .skillRow p:nth-child(3), .advSkillBackgroundShell div .skillRow p:nth-child(4) {
+    width: 40px;
+}
+
+.advSkillBackgroundShell div .stripings {
+    position: absolute;
+    top: 0;
+}
+
+.advSkillBackgroundShell div .stripings div {
+    height: 19.6px;
+    width: 50%;
+}
+
+.advSkillBackgroundShell div .stripings div:nth-child(even) {
+    background: lightgray
+}
+
+.stripeDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stripeDiv div:first-child {
+    min-width: 191px;
+    border-right: 2px solid grey;
+}
+
+.stripeDiv:first-child div:first-child {
+    border-right: none;
+}
+
+.stripeDiv div:nth-child(2) {
+    width: 80px;
+    border-right: 2px solid #222;
+    background: unset !important
+}
+
+.advSkillBackgroundShell div:nth-child(2) .stripings .stripeDiv div:nth-child(2) {
+    border-right: none;
 }

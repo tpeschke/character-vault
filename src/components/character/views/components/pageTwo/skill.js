@@ -4,6 +4,7 @@ import EditSkillList from '../pairComponents/editSkillList'
 
 export default function Skills({ skillsObject, editing }) {
     let { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int, updateAttribute, updateNativeLanguage, updateSkillsuites } = skillsObject
+
     if (editing) {
         return (
             <div>
@@ -67,60 +68,253 @@ export default function Skills({ skillsObject, editing }) {
         )
     }
     return (
-        <div>
-            <div className="skillDiscount">
-                <p className="strDiscount">{strData.skill}</p>
-                <p className="dexDiscount">{dexData.skill}</p>
-                <p className="conDiscount">{conData.skill}</p>
-                <p className="intDiscount">{intData.skill}</p>
-                <p className="wisDiscount">{wisData.skill}</p>
-                <p className="chaDiscount">{chaData.skill}</p>
-                <p className="skilladeptLocation">{skilladept}</p>
+        <div className="skillShell">
+            <div className="skillLeftShell">
+                <div>
+                    <h2>Skill Mods & Skill Adepts</h2>
+                    <div className="skillDiscount">
+                        <div className="skillMods">
+                            <div>
+                                <p>Str</p>
+                                <p>{strData.skill}</p>
+                            </div>
+                            <div>
+                                <p>Dex</p>
+                                <p>{dexData.skill}</p>
+                            </div>
+                            <div>
+                                <p>Con</p>
+                                <p>{conData.skill}</p>
+                            </div>
+                            <div>
+                                <p>Int</p>
+                                <p>{intData.skill}</p>
+                            </div>
+                            <div>
+                                <p>Wis</p>
+                                <p>{wisData.skill}</p>
+                            </div>
+                            <div>
+                                <p>Cha</p>
+                                <p>{chaData.skill}</p>
+                            </div>
+                        </div>
+                        <div className="skillAdept">
+                            <p>Skill Adept(s)</p>
+                            <p className="skilladeptLocation">{skilladept}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="skillsuiteShell">
+                    <div className="skillRow">
+                        <h2>Skill Suites</h2>
+                        <h2>Cost</h2>
+                        <h2>Rank</h2>
+                        <h2>Mod</h2>
+                    </div>
+                    <div className="skillRow">
+                        <p>Athletics</p>
+                        <p className="skillcost">{Math.floor((skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} />
+                        <p className="skillmod">{Math.min(strData.skill, conData.skill)}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Lore</p>
+                        <p className="skillcost">{Math.floor((skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} />
+                        <p className="skillmod">{intData.skill}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Streetwise</p>
+                        <p className="skillcost">{Math.floor((skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} />
+                        <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Survival</p>
+                        <p className="skillcost">{Math.floor((skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} />
+                        <p className="skillmod">{Math.min(conData.skill, wisData.skill)}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Tactics</p>
+                        <p className="skillcost">{Math.floor((skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} />
+                        <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Trades</p>
+                        <p className="skillcost">{Math.floor((skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} />
+                        <p className="skillmod">{Math.min(dexData.skill, intData.skill)}</p>
+                    </div>
+                    <div className="skillRow">
+                        <p>Weirdcraft</p>
+                        <p className="skillcost">{Math.floor((skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                        <input className="skillrank" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} />
+                        <p className="skillmod">{Math.min(intData.skill, wisData.skill)}</p>
+                    </div>
+                </div>
+                <div className="skillsuiteShell">
+                    <div className="skillRow">
+                        <h2>Native Lang.</h2>
+                        <h2>Cost</h2>
+                        <h2>Rank</h2>
+                        <h2>Mod</h2>
+                    </div>
+                    <div className="skillRow">
+                        <p className="navLang">{nativelanguage.language}</p>
+                        <p className="skillcost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
+                        <p className="skillrank">{nativelanguage.rank ? nativelanguage.rank : int}</p>
+                        <p className="skillmod">{Math.min(intData.skill, wisData.skill)}</p>
+                    </div>
+                </div>
             </div>
-            <div className="skillsuiteShell">
-                <div className="skillRow athletics">
-                    <p className="skillcost athletics">{Math.floor((skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank athletics" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} />
-                    <p className="skillmod athletics">{Math.min(strData.skill, conData.skill)}</p>
+            <div className="skillRightShell">
+                <div className="advSkillBackgroundShell">
+                    <div>
+                        <div className="skillRow">
+                            <h2>Adv Skill</h2>
+                            <h2>Cost</h2>
+                            <h2>Rank</h2>
+                            <h2>Mod</h2>
+                        </div>
+                        <div className="stripings">
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="skillRow">
+                            <h2>Adv Skill</h2>
+                            <h2>Cost</h2>
+                            <h2>Rank</h2>
+                            <h2>Mod</h2>
+                        </div>
+                        <div className="stripings">
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div className="stripeDiv">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="skillRow lore">
-                    <p className="skillcost lore">{Math.floor((skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank lore" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} />
-                    <p className="skillmod lore">{intData.skill}</p>
-                </div>
-                <div className="skillRow streetwise">
-                    <p className="skillcost streetwise">{Math.floor((skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank streetwise" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} />
-                    <p className="skillmod streetwise">{Math.min(wisData.skill, chaData.skill)}</p>
-                </div>
-                <div className="skillRow survival">
-                    <p className="skillcost survival">{Math.floor((skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank survival" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} />
-                    <p className="skillmod survival">{Math.min(conData.skill, wisData.skill)}</p>
-                </div>
-                <div className="skillRow tactics">
-                    <p className="skillcost tactics">{Math.floor((skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank tactics" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} />
-                    <p className="skillmod tactics">{Math.min(wisData.skill, chaData.skill)}</p>
-                </div>
-                <div className="skillRow trades">
-                    <p className="skillcost trades">{Math.floor((skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank trades" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} />
-                    <p className="skillmod trades">{Math.min(dexData.skill, intData.skill)}</p>
-                </div>
-                <div className="skillRow weirdcraft">
-                    <p className="skillcost weirdcraft">{Math.floor((skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                    <input className="skillrank weirdcraft" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} />
-                    <p className="skillmod weirdcraft">{Math.min(intData.skill, wisData.skill)}</p>
-                </div>
-                <div className="nativeRow">
-                    <p id="nativename">{nativelanguage.language}</p>
-                    <p id="nativecost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
-                    <p id="nativerank">{nativelanguage.rank ? nativelanguage.rank : int}</p>
-                    <p id="nativemod">{Math.min(intData.skill, wisData.skill)}</p>
-                </div>
+                <ViewSkillList stylings={{ width: '549px', height: '275px' }} rowWidth={'271px'} listArray={skills} skilladept={skilladept} />
             </div>
-            <ViewSkillList stylings={{ top: '42px', left: '247px', width: '549px', height: '275px' }} rowWidth={'274px'} listArray={skills} skilladept={skilladept} />
         </div>
     )
 }
