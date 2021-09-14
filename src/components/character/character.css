@@ -200,10 +200,6 @@ input, textarea {
     transition: .8s
 }
 
-.viewer .contactstextArea {
-    top: 739px; 
-}
-
 .plates p {
     font-family: 'Vollkorn SC', serif;
 }
@@ -989,14 +985,10 @@ input.secondarylevelLocation {
 }
 
 .contactsLocation {
-    left: 20px;
-    top: 762px;
     width: 426px;
 }
 .contactstextArea {
     position: absolute;
-    top: 760px;
-    left: 20px;
     width: 426px;
     max-width: 426px;
     min-width: 426px;
@@ -1575,6 +1567,34 @@ input.secondarylevelLocation {
 .socialLeftShell h2 {
     margin-right: -1px
 }
+
+.reputationShell {
+    position: relative;
+}
+
+.reputationTitles {
+    position: absolute;
+    top: 0
+}
+
+.reputationTitles p {
+    font-family: 'Vollkorn SC', serif;
+    height: 19.6px;
+    padding-right: 5px;
+    padding-top: 1px;
+}
+
+.reputationTitles p:nth-child(even) {
+    background: lightgray;
+}
+
+.contactStriping div {
+    height: 19.6px;
+}
+.contactStriping div:nth-child(even)  {
+    background: lightgray;
+}
+
 
 .valueDisplay {
     padding-right: 5px;

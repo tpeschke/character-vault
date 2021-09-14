@@ -35,7 +35,7 @@ export default class ViewList extends Component {
                     {stripes}
                 </div>
                 <div className="contentPairListShell">
-                {listOfThingsToDisplay}
+                    {listOfThingsToDisplay}
                 </div>
             </div>
         )

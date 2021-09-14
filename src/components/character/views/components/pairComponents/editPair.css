@@ -19,11 +19,15 @@
 }
 
 .viewPairListStriping .stripesShell, .viewPairListStriping .contentPairListShell {
-    position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     flex-wrap: wrap;
+}
+
+.viewPairListStriping .contentPairListShell {
+    position: absolute;
+    top: 0
 }
 
 .titleInput {

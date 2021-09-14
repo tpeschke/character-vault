@@ -47,9 +47,9 @@ export default function Social({ social, editing }) {
                     <h2>Temperament</h2>
                     <p className="temperamentLocation">{temperament}</p>
                     <h2>Goals</h2>
-                    <ViewList listArray={goals} limit={3}/>
+                    <ViewList listArray={goals} limit={3} />
                     <h2>Devotions</h2>
-                    <ViewPairList listArray={devotions} limit={4}/>
+                    <ViewPairList listArray={devotions} limit={4} />
                 </div>
                 <div className="socialRightShell">
                     <h2>Traits</h2>
@@ -57,11 +57,26 @@ export default function Social({ social, editing }) {
                 </div>
             </div>
             <h2>Flaws</h2>
-            <ViewPairList stylings={{ width: '427px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6}/>
+            <ViewPairList stylings={{ width: '427px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
-            <ViewList stylings={{ top: '656px', left: '107px', width: '340px' }} listArray={reputation} limit={3}/>
+            <div className="reputationShell">
+                <ViewList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} />
+                <div className="reputationTitles">
+                    <p>I'm Know For</p>
+                    <p>I'm Know For</p>
+                    <p>I'm Know For</p>
+                </div>
+            </div>
             <h2>Allies, Contacts, & Assets</h2>
-            <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
+            <div>
+                <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
+                <div className="contactStriping">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     )
 }
