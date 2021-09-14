@@ -234,7 +234,7 @@ export default class CharacterViewer extends Component {
         html2canvas(pageOne, {scale: 5})
             .then((canvasOne) => {
                 const imgDataOne = canvasOne.toDataURL('image/png');
-                const pdf = new jsPDF("p", "mm", "a4");
+                const pdf = new jsPDF("p", "mm", "letter");
                 var width = pdf.internal.pageSize.getWidth();
                 var height = pdf.internal.pageSize.getHeight();
                 pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
