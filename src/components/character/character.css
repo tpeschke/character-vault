@@ -364,7 +364,7 @@ input.secondarylevelLocation {
 }
 
 .statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p,
- .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input {
+ .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p {
     position: unset !important;
     z-index: 1;
     margin: 0;
@@ -421,12 +421,6 @@ input.secondarylevelLocation {
     width: 80px;
     text-align: center;
 }
-.strDamageLocation {
-    left: 252px;
-    top: 618px;
-    width: 117px;
-    text-align: center;
-}
 
 .dexLocation {
     left: 20px;
@@ -439,32 +433,50 @@ input.secondarylevelLocation {
     text-align: center;
 }
 
-.attackLocation {
-    left: 254px;
-    top: 555px;
+.baseCombatStatsShell {
+    position: absolute;
+    top: 532px;
+    left: 195px;
+    width: 177px;
+}
+
+.baseCombatStatsShell div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.baseCombatStatsShell div p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    width: 61px;
+    padding: 2px 5px 0;
+}
+
+.baseCombatStatsShell div p:last-child {
     width: 116px;
     text-align: center;
 }
 
-.defenseLocation {
-    left: 254px;
-    top: 576px;
-    width: 116px;
-    text-align: center;
+.baseCombatStatsShell div:nth-child(odd) {
+    background: lightgray
 }
 
-.initLocation {
-    left: 254px;
-    top: 597px;
-    width: 116px;
-    text-align: center;
+.baseCombatStatsShell div div {
+    position: relative;
 }
 
-.encumbLocation {
-    left: 254px;
-    top: 640px;
+.baseCombatStatsShell div div p:first-child {
+    position: absolute !important;
     width: 116px;
     text-align: center;
+    font-weight: normal;
+    font-size: 10px;
+    padding-top: 3px;
+    color: white
+}
+
+.baseCombatStatsShell div:nth-child(even) div p:first-child {
+    color: lightgray
 }
 
 .conLocation {
@@ -576,28 +588,28 @@ input.secondarylevelLocation {
 }
 
 .crawlStrike {
-    top: 180px;
+    top: 33px;
     width: 153px;
 }
 .walkStrike {
-    top: 203px;
+    top: 56px;
     width: 153px;
 }
 .jogStrike {
-    top: 223px;
+    top: 80px;
     width: 153px;
 }
 .runStrike {
-    top: 243px;
+    top: 104px;
 }
 .sprintStrike {
-    top: 263px;
+    top: 128px;
 }
 
 .strikeThrough {
     position: absolute;
     height: 3px;
-    background: #990000;
+    background: #990000 !important;
 }
 
 .honorLocation {
@@ -1205,16 +1217,27 @@ input.secondarylevelLocation {
     text-align: center;
 }
 
-.generalnotesLocation {
-    left: 396px;
-    top: 555px;
-    width: 401px;
-}
-.generalnotestextArea {
+.generalNotesShell {
+    position: absolute;
+    top: 532px;
     left: 395px;
-    width: 401px;
-    max-width: 401px;
-    min-width: 401px;
+    width: 403px;
+}
+
+.generalNotesShell div .generalNoteStriping div {
+    height: 19.6px;
+}
+
+.generalNotesShell div .generalNoteStriping div:nth-child(even) {
+    background: lightgray;
+}
+
+.generalnotestextArea {
+    position: absolute;
+    top: 23px;
+    width: 403px;
+    max-width: 403px;
+    min-width: 403px;
     max-height: 167px;
     min-height: 167px;
     overflow: hidden;

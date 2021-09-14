@@ -229,9 +229,9 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = () => {
-        this.setState({isDownloading: true})
+        this.setState({ isDownloading: true })
         const pageOne = document.getElementById('pageOne');
-        html2canvas(pageOne, {scale: 5})
+        html2canvas(pageOne, { scale: 5 })
             .then((canvasOne) => {
                 const imgDataOne = canvasOne.toDataURL('image/png');
                 const pdf = new jsPDF("p", "mm", "letter");
@@ -239,16 +239,16 @@ export default class CharacterViewer extends Component {
                 var height = pdf.internal.pageSize.getHeight();
                 pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
 
-                this.setState({isHalfwayDone: true})
+                this.setState({ isHalfwayDone: true })
                 const pageTwo = document.getElementById('pageTwo');
-                html2canvas(pageTwo, {scale: 5})
+                html2canvas(pageTwo, { scale: 5 })
                     .then((cavansTwo) => {
                         const imgDataTwo = cavansTwo.toDataURL('image/png');
                         pdf.addPage(width, height);
                         pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
                         let name = this.state.character.name ? this.state.character.name : "Unnamed Character";
                         pdf.save(`${name}.pdf`);
-                        this.setState({isHalfwayDone: false, isDownloading: false})
+                        this.setState({ isHalfwayDone: false, isDownloading: false })
                     });
             });
     }
@@ -268,18 +268,18 @@ export default class CharacterViewer extends Component {
             , chaData = chaTable[cha]
             , shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
-            let quarterMastering = this.state.character.skills.filter(({ skill }) => {
-                if (skill) {
-                    return skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING" || skill.toUpperCase() === "QUARTER-MASTERING"
-                } 
-                return false
-            })
-            if (quarterMastering[0]) {
-                quarterMastering = quarterMastering[0].rank
-            } else {
-                quarterMastering = 0
+        let quarterMastering = this.state.character.skills.filter(({ skill }) => {
+            if (skill) {
+                return skill.toUpperCase() === "QUARTERMASTERING" || skill.toUpperCase() === "QUARTER MASTERING" || skill.toUpperCase() === "QUARTER-MASTERING"
             }
-            let shownCarry = this.convertFromEncumbToCarry(strData.carry + quarterMastering)
+            return false
+        })
+        if (quarterMastering[0]) {
+            quarterMastering = quarterMastering[0].rank
+        } else {
+            quarterMastering = 0
+        }
+        let shownCarry = this.convertFromEncumbToCarry(strData.carry + quarterMastering)
             , overCarry = strData.carry - this.state.adjustedCarry
             , { changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
@@ -353,9 +353,9 @@ export default class CharacterViewer extends Component {
         let downloadingBanner = (<div></div>)
         if (isDownloading) {
             downloadingBanner = (<div class="downloadingBanner">
-            <h4>Your PDF is being prepared</h4>
-            <p>{isHalfwayDone ? "(It's currently halfway done)" : "(This will take a hot minute)"}</p>
-        </div>)
+                <h4>Your PDF is being prepared</h4>
+                <p>{isHalfwayDone ? "(It's currently halfway done)" : "(This will take a hot minute)"}</p>
+            </div>)
         }
 
         return (
@@ -388,7 +388,22 @@ export default class CharacterViewer extends Component {
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
-                        <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+                        <div className="generalNotesShell">
+                            <h1>General Notes</h1>
+                            <div>
+                                <div className="generalNoteStriping">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+                            </div>
+                        </div>
 
                         <ArmorBlock armor={armor} />
 
