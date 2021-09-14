@@ -6,6 +6,26 @@
     position: relative;
 }
 
+.pairRowStriping {
+    height: 19.6px;
+}
+
+.stripesShell div:nth-child(even) {
+    background: lightgray;
+}
+
+.viewPairListStriping {
+    position: relative;
+}
+
+.viewPairListStriping .stripesShell, .viewPairListStriping .contentPairListShell {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
 .titleInput {
     padding: 1px 4px;
     position: unset !important;

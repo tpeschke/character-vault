@@ -415,17 +415,17 @@ export default class CharacterViewer extends Component {
 
 
 function calculateHonorDiceLeft(honor) {
-    let left = '141px'
+    let left = '13px'
     if (honor >= 0 && honor <= 5) {
-        left = '141px'
+        left = '13px'
     } else if (honor >= 6 && honor <= 10) {
-        left = '190px'
+        left = '57px'
     } else if (honor >= 11 && honor <= 15) {
-        left = '239px'
+        left = '101px'
     } else if (honor >= 16 && honor <= 20) {
-        left = '289px'
+        left = '150px'
     } else if (honor >= 21 && honor <= 25) {
-        left = '340px'
+        left = '199px'
     }
     return left
 }

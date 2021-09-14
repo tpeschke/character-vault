@@ -7,13 +7,14 @@ export default class ViewPairList extends Component {
 
         this.state = {
             stylings: {
-                position: 'absolute',
                 display: 'flex',
                 flexDirection: 'column',
                 flexWrap: 'wrap',
                 ...props.stylings
             },
             listArray: props.listArray || [],
+            limit: props.limit,
+            height: props.height,
             converterFunction: props.converterFunction || this.converterFunction,
             rowWidth: props.rowWidth || '100%'
         }
@@ -28,7 +29,7 @@ export default class ViewPairList extends Component {
     }
 
     render() {
-        let { stylings, listArray, rowWidth } = this.state
+        let { stylings, listArray, rowWidth, limit, height } = this.state
         let rowStyles = {
             width: rowWidth
         }
@@ -39,9 +40,23 @@ export default class ViewPairList extends Component {
             </div>)
         })
 
+        let stripes = []
+        for (let i = 0; i < limit; i++) {
+            stripes.push((<div className="pairRowStriping" style={rowStyles} key={`${this.makeId()}`}> </div>))
+        }
+
+        let heightStyling = {
+            height: height || 'unset'
+        }
+        
         return (
-            <div style={stylings}>
-                {listOfPairsToDisplay}
+            <div style={stylings} className="viewPairListStriping">
+                <div className="stripesShell" style={heightStyling}>
+                    {stripes}
+                </div>
+                <div className="contentPairListShell" style={heightStyling}>
+                    {listOfPairsToDisplay}
+                </div>
             </div>
         )
     }

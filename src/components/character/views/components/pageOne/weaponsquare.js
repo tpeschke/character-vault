@@ -61,6 +61,7 @@ export default function weaponsquare({ weapon }) {
             {damageShell}
             <p className="parry">{parryShown}</p>
 
+            <p className="squareTitle">Weapon Square For:</p>
             <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
         </div>
     )
