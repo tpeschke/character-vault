@@ -37,33 +37,68 @@ export default function ShieldBlock({ shield, editing }) {
         )
     }
     return (
-        <div>
+        <div className="shieldBlockShell">
+            <h2>Shield Workspace</h2>
             <p className="shieldnameLocation">{shieldname}</p>
-            <p className="shielddrLocation">{shielddr}</p>
-            <p className="shieldsizeLocation">{shieldsize}</p>
-            <p className="shieldcoverLocation">{shieldcover}</p>
-            <p className="shieldbonusLocation">{shieldbonus}</p>
 
-            <p className="shieldbasedefLocation">{shieldbasedef}</p>
-            <p className="shieldbaseparryLocation">{shieldbaseparry}</p>
-            <p className="shieldbaseencumbLocation">{shieldbasefatigue}</p>
-            <p className="shieldbasebreakLocation">{shieldbasebreak}</p>
+            <div className="basicStatsDrawer">
+                <div>
+                    <p>DR</p>
+                    <p className="shielddrLocation">{shielddr}</p>
+                </div>
+                <div>
+                    <p>Size</p>
+                    <p className="shieldsizeLocation">{shieldsize}</p>
+                </div>
+            </div>
+            <div className="basicStats">
+                <p>Cover</p>
+                <p className="shieldcoverLocation">{shieldcover}</p>
+            </div>
+            <div className="armorBonusArea">
+                <p>Bonus</p>
+                <p className="shieldbonusLocation">{shieldbonus}</p>
+            </div>
 
-            <p className="shieldtraindefLocation">{shieldtraindef}</p>
-            <p className="shieldtrainparryLocation">{shieldtrainparry}</p>
-            <p className="shieldtrainencumbLocation">{shieldtrainfatigue}</p>
-            <p className="shieldtrainbreakLocation">{shieldtrainbreak}</p>
+            <div className="calculatedStats calculatedStatsHeading">
+                <p>Def</p>
+                <p>Fat</p>
+                <p>Pry</p>
+                <p>Brk</p>
+                <p> </p>
+            </div>
 
-            <input className="shieldmiscdefLocation" type="number" defaultValue={shieldmiscdef} onBlur={event => updateAttribute(event.target.value, "shieldmiscdef")} />
-            <input className="shieldmiscparryLocation" type="number" defaultValue={shieldmiscparry} onBlur={event => updateAttribute(event.target.value, "shieldmiscparry")} />
-            <input className="shieldmiscencumbLocation" type="number" defaultValue={shieldmiscfatigue} onBlur={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
-            <input className="shieldmiscbreakLocation" type="number" defaultValue={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
+            <div className="calculatedStats">
+                <p>{shieldbasedef}</p>
+                <p>{shieldbasefatigue}</p>
+                <p>{shieldbaseparry}</p>
+                <p>{shieldbasebreak}</p>
+                <p>Base</p>
+            </div>
 
-            <p className="shieldtotaldefLocation">{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
-            <p className="shieldtotalparryLocation">{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-            <p className="shieldtotalencumbLocation">{shieldFatigue}</p>
-            <p className="shieldtotalbreakLocation">{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
+            <div className="calculatedStats">
+                <p>{shieldtraindef}</p>
+                <p>{shieldtrainfatigue}</p>
+                <p>{shieldtrainparry}</p>
+                <p>{shieldtrainbreak}</p>
+                <p>Train</p>
+            </div>
 
+            <div className="calculatedStats">
+                <input type="number" defaultValue={shieldmiscdef} onBlur={event => updateAttribute(event.target.value, "shieldmiscdef")} />
+                <input type="number" defaultValue={shieldmiscfatigue} onBlur={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                <input type="number" defaultValue={shieldmiscparry} onBlur={event => updateAttribute(event.target.value, "shieldmiscparry")} />
+                <input type="number" defaultValue={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
+                <p>Misc</p>
+            </div>
+
+            <div className="calculatedStats">
+                <p>{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
+                <p>{shieldFatigue}</p>
+                <p>{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
+                <p>{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
+                <p>Total</p>
+            </div>
         </div>
     )
 }

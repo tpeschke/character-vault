@@ -36,31 +36,60 @@ export default function ArmorBlock({ armor, editing }) {
         )
     }
     return (
-        <div>
+        <div className="armorBlockShell">
+            <h2>Armor Workspace</h2>
             <p className="armornameLocation">{armorname}</p>
-            <p className="armordrLocation">{armordr}</p>
-            <p className="armorskilladjLocation">{armorskilladj}</p>
-            <p className="armorbonusLocation">{armorbonus}</p>
+            <div className="basicStats">
+                <p>DR</p>
+                <p>{armordr}</p>
+            </div>
+            <div className="basicStats">
+                <p>Skill Adju.</p>
+                <p>{armorskilladj}</p>
+            </div>
+            <div className="armorBonusArea">
+                <p>Bonus</p>
+                <p>{armorbonus}</p>
+            </div>
 
-            <p className="armorbasedefLocation">{armorbasedef}</p>
-            <p className="armorbasefatigueLocation">{armorbasefatigue}</p>
-            <p className="armorbaserecoveryLocation">{armorbaserecovery}</p>
-            <p className="armorbaseinitLocation">{armorbaseinit}</p>
+            <div className="calculatedStats calculatedStatsHeading">
+                <p>Def</p>
+                <p>Fat</p>
+                <p>Rcv</p>
+                <p>Init</p>
+                <p> </p>
+            </div>
+            <div className="calculatedStats">
+                <p>{armorbasedef}</p>
+                <p>{armorbasefatigue}</p>
+                <p>{armorbaserecovery}</p>
+                <p>{armorbaseinit}</p>
+                <p>Base</p>
+            </div>
 
-            <p className="armortrainingdefLocation">{armortrainingdef}</p>
-            <p className="armortrainfatigueLocation">{armortrainfatigue}</p>
-            <p className="armortrainrecoveryLocation">{armortrainrecovery}</p>
-            <p className="armortraininitLocation">{armortraininit}</p>
+            <div className="calculatedStats">
+                <p>{armortrainingdef}</p>
+                <p>{armortrainfatigue}</p>
+                <p>{armortrainrecovery}</p>
+                <p>{armortraininit}</p>
+                <p>Train</p>
+            </div>
 
-            <input className="armormiscdefLocation" type="number" defaultValue={armormiscdef} onBlur={event => updateAttribute(event.target.value, "armormiscdef")} />
-            <input className="armormiscfatigueLocation" type="number" defaultValue={armormiscfatigue} onBlur={event => updateAttribute(event.target.value, "armormiscfatigue")} />
-            <input className="armormiscrecoveryLocation" type="number" defaultValue={armormiscrecovery} onBlur={event => updateAttribute(event.target.value, "armormiscrecovery")} />
-            <input className="armormiscinitLocation" type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
+            <div className="calculatedStats">
+                <input type="number" defaultValue={armormiscdef} onBlur={event => updateAttribute(event.target.value, "armormiscdef")} />
+                <input type="number" defaultValue={armormiscfatigue} onBlur={event => updateAttribute(event.target.value, "armormiscfatigue")} />
+                <input type="number" defaultValue={armormiscrecovery} onBlur={event => updateAttribute(event.target.value, "armormiscrecovery")} />
+                <input type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
+                <p>Misc</p>
+            </div>
 
-            <p className="armortotaldefLocation">{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
-            <p className="armortotalfatigueLocation">{armorfatigue}</p>
-            <p className="armortotalrecoveryLocation">{armorRecovery}</p>
-            <p className="armortotalinitLocation">{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
+            <div className="calculatedStats">
+                <p>{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
+                <p>{armorfatigue}</p>
+                <p>{armorRecovery}</p>
+                <p>{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
+                <p>Total</p>
+            </div>
         </div>
     )
 }

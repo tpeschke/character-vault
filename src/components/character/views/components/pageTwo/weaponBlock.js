@@ -45,34 +45,87 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
         )
     }
 
+    let measureAndParry = (<div className="armorBaseStats">
+        <div>
+            <p>Meas.</p>
+            <p>{basemeasure}</p>
+        </div>
+        <div>
+            <p>Parry</p>
+            <p>{baseparry}</p>
+        </div>
+    </div>)
+    if (position === "four") {
+        measureAndParry = (null)
+    }
+
     return (
-        <div className={`weaponProfile${position}`}>
+        <div className={`weaponProfile${position} weaponProfileShell`}>
+            <h2>Weapon Workspace</h2>
             <p className="weaponnameLocation">{name}</p>
-            <p className="basedamageLocation">{basedamage}</p>
-            <p className="baserecoveryLocation">{baserecovery}</p>
-            <p className="baseparryLocation">{baseparry}</p>
-            <p className="basemeasureLocation">{basemeasure}</p>
-            <p className="basesizeLocation">{size}</p>
-            <p className={position !== "four" ? "typeLocation" : "typeLocation typefour"}>{type}</p>
-            <p className={position !== "four" ? "bonusLocation" : "bonusLocation bonusfour"}>{bonus}</p>
-            <p className={position !== "four" ? "traitsLocation" : "traitsLocation traitsfour"}>{traits}</p>
+            <div className="armorBaseStats">
+                <p>Damage</p>
+                <p className="basedamageLocation">{basedamage}</p>
+            </div>
+            <div className="armorBaseStats">
+                <div>
+                    <p>Recov.</p>
+                    <p>{baserecovery}</p>
+                </div>
+                <div>
+                    <p>Size</p>
+                    <p>{size}</p>
+                </div>
+            </div>
+            {measureAndParry}
+            <div className="armorBaseStats">
+                <p>Type</p>
+                <p className="basedamageLocation">{type}</p>
+            </div>
+            <div className="weaponBonusArea" className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
+                <p>Bonus</p>
+                <p>{bonus}</p>
+            </div>
+            <div className="weaponTraitArea">
+                <p>Traits</p>
+                <p className={position !== "four" ? "traitsLocation" : "traitsLocation traitsfour"}>{traits}</p>
+            </div>
 
-            <p className="trainattackLocation">{trainattack}</p>
-            <p className="trainrecoveryLocation">{trainrecovery}</p>
-            <p className="trainparryLocation">{trainparry}</p>
-            <p className="traindamageLocation">{traindamage}</p>
+            <div className="weaponCalculatedStats weaponCalculatedStatsHeader">
+                <p>Atk</p>
+                <p>Rcv</p>
+                <p>Pry</p>
+                <p>Dam</p>
+                <p>Init</p>
+                <p> </p>
+            </div>
 
-            <input className="miscattackLocation" type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
-            <input className="miscrecoveryLocation" type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
-            <input className="miscparryLocation" type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
-            <input className="miscdamageLocation" type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
-            <input className={position !== "four" ? "miscinitLocation" : "miscinitLocation initfour"} type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
+            <div className="weaponCalculatedStats">
+                <p>{trainattack}</p>
+                <p>{trainrecovery}</p>
+                <p>{trainparry}</p>
+                <p>{traindamage}</p>
+                <p> </p>
+                <p>Tr</p>
+            </div>
 
-            <p className="totalattackLocation">{returnZeroIfNaN(trainattack + +miscattack)}</p>
-            <p className="totalrecoveryLocation">{returnZeroIfNaN(totalRecoveryModifiers)}</p>
-            <p className="totalparryLocation">{returnZeroIfNaN(trainparry + +miscparry)}</p>
-            <p className="totaldamageLocation">{returnZeroIfNaN(traindamage + +miscdamage)}</p>
-            <p className={position !== "four" ? "totalinitLocation" : "totalinitLocation initfour"}>{miscinit}</p>
+            <div className="weaponCalculatedStats">
+                <input type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
+                <input type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
+                <input type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
+                <input type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
+                <input className={position !== "four" ? "" : "initfour"} type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
+                <p>Mi</p>
+            </div>
+
+            <div className="weaponCalculatedStats">
+                <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
+                <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+                <p>{returnZeroIfNaN(trainparry + +miscparry)}</p>
+                <p>{returnZeroIfNaN(traindamage + +miscdamage)}</p>
+                <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
+                <p>To</p>
+            </div>
         </div>
     )
 }

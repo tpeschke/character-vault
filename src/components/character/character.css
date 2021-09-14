@@ -169,7 +169,7 @@ input[type=number] {
 }
 
 .pageTwo {
-    background-image: url("../../assets/page2.png");
+    /* background-image: url("../../assets/page2.png"); */
 }
 
 .bonfireLogo {
@@ -364,7 +364,9 @@ input.secondarylevelLocation {
 }
 
 .statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p,
- .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p {
+ .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
+ .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, .weaponProfileShell p,
+ .weaponProfileShell input {
     position: unset !important;
     z-index: 1;
     margin: 0;
@@ -1223,7 +1225,6 @@ input.secondarylevelLocation {
     left: 395px;
     width: 403px;
 }
-
 .generalNotesShell div .generalNoteStriping div {
     height: 19.6px;
 }
@@ -1374,304 +1375,204 @@ input.secondarylevelLocation {
     width: 28px;
 }
 
-.armornameLocation {
-    top: 555px;
-    left: 21px;
-    width: 150px;
-}
-
-.armordrLocation {
-    top: 576px;
-    left: 42px;
-    width: 129px;
-    text-align: center;
-}
-
-.armorskilladjLocation {
-    top: 597px;
-    left: 80px;
-    width: 91px;
-    text-align: center;
-}
-
-.armorbonusLocation {
-    width: 150px;
-    top: 619px;
-    left: 21px;
-    text-indent: 60px;
-} 
-.armorbonustextArea {
+.armorBlockShell {
     position: absolute;
-    max-width: 150px;
-    min-width: 150px;
-    max-height: 62px;
-    min-height: 62px;
+    top: 532px;
+    left: 20px;
+    width: 151px;
+    border: 2px #222 solid;
+}
+
+.armorBlockShell div:nth-child(even), .shieldBlockShell div:nth-child(even), .weaponProfileShell div:nth-child(odd) {
+    background: lightgray;
+}
+
+.armorBlockShell div, .shieldBlockShell div {
+    padding: 0 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.basicStatsDrawer div {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.basicStatsDrawer div:last-child {
+    background: none;
+}
+
+.basicStatsDrawer div p {
+    width: 50%;
+}
+
+.basicStatsDrawer div p:last-child {
+    text-align: center;
+}
+
+.basicStats p:first-child, .basicStatsDrawer div p:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+}
+
+.basicStats p:last-child {
+    text-align: center;
+}
+
+.basicStats p:first-child, .basicStats p:last-child {
+    width: 70px;
+}
+
+.armornameLocation {
+    padding: 0 2px;
+    background: lightgrey;
+}
+
+.armorBonusArea {
+    position: relative;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 73px;
+    min-height: 73px;
     overflow: hidden;
 }
 
-.armorbasedefLocation {
-    top: 702px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.armorbasefatigueLocation {
-    top: 702px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.armorbaserecoveryLocation {
-    top: 702px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.armorbaseinitLocation {
-    top: 702px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
+.armorBonusArea p:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    position: absolute !important;
+    top: 0;
+    left: 0;
 }
 
-.armortrainingdefLocation {
-    top: 724px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.armortrainfatigueLocation {
-    top: 724px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.armortrainrecoveryLocation {
-    top: 724px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.armortraininitLocation {
-    top: 724px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
+.armorBonusArea p:last-child {
+    width: 100%;
+    text-indent: 39px;
 }
 
-.armormiscdefLocation {
-    top: 746px;
+.calculatedStats {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.armormiscfatigueLocation {
-    top: 746px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.armormiscrecoveryLocation {
-    top: 746px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.armormiscinitLocation {
-    top: 746px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
 }
 
-.armortotaldefLocation {
-    top: 768px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
+.calculatedStatsHeading {
+    background: grey !important;
+    font-family: 'Vollkorn SC', serif;
+    color: white
 }
-.armortotalfatigueLocation {
-    top: 768px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
+
+.calculatedStatsHeading p {
+    padding-top: 2px;
 }
-.armortotalrecoveryLocation {
-    top: 768px;
-    text-align: center;
+
+.calculatedStats p, .calculatedStats input {
     width: 25px;
-    left: 71px;
+    text-align: center;
+    border-right: 2px solid grey;
 }
-.armortotalinitLocation {
-    top: 768px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
+
+.calculatedStats p:last-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    text-align: left;
+    min-width: 40px;
+    border-right: none
+}
+
+.shieldBlockShell {
+    position: absolute;
+    top: 785px;
+    left: 20px;
+    width: 151px;
+    border: 2px #222 solid;
 }
 
 .shieldnameLocation {
-    top: 811px;
-    left: 21px;
-    width: 150px;
+    padding: 0 2px;
+    background: lightgrey;
 }
-.shielddrLocation {
-    top: 832px;
-    left: 41px;
-    width: 55px;
-    text-align: center;
-}
-.shieldcoverLocation {
-    top: 853px;
-    left: 65px;
-    width: 104px;
-}
-.shieldsizeLocation {
-    top: 832px;
-    left: 138px;
-    width: 33px;
-}
-.shieldbonusLocation {
-    width: 150px;
-    top: 875px;
-    left: 21px;
-    text-indent: 60px;
-} 
-.shieldbonustextArea {
+
+.weaponProfileShell {
     position: absolute;
-    max-width: 150px;
-    min-width: 150px;
-    max-height: 62px;
-    min-height: 62px;
-    overflow: hidden;
-}
-
-.shieldbasedefLocation {
-    top: 957px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.shieldbaseparryLocation {
-    top: 957px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.shieldbaseencumbLocation {
-    top: 957px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.shieldbasebreakLocation {
-    top: 957px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
-}
-
-.shieldtraindefLocation {
-    top: 979px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.shieldtrainparryLocation {
-    top: 979px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.shieldtrainencumbLocation {
-    top: 979px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.shieldtrainbreakLocation {
-    top: 979px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
-}
-
-.shieldmiscdefLocation {
-    top: 1002px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.shieldmiscparryLocation {
-    top: 1002px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.shieldmiscencumbLocation {
-    top: 1002px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.shieldmiscbreakLocation {
-    top: 1002px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
-}
-
-.shieldtotaldefLocation {
-    top: 1028px;
-    text-align: center;
-    width: 25px;
-    left: 21px;
-}
-.shieldtotalparryLocation {
-    top: 1028px;
-    text-align: center;
-    width: 25px;
-    left: 46px;
-}
-.shieldtotalencumbLocation {
-    top: 1028px;
-    text-align: center;
-    width: 25px;
-    left: 71px;
-}
-.shieldtotalbreakLocation {
-    top: 1028px;
-    text-align: center;
-    width: 25px;
-    left: 96px;
+    top: 725px;
+    width: 154px;
+    border-left: 2px #222 solid;
+    border-bottom: 2px #222 solid;
 }
 
 .weaponProfileone {
-    position: absolute;
-    height: 303px;
-    width: 151px;
-    top: 745px;
-    left: 170px;
+    left: 169px;
 }
 .weaponProfiletwo {
-    position: absolute;
-    height: 303px;
-    width: 151px;
-    top: 745px;
-    left: 321px;
+    left: 320px;
 }
 .weaponProfilethree {
-    position: absolute;
-    height: 303px;
-    width: 151px;
-    top: 745px;
-    left: 471px;
+    left: 472px;
 }
 .weaponProfilefour {
-    position: absolute;
-    height: 303px;
     width: 174px;
-    top: 745px;
-    left: 621px;
+    left: 625px;
+    border-right: 2px #222 solid;
+}
+
+.armorBaseStats, .armorBaseStats div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weaponCalculatedStats {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.weaponCalculatedStatsHeader {
+    background: grey !important;
+    font-family: 'Vollkorn SC', serif;
+    color: white;
+}
+
+.weaponCalculatedStatsHeader p {
+    font-size: 10px;
+    padding-top: 3px;
+}
+
+.weaponCalculatedStats p, .weaponCalculatedStats input {
+    width: 25px;
+    text-align: center;
+    border-right: 2px solid grey;
+}
+
+.weaponCalculatedStats p:last-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    text-align: left;
+    border-right: none
+}
+
+.armorBaseStats div p:first-child, .armorBaseStats p:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+}
+
+.armorBaseStats div p:last-child, .armorBaseStats p:last-child {
+    text-align: center;
+    width: 40px;
+}
+
+.basedamageLocation {
+    min-width: 100px;
+}
+
+.armorBaseStats div {
+    background: none !important;
 }
 
 .fourDisplayNone {
@@ -1679,85 +1580,55 @@ input.secondarylevelLocation {
 }
 
 .weaponnameLocation {
-    width: 149px;
-    left: 1px;
-    top: -0px
+    width: 154px;
 }
 .weaponnamefour {
     width: 173px
 }
 
-.basedamageLocation {
-    width: 96px;
-    left: 54px;
-    text-align: center;
-    top: 21px
-}
-.basedamagefour {
-    width: 120px
-}
-
-.baserecoveryLocation {
-    width: 32px;
-    top: 43px;
-    left: 43px;
-    text-align: center;
-}
-.baseparryLocation {
-    width: 32px;
-    top: 43px;
-    left: 118px;
-    text-align: center;
-}
-.basemeasureLocation {
-    width: 35px;
-    top: 66px;
-    left: 40px;
-    text-align: center;
-}
-.basesizeLocation {
-    width: 43px;
-    top: 66px;
-    left: 106px;
-    text-align: center;
-}
-.sizefour {
-    left: 35px;
-    text-align: left;
-    width: 139px;
-}
-.typeLocation {
-    width: 65px;
-    top: 87px;
-    left: 84px;
-    text-align: center;
-}
-.typefour {
-    top: 43px !important;
-    left: 137px;
-    width: 37px;
-}
-
-.bonusLocation {
-    width: 149px;
-    top: 108px;
-    left: 1px;
-    text-indent: 60px;
-} 
-.bonustextArea {
-    max-width: 149px;
-    min-width: 149px;
+.weaponBonusArea {
+    position: relative;
+    max-width: 100%;
+    min-width: 100%;
     max-height: 62px;
     min-height: 62px;
     overflow: hidden;
 }
-.bonusfour {
-    max-width: 173px;
-    min-width: 173px;
-    max-height: 63px;
-    min-height: 63px;
+
+.weaponTraitArea {
+    position: relative;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 54px;
+    min-height: 54px;
     overflow: hidden;
-    top: 88px !important;
+}
+
+.weaponBonusArea p:first-child, .weaponTraitArea p:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}
+
+.weaponBonusArea p:last-child, .weaponTraitArea p:last-child {
+    width: 100%;
+    text-indent: 42px;
+}
+
+.bonusfour {
+    max-height: 81px;
+    min-height: 81px;
+}
+
+.weaponProfilefour .weaponCalculatedStats:nth-child(odd) {
+    background: white;
+}
+
+.weaponProfilefour .weaponCalculatedStats:nth-child(even) {
+    background: lightgray;
 }
 
 .socialShell {
