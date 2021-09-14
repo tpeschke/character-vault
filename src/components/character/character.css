@@ -172,6 +172,17 @@ input[type=number] {
     background-image: url("../../assets/page2.png");
 }
 
+.bonfireLogo {
+    background-image: url("../../assets/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 204px;
+    height: 50px;
+    position: absolute;
+    top: 27px;
+    right: 14px;
+}
+
 .pageTwoMargin {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -921,66 +932,181 @@ input.secondarylevelLocation {
     text-align: center;
 }
 
+.vitalsShell {
+    top: 593px;
+    position: absolute;
+    width: 325px;
+    right: 20px;
+}
+
+.woundCategoryShell {
+    position: relative;
+    display: flex;
+}
+
+.woundCategoryShell div {
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.woundCategoryShell div:nth-child(even) {
+    background: lightgray;
+}
+
+.vitalsShell p {
+    position: unset;
+}
+
+.woundCategoryShell div p:first-child, .currentBox p:first-child, .thresholdBox p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+.currentBox p:first-child, .thresholdBox p:first-child {
+    font-size: 9px;
+}
+
+.woundCategoryShell p:nth-child(2) {
+    width: 60%;
+}
+
+.currentDamageRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.currentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #990000;
+    padding: 0 3px;
+}
+
+.thresholdBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid grey;
+}
+
+.tinyGrey {
+    font-family: 'Vollkorn SC', serif;
+    font-size: 10px !important;
+    text-align: center;
+    color: grey;
+}
+
+.damageShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.damageShellLeft, .damageShellRight {
+    display: flex;
+    justify-content: space-between;
+}
+
+.damageShellLeft {
+    width: 46%;
+}
+
+.woundTitleShell p {
+    font-family: 'Vollkorn SC', serif;
+    height: 19.6px;
+    margin: 0;
+    color: grey;
+    padding-top: 2px;
+}
+
+.damageShellLeft .woundTitleShell p {
+    width: 50px;
+}
+
+.damageShellRight .woundTitleShell p {
+    width: 77px;
+}
+
+.woundTitleShell p:nth-child(even) {
+    background: lightgray;
+}
+
 .criticalLocation {
-    top: 614px;
-    left: 722px;
     width: 74px;
     text-align: center;
 }
 
 .hurtLocation {
-    top: 614px;
-    left: 479px;
     width: 74px;
     text-align: center;
 }
 
 .bloodiedLocation {
-    top: 614px;
-    left: 555px;
     width: 74px;
     text-align: center;
 }
 
 .woundedLocation {
-    top: 614px;
-    left: 630px;
     width: 74px;
     text-align: center;
 }
 
 .currentDamageLocation {
-    top: 655px;
-    left: 470px;
     width: 51px;
     text-align: center;
 }
 
 .traumaLocation {
-    top: 655px;
-    left: 621px;
     width: 74px;
     text-align: center;
 }
 
+.vitalyRollsShell {
+    display: flex;
+    justify-content: space-between;
+    background: lightgray;
+}
+
+.vitalyRollsShell div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2px;
+    border-right: 2px solid grey;
+}
+
+.vitalyRollsShell div:last-child {
+    border-right: none;
+}
+
+.vitalyRollsShell div p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    margin: 0;
+    padding-top: 2px;
+    font-size: 10px;
+}
+
+.vitalyRollsShell div p:nth-child(2) {
+    width: 38%
+}
+
 .vitalityrollLocation {
-    top: 824px;
     width: 47px;
-    left: 599px;
     text-align: center;
 }
 
 .vitalitydiceLocation {
-    top: 824px;
     width: 36px;
-    left: 685px;
     text-align: center;
 }
 
 .vitalityminLocation {
-    top: 824px;
     width: 36px;
-    left: 761px;
     text-align: center;
 }
 
@@ -992,16 +1118,37 @@ input.secondarylevelLocation {
     width: 426px;
     max-width: 426px;
     min-width: 426px;
-    max-height: 105px;
-    min-height: 105px;
+    max-height: 98px;
+    min-height: 98px;
     overflow: hidden;
 }
 
-.abilitiesoneLocation {
+.abilitiesShell {
+    top: 856px;
     position: absolute;
+    width: 776px;
     left: 20px;
-    top: 889px;
-    width: 250px;
+}
+
+.abilitiesContentShell {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.abilityShell {
+    width: 33%;
+}
+
+.abilityShell .contactStriping div, .removedAbilityShell {
+    height: 17.6px;
+}
+
+.abilitiesoneLocation, .abilitiestwoLocation {
+    top: 0px;
+    height: 159px;
+    overflow: hidden;
+    padding: 0 2px;
 }
 .abilitiesonetextArea {
     width: 250px;
@@ -1011,17 +1158,7 @@ input.secondarylevelLocation {
     min-height: 165px;
     overflow: hidden;
 }
-.abilitiesoneAdjustment {
-    left: 20px;
-    top: 890px;
-}
 
-.abilitiestwoLocation {
-    position: absolute;
-    left: 272px;
-    top: 889px;
-    width: 273px;
-}
 .abilitiestwotextArea {
     width: 273px;
     max-width: 273px;
@@ -1030,16 +1167,11 @@ input.secondarylevelLocation {
     min-height: 165px;
     overflow: hidden;
 }
-.abilitiestwoAdjustment {
-    left: 272px;
-    top: 890px;
-}
-
 .abilitiesthreeLocation {
-    position: absolute;
-    left: 547px;
-    top: 888px;
-    width: 249px;
+    top: 0px;
+    height: 139px;
+    overflow: hidden;
+    padding: 0 2px;
 }
 .abilitiesthreetextArea {
     width: 249px;
@@ -1049,15 +1181,19 @@ input.secondarylevelLocation {
     min-height: 126px;
     overflow: hidden;
 }
-.abilitiesthreeAdjustment {
-    left: 547px;
-    top: 890px;
+
+.removedAbilityShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.removedAbilityShell h2 {
+    padding: 0 5px;
 }
 
 .removedabilityLocation {
-    top: 1016px;
+    position: unset !important;
     width: 125px;
-    left: 671px;
     text-align: center;
 }
 
@@ -1113,9 +1249,9 @@ input.secondarylevelLocation {
     z-index: 2;
 }
 .panickedCircle {
-    top: 614px;
-    width: 24px;
+    width: 24px !important;
     position: absolute;
+    z-index: 2;
 }
 
 .circle-fill {
@@ -1513,7 +1649,7 @@ input.secondarylevelLocation {
 }
 
 .socialShell {
-    top: 319px;
+    top: 313px;
     position: absolute;
     left: 20px;
     width: 426px;
@@ -1530,6 +1666,7 @@ input.secondarylevelLocation {
 }
 
 .honorShell p {
+    padding-top: 2px;
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;
 }

@@ -6,8 +6,13 @@
     position: relative;
 }
 
-.pairRowStriping {
+.pairRowStriping, .contentPairListShell input {
     height: 19.6px;
+    margin: 0;
+}
+
+.contentPairListShell input {
+    text-align: center;
 }
 
 .stripesShell div:nth-child(even) {

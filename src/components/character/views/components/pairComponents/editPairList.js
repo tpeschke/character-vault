@@ -7,7 +7,6 @@ export default class EditPairList extends Component {
 
         this.state = {
             stylings: {
-                position: 'absolute',
                 display: 'flex',
                 flexDirection: 'column',
                 flexWrap: 'wrap',
@@ -87,12 +86,22 @@ export default class EditPairList extends Component {
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
+        let stripes = []
+        for (let i = 0; i < limit; i++) {
+            stripes.push((<div className="pairRowStriping" style={rowStyles} key={`${this.makeId()}`}> </div>))
+        }
+
         return (
-            <div style={stylings}>
-                {listOfInputs}
-                <div className="editPairRow" style={inputRowStyles}>
-                    <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} placeholder={this.state.defaultValue} />
+            <div style={stylings} className="viewPairListStriping">
+                <div className="stripesShell">
+                    {stripes}
+                </div>
+                <div className="contentPairListShell">
+                    {listOfInputs}
+                    <div className="editPairRow" style={inputRowStyles}>
+                        <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
+                        <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} placeholder={this.state.defaultValue} />
+                    </div>
                 </div>
             </div>
         )

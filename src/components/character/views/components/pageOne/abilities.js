@@ -13,11 +13,53 @@ export default function Abilities({ abilities, editing }) {
         )
     }
     return (
-        <div>
-            <p className="abilitiesoneLocation abilitiesoneAdjustment">{abilitiesone}</p>
-            <p className="abilitiestwoLocation abilitiestwoAdjustment">{abilitiestwo}</p>
-            <p className="abilitiesthreeLocation abilitiesthreeAdjustment">{abilitiesthree}</p>
-            <p className="removedabilityLocation">{removedability}</p>
+        <div className="abilitiesShell">
+            <h1>Archetype Abilities & Trainings</h1>
+            <div className="abilitiesContentShell">
+                <div className="abilityShell">
+                    <div className="contactStriping">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p className="abilitiesoneLocation abilitiesoneAdjustment">{abilitiesone}</p>
+                </div>
+                <div className="abilityShell">
+                    <div className="contactStriping">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p className="abilitiestwoLocation abilitiestwoAdjustment">{abilitiestwo}</p>
+                </div>
+                <div className="abilityShell">
+                    <div className="contactStriping">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div className="removedAbilityShell">
+                            <h2>Removed Ability</h2>
+                            <p className="removedabilityLocation">{removedability}</p>
+                        </div>
+                    </div>
+                    <p className="abilitiesthreeLocation abilitiesthreeAdjustment">{abilitiesthree}</p>
+                </div>
+            </div>
         </div>
     )
 }

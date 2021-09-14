@@ -431,18 +431,18 @@ function calculateHonorDiceLeft(honor) {
 }
 
 function calculatePanickedLeft(honor) {
-    let left = '466px'
+    let left = '0px'
         , display = 'inherit'
     if (honor >= 0 && honor <= 5) {
-        left = '466px'
+        left = '0px'
     } else if (honor >= 6 && honor <= 10) {
-        left = '541px'
+        left = '81px'
     } else if (honor >= 11 && honor <= 15) {
-        left = '618px'
+        left = '163px'
     } else if (honor >= 16 && honor <= 20) {
-        left = '695px'
+        left = '244px'
     } else if (honor >= 21 && honor <= 25) {
-        left = '792px'
+        left = '0px'
         display = 'none'
     }
     return { left, display }

@@ -18,6 +18,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="primaryDrawbackPlate">Primary Drawback</p>
             <p className="drawbackFirstScorePlate"></p>
             <p className="drawbackSecondScorePlate"></p>
+            <div className="bonfireLogo"></div>
         </div>
     )
 
@@ -42,11 +43,11 @@ export default function CharacterInfo({ characterInfo, editing }) {
     return (
         <div>
             {plates}
-            <p className="nameLocation">{name}</p>
-            <p className="raceLocation">{race}</p>
-            <p className="primaryLocation">{primarya}</p>
+            <p className="nameLocation">{name ? name : ' '}</p>
+            <p className="raceLocation">{race ? race : ' '}</p>
+            <p className="primaryLocation">{primarya ? primarya : ' '}</p>
             <p className="primarylevelLocation">{primarylevel === 0 ? "" : primarylevel}</p>
-            <p className="secondaryLocation">{secondarya}</p>
+            <p className="secondaryLocation">{secondarya ? secondarya : ' '}</p>
             <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
             <p className="levelLocation">{level}</p>
             <p className="crpLocation">{crp}</p>

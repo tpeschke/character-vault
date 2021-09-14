@@ -16,22 +16,88 @@ export default function Vitality({ vitality, editing }) {
     }
 
     return (
-        <div>
-            <p className="criticalLocation">{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>
-            <p className="woundedLocation">{(shownVitality * .50).toFixed(0)} - {(shownVitality * .75).toFixed(0) - 1}</p>
-            <p className="bloodiedLocation">{(shownVitality * .25).toFixed(0)} - {(shownVitality * .5).toFixed(0) - 1}</p>
-            <p className="hurtLocation">1 - {(shownVitality * .25).toFixed(0) - 1}</p>
-            <p className="currentDamageLocation">{currentDamage}</p>
-            <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
-            <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+        <div className="vitalsShell">
+            <h1>Vitality</h1>
+            <div className="woundCategoryShell">
+                <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+                <div className="hurtLocation">
+                    <p>H</p>
+                    <p>1 - {(shownVitality * .25).toFixed(0) - 1}</p>
+                </div>
+                <div className="bloodiedLocation">
+                    <p>B</p>
+                    <p>{(shownVitality * .25).toFixed(0)} - {(shownVitality * .5).toFixed(0) - 1}</p>
+                </div>
+                <div className="woundedLocation">
+                    <p>W</p>
+                    <p>{(shownVitality * .50).toFixed(0)} - {(shownVitality * .75).toFixed(0) - 1}</p>
+                </div>
+                <div className="criticalLocation">
+                    <p>C</p>
+                    <p>{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>
+                </div>
+            </div>
 
-            <EditPairList stylings={{ top: '677px', left: '522px', width: '96px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
-            <EditPairList stylings={{ top: '677px', left: '697px', width: '96px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+            <div className="currentDamageRow">
+                <div className="currentBox">
+                    <p>Current</p>
+                    <p lassName="currentDamageLocation">{currentDamage}</p>
+                </div>
+                <p className="tinyGrey">Severity</p>
+                <p className="tinyGrey">Days to Heal</p>
+                <div className="thresholdBox">
+                    <p>Trauma Thres.</p>
+                    <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
+                </div>
+                <p className="tinyGrey">Severity</p>
+                <p className="tinyGrey">Days to Heal</p>
+            </div>
 
-            <p className="sizemodLocation">{sizemod}</p>
-            <p className="vitalityrollLocation">{vitalityroll}</p>
-            <p className="vitalitydiceLocation">{vitalitydice}</p>
-            <p className="vitalityminLocation">{conData.vitalitymin}</p>
+            <div className="damageShell">
+                <div className="damageShellLeft">
+                    <div className="woundTitleShell">
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                    </div>
+                    <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                </div>
+                <div className="damageShellRight">
+                    <div className="woundTitleShell">
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                        <p>Wound</p>
+                    </div>
+                    <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={7} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+                </div>
+            </div>
+
+            <div className="vitalyRollsShell">
+                <div>
+                    <p>Size Mod</p>
+                    <p className="sizemodLocation">{sizemod}</p>
+                </div>
+                <div>
+                    <p>Roll</p>
+                    <p className="vitalityrollLocation">{vitalityroll}</p>
+                </div>
+                <div>
+                    <p>Vit Die</p>
+                    <p className="vitalitydiceLocation">{vitalitydice}</p>
+                </div>
+                <div>
+                    <p>Min Vit</p>
+                    <p className="vitalityminLocation">{conData.vitalitymin}</p>
+                </div>
+            </div>
         </div>
     )
 }
