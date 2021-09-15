@@ -19,6 +19,10 @@
     text-align: unset;
 }
 
+.gearColumn .contentPairListShell input:first-child {
+    font-size: 10px;
+}
+
 .gearColumn .viewPairListStriping {
     border-left: 2px solid grey;
 }

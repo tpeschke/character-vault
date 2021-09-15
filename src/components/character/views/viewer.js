@@ -190,16 +190,13 @@ export default class CharacterViewer extends Component {
         }
 
         if (character[type] !== value) {
-            console.log(type, value)
             this.setState({ isUpdating: true }, _ => {
                 axios.patch(`/api/updateSingleThing/${this.state.character.id}`, { [type]: value }).then(result => {
                     this.setState({ isUpdating: false })
                 })
                 character[type] = value
-                console.log(character[type], value)
                 this.props.updateSharedCharacter(type, null, value)
                 this.setState({ character }, _ => {
-                    console.log(character)
                     if (type.includes('gear')) {
                         let { gearone, geartwo, gearthree, gearfour } = this.state.character
                         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)

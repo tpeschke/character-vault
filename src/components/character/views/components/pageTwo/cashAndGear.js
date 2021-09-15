@@ -32,7 +32,7 @@ export default function Skills({ cashAndGear, editing }) {
                             <h2>Item</h2>
                             <h2>Size</h2>
                         </div>
-                        <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={6} updateFunction={updateAttribute} type={"gearone"} />
+                        <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={7} updateFunction={updateAttribute} type={"gearone"} />
                     </div>
                     <div className="gearColumn">
                         <div className="gearHeaderShell">
@@ -97,7 +97,7 @@ export default function Skills({ cashAndGear, editing }) {
                         <h2>Item</h2>
                         <h2>Size</h2>
                     </div>
-                    <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={6} updateFunction={updateAttribute} type={"gearone"} />
+                    <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={7} updateFunction={updateAttribute} type={"gearone"} />
                 </div>
                 <div className="gearColumn">
                     <div className="gearHeaderShell">
