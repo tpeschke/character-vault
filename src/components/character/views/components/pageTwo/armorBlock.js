@@ -3,7 +3,7 @@ import React from 'react'
 export default function ArmorBlock({ armor, editing }) {
     let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
         armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute, armormiscfatigue,
-        armormiscrecovery, armormiscinit, armorRecovery, armorfatigue } = armor
+        armormiscrecovery, armormiscinit, armorRecovery, armorFatigue } = armor
 
     if (editing) {
         return (
@@ -56,7 +56,7 @@ export default function ArmorBlock({ armor, editing }) {
 
                 <div className="calculatedStats">
                     <p>{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
-                    <p>{armorfatigue}</p>
+                    <p>{armorFatigue}</p>
                     <p>{armorRecovery}</p>
                     <p>{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
                     <p>Total</p>
@@ -114,7 +114,7 @@ export default function ArmorBlock({ armor, editing }) {
 
             <div className="calculatedStats">
                 <p>{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
-                <p>{armorfatigue}</p>
+                <p>{armorFatigue}</p>
                 <p>{armorRecovery}</p>
                 <p>{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
                 <p>Total</p>

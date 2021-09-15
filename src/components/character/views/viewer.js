@@ -138,7 +138,7 @@ export default class CharacterViewer extends Component {
     }
 
     calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
-        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + trainfatigue + miscfatigue)
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + (trainfatigue * -1) + (miscfatigue * -1))
     }
 
     calculateTotalFatigue = (armorFatigue, shieldFatigue) => {

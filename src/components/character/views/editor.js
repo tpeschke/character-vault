@@ -69,7 +69,7 @@ export default class CharacterEditor extends Component {
     }
 
     calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
-        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + trainfatigue + miscfatigue)
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + (trainfatigue * -1) + (miscfatigue * -1))
     }
 
     calculateTotalFatigue = (armorFatigue, shieldFatigue) => {
@@ -199,7 +199,7 @@ export default class CharacterEditor extends Component {
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                armormiscrecovery, armormiscinit
+                armormiscrecovery, armormiscinit, armorFatigue
             }
             , shield = {
                 shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
