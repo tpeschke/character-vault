@@ -164,14 +164,6 @@ input[type=number] {
     box-shadow: 5px 5px 15px 5px #000000;
 }
 
-.pageOne {
-    /* background-image: url("../../assets/page1.png"); */
-}
-
-.pageTwo {
-    /* background-image: url("../../assets/page2.png"); */
-}
-
 .bonfireLogo {
     background-image: url("../../assets/logo.svg");
     background-size: contain;
@@ -196,7 +188,7 @@ input[type=number] {
 }
 
 input, textarea {
-    background: rgba(173, 216, 230, 0.50);
+    background: rgba(173, 216, 230, 0.50) !important;
     border: none;
     position: relative;
     font-size: 13px;
@@ -209,6 +201,11 @@ input, textarea {
 .viewer input:hover, .viewer textarea:hover {
     background: rgba(173, 216, 230, 0.50);
     transition: .8s
+}
+
+.armorBonusArea textarea {
+    overflow: hidden;
+    text-indent: 40px;
 }
 
 .plates p {
@@ -369,7 +366,7 @@ input.secondarylevelLocation {
 }
 
 .statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
- .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
+ .socialShell p, .socialShell input, .skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
  .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, .weaponProfileShell p,
  .weaponProfileShell input, .statsShell input, .movementShell input, .vitalsShell input {
     position: unset !important;
@@ -1424,11 +1421,11 @@ input.secondarylevelLocation {
     background: none;
 }
 
-.basicStatsDrawer div p {
+.basicStatsDrawer div p, .basicStatsDrawer div input {
     width: 50%;
 }
 
-.basicStatsDrawer div p:last-child {
+.basicStatsDrawer div p:last-child, .basicStatsDrawer div input:last-child {
     text-align: center;
 }
 
@@ -1438,17 +1435,18 @@ input.secondarylevelLocation {
     font-weight: bold;
 }
 
-.basicStats p:last-child {
+.basicStats p:last-child, .basicStats input:last-child {
     text-align: center;
 }
 
-.basicStats p:first-child, .basicStats p:last-child {
+.basicStats p:first-child, .basicStats p:last-child, .basicStats input:first-child, .basicStats input:last-child {
     width: 70px;
 }
 
 .armornameLocation {
     padding: 0 2px;
     background: lightgrey;
+    width: 100%;
 }
 
 .armorBonusArea {
@@ -1461,8 +1459,8 @@ input.secondarylevelLocation {
 }
 
 .shieldBonusArea {
-    max-height: 58px;
-    min-height: 58px;
+    max-height: 54px;
+    min-height: 54px;
 }
 
 .armorBonusArea p:first-child {
@@ -1521,6 +1519,7 @@ input.secondarylevelLocation {
 .shieldnameLocation {
     padding: 0 2px;
     background: lightgrey;
+    width: 100%;
 }
 
 .weaponProfileShell {
@@ -1588,7 +1587,7 @@ input.secondarylevelLocation {
     font-weight: bold;
 }
 
-.armorBaseStats div p:last-child, .armorBaseStats p:last-child {
+.armorBaseStats div p:last-child, .armorBaseStats p:last-child, .armorBaseStats div input:last-child, .armorBaseStats input:last-child {
     text-align: center;
     width: 40px;
 }
@@ -1619,6 +1618,12 @@ input.secondarylevelLocation {
     max-height: 62px;
     min-height: 62px;
     overflow: hidden;
+}
+
+.weaponBonusArea textarea {
+    height: 81px;
+    overflow: hidden;
+    text-indent: 40px;
 }
 
 .weaponTraitArea {
@@ -1748,8 +1753,6 @@ input.secondarylevelLocation {
 
 .traitsLocation {
     width: 149px;
-    top: 171px;
-    left: 1px;
     text-indent: 46px;
 } 
 .traitstextArea {
@@ -1760,17 +1763,14 @@ input.secondarylevelLocation {
     overflow: hidden;
 }
 textarea.traitsLocation {
-    top: 104px;
+    height: 54px;
+    overflow: hidden;
 }
 .traitsfour {
-    top: 148px !important;
     max-width: 173px;
     min-width: 173px;
     max-height: 60px;
     min-height: 60px;
-}
-textarea.traitsfour {
-    top: 83px !important;
 }
 
 .trainattackLocation {
@@ -2046,3 +2046,7 @@ textarea.traitsfour {
 .advSkillBackgroundShell div:nth-child(2) .stripings .stripeDiv div:nth-child(2) {
     border-right: none;
 }
+
+#nativename {
+    width: 93px
+ }

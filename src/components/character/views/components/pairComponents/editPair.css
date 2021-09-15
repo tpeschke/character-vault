@@ -99,11 +99,11 @@
     width: 40px;
 }
 
-.totalCost {
+#totalCost {
     padding: 0 4px;
-    position: absolute;
+    position: absolute !important;
     text-align: right;
     width: 40px;
-    left: 127px;
+    left: 154px;
     z-index: 0;
 }

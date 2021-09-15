@@ -13,34 +13,87 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
     }
 
     if (editing) {
+        let measureAndParry = (<div className="armorBaseStats">
+            <div>
+                <p>Meas.</p>
+                <input type="text" defaultValue={basemeasure} onChange={event => updateValue(event.target.value, "basemeasure")} />
+            </div>
+            <div>
+                <p>Parry</p>
+                <input type="number" defaultValue={baseparry} onChange={event => updateValue(event.target.value, "baseparry")} />
+            </div>
+        </div>)
+        if (position === "four") {
+            measureAndParry = (null)
+        }
+
         return (
-            <div className={`weaponProfile${position}`}>
-                <input className={position !== "four" ? "weaponnameLocation" : "weaponnameLocation weaponnamefour"} type="text" defaultValue={name} onChange={event => updateValue(event.target.value, "name")} />
-                <input className={position !== "four" ? "basedamageLocation" : "basedamageLocation basedamagefour"} type="text" defaultValue={basedamage} onChange={event => updateValue(event.target.value, "basedamage")} />
-                <input className="baserecoveryLocation" type="number" defaultValue={baserecovery} onChange={event => updateValue(event.target.value, "baserecovery")} />
-                <input className={position !== "four" ? "baseparryLocation" : "baseparryLocation fourDisplayNone"} type="number" defaultValue={baseparry} onChange={event => updateValue(event.target.value, "baseparry")} />
-                <input className={position !== "four" ? "basemeasureLocation" : "basemeasureLocation fourDisplayNone"} type="text" defaultValue={basemeasure} onChange={event => updateValue(event.target.value, "basemeasure")} />
-                <input className={position !== "four" ? "basesizeLocation" : "basesizeLocation sizefour"} type="text" defaultValue={size} onChange={event => updateValue(event.target.value, "size")} />
-                <input className={position !== "four" ? "typeLocation" : "typeLocation typefour"} type="text" defaultValue={type} onChange={event => updateValue(event.target.value, "type")} />
-                <textarea className={position !== "four" ? "bonusLocation bonustextArea" : "bonusLocation bonustextArea bonusfour"} defaultValue={bonus} onChange={event => updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
-                <textarea className={position !== "four" ? "traitsLocation traitstextArea" : "traitsLocation traitstextArea traitsfour"} defaultValue={traits} onChange={event => updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
+            <div className={`weaponProfile${position} weaponProfileShell`}>
+                <h2>Weapon Workspace</h2>
+                <input className="weaponnameLocation" type="text" defaultValue={name} onChange={event => updateValue(event.target.value, "name")} />
+                <div className="armorBaseStats">
+                    <p>Damage</p>
+                    <input className="basedamageLocation" type="text" defaultValue={basedamage} onChange={event => updateValue(event.target.value, "basedamage")} />
+                </div>
+                <div className="armorBaseStats">
+                    <div>
+                        <p>Recov.</p>
+                        <input className="baserecoveryLocation" type="number" defaultValue={baserecovery} onChange={event => updateValue(event.target.value, "baserecovery")} />
+                    </div>
+                    <div>
+                        <p>Size</p>
+                        <input type="text" defaultValue={size} onChange={event => updateValue(event.target.value, "size")} />
+                    </div>
+                </div>
+                {measureAndParry}
+                <div className="armorBaseStats">
+                    <p>Type</p>
+                    <input className="basedamageLocation" type="text" defaultValue={type} onChange={event => updateValue(event.target.value, "type")} />
+                </div>
+                <div className="weaponBonusArea" className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
+                    <p>Bonus</p>
+                    <textarea defaultValue={bonus} onChange={event => updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
+                </div>
+                <div className="weaponTraitArea">
+                    <p>Traits</p>
+                    <textarea className={position !== "four" ? "traitsLocation" : "traitsLocation traitsfour"} defaultValue={traits} onChange={event => updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
+                </div>
 
-                <input className="trainattackLocation" type="number" defaultValue={trainattack} onChange={event => updateValue(event.target.value, "trainattack")} />
-                <input className="trainrecoveryLocation" type="number" defaultValue={trainrecovery} onChange={event => updateValue(event.target.value, "trainrecovery")} />
-                <input className={position !== "four" ? "trainparryLocation" : "trainparryLocation fourDisplayNone"} type="number" defaultValue={trainparry} onChange={event => updateValue(event.target.value, "trainparry")} />
-                <input className="traindamageLocation" type="number" defaultValue={traindamage} onChange={event => updateValue(event.target.value, "traindamage")} />
+                <div className="weaponCalculatedStats weaponCalculatedStatsHeader">
+                    <p>Atk</p>
+                    <p>Rcv</p>
+                    <p>Pry</p>
+                    <p>Dam</p>
+                    <p>Init</p>
+                    <p> </p>
+                </div>
 
-                <input className="miscattackLocation" type="number" defaultValue={miscattack} onChange={event => updateValue(event.target.value, "miscattack")} />
-                <input className="miscrecoveryLocation" type="number" defaultValue={miscrecovery} onChange={event => updateValue(event.target.value, "miscrecovery")} />
-                <input className={position !== "four" ? "miscparryLocation" : "miscparryLocation fourDisplayNone"} type="number" defaultValue={miscparry} onChange={event => updateValue(event.target.value, "miscparry")} />
-                <input className="miscdamageLocation" type="number" defaultValue={miscdamage} onChange={event => updateValue(event.target.value, "miscdamage")} />
-                <input className={position !== "four" ? "miscinitLocation" : "miscinitLocation initfour"} type="number" defaultValue={miscinit} onChange={event => updateValue(event.target.value, "miscinit")} />
+                <div className="weaponCalculatedStats">
+                    <input type="number" defaultValue={trainattack} onChange={event => updateValue(event.target.value, "trainattack")} />
+                    <input type="number" defaultValue={trainrecovery} onChange={event => updateValue(event.target.value, "trainrecovery")} />
+                    <input type="number" defaultValue={trainparry} onChange={event => updateValue(event.target.value, "trainparry")} />
+                    <input type="number" defaultValue={traindamage} onChange={event => updateValue(event.target.value, "traindamage")} />
+                    <p> </p>
+                    <p>Tr</p>
+                </div>
 
-                <p className="totalattackLocation">{returnZeroIfNaN(trainattack + +miscattack)}</p>
-                <p className="totalrecoveryLocation">{returnZeroIfNaN(totalRecoveryModifiers)}</p>
-                <p className="totalparryLocation">{returnZeroIfNaN(trainparry + +miscparry)}</p>
-                <p className="totaldamageLocation">{returnZeroIfNaN(traindamage + +miscdamage)}</p>
-                <p className={position !== "four" ? "totalinitLocation" : "totalinitLocation initfour"}>{miscinit}</p>
+                <div className="weaponCalculatedStats">
+                    <input type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
+                    <input type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
+                    <input type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
+                    <input type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
+                    <input className={position !== "four" ? "" : "initfour"} type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
+                    <p>Mi</p>
+                </div>
+
+                <div className="weaponCalculatedStats">
+                    <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
+                    <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+                    <p>{returnZeroIfNaN(trainparry + +miscparry)}</p>
+                    <p>{returnZeroIfNaN(traindamage + +miscdamage)}</p>
+                    <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
+                    <p>To</p>
+                </div>
             </div>
         )
     }

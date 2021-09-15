@@ -13,13 +13,14 @@ import CashAndGear from './components/pageTwo/cashAndGear'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
 import WeaponSquare from './components/pageOne/weaponsquare'
+import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 
 import statTables from '../statTables';
 
 export default class CharacterEditor extends Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             character: { ...props.character },
             updateCharacter: props.updateCharacter,
@@ -124,12 +125,12 @@ export default class CharacterEditor extends Component {
 
     render() {
         let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
-        let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, 
+        let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel,
             temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, skilladept,
-            armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, 
+            armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-           shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry,shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, 
+            shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites,
             nativelanguage, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
         let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
@@ -139,14 +140,14 @@ export default class CharacterEditor extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
         let strData = str ? strTable[str] : strTable[1]
-        , dexData = dex ? dexTable[dex] : dexTable[1]
-        , conData = con ? conTable[con] : conTable[1]
-        , intData = int ? intTable[int] : intTable[1]
-        , wisData = wis ? wisTable[wis] : wisTable[1]
-        , chaData = cha ? chaTable[cha] : chaTable[1]
+            , dexData = dex ? dexTable[dex] : dexTable[1]
+            , conData = con ? conTable[con] : conTable[1]
+            , intData = int ? intTable[int] : intTable[1]
+            , wisData = wis ? wisTable[wis] : wisTable[1]
+            , chaData = cha ? chaTable[cha] : chaTable[1]
 
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
-        , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
+            , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
         weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
         weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
@@ -162,6 +163,7 @@ export default class CharacterEditor extends Component {
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute }
             , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, honor }
             , miscVitals = { updateAttribute: this.updateAttribute, favormax, stressthreshold, wis, chaData }
+            , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData, dexData, conData, intData, wisData, chaData }
@@ -200,8 +202,8 @@ export default class CharacterEditor extends Component {
                 armormiscrecovery, armormiscinit
             }
             , shield = {
-               shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-               shieldtraindef, shieldtrainparry,shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+                shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
             }
 
@@ -209,42 +211,59 @@ export default class CharacterEditor extends Component {
             <div>
                 <div id="pdf" className='pdfViewStylings'>
                     <div className="pageOne pageBase pageViewStylings">
-                        <CharacterInfo characterInfo={characterInfo} editing={true}/>
+                        <CharacterInfo characterInfo={characterInfo} editing={true} />
 
-                        <Stats stats={stats} editing={true}/>
+                        <Stats stats={stats} editing={true} />
 
-                        <Movement movement={movement} editing={true}/>
+                        <Movement movement={movement} editing={true} />
 
-                        <Social social={social} editing={true}/>
+                        <Social social={social} editing={true} />
 
                         <WeaponSquare weapon={weapononeobject} />
                         <WeaponSquare weapon={weapontwoobject} />
                         <WeaponSquare weapon={weaponthreeobject} />
                         <WeaponSquare weapon={weaponfourobject} />
 
-                        <MiscVitals miscVitals={miscVitals} editing={true}/>
+                        <MiscVitals miscVitals={miscVitals} editing={true} />
 
-                        <Ranges maxrange={maxrange} updateAttribute={this.updateAttribute} editing={true}/>
+                        <Ranges maxrange={maxrange} updateAttribute={this.updateAttribute} editing={true} />
 
-                        <Vitality vitality={vitality} editing={true}/>
+                        <Vitality vitality={vitality} editing={true} />
 
-                        <Abilities abilities={abilities} editing={true}/>
+                        <Abilities abilities={abilities} editing={true} />
                     </div>
                     <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
-                        <Skills skillsObject={skillsObject} editing={true}/>
+                        <Skills skillsObject={skillsObject} editing={true} />
 
-                        <CashAndGear cashAndGear={cashAndGear} editing={true}/>
+                        <CashAndGear cashAndGear={cashAndGear} editing={true} />
 
-                        <ArmorBlock armor={armor} editing={true}/>
+                        <ArmorBlock armor={armor} editing={true} />
 
                         <ShieldBlock shield={shield} editing={true} />
+
+                        <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
+
+                        <div className="generalNotesShell">
+                            <h1>General Notes</h1>
+                            <div>
+                                <div className="generalNoteStriping">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+                            </div>
+                        </div>
 
                         <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-
-                        <textarea className="generalnotesLocation generalnotestextArea" defaultValue={generalnotes} onChange={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
                     </div>
 
                 </div>
