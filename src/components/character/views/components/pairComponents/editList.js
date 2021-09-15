@@ -14,9 +14,9 @@ export default class EditList extends Component {
     }
 
     deepCopyListArray = () => {
-        return this.state.listArray.map(item=>{return {...item}})
+        return this.state.listArray.map(item => { return { ...item } })
     }
-    
+
     makeId = () => {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
@@ -24,7 +24,7 @@ export default class EditList extends Component {
     addNewItem = (value) => {
         let listArray = this.deepCopyListArray()
         if (value) {
-            listArray.push({value})
+            listArray.push({ value })
             this.setState({ listArray }, _ => {
                 this.state.updateFunction(this.state.listArray, this.state.type)
                 document.getElementById(`addNewItemInput${this.state.type}`).value = null;
@@ -37,33 +37,39 @@ export default class EditList extends Component {
         if (!value || value === '') {
             listArray.splice(index, 1)
         } else {
-            listArray[index] = {...listArray[index], value}
+            listArray[index] = { ...listArray[index], value }
         }
-        this.setState({ listArray }, _=> this.state.updateFunction(this.state.listArray, this.state.type))
+        this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
     render() {
         let { stylings, listArray, limit } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let inputStyles = {
-                position: 'absolute',
-                width: '100%',
-                top: `${i * 19.6}px`
+                width: '100%'
             }
             return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
         })
-        
+
         let inputStyles = {
-            position: 'absolute',
             width: '100%',
-            top: `${listOfInputs.length * 19.6}px`,
             display: `${listOfInputs.length >= limit ? 'none' : 'flex'}`
         }
 
+        let stripes = []
+        for (let i = 0; i < limit; i++) {
+            stripes.push((<div className="pairRowStriping" style={inputStyles} key={`${this.makeId()}`}> </div>))
+        }
+
         return (
-            <div style={stylings}>
-                {listOfInputs}
-                <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id={`addNewItemInput${this.state.type}`} />
+            <div style={stylings} className="viewList viewPairListStriping">
+                <div className="stripesShell">
+                    {stripes}
+                </div>
+                <div className="contentListShell">
+                    {listOfInputs}
+                    <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id={`addNewItemInput${this.state.type}`} />
+                </div>
             </div>
         )
     }

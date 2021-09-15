@@ -188,10 +188,14 @@ input[type=number] {
 }
 
 input, textarea {
-    background: rgba(173, 216, 230, 0.50) !important;
+    background: rgba(173, 216, 230, 0.50);
     border: none;
     position: relative;
     font-size: 13px;
+}
+
+.editing input {
+    background: rgba(173, 216, 230, 0.50) !important;
 }
 
 .viewer input, .viewer textarea {

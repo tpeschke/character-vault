@@ -47,7 +47,7 @@ export default function Social({ social, editing }) {
                 <EditPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'}  height={'59px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
                 <h2>Reputation</h2>
                 <div className="reputationShell">
-                    <EditList stylings={{ left: '86px', width: '340px', top: '-3px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
+                    <EditList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                     <div className="reputationTitles">
                         <p>I'm Know For</p>
                         <p>I'm Know For</p>

@@ -37,7 +37,7 @@ export default function MiscVitals({ miscVitals, editing }) {
                     <div className="checkboxShell">
                         <p>Anointed?</p>
                         <div className="checkboxShellInner">
-                            {anointedDiv}
+                            <div></div>
                         </div>
                     </div>
                     <div>

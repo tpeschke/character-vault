@@ -209,7 +209,7 @@ export default class CharacterEditor extends Component {
 
         return (
             <div>
-                <div id="pdf" className='pdfViewStylings'>
+                <div id="pdf" className='pdfViewStylings editing'>
                     <div className="pageOne pageBase pageViewStylings">
                         <CharacterInfo characterInfo={characterInfo} editing={true} />
 

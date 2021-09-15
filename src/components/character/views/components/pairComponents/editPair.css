@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.pairRowStriping, .contentPairListShell input {
+.pairRowStriping, .contentPairListShell input, .contentListShell input {
     height: 19.6px;
     margin: 0;
 }
@@ -35,14 +35,14 @@
     position: relative;
 }
 
-.viewPairListStriping .stripesShell, .viewPairListStriping .contentPairListShell {
+.viewPairListStriping .stripesShell, .viewPairListStriping .contentPairListShell, .viewPairListStriping .contentListShell {
     display: flex;
     flex-direction: column;
     width: 100%;
     flex-wrap: wrap;
 }
 
-.viewPairListStriping .contentPairListShell {
+.viewPairListStriping .contentPairListShell, .viewPairListStriping .contentListShell {
     position: absolute;
     top: 0
 }
