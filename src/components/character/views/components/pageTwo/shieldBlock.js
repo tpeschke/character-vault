@@ -96,7 +96,7 @@ export default function ShieldBlock({ shield, editing }) {
                 <p>{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
                 <p>{shieldFatigue}</p>
                 <p>{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-                <p>{shieldbasebreak + shieldtrainbreak < 0 ? shieldbasebreak + shieldtrainbreak + shieldmiscbreak : 0 + shieldmiscbreak}</p>
+                <p>{shieldbasebreak + shieldtrainbreak + shieldmiscbreak}</p>
                 <p>Total</p>
             </div>
         </div>
