@@ -48,7 +48,7 @@ export default class EditList extends Component {
             let inputStyles = {
                 position: 'absolute',
                 width: '100%',
-                top: `${i * 21.33}px`
+                top: `${i * 19.6}px`
             }
             return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
         })
@@ -56,7 +56,7 @@ export default class EditList extends Component {
         let inputStyles = {
             position: 'absolute',
             width: '100%',
-            top: `${listOfInputs.length * 21.33}px`,
+            top: `${listOfInputs.length * 19.6}px`,
             display: `${listOfInputs.length >= limit ? 'none' : 'flex'}`
         }
 

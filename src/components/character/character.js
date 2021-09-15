@@ -13,8 +13,8 @@ class Character extends Component {
             downloadMode: props.match.path === "/download/:id",
             character: null,
             isEditingMode: 
-                props.match.path === "/new/:id",
-                // true,
+                // props.match.path === "/new/:id",
+                true,
             isUpdating: false
         }
 

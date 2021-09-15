@@ -243,7 +243,7 @@ input, textarea {
     text-align: center;
 }
 input.levelLocation {
-    left: 470px;
+    left: 493px;
 }
 
 .primaryLocation {
@@ -260,7 +260,10 @@ input.levelLocation {
     width: 93px;
 }
 input.primarylevelLocation {
-    left: 282px;
+    left: 295px;
+    width: 25px;
+    top: 45px;
+    text-align: center;
 }
 
 .secondaryLocation {
@@ -274,10 +277,12 @@ input.primarylevelLocation {
 .secondarylevelLocation {
     left: 420px;
     top: 43px;
-    width: 35px;
+    width: 25px;
 }
 input.secondarylevelLocation {
-    left: 413px;
+    left: 416px;
+    top: 45px;
+    text-align: center;
 }
 
 .crpLocation {
@@ -363,10 +368,10 @@ input.secondarylevelLocation {
     background: inherit;
 }
 
-.statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p,
+.statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
  .socialShell p, .socialShell input, .skillShell p, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
  .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, .weaponProfileShell p,
- .weaponProfileShell input {
+ .weaponProfileShell input, .statsShell input, .movementShell input, .vitalsShell input {
     position: unset !important;
     z-index: 1;
     margin: 0;
@@ -1074,7 +1079,7 @@ input.secondarylevelLocation {
 }
 
 .criticalLocation {
-    width: 74px;
+    width: 60%;
     text-align: center;
 }
 
@@ -1127,7 +1132,7 @@ input.secondarylevelLocation {
     font-size: 10px;
 }
 
-.vitalyRollsShell div p:nth-child(2) {
+.vitalyRollsShell div p:nth-child(2), .vitalyRollsShell div input:nth-child(2) {
     width: 38%
 }
 
@@ -1187,21 +1192,22 @@ input.secondarylevelLocation {
     padding: 0 2px;
 }
 .abilitiesonetextArea {
-    width: 250px;
-    max-width: 250px;
-    min-width: 250px;
+    max-width: 33%;
+    min-width: 33%;
     max-height: 165px;
     min-height: 165px;
     overflow: hidden;
+    position: absolute;
 }
 
 .abilitiestwotextArea {
-    width: 273px;
-    max-width: 273px;
-    min-width: 273px;
+    width: 33%;
+    max-width: 33%;
+    min-width: 33%;
     max-height: 165px;
     min-height: 165px;
     overflow: hidden;
+    position: absolute;
 }
 .abilitiesthreeLocation {
     top: 0px;
@@ -1210,12 +1216,13 @@ input.secondarylevelLocation {
     padding: 0 2px;
 }
 .abilitiesthreetextArea {
-    width: 249px;
-    max-width: 249px;
-    min-width: 249px;
-    max-height: 126px;
-    min-height: 126px;
+    width: 33%;
+    max-width: 33%;
+    min-width: 33%;
+    max-height: 140px;
+    min-height: 140px;
     overflow: hidden;
+    position: absolute;
 }
 
 .removedAbilityShell {
@@ -1716,14 +1723,14 @@ input.secondarylevelLocation {
     top: 0
 }
 
-.reputationTitles p {
+.reputationTitles p, .reputationTitles input {
     font-family: 'Vollkorn SC', serif;
     height: 19.6px;
     padding-right: 5px;
     padding-top: 1px;
 }
 
-.reputationTitles p:nth-child(even) {
+.reputationTitles p:nth-child(even), .reputationTitles input:nth-child(even) {
     background: lightgray;
 }
 

@@ -170,7 +170,7 @@ export default class CharacterViewer extends Component {
             return 'W';
         } else if (number === -2) {
             return 'B';
-        } else if (number === -1) {
+        } else if (number === -3) {
             return 'H';
         } else {
             return 'A';

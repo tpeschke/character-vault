@@ -12,6 +12,7 @@ import WeaponBlock from './components/pageTwo/weaponBlock'
 import CashAndGear from './components/pageTwo/cashAndGear'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
+import WeaponSquare from './components/pageOne/weaponsquare'
 
 import statTables from '../statTables';
 
@@ -66,6 +67,61 @@ export default class CharacterEditor extends Component {
         return thing
     }
 
+    calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + trainfatigue + miscfatigue)
+    }
+
+    calculateTotalFatigue = (armorFatigue, shieldFatigue) => {
+        return this.convertToFatigueLetter(this.convertFromFatigueLetter(armorFatigue) + shieldFatigue)
+    }
+
+    convertFromFatigueLetter = (fatigue) => {
+        switch (fatigue) {
+            case null:
+            case 'C':
+                return 0;
+            case 'W':
+                return -1;
+            case 'B':
+                return -2;
+            case 'H':
+                return -3;
+            case 'A':
+                return -4;
+            default:
+                return fatigue
+        }
+    }
+
+    convertToFatigueLetter = (number) => {
+        if (number >= 0) {
+            return 'C';
+        } else if (number === -1) {
+            return 'W';
+        } else if (number === -2) {
+            return 'B';
+        } else if (number === -3) {
+            return 'H';
+        } else {
+            return 'A';
+        }
+    }
+
+    calculateRecovery = (recovery, size, isMelee) => {
+        let minimumRecovery
+        if (!size) {
+            size = "L"
+        }
+        if (size.toUpperCase() === 'S') {
+            isMelee ? minimumRecovery = 2 : minimumRecovery = 3
+        } else if (size.toUpperCase() === 'M') {
+            isMelee ? minimumRecovery = 3 : minimumRecovery = 4
+        } else {
+            isMelee ? minimumRecovery = 4 : minimumRecovery = 5
+        }
+        return recovery < minimumRecovery ? minimumRecovery : recovery
+    }
+
     render() {
         let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel, 
@@ -89,15 +145,55 @@ export default class CharacterEditor extends Component {
         , wisData = wis ? wisTable[wis] : wisTable[1]
         , chaData = cha ? chaTable[cha] : chaTable[1]
 
+        let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
+        , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
+
+        weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
+        weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
+        weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
+        weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
+
+        let armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armortrainfatigue, armormiscfatigue);
+        let shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
+        let totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
+
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute }
             , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, honor }
-            , miscVitals = { con, updateAttribute: this.updateAttribute, favormax, stressthreshold, wis }
+            , miscVitals = { updateAttribute: this.updateAttribute, favormax, stressthreshold, wis, chaData }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData, dexData, conData, intData, wisData, chaData }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
+            , weapononeobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, ...weaponone
+            }
+            , weapontwoobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, ...weapontwo
+            }
+            , weaponthreeobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, ...weaponthree
+            }
+            , weaponfourobject = {
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
+            }
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
@@ -120,6 +216,11 @@ export default class CharacterEditor extends Component {
                         <Movement movement={movement} editing={true}/>
 
                         <Social social={social} editing={true}/>
+
+                        <WeaponSquare weapon={weapononeobject} />
+                        <WeaponSquare weapon={weapontwoobject} />
+                        <WeaponSquare weapon={weaponthreeobject} />
+                        <WeaponSquare weapon={weaponfourobject} />
 
                         <MiscVitals miscVitals={miscVitals} editing={true}/>
 

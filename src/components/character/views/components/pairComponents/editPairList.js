@@ -16,6 +16,7 @@ export default class EditPairList extends Component {
             limit: props.limit,
             updateFunction: props.updateFunction,
             type: props.type,
+            height: props.height,
             titleWidth: props.titleWidth || 75,
             valueWidth: 100 - props.titleWidth || 25,
             defaultValue: props.defaultValue || null,
@@ -70,7 +71,7 @@ export default class EditPairList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, titleWidth, valueWidth, rowWidth } = this.state
+        let { stylings, listArray, limit, titleWidth, valueWidth, rowWidth, height } = this.state
         let rowStyles = {
             width: rowWidth
         }
@@ -91,12 +92,17 @@ export default class EditPairList extends Component {
             stripes.push((<div className="pairRowStriping" style={rowStyles} key={`${this.makeId()}`}> </div>))
         }
 
+        let heightStyling = {
+            height: height || 'unset'
+        }
+        
+
         return (
             <div style={stylings} className="viewPairListStriping">
-                <div className="stripesShell">
+                <div className="stripesShell" style={heightStyling}>
                     {stripes}
                 </div>
-                <div className="contentPairListShell">
+                <div className="contentPairListShell" style={heightStyling}>
                     {listOfInputs}
                     <div className="editPairRow" style={inputRowStyles}>
                         <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />

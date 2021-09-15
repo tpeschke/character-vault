@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.gearColumn .contentPairListShell input:first-child {
+.contentPairListShell input:first-child {
     text-align: unset;
 }
 
@@ -50,6 +50,7 @@
 .titleInput {
     padding: 1px 4px;
     position: unset !important;
+    text-align: left;
 }
 
 .valueInput {

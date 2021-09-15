@@ -36,7 +36,7 @@ export default class ViewPairList extends Component {
         let listOfPairsToDisplay = listArray.map((item, i) => {
             return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <p className="titleInput">- {item.title}</p>
-                <p className="valueDisplay">{this.state.converterFunction(item.value)}</p>
+                <p className="valueDisplay border-right">{this.state.converterFunction(item.value)}</p>
             </div>)
         })
 
