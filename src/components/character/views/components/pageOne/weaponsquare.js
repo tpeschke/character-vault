@@ -16,7 +16,7 @@ export default function weaponsquare({ weapon }) {
     if (name && type) { name = `${name} (${type})` }
 
     let parryShown = baseparry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + weapontrainparry + weaponmiscparry
-        , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>{shielddr}</p> : <div></div>
+        , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>:{shielddr}</p> : <div></div>
 
     let drShell = (<div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
         <p id="armorDr">{armordr}</p>
@@ -38,7 +38,7 @@ export default function weaponsquare({ weapon }) {
     }
     let damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
 
-    if (baseparry === 'n/a' && shieldbaseparry + shieldtrainparry + shieldmiscparry === 0) {
+    if (isRanged || shieldbaseparry + shieldtrainparry + shieldmiscparry <= 0) {
         drShell = (<div className="drshell">
             <p id="armorDr">{armordr}</p>
         </div>)
@@ -48,6 +48,7 @@ export default function weaponsquare({ weapon }) {
 
     return (
         <div className={`weaponsquare weapon${position}`}>
+            <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
             <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, false))}</p>
             <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
             <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
@@ -61,8 +62,6 @@ export default function weaponsquare({ weapon }) {
             {damageShell}
             <p className="parry">{parryShown}</p>
 
-            <p className="squareTitle">Weapon Square For:</p>
-            <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
         </div>
     )
 }

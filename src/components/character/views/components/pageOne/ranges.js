@@ -10,7 +10,46 @@ export default function Ranges({ maxrange, editing, updateAttribute }) {
         )
     }
 
-    let ranges = (<div></div>)
+    let ranges = (<div className="rangeShell">
+        <h2>Ranges (ft)</h2>
+        <div>
+            <p>0</p>
+            <p className="maxrangeLocation one"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation two"> </p>
+        </div>
+        <div>
+            <p>-2</p>
+            <p className="maxrangeLocation three"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation four"> </p>
+        </div>
+        <div>
+            <p>-4</p>
+            <p className="maxrangeLocation five"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation six"> </p>
+        </div>
+        <div>
+            <p>-8</p>
+            <p className="maxrangeLocation seven"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation eight"> </p>
+        </div>
+        <div>
+            <p>-16</p>
+            <p className="maxrangeLocation nine"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation ten"> </p>
+        </div>
+        <div>
+            <p>-32</p>
+            <p className="maxrangeLocation eleven"> </p>
+            <p>-</p>
+            <p className="maxrangeLocation"> </p>
+        </div>
+    </div>)
+
     if (maxrange) {
         ranges = (
             <div className="rangeShell">

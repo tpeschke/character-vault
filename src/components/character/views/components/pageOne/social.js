@@ -14,7 +14,7 @@ export default function Social({ social, editing }) {
                 <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} />
                 <EditList stylings={{ top: '358px', left: '20px', width: '224px' }} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
                 <EditPairList stylings={{ top: '508px', left: '20px', width: '224px' }} listArray={devotions} limit={4} updateFunction={updateAttribute} type={"devotions"} />
-                <EditPairList stylings={{ top: '593px', left: '20px', width: '427px', height: '67px' }} rowWidth={'212px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
+                <EditPairList stylings={{ top: '593px', left: '20px', width: '428px', height: '67px' }} rowWidth={'212px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!+Stress"} />
                 <EditPairList stylings={{ top: '383px', left: '246px', width: '200px' }} listArray={traits} limit={10} updateFunction={updateAttribute} type={"traits"} />
                 <EditList stylings={{ top: '610px', left: '107px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                 <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onChange={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
@@ -57,7 +57,7 @@ export default function Social({ social, editing }) {
                 </div>
             </div>
             <h2>Flaws</h2>
-            <ViewPairList stylings={{ width: '427px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
+            <ViewPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
             <div className="reputationShell">
                 <ViewList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} />

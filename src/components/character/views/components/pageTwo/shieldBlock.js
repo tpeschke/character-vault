@@ -55,7 +55,7 @@ export default function ShieldBlock({ shield, editing }) {
                 <p>Cover</p>
                 <p className="shieldcoverLocation">{shieldcover}</p>
             </div>
-            <div className="armorBonusArea">
+            <div className="armorBonusArea shieldBonusArea">
                 <p>Bonus</p>
                 <p className="shieldbonusLocation">{shieldbonus}</p>
             </div>

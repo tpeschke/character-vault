@@ -638,126 +638,140 @@ input.secondarylevelLocation {
     background: url('../../assets/weaponsquare.png');
     background-size: contain;
     position: absolute;
-    height: 137px;
-    width: 143px;
+    height: 151px;
+    width: 158px;
 }
 
 .weaponone {
-    top: 97px;
+    top: 87px;
     left: 471px;
 }
 
 .weapontwo {
-    top: 97px;
-    left: 648px;
+    top: 87px;
+    left: 640px;
 }
 
 .weaponthree {
-    top: 267px;
+    top: 260px;
     left: 472px;
 }
 
 .weaponfour {
-    left: 648px;
-    top: 267px;
+    left: 640px;
+    top: 260px;
 }
 
 .weaponsquare .attack {
     position: absolute;
-    top: 17px;
-    left: 38px;
-    height: 22px;
-    width: 68px;
+    top: 16px;
+    left: 45px;
+    height: 32px;
+    width: 67px;
     text-align: center;
+    font-size: 19px;
 }
 .weaponsquare .recovery {
     position: absolute;
-    top: 17px;
-    left: -17px;
-    height: 22px;
-    width: 68px;
+    top: 11px;
+    left: 0px;
+    height: 30px;
+    width: 45px;
     text-align: center;
+    font-size: 18px;
 }
 .weaponsquare .init {
     position: absolute;
-    top: 17px;
-    left: 93px;
-    height: 22px;
-    width: 68px;
+    top: 9px;
+    left: 104px;
+    height: 32px;
+    width: 54px;
     text-align: center;
+    font-size: 19px;
 }
+
 .weaponsquare .def {
     position: absolute;
-    top: 57px;
+    top: 60px;
     left: 0px;
-    height: 22px;
+    height: 34px;
     width: 68px;
     text-align: center;
+    font-size: 18px;
 }
 .weaponsquare .encumb {
     position: absolute;
-    top: 57px;
-    left: 38px;
-    height: 22px;
-    width: 68px;
+    top: 62px;
+    left: 60px;
+    height: 24px;
+    width: 38px;
     text-align: center;
+    font-size: 18px;
 }
 .weaponsquare .drshell {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     position: absolute;
-    top: 52px;
-    left: 82px;
-    height: 29px;
-    width: 61px;
+    top: 58px;
+    left: 98px;
+    height: 40px;
+    width: 47px;
     text-align: center;
 }
 
 #armorDr {
     position: unset;
-    font-size: 10px;
+    margin: 0;
+    font-size: 13px;
 }
 
 #shieldDr {
     position: unset;
-    font-size: 10px;
+    margin: 0;
+    font-size: 13px;
 }
 
 .weaponsquare .measure {
     position: absolute;
-    top: 104px;
-    left: -17px;
-    height: 22px;
-    width: 68px;
+    top: 112px;
+    left: 1px;
+    height: 30px;
+    width: 45px;
     text-align: center;
+    font-size: 18px;
 }
 
-.weaponsquare .damage {top: 89px;
-    left: 46px;
+.weaponsquare .damage {
+    top: 96px;
+    left: 50px;
     height: 38px;
-    width: 51px;
+    width: 58px;
     word-wrap: break-word;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .weaponsquare .parry {
     position: absolute;
-    top: 104px;
-    left: 92px;
-    height: 22px;
-    width: 68px;
+    top: 113px;
+    left: 108px;
+    height: 36px;
+    width: 49px;
     text-align: center;
+    font-size: 18px;
 }
 
 .weaponsquare .name {
     position: absolute;
     top: -17px;
-    left: 1px;
+    left: 0px;
     height: 20px;
-    width: 155px;
+    width: 170px;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .weaponsquare .squareTitle {
@@ -1437,6 +1451,11 @@ input.secondarylevelLocation {
     max-height: 73px;
     min-height: 73px;
     overflow: hidden;
+}
+
+.shieldBonusArea {
+    max-height: 58px;
+    min-height: 58px;
 }
 
 .armorBonusArea p:first-child {
