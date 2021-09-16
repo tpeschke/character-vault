@@ -5,7 +5,7 @@ export default function MiscVitals({ miscVitals, editing }) {
 
     let anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(true, "anointed")}></div>)
     if (anointed) {
-        anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(false, "anointed")}><i class="fas fa-check"></i></div>)
+        anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(false, "anointed")}><i className="fas fa-check"></i></div>)
     }
 
     if (editing) {
@@ -49,7 +49,7 @@ export default function MiscVitals({ miscVitals, editing }) {
         )
     }
     return (
-        <div className="stressThresholdShell">
+        <div className="stressThresholdShell" key={currentstress}>
             <div className="vitalShell">
                 <div>
                     <p>Stress</p>

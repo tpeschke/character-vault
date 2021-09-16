@@ -3,7 +3,9 @@ import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
+    let { shownVitality, updateAttribute, isDownloading, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
+
+    let currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
 
     if (editing) {
         return (
@@ -96,7 +98,7 @@ export default function Vitality({ vitality, editing }) {
     }
 
     return (
-        <div className="vitalsShell">
+        <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
             <h1>Vitality</h1>
             <div className="woundCategoryShell">
                 <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
@@ -121,7 +123,7 @@ export default function Vitality({ vitality, editing }) {
             <div className="currentDamageRow">
                 <div className="currentBox">
                     <p>Current</p>
-                    <p className="currentDamageLocation">{currentDamage}</p>
+                    <p className="currentDamageLocation">{currentDamage > 0 ? currentDamage : " "}</p>
                 </div>
                 <p className="tinyGrey">Severity</p>
                 <p className="tinyGrey">Days to Heal</p>

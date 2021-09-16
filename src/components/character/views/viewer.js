@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import _ from "lodash";
 
 import WeaponSquare from './components/pageOne/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo'
@@ -31,9 +32,9 @@ export default class CharacterViewer extends Component {
             adjustedCarry: null,
             overCarry: 0,
             isUpdating: false,
-            currentDamage: 0,
             shownVitality: 0,
             downloadMode: props.downloadMode,
+            savedCharacter: {},
             isDownloading: false,
             isHalfwayDone: false
         }
@@ -42,7 +43,6 @@ export default class CharacterViewer extends Component {
     componentWillMount() {
         let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
-        this.calculateCurrentDamage()
         this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con })
     }
 
@@ -107,12 +107,6 @@ export default class CharacterViewer extends Component {
         let small = mediumRemainder
 
         return `${small}S ${medium}M ${large}L`
-    }
-
-    calculateCurrentDamage = () => {
-        let { damageone, damagetwo } = this.state.character
-        let currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
-        this.setState({ currentDamage })
     }
 
     calculateRecovery = (recovery, size, isMelee) => {
@@ -225,7 +219,26 @@ export default class CharacterViewer extends Component {
         }
     }
 
-    generatePdf = () => {
+    adjustForPdf = () => {
+        let characterDeepCopy = _.cloneDeep(this.state.character)
+
+        let devotions = characterDeepCopy.devotions.map(devotion => { return { ...devotion, title: null } })
+        , traits = characterDeepCopy.traits.map(trait => { return { ...trait, title: null } })
+        , nativelanguage = { ...characterDeepCopy.nativelanguage, language: null }
+
+        let cleansedCharacter = {
+            ...characterDeepCopy, currentstress: null, damageone: [], damagetwo: [], goals: [],
+            name: null, extrahonordice: null, relaxation: null, reputation: [], contacts: "", devotions, traits, nativelanguage
+        }
+        
+        this.setState({ savedCharacter: characterDeepCopy }, _ => {
+            this.setState({ character: cleansedCharacter }, _ => {
+                this.generatePdf(true)
+            })
+        })
+    }
+
+    generatePdf = (isPregen) => {
         this.setState({ isDownloading: true })
         const pageOne = document.getElementById('pageOne');
         html2canvas(pageOne, { scale: 5 })
@@ -243,9 +256,13 @@ export default class CharacterViewer extends Component {
                         const imgDataTwo = cavansTwo.toDataURL('image/png');
                         pdf.addPage(width, height);
                         pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
-                        let name = this.state.character.name ? this.state.character.name : "Unnamed Character";
+                        let name = this.state.character.name && !isPregengit add ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
                         pdf.save(`${name}.pdf`);
-                        this.setState({ isHalfwayDone: false, isDownloading: false })
+                        if (isPregen) {
+                            this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
+                        } else {
+                            this.setState({ isHalfwayDone: false, isDownloading: false })
+                        }
                     });
             });
     }
@@ -256,7 +273,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed } = this.state.character
-            , { currentDamage, shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
+            , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
             , strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
@@ -326,7 +343,7 @@ export default class CharacterViewer extends Component {
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
             , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            , vitality = { shownVitality, updateAttribute: this.updateAttribute, currentDamage, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
+            , vitality = { shownVitality, isDownloading, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry }
@@ -346,20 +363,19 @@ export default class CharacterViewer extends Component {
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
-
         let downloadingBanner = (<div></div>)
         if (isDownloading) {
-            downloadingBanner = (<div class="downloadingBanner">
+            downloadingBanner = (<div className="downloadingBanner">
                 <h4>Your PDF is being prepared</h4>
-                <p>{isHalfwayDone ? "(It's currently halfway done)" : "(This will take a hot minute)"}</p>
+                <p>{isHalfwayDone ? "(It's halfway done)" : "(This will take a hot minute)"}</p>
             </div>)
         }
 
         return (
             <div>
                 {downloadingBanner}
-                <div id="pdf" className={downloadMode ? 'viewer' : 'viewer pdfViewStylings'}>
-                    <div id="pageOne" className={downloadMode ? "pageOne pageBase" : "pageOne pageBase pageViewStylings"}>
+                <div id="pdf" className='viewer pdfViewStylings'>
+                    <div id="pageOne" className="pageOne pageBase pageViewStylings">
                         <CharacterInfo characterInfo={characterInfo} />
                         <Stats stats={stats} />
                         <Movement movement={movement} />
@@ -378,7 +394,7 @@ export default class CharacterViewer extends Component {
 
                         <Abilities abilities={abilities} />
                     </div>
-                    <div id="pageTwo" className={downloadMode ? "pageTwo pageBase" : "pageTwo pageTwoMargin pageBase pageViewStylings"}>
+                    <div id="pageTwo" className="pageTwo pageTwoMargin pageBase pageViewStylings">
                         <Skills skillsObject={skillsObject} />
 
                         <CashAndGear cashAndGear={cashAndGear} />
@@ -414,7 +430,17 @@ export default class CharacterViewer extends Component {
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
                     <div className="left-corner-button corner-button">
-                        <a onClick={this.generatePdf}><i className="fas fa-file-download fa-lg"></i></a>
+                        <div className="left-corner-button corner-button zindexOne">
+                            <a onClick={_ => this.generatePdf(false)}><i className="fas fa-file-download fa-lg"></i></a>
+                        </div>
+                        <div className="downloadAsPregen zindexNegOne">
+                            <div className="downloadAsPregen centerIcon">
+                                <i onClick={this.adjustForPdf} className="fas fa-meh-blank"></i>
+                            </div>
+                            <div className="bannerTooltip">
+                                <p>Download as Pregen</p>
+                            </div>
+                        </div>
                     </div>
                     <div className={owned ? "right-corner-button corner-button" : "displayNone"}>
                         {editButton}

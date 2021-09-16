@@ -39,6 +39,10 @@ input[type=number] {
     color: #2192b8;
 }
 
+.downloadStylings .currentBox p:last-child {
+    color: white !important
+}
+
 .downloadingBanner {
     position: absolute;
     z-index: 5;
@@ -108,10 +112,81 @@ input[type=number] {
     border-top-right-radius: 50px;
 }
 
+.zindexOne {
+    z-index: 1;
+}
+
 .left-corner-button i {
     position: absolute;
     bottom: 10px;
-    left: 5px
+    left: 5px;
+}
+
+.downloadAsPregen {
+    position: absolute;
+    bottom: -9px;
+    left: -9px;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    transition: .6s;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.zindexNegOne {
+    z-index: -1;
+}
+
+.left-corner-button:hover .downloadAsPregen {
+    bottom: 30px;
+    left: 30px;
+}
+
+.centerIcon {
+    bottom: 0px !important;
+    left: 0px !important;
+}
+
+.downloadAsPregen i {
+    font-size: 35px;
+    color: grey;
+    position: absolute;
+    top: 7px;
+    left: 8px;
+}
+
+.downloadAsPregen:hover i {
+    color:#2192b8;;
+    transition: .6s;
+    cursor: pointer;
+}
+
+.bannerTooltip {
+    position: absolute;
+    width: 0px;
+    background: lightgray;
+    font-size: 13px;
+    left: 32px;
+    padding: 2px 5px 2px 10px;
+    z-index: -3;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+    transition: .6s;
+    transition-delay: 2s;
+}
+
+.bannerTooltip p {
+    margin: 0;
+    padding-left: 13px;
+    width: 162px;
+}
+
+.downloadAsPregen:hover .bannerTooltip {
+    width: 162px;
 }
 
 .right-corner-button {
@@ -122,7 +197,7 @@ input[type=number] {
 .right-corner-button i {
     position: absolute;
     bottom: 5px;
-    right: 5px
+    right: 5px;
 }
 
 .displayNone {

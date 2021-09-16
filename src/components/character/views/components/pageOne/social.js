@@ -68,7 +68,7 @@ export default function Social({ social, editing }) {
         )
     }
     return (
-        <div className="socialShell">
+        <div className="socialShell" key={goals.length}>
             <h1>Honor</h1>
             <div className="honorShell">
                 <div>
