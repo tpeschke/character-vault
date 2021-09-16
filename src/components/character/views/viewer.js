@@ -256,7 +256,7 @@ export default class CharacterViewer extends Component {
                         const imgDataTwo = cavansTwo.toDataURL('image/png');
                         pdf.addPage(width, height);
                         pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
-                        let name = this.state.character.name && !isPregengit add ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
+                        let name = this.state.character.name && !isPregen ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
                         pdf.save(`${name}.pdf`);
                         if (isPregen) {
                             this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
