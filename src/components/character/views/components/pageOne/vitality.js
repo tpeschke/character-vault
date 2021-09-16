@@ -5,7 +5,10 @@ import ViewPairList from '../pairComponents/viewPairList'
 export default function Vitality({ vitality, editing }) {
     let { shownVitality, updateAttribute, isDownloading, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
 
-    let currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
+    let currentDamage = 0
+    if (damageone && damagetwo) {
+        currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
+    }
 
     if (editing) {
         return (
