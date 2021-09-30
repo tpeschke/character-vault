@@ -69,7 +69,7 @@ export default function Abilities({ abilities, editing }) {
                         <div></div>
                         <div></div>
                     </div>
-                    <p className="abilitiesoneLocation abilitiesoneAdjustment">{abilitiesone}</p>
+                    <p className="abilitiesoneLocation abilitiesWidth">{abilitiesone}</p>
                 </div>
                 <div className="abilityShell">
                     <div className="contactStriping">
@@ -82,7 +82,7 @@ export default function Abilities({ abilities, editing }) {
                         <div></div>
                         <div></div>
                     </div>
-                    <p className="abilitiestwoLocation abilitiestwoAdjustment">{abilitiestwo}</p>
+                    <p className="abilitiestwoLocation abilitiesWidth">{abilitiestwo}</p>
                 </div>
                 <div className="abilityShell">
                     <div className="contactStriping">
@@ -99,7 +99,7 @@ export default function Abilities({ abilities, editing }) {
                             <p className="removedabilityLocation">{removedability}</p>
                         </div>
                     </div>
-                    <p className="abilitiesthreeLocation abilitiesthreeAdjustment">{abilitiesthree}</p>
+                    <p className="abilitiesthreeLocation abilitiesWidth">{abilitiesthree}</p>
                 </div>
             </div>
         </div>

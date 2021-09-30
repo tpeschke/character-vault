@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Stats({ stats, editing }) {
-    let { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, updateAttribute } = stats
+    let { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, updateAttribute, isDownloading } = stats
 
     if (editing) {
         return (
@@ -69,7 +69,7 @@ export default function Stats({ stats, editing }) {
                     <p>Str</p>
                     <div id="confDieShell">
                         <p className="strConfrontationLocation">{strData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
                 <div>
@@ -77,7 +77,7 @@ export default function Stats({ stats, editing }) {
                     <p>Dex</p>
                     <div id="confDieShell">
                         <p className="dexConfrontationLocation">{dexData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
                 <div>
@@ -85,7 +85,7 @@ export default function Stats({ stats, editing }) {
                     <p>Con</p>
                     <div id="confDieShell">
                         <p className="conConfrontationLocation">{conData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
                 <div>
@@ -93,7 +93,7 @@ export default function Stats({ stats, editing }) {
                     <p>Int</p>
                     <div id="confDieShell">
                         <p className="intConfrontationLocation">{intData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
                 <div>
@@ -101,7 +101,7 @@ export default function Stats({ stats, editing }) {
                     <p>Wis</p>
                     <div id="confDieShell">
                         <p className="wisConfrontationLocation">{wisData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
                 <div>
@@ -109,7 +109,7 @@ export default function Stats({ stats, editing }) {
                     <p>Cha</p>
                     <div id="confDieShell">
                         <p className="chaConfrontationLocation">{chaData.confrontation.toLowerCase()}</p>
-                        <p>Conf Die</p>
+                        <p className={isDownloading ? "removeButtons" : ""}>Conf Die</p>
                     </div>
                 </div>
             </div>

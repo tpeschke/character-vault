@@ -3,7 +3,7 @@ import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, isDownloading, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
+    let { shownVitality, updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {

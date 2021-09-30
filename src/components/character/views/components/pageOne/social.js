@@ -108,9 +108,9 @@ export default function Social({ social, editing }) {
             <div className="reputationShell">
                 <ViewList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} />
                 <div className="reputationTitles">
-                    <p>I'm Know For</p>
-                    <p>I'm Know For</p>
-                    <p>I'm Know For</p>
+                    <p>I'm Known For</p>
+                    <p>I'm Known For</p>
+                    <p>I'm Known For</p>
                 </div>
             </div>
             <h2>Allies, Contacts, & Assets</h2>

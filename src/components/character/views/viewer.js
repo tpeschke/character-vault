@@ -239,32 +239,33 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = (isPregen) => {
-        this.setState({ isDownloading: true })
-        const pageOne = document.getElementById('pageOne');
-        html2canvas(pageOne, { scale: 5 })
-            .then((canvasOne) => {
-                const imgDataOne = canvasOne.toDataURL('image/png');
-                const pdf = new jsPDF("p", "mm", "letter");
-                var width = pdf.internal.pageSize.getWidth();
-                var height = pdf.internal.pageSize.getHeight();
-                pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
-
-                this.setState({ isHalfwayDone: true })
-                const pageTwo = document.getElementById('pageTwo');
-                html2canvas(pageTwo, { scale: 5 })
-                    .then((cavansTwo) => {
-                        const imgDataTwo = cavansTwo.toDataURL('image/png');
-                        pdf.addPage(width, height);
-                        pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
-                        let name = this.state.character.name && !isPregen ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
-                        pdf.save(`${name}.pdf`);
-                        if (isPregen) {
-                            this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
-                        } else {
-                            this.setState({ isHalfwayDone: false, isDownloading: false })
-                        }
-                    });
-            });
+        this.setState({ isDownloading: true }, _=> {
+            const pageOne = document.getElementById('pageOne');
+            html2canvas(pageOne, { scale: 5 })
+                .then((canvasOne) => {
+                    const imgDataOne = canvasOne.toDataURL('image/png');
+                    const pdf = new jsPDF("p", "mm", "letter");
+                    var width = pdf.internal.pageSize.getWidth();
+                    var height = pdf.internal.pageSize.getHeight();
+                    pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
+    
+                    this.setState({ isHalfwayDone: true })
+                    const pageTwo = document.getElementById('pageTwo');
+                    html2canvas(pageTwo, { scale: 5 })
+                        .then((cavansTwo) => {
+                            const imgDataTwo = cavansTwo.toDataURL('image/png');
+                            pdf.addPage(width, height);
+                            pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
+                            let name = this.state.character.name && !isPregen ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
+                            pdf.save(`${name}.pdf`);
+                            if (isPregen) {
+                                this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
+                            } else {
+                                this.setState({ isHalfwayDone: false, isDownloading: false })
+                            }
+                        });
+                });
+        })
     }
 
     render() {
@@ -311,7 +312,7 @@ export default class CharacterViewer extends Component {
         let totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
-            , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData }
+            , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             , movement = { crawl, walk, jog, run, sprint, overCarry }
             , social = { shownHonor, updateAttribute: this.updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             , weapononeobject = {
@@ -343,11 +344,11 @@ export default class CharacterViewer extends Component {
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
             , miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            , vitality = { shownVitality, isDownloading, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
+            , vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             , skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }
-            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry }
-            , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
+            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
+            , baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading }
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,

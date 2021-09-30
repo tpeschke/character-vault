@@ -2,7 +2,7 @@ import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 
 export default function Skills({ cashAndGear, editing }) {
-    let { copper, updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry } = cashAndGear
+    let { copper, updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading } = cashAndGear
 
     if (editing) {
         return (
@@ -123,7 +123,7 @@ export default function Skills({ cashAndGear, editing }) {
                         <div className="carryBackground">
                             <p> </p>
                             <p>/</p>
-                            <p>Carry</p>
+                            <p>{isDownloading ? " " : "Carry"}</p>
                         </div>
                         <div className="carryForeground">
                             <p className="shownGearCarryLocation">{shownGearCarry}</p>
