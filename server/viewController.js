@@ -17,9 +17,93 @@ viewController = {
     })
   },
   viewCharacter: function (req, res) {
-    viewController.assembleCharacter(req).then(character => {
-      res.send(character)
-    })
+    if (req.query.template) {
+      let characterid = req.params.id
+        req.params.id = +req.query.template
+        viewController.assembleCharacter(req).then((character) => {
+            delete character.armorid
+            delete character.characterid
+            delete character.shieldid
+            character.damageone = []
+            character.damagetwo = []
+            character.id = characterid
+            character.name = character.name + " - copy"
+            character.nativelanguage.characterid = characterid
+            character.userid = req.user.patreon
+            
+            character.weaponfour.characterid = characterid
+            delete character.weaponfour.weaponid
+            character.weaponone.characterid = characterid
+            delete character.weaponone.weaponid
+            character.weaponthree.characterid = characterid
+            delete character.weaponthree.weaponid
+            character.weapontwo.characterid = characterid
+            delete character.weapontwo.weaponid
+
+            character.goals = character.goals.map(goal => {
+              goal.characterid = characterid
+              delete goal.id
+              return goal
+            })
+            character.devotions = character.devotions.map(devotion => {
+              devotion.characterid = characterid
+              delete devotion.id
+              return devotion
+            })
+            character.flaws = character.flaws.map(flaw => {
+              flaw.characterid = characterid
+              delete flaw.id
+              return flaw
+            })
+            character.reputation = character.reputation.map(rep => {
+              rep.characterid = characterid
+              delete rep.id
+              return rep
+            })
+            character.traits = character.traits.map(trait => {
+              trait.characterid = characterid
+              delete trait.id
+              return trait
+            })
+
+            character.gearone = character.gearone.map(gear => {
+              gear.characterid = characterid
+              delete gear.id
+              return gear
+            })
+            character.geartwo = character.geartwo.map(gear => {
+              gear.characterid = characterid
+              delete gear.id
+              return gear
+            })
+            character.gearthree = character.gearthree.map(gear => {
+              gear.characterid = characterid
+              delete gear.id
+              return gear
+            })
+            character.gearfour = character.gearfour.map(gear => {
+              gear.characterid = characterid
+              delete gear.id
+              return gear
+            })
+
+            character.skillsuites = character.skillsuites.map(suite => {
+              delete suite.characterskillsuitesid
+              return suite
+            })
+            character.skills = character.skills.map(skill => {
+              skill.characterid = characterid
+              delete skill.id
+              return skill
+            })
+
+            res.send(character)
+        })
+    } else {
+        viewController.assembleCharacter(req).then(character => {
+          res.send(character)
+        })
+    }
   },
   assembleCharacter: async function (req) {
     const db = req.app.get('db')

@@ -106,7 +106,7 @@ export default function Social({ social, editing }) {
             <ViewPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
             <div className="reputationShell">
-                <ViewList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} />
+                <ViewList stylings={{ left: '95px', width: '340px' }} listArray={reputation} limit={3} />
                 <div className="reputationTitles">
                     <p>I'm Known For</p>
                     <p>I'm Known For</p>

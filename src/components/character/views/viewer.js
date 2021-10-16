@@ -449,7 +449,7 @@ export default class CharacterViewer extends Component {
                         </div>
                         <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
                             <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
-                                <i class="fas fa-clone"></i>
+                                <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
                             </div>
                             <div className="bannerTooltipRight singleBanner zindexNegOne">
                                 <p>Copy Character</p>
@@ -457,7 +457,7 @@ export default class CharacterViewer extends Component {
                         </div>
                         <div className={owned ? "copyCharacter zindexNegOne" : "displayNone"}>
                             <div className="copyCharacter centerIconRight">
-                                <i class="fas fa-clone"></i>
+                                <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
                             </div>
                             <div className="bannerTooltipRight">
                                 <p>Copy Character</p>

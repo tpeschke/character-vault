@@ -26,12 +26,22 @@ class Character extends Component {
             this.setState({isEditingMode: false})
         }
         let id = this.props.match.params.id.split('.')[0]
-        axios.get(`/api/view/${id}`).then(({ data: character }) => {
-            this.setState({ character }, _=> {
-                document.title = this.state.character.name
+        console.log(this.props.location.search.split('='))
+        if (this.props.location.search.split('=').length === 1) {
+            axios.get(`/api/view/${id}`).then(({ data: character }) => {
+                this.setState({ character }, _=> {
+                    document.title = this.state.character.name
+                })
             })
-        })
+        } else {
+            axios.get(`/api/view/${id}`, { params: { template: this.props.location.search.split('=')[1] } }).then(({ data: character }) => {
+                this.setState({ character }, _=> {
+                    document.title = this.state.character.name
+                })
+            })
+        }
     }
+    
     componentWillUnmount() {
         if (this.props.match.path === "/new/:id") {
             axios.post('/api/upsertCharacter', this.state.character)
@@ -70,12 +80,18 @@ class Character extends Component {
         })
     }
 
+    copyCharacter = () => {
+        axios.post('/api/addCharacter').then(({ data }) => {
+            this.props.history.push(`/new/${data.id}?template=${this.state.character.id}`)
+        })
+    }
+
     render() {
         let { downloadMode, character, isEditingMode, isUpdating } = this.state
         if (!character) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         }
-        let view = <CharacterViewer character={character} updateSharedCharacter={this.updateSharedCharacter} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} />
+        let view = <CharacterViewer character={character} updateSharedCharacter={this.updateSharedCharacter} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} copyCharacter={this.copyCharacter} />
 
         if (isEditingMode) {
             view = <CharacterEditor character={character} updateCharacter={this.updateCharacter} cancelUpdate={this.cancelUpdate} isUpdating={isUpdating}/>
