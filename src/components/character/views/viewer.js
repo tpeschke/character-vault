@@ -223,14 +223,14 @@ export default class CharacterViewer extends Component {
         let characterDeepCopy = _.cloneDeep(this.state.character)
 
         let devotions = characterDeepCopy.devotions.map(devotion => { return { ...devotion, title: null } })
-        , traits = characterDeepCopy.traits.map(trait => { return { ...trait, title: null } })
-        , nativelanguage = { ...characterDeepCopy.nativelanguage, language: null }
+            , traits = characterDeepCopy.traits.map(trait => { return { ...trait, title: null } })
+            , nativelanguage = { ...characterDeepCopy.nativelanguage, language: null }
 
         let cleansedCharacter = {
             ...characterDeepCopy, currentstress: null, damageone: [], damagetwo: [], goals: [],
             name: null, extrahonordice: null, relaxation: null, reputation: [], contacts: "", devotions, traits, nativelanguage
         }
-        
+
         this.setState({ savedCharacter: characterDeepCopy }, _ => {
             this.setState({ character: cleansedCharacter }, _ => {
                 this.generatePdf(true)
@@ -239,7 +239,7 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = (isPregen) => {
-        this.setState({ isDownloading: true }, _=> {
+        this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
             html2canvas(pageOne, { scale: 5 })
                 .then((canvasOne) => {
@@ -248,7 +248,7 @@ export default class CharacterViewer extends Component {
                     var width = pdf.internal.pageSize.getWidth();
                     var height = pdf.internal.pageSize.getHeight();
                     pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
-    
+
                     this.setState({ isHalfwayDone: true })
                     const pageTwo = document.getElementById('pageTwo');
                     html2canvas(pageTwo, { scale: 5 })
@@ -435,16 +435,34 @@ export default class CharacterViewer extends Component {
                             <a onClick={_ => this.generatePdf(false)}><i className="fas fa-file-download fa-lg"></i></a>
                         </div>
                         <div className="downloadAsPregen zindexNegOne">
-                            <div className="downloadAsPregen centerIcon">
+                            <div className="downloadAsPregen centerIconLeft">
                                 <i onClick={this.adjustForPdf} className="fas fa-meh-blank"></i>
                             </div>
-                            <div className="bannerTooltip">
+                            <div className="bannerTooltipLeft">
                                 <p>Download as Pregen</p>
                             </div>
                         </div>
                     </div>
-                    <div className={owned ? "right-corner-button corner-button" : "displayNone"}>
-                        {editButton}
+                    <div className="right-corner-button corner-button">
+                        <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                            {editButton}
+                        </div>
+                        <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                            <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                                <i class="fas fa-clone"></i>
+                            </div>
+                            <div className="bannerTooltipRight singleBanner zindexNegOne">
+                                <p>Copy Character</p>
+                            </div>
+                        </div>
+                        <div className={owned ? "copyCharacter zindexNegOne" : "displayNone"}>
+                            <div className="copyCharacter centerIconRight">
+                                <i class="fas fa-clone"></i>
+                            </div>
+                            <div className="bannerTooltipRight">
+                                <p>Copy Character</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
