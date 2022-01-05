@@ -15,14 +15,14 @@ export default function BaseCombatFromStats({ baseCombatFromStats }) {
             <div>
                 <p>Defense</p>
                 <div>
-                    <p className={isDownloading ? "removeButtons" : ""}>Dex Mod + Wis Mod</p>
+                    <p className={isDownloading ? "removeButtons" : ""}>Dex Mod + Will Mod</p>
                     <p><strong>{dexData.defense + wisData.defense}</strong> = {dexData.defense} + {wisData.defense} </p>
                 </div>
             </div>
             <div>
                 <p>Initiative</p>
                 <div>
-                    <p className={isDownloading ? "removeButtons" : ""}>Dex Mod + Wis Mod</p>
+                    <p className={isDownloading ? "removeButtons" : ""}>Dex Mod + Will Mod</p>
                     <p><strong>{dexData.init + wisData.init}</strong> = {dexData.init} + {wisData.init}</p>
                 </div>
             </div>

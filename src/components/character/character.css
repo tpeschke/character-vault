@@ -514,6 +514,11 @@ input.secondarylevelLocation {
     min-height: 19.6px;
 }
 
+.statRowsShell div div, .statRowsShell div p, .statRowsShell div input {
+    width: 50%;
+    text-align: center;
+}
+
 .statRowsShell p:nth-child(2) {
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;

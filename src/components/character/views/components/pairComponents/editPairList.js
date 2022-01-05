@@ -42,7 +42,7 @@ export default class EditPairList extends Component {
         } else if (titleSameAsValue && value) {
             title = value
         }
-        if (title || value) {
+        if (title || (value && value !== defaultValue)) {
             listArray.push({ title, value })
             this.setState({ listArray }, _ => {
                 updateFunction(this.state.listArray, type)

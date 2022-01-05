@@ -4,8 +4,8 @@ export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, calculateRecovery, totalRecoveryModifiers, armorRecovery, size, trainattack,
         miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
-        miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, weapontrainparry,
-        weaponmiscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject, editing } = weapon
+        miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
+        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject, editing } = weapon
 
         if (editing) {
             return (
@@ -17,12 +17,12 @@ export default function weaponsquare({ weapon }) {
     if (!shielddr) { shielddr = ' 2/d' }
     if (!armordr) { armordr = 0 }
     if (!baseparry) { baseparry = 'n/a' }
-    if (!weapontrainparry) {weapontrainparry = 0}
-    if (!weaponmiscparry) {weaponmiscparry = 0}
+    if (!trainparry) {trainparry = 0}
+    if (!miscparry) {miscparry = 0}
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name} (${type})` }
 
-    let parryShown = baseparry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + weapontrainparry + weaponmiscparry
+    let parryShown = baseparry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
         , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>:{shielddr}</p> : <div></div>
 
     let drShell = (<div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>

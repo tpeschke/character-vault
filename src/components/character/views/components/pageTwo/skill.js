@@ -10,7 +10,7 @@ export default function Skills({ skillsObject, editing }) {
             <div className="skillShell">
                 <div className="skillLeftShell">
                     <div>
-                        <h2>Skill Mods & Skill Adepts</h2>
+                        <h2>Check Mods & Skill Adepts</h2>
                         <div className="skillDiscount">
                             <div className="skillMods">
                                 <div>
@@ -30,11 +30,11 @@ export default function Skills({ skillsObject, editing }) {
                                     <p>{intData.skill}</p>
                                 </div>
                                 <div>
-                                    <p>Wis</p>
+                                    <p>Will</p>
                                     <p>{wisData.skill}</p>
                                 </div>
                                 <div>
-                                    <p>Cha</p>
+                                    <p>Pre</p>
                                     <p>{chaData.skill}</p>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@ export default function Skills({ skillsObject, editing }) {
         <div className="skillShell">
             <div className="skillLeftShell">
                 <div>
-                    <h2>Skill Mods & Skill Adepts</h2>
+                    <h2>Check Mods & Skill Adepts</h2>
                     <div className="skillDiscount">
                         <div className="skillMods">
                             <div>
@@ -281,11 +281,11 @@ export default function Skills({ skillsObject, editing }) {
                                 <p>{intData.skill}</p>
                             </div>
                             <div>
-                                <p>Wis</p>
+                                <p>Will</p>
                                 <p>{wisData.skill}</p>
                             </div>
                             <div>
-                                <p>Cha</p>
+                                <p>Pre</p>
                                 <p>{chaData.skill}</p>
                             </div>
                         </div>
