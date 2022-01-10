@@ -251,7 +251,7 @@ export default class CharacterViewer extends Component {
 
                     this.setState({ isHalfwayDone: true })
                     const pageTwo = document.getElementById('pageTwo');
-                    html2canvas(pageTwo, { scale: 5 })
+                    html2canvas(pageTwo, { scale: 3 })
                         .then((cavansTwo) => {
                             const imgDataTwo = cavansTwo.toDataURL('image/png');
                             pdf.addPage(width, height);
