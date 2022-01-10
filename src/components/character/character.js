@@ -26,7 +26,6 @@ class Character extends Component {
             this.setState({isEditingMode: false})
         }
         let id = this.props.match.params.id.split('.')[0]
-        console.log(this.props.location.search.split('='))
         if (this.props.location.search.split('=').length === 1) {
             axios.get(`/api/view/${id}`).then(({ data: character }) => {
                 this.setState({ character }, _=> {

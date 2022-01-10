@@ -241,7 +241,7 @@ export default class CharacterViewer extends Component {
     generatePdf = (isPregen) => {
         this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
-            html2canvas(pageOne, { scale: 5 })
+            html2canvas(pageOne, { scale: 3 })
                 .then((canvasOne) => {
                     const imgDataOne = canvasOne.toDataURL('image/png');
                     const pdf = new jsPDF("p", "mm", "letter");
