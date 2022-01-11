@@ -131,11 +131,11 @@ export default class CharacterViewer extends Component {
         return thing
     }
 
-    calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
+    calculateArmorFatigue = (basefatigue = 0, trainfatigue = 0, miscfatigue = 0) => {
         return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + (trainfatigue * -1) + (miscfatigue * -1))
     }
 
-    calculateTotalFatigue = (armorFatigue, shieldFatigue) => {
+    calculateTotalFatigue = (armorFatigue = 0, shieldFatigue = 0) => {
         return this.convertToFatigueLetter(this.convertFromFatigueLetter(armorFatigue) + shieldFatigue)
     }
 
@@ -310,7 +310,7 @@ export default class CharacterViewer extends Component {
         let armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armortrainfatigue, armormiscfatigue);
         let shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
         let totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
-console.log(weaponone)
+
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
             , stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             , movement = { crawl, walk, jog, run, sprint, overCarry }

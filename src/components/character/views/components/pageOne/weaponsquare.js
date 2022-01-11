@@ -16,13 +16,12 @@ export default function weaponsquare({ weapon }) {
 
     if (!shielddr) { shielddr = ' 2/d' }
     if (!armordr) { armordr = 0 }
-    if (!baseparry) { baseparry = 'n/a' }
     if (!trainparry) {trainparry = 0}
     if (!miscparry) {miscparry = 0}
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name} (${type})` }
 
-    let parryShown = baseparry === 'n/a' ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
+    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
         , shieldDrShown = usingshield ? <p id="shieldDr"><i className="fas fa-shield-alt"></i>:{shielddr}</p> : <div></div>
 
     let drShell = (<div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
