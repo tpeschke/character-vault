@@ -69,15 +69,22 @@ export default function Social({ social, editing }) {
     }
 
     let honorCircle = <div></div>
+    let honorInput = <p className="honorLocation"> </p>
+    let honorDieInput = <p className="extrahonordiceLocation"> </p>
+    let alliesTextArea = <div className="contactsLocation contactstextArea"></div>
     if (shownHonor) {
         honorCircle = <div className="circle" style={{ left: honorDiceLeft }}> </div>
+        honorInput = <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => updateAttribute(event.target.value, "honor")} />
+        honorDieInput = <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => updateAttribute(event.target.value, "extrahonordice")} />
+        alliesTextArea = <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
     }
+
     return (
         <div className="socialShell" key={goals.length}>
             <h1>Honor</h1>
             <div className="honorShell">
                 <div>
-                    <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => updateAttribute(event.target.value, "honor")} />
+                    {honorInput}
                     <p>Honor</p>
                 </div>
                 <div className="honorCategoryShell">
@@ -90,7 +97,7 @@ export default function Social({ social, editing }) {
                 </div>
                 <div>
                     <p>Honor Dice</p>
-                    <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => updateAttribute(event.target.value, "extrahonordice")} />
+                    {honorDieInput}
                 </div>
             </div>
             <div className="socialBodyShell">
@@ -111,7 +118,7 @@ export default function Social({ social, editing }) {
             <ViewPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
             <div className="reputationShell">
-                <ViewList stylings={{ left: '95px', width: '340px' }} listArray={reputation} limit={3} />
+                <ViewList stylings={{ left: '95px', width: '331px' }} listArray={reputation} limit={3} />
                 <div className="reputationTitles">
                     <p>I'm Known For</p>
                     <p>I'm Known For</p>
@@ -120,7 +127,7 @@ export default function Social({ social, editing }) {
             </div>
             <h2>Allies, Contacts, & Assets</h2>
             <div>
-                <textarea className="contactsLocation contactstextArea" defaultValue={contacts} onBlur={event => updateAttribute(event.target.value, "contacts")} maxLength={"315"}></textarea>
+                {alliesTextArea}
                 <div className="contactStriping">
                     <div></div>
                     <div></div>

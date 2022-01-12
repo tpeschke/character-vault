@@ -4,7 +4,7 @@ export default function ArmorBlock({ armor, editing }) {
 
     let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
         armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute, armormiscfatigue,
-        armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN } = armor
+        armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN, id } = armor
 
     if (editing) {
         return (
@@ -65,6 +65,28 @@ export default function ArmorBlock({ armor, editing }) {
             </div>
         )
     }
+
+    let miscInputs = (
+        <div className="calculatedStats">
+        <p> </p>
+        <p> </p>
+        <p> </p>
+        <p> </p>
+        <p>Misc</p>
+    </div>
+    )
+    if (id !== 'blank') {
+        miscInputs = (
+            <div className="calculatedStats">
+                <input type="number" defaultValue={armormiscdef} onBlur={event => updateAttribute(event.target.value, "armormiscdef")} />
+                <input type="number" defaultValue={armormiscfatigue} onBlur={event => updateAttribute(event.target.value, "armormiscfatigue")} />
+                <input type="number" defaultValue={armormiscrecovery} onBlur={event => updateAttribute(event.target.value, "armormiscrecovery")} />
+                <input type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
+                <p>Misc</p>
+            </div>
+        )
+    }
+
     return (
         <div className="armorBlockShell">
             <h2>Armor Workspace</h2>
@@ -105,13 +127,7 @@ export default function ArmorBlock({ armor, editing }) {
                 <p>Train</p>
             </div>
 
-            <div className="calculatedStats">
-                <input type="number" defaultValue={armormiscdef} onBlur={event => updateAttribute(event.target.value, "armormiscdef")} />
-                <input type="number" defaultValue={armormiscfatigue} onBlur={event => updateAttribute(event.target.value, "armormiscfatigue")} />
-                <input type="number" defaultValue={armormiscrecovery} onBlur={event => updateAttribute(event.target.value, "armormiscrecovery")} />
-                <input type="number" defaultValue={armormiscinit} onChange={event => updateAttribute(event.target.value, "armormiscinit")} />
-                <p>Misc</p>
-            </div>
+            {miscInputs}
 
             <div className="calculatedStats">
                 <p>{returnZeroIfNaN(armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>

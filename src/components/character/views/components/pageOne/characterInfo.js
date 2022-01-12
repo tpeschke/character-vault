@@ -2,7 +2,7 @@ import React from 'react'
 import "./plates.css"
 
 export default function CharacterInfo({ characterInfo, editing }) {
-    let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute } = characterInfo
+    let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute, id } = characterInfo
     let plates = (
         <div className="plates">
             <p className="namePlate">Character Name</p>
@@ -41,6 +41,11 @@ export default function CharacterInfo({ characterInfo, editing }) {
         )
     }
 
+    let currentEx = <p className="excurrentLocation"> </p>
+    if (id !== 'blank') {
+        currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
+    }
+
     return (
         <div>
             {plates}
@@ -53,7 +58,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="levelLocation">{level ? level : ' '}</p>
             <p className="crpLocation">{crp ? crp : ' '}</p>
             <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
-            <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
+            {currentEx}
             <p className="drawbackLocation">{drawback}</p>
         </div>
     )

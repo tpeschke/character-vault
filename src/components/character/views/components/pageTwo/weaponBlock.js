@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, editing }) {
     let { position, name, basemeasure, basedamage, baseparry, baserecovery, size, type, bonus, traits, trainrecovery, trainattack, traindamage, trainparry,
-        miscattack, miscdamage, miscinit, miscparry, miscrecovery, totalRecoveryModifiers } = weapon
+        miscattack, miscdamage, miscinit, miscparry, miscrecovery, totalRecoveryModifiers, id } = weapon
 
     let updateValue = (value, key) => {
         if (!value) {
@@ -112,6 +112,29 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
         measureAndParry = (null)
     }
 
+    let miscInputs = (
+        <div className="weaponCalculatedStats">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p className={position !== "four" ? "" : "initfour"}> </p>
+            <p>Mi</p>
+        </div>
+    )
+    if (id !== 'blank') {
+        miscInputs = (
+            <div className="weaponCalculatedStats">
+                <input type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
+                <input type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
+                <input type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
+                <input type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
+                <input className={position !== "four" ? "" : "initfour"} type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
+                <p>Mi</p>
+            </div>
+        )
+    }
+
     return (
         <div className={`weaponProfile${position} weaponProfileShell`}>
             <h2>Weapon Workspace</h2>
@@ -162,14 +185,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                 <p>Tr</p>
             </div>
 
-            <div className="weaponCalculatedStats">
-                <input type="number" defaultValue={miscattack} onBlur={event => updateValue(event.target.value, "miscattack")} />
-                <input type="number" defaultValue={miscrecovery} onBlur={event => updateValue(event.target.value, "miscrecovery")} />
-                <input type="number" defaultValue={miscparry} onBlur={event => updateValue(event.target.value, "miscparry")} />
-                <input type="number" defaultValue={miscdamage} onBlur={event => updateValue(event.target.value, "miscdamage")} />
-                <input className={position !== "four" ? "" : "initfour"} type="number" defaultValue={miscinit} onBlur={event => updateValue(event.target.value, "miscinit")} />
-                <p>Mi</p>
-            </div>
+            {miscInputs}
 
             <div className="weaponCalculatedStats">
                 <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>

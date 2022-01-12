@@ -1296,7 +1296,7 @@ input.secondarylevelLocation {
     width: 426px;
 }
 .contactstextArea {
-    position: absolute;
+    position: absolute !important;
     width: 426px;
     max-width: 426px;
     min-width: 426px;

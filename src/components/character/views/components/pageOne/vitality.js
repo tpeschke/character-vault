@@ -101,8 +101,12 @@ export default function Vitality({ vitality, editing }) {
     }
 
     let panickedCircle = <div></div>
+    let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+    let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
         panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+        damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+        damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     }
 
     let minVitality = null
@@ -189,7 +193,7 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                     </div>
-                    <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                    {damageOnePairList}
                 </div>
                 <div className="damageShellRight">
                     <div className="woundTitleShell">
@@ -202,7 +206,7 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                     </div>
-                    <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+                    {damageTwoPairList}
                 </div>
             </div>
 

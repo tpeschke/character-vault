@@ -302,26 +302,34 @@ export default class CharacterViewer extends Component {
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
 
-        let characterInfo = {}
-        , stats = {}
-        , movement = {}
-        , social = { goals: []}
-        , weapononeobject = { id, position: 'one' }
-        , weapontwoobject = { id, position: 'two' }
-        , weaponthreeobject = { id, position: 'three' }
-        , weaponfourobject = { id, position: 'four' }
-        , miscVitals = {}
-        , vitality = { id }
-        , abilities = {}
-        , skillsObject = {}
-        , cashAndGear = {}
-        , baseCombatFromStats = {}
-        , armor = { id, returnZeroIfNaN: this.returnZeroIfNaN }
-        , shield = { id }
-        , armorFatigue = 0
-        , shieldFatigue = 0
-        , totalFatigue = 0
+        let characterInfo = { id }
+            , stats = {}
+            , movement = {}
+            , social = { goals: [] }
+            , weapononeobject = { id, position: 'one' }
+            , weapontwoobject = { id, position: 'two' }
+            , weaponthreeobject = { id, position: 'three' }
+            , weaponfourobject = { id, position: 'four' }
+            , miscVitals = { id }
+            , vitality = { id }
+            , abilities = {}
+            , skillsObject = {}
+            , cashAndGear = { id }
+            , baseCombatFromStats = {}
+            , armor = { id, returnZeroIfNaN: this.returnZeroIfNaN }
+            , shield = { id }
+            , armorFatigue = 0
+            , shieldFatigue = 0
+            , totalFatigue = 0
 
+            
+        let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
+        if (this.state.isUpdating) {
+            editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
+        }
+        
+        let generalnotestextArea = <div></div>
+        let rightCornerButton = <div></div>
         if (id !== 'blank') {
             weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
             weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
@@ -337,33 +345,33 @@ export default class CharacterViewer extends Component {
             movement = { crawl, walk, jog, run, sprint, overCarry }
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             weapononeobject = {
-                    returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                    armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                    armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
-                    shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                    thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponone
-                }
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponone
+            }
             weapontwoobject = {
-                    returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                    armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                    armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
-                    shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                    thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weapontwo
-                }
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weapontwo
+            }
             weaponthreeobject = {
-                    returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                    armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                    armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
-                    shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                    thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponthree
-                }
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponthree
+            }
             weaponfourobject = {
-                    returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
-                    armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                    armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
-                    shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                    thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
-                }
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
+                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
+            }
             miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
             vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
@@ -371,22 +379,42 @@ export default class CharacterViewer extends Component {
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
             baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading }
             armor = {
-                    armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
-                    armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                    armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN
-                }
+                armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
+                armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
+                armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN
+            }
             shield = {
-                    shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-                    shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
-                    returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue
-                }
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+                shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
+                returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue
+            }
+
+            generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+            rightCornerButton = (
+                <div className="right-corner-button corner-button">
+                    <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                        {editButton}
+                    </div>
+                    <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                        <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
+                            <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
+                        </div>
+                        <div className="bannerTooltipRight singleBanner zindexNegOne">
+                            <p>Copy Character</p>
+                        </div>
+                    </div>
+                    <div className={owned ? "copyCharacter zindexNegOne" : "displayNone"}>
+                        <div className="copyCharacter centerIconRight">
+                            <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
+                        </div>
+                        <div className="bannerTooltipRight">
+                            <p>Copy Character</p>
+                        </div>
+                    </div>
+                </div>
+            )
         }
 
-
-        let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
-        if (this.state.isUpdating) {
-            editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
-        }
         let downloadingBanner = (<div></div>)
         if (isDownloading) {
             downloadingBanner = (<div className="downloadingBanner">
@@ -438,7 +466,7 @@ export default class CharacterViewer extends Component {
                                     <div></div>
                                     <div></div>
                                 </div>
-                                <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+                                {generalnotestextArea}
                             </div>
                         </div>
 
@@ -466,27 +494,7 @@ export default class CharacterViewer extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="right-corner-button corner-button">
-                        <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
-                            {editButton}
-                        </div>
-                        <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
-                            <div className={!owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
-                                <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
-                            </div>
-                            <div className="bannerTooltipRight singleBanner zindexNegOne">
-                                <p>Copy Character</p>
-                            </div>
-                        </div>
-                        <div className={owned ? "copyCharacter zindexNegOne" : "displayNone"}>
-                            <div className="copyCharacter centerIconRight">
-                                <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
-                            </div>
-                            <div className="bannerTooltipRight">
-                                <p>Copy Character</p>
-                            </div>
-                        </div>
-                    </div>
+                    {rightCornerButton}
                 </div>
             </div>
         )
