@@ -3,7 +3,7 @@ import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal } = vitality
+    let { shownVitality, updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
@@ -100,11 +100,42 @@ export default function Vitality({ vitality, editing }) {
         )
     }
 
-    return (
-        <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
-            <h1>Vitality</h1>
+    let panickedCircle = <div></div>
+    if (id !== 'blank') {
+        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+    }
+
+    let minVitality = null
+    if (conData) {
+        minVitality = conData.vitalitymin
+    }
+
+    let woundCategories = (
+        <div className="woundCategoryShell">
+            {panickedCircle}
+            <div className="hurtLocation">
+                <p>H</p>
+                <p> </p>
+            </div>
+            <div className="bloodiedLocation">
+                <p>B</p>
+                <p> </p>
+            </div>
+            <div className="woundedLocation">
+                <p>W</p>
+                <p> </p>
+            </div>
+            <div className="criticalLocation">
+                <p>C</p>
+                <p> </p>
+            </div>
+        </div>
+    )
+    let traumaThreshold = <p className="traumaLocation"> </p>
+    if (shownVitality) {
+        woundCategories = (
             <div className="woundCategoryShell">
-                <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+                {panickedCircle}
                 <div className="hurtLocation">
                     <p>H</p>
                     <p>1 - {(shownVitality * .25).toFixed(0) - 1}</p>
@@ -122,6 +153,14 @@ export default function Vitality({ vitality, editing }) {
                     <p>{(shownVitality * .75).toFixed(0)} - {shownVitality}</p>
                 </div>
             </div>
+        )
+        traumaThreshold = <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
+    }
+
+    return (
+        <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
+            <h1>Vitality</h1>
+            {woundCategories}
 
             <div className="currentDamageRow">
                 <div className="currentBox">
@@ -132,7 +171,7 @@ export default function Vitality({ vitality, editing }) {
                 <p className="tinyGrey">Days to Heal</p>
                 <div className="thresholdBox">
                     <p>Trauma Thres.</p>
-                    <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
+                    {traumaThreshold}
                 </div>
                 <p className="tinyGrey">Severity</p>
                 <p className="tinyGrey">Days to Heal</p>
@@ -182,7 +221,7 @@ export default function Vitality({ vitality, editing }) {
                 </div>
                 <div>
                     <p>Min Vit</p>
-                    <p className="vitalityminLocation">{conData.vitalitymin}</p>
+                    <p className="vitalityminLocation">{minVitality}</p>
                 </div>
             </div>
         </div>

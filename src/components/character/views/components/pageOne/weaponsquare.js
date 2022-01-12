@@ -5,7 +5,7 @@ export default function weaponsquare({ weapon }) {
         miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
-        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject, editing } = weapon
+        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject, editing, id } = weapon
 
         if (editing) {
             return (
@@ -53,25 +53,32 @@ export default function weaponsquare({ weapon }) {
         </div>)
     }
 
-
-    return (
-        <div className={`weaponsquare weapon${position}`}>
-            <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
-            <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, false))}</p>
-            <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
-            <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
-
-            <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
-            <p className="encumb">{totalFatigue}</p>
-
-            {drShell}
-
-            <p className="measure">{basemeasure}</p>
-            {damageShell}
-            <p className="parry">{parryShown}</p>
-
-        </div>
-    )
+    if (id !== 'blank') {
+        return (
+            <div className={`weaponsquare weapon${position}`}>
+                <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, false))}</p>
+                <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
+                <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit + armormiscinit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0) + +miscinit)}</p>
+    
+                <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
+                <p className="encumb">{totalFatigue}</p>
+    
+                {drShell}
+    
+                <p className="measure">{basemeasure}</p>
+                {damageShell}
+                <p className="parry">{parryShown}</p>
+    
+            </div>
+        )
+    } else {
+        return (
+            <div className={`weaponsquare weapon${position}`}>
+    
+            </div>
+        )
+    }
 }
 
 function getMathOperator(total) {

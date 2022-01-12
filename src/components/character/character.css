@@ -373,7 +373,7 @@ input, textarea {
 
 .levelLocation {
     left: 494px;
-    top: 45px;
+    top: 44px;
     border-bottom: 2px solid;
     width: 28px;
     text-align: center;
@@ -384,27 +384,26 @@ input.levelLocation {
 
 .primaryLocation {
     left: 205px;
-    top: 45px;
+    top: 44px;
     width: 115px;
     padding-left: 5px;
     border-bottom: 2px solid;
 }
 
 .primarylevelLocation {
-    left: 199px;
-    top: 43px;
-    width: 93px;
+    left: 308px;
+    top: 44px;
 }
 input.primarylevelLocation {
     left: 295px;
     width: 25px;
-    top: 45px;
+    top: 44px;
     text-align: center;
 }
 
 .secondaryLocation {
     left: 326px;
-    top: 45px;
+    top: 44px;
     width: 115px;
     border-bottom: 2px solid;
     padding-left: 5px;
@@ -417,13 +416,13 @@ input.primarylevelLocation {
 }
 input.secondarylevelLocation {
     left: 416px;
-    top: 45px;
+    top: 44px;
     text-align: center;
 }
 
 .crpLocation {
     left: 551px;
-    top: 45px;
+    top: 44px;
     width: 46px;
     text-align: center;
     border-bottom: 2px solid;
@@ -1153,6 +1152,7 @@ input.secondarylevelLocation {
 
 .woundCategoryShell p:nth-child(2) {
     width: 60%;
+    font-size: 10px;
 }
 
 .currentDamageRow {

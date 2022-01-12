@@ -5,7 +5,7 @@ import EditList from '../pairComponents/editList'
 import EditPairList from '../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
-    let { shownHonor, updateAttribute, circleFill, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor } = social
+    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor } = social
 
     if (editing) {
         return (
@@ -17,12 +17,12 @@ export default function Social({ social, editing }) {
                         <p>Honor</p>
                     </div>
                     <div className="honorCategoryShell">
-                        <div className="circle" style={{ left: honorDiceLeft }}>{circleFill}</div>
+                        <div className="circle" style={{ left: honorDiceLeft }}> </div>
                         <p>0-5: n/a</p>
-                        <p>6-10: d4!</p>
-                        <p>11-15: d6!</p>
-                        <p>16-20: d8!</p>
-                        <p>21-25: d10!</p>
+                        <p>6-10: {isHuman ? 'd6!' : 'd4!'}</p>
+                        <p>11-15: {isHuman ? 'd8!' : 'd6!'}</p>
+                        <p>16-20: {isHuman ? 'd10!' : 'd8!'}</p>
+                        <p>21-25: {isHuman ? 'd12!' : 'd10!'}</p>
                     </div>
                     <div>
                         <p>Honor Dice</p>
@@ -44,7 +44,7 @@ export default function Social({ social, editing }) {
                     </div>
                 </div>
                 <h2>Flaws</h2>
-                <EditPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'}  height={'59px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!"} />
+                <EditPairList stylings={{ width: '428px', height: '60px' }} rowWidth={'212px'}  height={'59px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!"} />
                 <h2>Reputation</h2>
                 <div className="reputationShell">
                     <EditList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
@@ -67,6 +67,11 @@ export default function Social({ social, editing }) {
             </div>
         )
     }
+
+    let honorCircle = <div></div>
+    if (shownHonor) {
+        honorCircle = <div className="circle" style={{ left: honorDiceLeft }}> </div>
+    }
     return (
         <div className="socialShell" key={goals.length}>
             <h1>Honor</h1>
@@ -76,12 +81,12 @@ export default function Social({ social, editing }) {
                     <p>Honor</p>
                 </div>
                 <div className="honorCategoryShell">
-                    <div className="circle" style={{ left: honorDiceLeft }}>{circleFill}</div>
+                    {honorCircle}
                     <p>0-5: n/a</p>
-                    <p>6-10: d4!</p>
-                    <p>11-15: d6!</p>
-                    <p>16-20: d8!</p>
-                    <p>21-25: d10!</p>
+                    <p>6-10: {isHuman ? 'd6!' : 'd4!'}</p>
+                    <p>11-15: {isHuman ? 'd8!' : 'd6!'}</p>
+                    <p>16-20: {isHuman ? 'd10!' : 'd8!'}</p>
+                    <p>21-25: {isHuman ? 'd12!' : 'd10!'}</p>
                 </div>
                 <div>
                     <p>Honor Dice</p>

@@ -50,9 +50,9 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="primarylevelLocation">{primarylevel === 0 ? "" : primarylevel}</p>
             <p className="secondaryLocation">{secondarya ? secondarya : ' '}</p>
             <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
-            <p className="levelLocation">{level}</p>
-            <p className="crpLocation">{crp}</p>
-            <p className="extolevelLocation">{extolevel}</p>
+            <p className="levelLocation">{level ? level : ' '}</p>
+            <p className="crpLocation">{crp ? crp : ' '}</p>
+            <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
             <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
             <p className="drawbackLocation">{drawback}</p>
         </div>

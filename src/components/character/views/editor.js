@@ -131,9 +131,11 @@ export default class CharacterEditor extends Component {
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites,
-            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour } = this.state.character
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice } = this.state.character
         let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
+            , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
+            , isHuman = checkIfHuman(race)
 
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
@@ -160,8 +162,8 @@ export default class CharacterEditor extends Component {
 
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
-            , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute }
-            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, honor }
+            , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
+            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman }
             , miscVitals = { updateAttribute: this.updateAttribute, favormax, stressthreshold, wis, chaData }
             , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
@@ -278,4 +280,8 @@ export default class CharacterEditor extends Component {
             </div>
         )
     }
+}
+
+function checkIfHuman(race) {
+    return race && race.toUpperCase().trim() === "HUMAN"
 }

@@ -8,6 +8,11 @@ export default function MiscVitals({ miscVitals, editing }) {
         anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(false, "anointed")}><i className="fas fa-check"></i></div>)
     }
 
+    let minFavor = null
+    if (chaData) {
+        minFavor = chaData.favor
+    }
+
     if (editing) {
         return (
             <div className="stressThresholdShell">
@@ -81,7 +86,7 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
                 <div>
                     <p>Min</p>
-                    <p className="favorminLocation">{chaData.favor}</p>
+                    <p className="favorminLocation">{minFavor}</p>
                 </div>
             </div>
         </div>

@@ -27,11 +27,22 @@ class Character extends Component {
         }
         let id = this.props.match.params.id.split('.')[0]
         if (this.props.location.search.split('=').length === 1) {
-            axios.get(`/api/view/${id}`).then(({ data: character }) => {
-                this.setState({ character }, _=> {
-                    document.title = this.state.character.name
+            if (id === 'blank') {
+                let blankCharacter = { id: "blank", honor: 1, skills: [], str: 1, trainrecovery: 0
+                , weaponone: { id, position: 'one' }
+                , weapontwo: { id, position: 'two' }
+                , weaponthree: { id, position: 'three' }
+                , weaponfour: { id, position: 'four' } }
+                this.setState({ character: blankCharacter }, _=> {
+                    document.title = "Blank Character"
                 })
-            })
+            } else {
+            axios.get(`/api/view/${id}`).then(({ data: character }) => {
+                    this.setState({ character }, _=> {
+                        document.title = this.state.character.name
+                    })
+                })
+            }
         } else {
             axios.get(`/api/view/${id}`, { params: { template: this.props.location.search.split('=')[1] } }).then(({ data: character }) => {
                 this.setState({ character }, _=> {
