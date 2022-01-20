@@ -115,7 +115,7 @@ export default function Social({ social, editing }) {
                 </div>
             </div>
             <h2>Flaws</h2>
-            <ViewPairList stylings={{ width: '428px', height: '59px' }} rowWidth={'212px'} height={'59px'} listArray={flaws} limit={6} />
+            <ViewPairList stylings={{ width: '428px', height: '60px' }} rowWidth={'212px'} height={'60px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
             <div className="reputationShell">
                 <ViewList stylings={{ left: '95px', width: '331px' }} listArray={reputation} limit={3} />
