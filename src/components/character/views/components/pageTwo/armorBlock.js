@@ -56,10 +56,10 @@ export default function ArmorBlock({ armor, editing }) {
                 </div>
 
                 <div className="calculatedStats">
-                    <p>{armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
+                    <p>{armorbasedef + armortrainingdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
                     <p>{armorFatigue}</p>
                     <p>{armorRecovery}</p>
-                    <p>{armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
+                    <p>{armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
                     <p>Total</p>
                 </div>
             </div>
@@ -130,10 +130,10 @@ export default function ArmorBlock({ armor, editing }) {
             {miscInputs}
 
             <div className="calculatedStats">
-                <p>{returnZeroIfNaN(armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>
+                <p>{returnZeroIfNaN(armorbasedef + armortrainingdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>
                 <p>{armorFatigue}</p>
                 <p>{armorRecovery}</p>
-                <p>{returnZeroIfNaN(armorbaseinit + armortraininit < 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit)}</p>
+                <p>{returnZeroIfNaN(armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit)}</p>
                 <p>Total</p>
             </div>
         </div>

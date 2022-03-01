@@ -34,7 +34,7 @@ export default function Social({ social, editing }) {
                         <h2>Temperament</h2>
                         <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} />
                         <h2>Goals</h2>
-                        <EditList stylings={{ width: '224px' }} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
+                        <EditList stylings={{ width: '224px', height: '56px' }} height='56px' listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
                         <h2>Devotions</h2>
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={4} updateFunction={updateAttribute} type={"devotions"} />
                     </div>
