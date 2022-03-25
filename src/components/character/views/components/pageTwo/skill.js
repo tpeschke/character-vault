@@ -3,7 +3,48 @@ import ViewSkillList from '../pairComponents/viewSkillList'
 import EditSkillList from '../pairComponents/editSkillList'
 
 export default function Skills({ skillsObject, editing }) {
-    let { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int, updateAttribute, updateNativeLanguage, updateSkillsuites } = skillsObject
+    let { str, con, dex, wis, cha, skillsuites, nativelanguage, skills, skilladept, int, updateAttribute, updateNativeLanguage, updateSkillsuites } = skillsObject
+
+    if (!str) {
+        str = 1
+    }
+    if (!dex) {
+        dex = 1
+    }
+    if (!con) {
+        con = 1
+    }
+    if (!int) {
+        int = 1
+    }
+    if (!wis) {
+        wis = 1
+    }
+    if (!cha) {
+        cha = 1
+    }
+    let checkMod = {
+        1: -3,
+        2: -2,
+        3: -2,
+        4: -1,
+        5: -1,
+        6: -1,
+        7: -1,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 1,
+        14: 1,
+        15: 1,
+        16: 1,
+        17: 1,
+        18: 1,
+        19: 2,
+        20: 2
+    }
 
     if (editing) {
         return (
@@ -15,27 +56,27 @@ export default function Skills({ skillsObject, editing }) {
                             <div className="skillMods">
                                 <div>
                                     <p>Str</p>
-                                    <p>{strData.skill}</p>
+                                    <p>{checkMod[str]}</p>
                                 </div>
                                 <div>
                                     <p>Dex</p>
-                                    <p>{dexData.skill}</p>
+                                    <p>{checkMod[dex]}</p>
                                 </div>
                                 <div>
                                     <p>Con</p>
-                                    <p>{conData.skill}</p>
+                                    <p>{checkMod[con]}</p>
                                 </div>
                                 <div>
                                     <p>Int</p>
-                                    <p>{intData.skill}</p>
+                                    <p>{checkMod[int]}</p>
                                 </div>
                                 <div>
                                     <p>Will</p>
-                                    <p>{wisData.skill}</p>
+                                    <p>{checkMod[wis]}</p>
                                 </div>
                                 <div>
                                     <p>Pre</p>
-                                    <p>{chaData.skill}</p>
+                                    <p>{checkMod[cha]}</p>
                                 </div>
                             </div>
                             <div className="skillAdept">
@@ -55,43 +96,43 @@ export default function Skills({ skillsObject, editing }) {
                             <p>Athletics</p>
                             <p className="skillcost">{Math.floor((skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} />
-                            <p className="skillmod">{Math.min(strData.skill, conData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[str], checkMod[con])}</p>
                         </div>
                         <div className="skillRow">
                             <p>Lore</p>
                             <p className="skillcost">{Math.floor((skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} />
-                            <p className="skillmod">{intData.skill}</p>
+                            <p className="skillmod">{checkMod[int]}</p>
                         </div>
                         <div className="skillRow">
                             <p>Streetwise</p>
                             <p className="skillcost">{Math.floor((skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} />
-                            <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                         </div>
                         <div className="skillRow">
                             <p>Survival</p>
                             <p className="skillcost">{Math.floor((skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} />
-                            <p className="skillmod">{Math.min(conData.skill, wisData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[con], checkMod[wis])}</p>
                         </div>
                         <div className="skillRow">
                             <p>Tactics</p>
                             <p className="skillcost">{Math.floor((skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} />
-                            <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                         </div>
                         <div className="skillRow">
                             <p>Trades</p>
                             <p className="skillcost">{Math.floor((skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} />
-                            <p className="skillmod">{Math.min(dexData.skill, intData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[dex], checkMod[int])}</p>
                         </div>
                         <div className="skillRow">
                             <p>Weirdcraft</p>
                             <p className="skillcost">{Math.floor((skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)) * (1 - (skilladept * .10)))}</p>
                             <input className="skillrank" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} />
-                            <p className="skillmod">{Math.min(intData.skill, wisData.skill)}</p>
+                            <p className="skillmod">{Math.max(checkMod[int], checkMod[wis])}</p>
                         </div>
                     </div>
                     <div className="skillsuiteShell">
@@ -105,7 +146,7 @@ export default function Skills({ skillsObject, editing }) {
                             <input id="nativename" type="text" defaultValue={nativelanguage.language} onChange={event => updateNativeLanguage(event.target.value, 'language')} />
                             <p id="nativecost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
                             <input id="nativerank" type="number" placeholder={int} defaultValue={nativelanguage.rank} onChange={event => updateNativeLanguage(event.target.value, 'rank')} />
-                            <p id="nativemod">{Math.min(intData.skill, wisData.skill)}</p>
+                            <p id="nativemod">{Math.max(checkMod[int], checkMod[wis])}</p>
                         </div>
                     </div>
                 </div>
@@ -258,31 +299,6 @@ export default function Skills({ skillsObject, editing }) {
         )
     }
 
-    let strMod = null
-    if (strData) {
-        strMod = strData.skill
-    }
-    let dexMod = null
-    if (dexData) {
-        dexMod = dexData.skill
-    }
-    let conMod = null
-    if (conData) {
-        conMod = conData.skill
-    }
-    let intMod = null
-    if (intData) {
-        intMod = intData.skill
-    }
-    let wisMod = null
-    if (wisData) {
-        wisMod = wisData.skill
-    }
-    let chaMod = null
-    if (chaData) {
-        chaMod = chaData.skill
-    }
-
     let athletics = (<div className="skillRow">
         <p>Athletics</p>
         <p className="skillcost"> </p>
@@ -349,28 +365,28 @@ export default function Skills({ skillsObject, editing }) {
             <p>Athletics</p>
             <p className="skillcost">{Math.floor((skillsuites[0].skillsuitebasecost + (skillsuites[0].rank * 5)) * (1 - (skilladept * .10)))}</p>
             <input className="skillrank" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} />
-            <p className="skillmod">{Math.min(strData.skill, conData.skill)}</p>
+            <p className="skillmod">{Math.max(checkMod[str], checkMod[con])}</p>
         </div>)
         lore = (
             <div className="skillRow">
                 <p>Lore</p>
                 <p className="skillcost">{Math.floor((skillsuites[1].skillsuitebasecost + (skillsuites[1].rank * 5)) * (1 - (skilladept * .10)))}</p>
                 <input className="skillrank" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} />
-                <p className="skillmod">{intData.skill}</p>
+                <p className="skillmod">{checkMod[int]}</p>
             </div>
         )
         streetwise = (<div className="skillRow">
             <p>Streetwise</p>
             <p className="skillcost">{Math.floor((skillsuites[2].skillsuitebasecost + (skillsuites[2].rank * 5)) * (1 - (skilladept * .10)))}</p>
             <input className="skillrank" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} />
-            <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+            <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
         </div>)
         survival = (
             <div className="skillRow">
                 <p>Survival</p>
                 <p className="skillcost">{Math.floor((skillsuites[3].skillsuitebasecost + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
                 <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} />
-                <p className="skillmod">{Math.min(conData.skill, wisData.skill)}</p>
+                <p className="skillmod">{Math.max(checkMod[con], checkMod[wis])}</p>
             </div>
         )
         tactics = (
@@ -378,27 +394,27 @@ export default function Skills({ skillsObject, editing }) {
                 <p>Tactics</p>
                 <p className="skillcost">{Math.floor((skillsuites[4].skillsuitebasecost + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
                 <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} />
-                <p className="skillmod">{Math.min(wisData.skill, chaData.skill)}</p>
+                <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
             </div>
         )
         trades = (<div className="skillRow">
             <p>Trades</p>
             <p className="skillcost">{Math.floor((skillsuites[5].skillsuitebasecost + (skillsuites[5].rank * 5)) * (1 - (skilladept * .10)))}</p>
             <input className="skillrank" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} />
-            <p className="skillmod">{Math.min(dexData.skill, intData.skill)}</p>
+            <p className="skillmod">{Math.max(checkMod[dex], checkMod[int])}</p>
         </div>)
         weirdcraft = (<div className="skillRow">
             <p>Weirdcraft</p>
             <p className="skillcost">{Math.floor((skillsuites[6].skillsuitebasecost + (skillsuites[6].rank * 5)) * (1 - (skilladept * .10)))}</p>
             <input className="skillrank" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} />
-            <p className="skillmod">{Math.min(intData.skill, wisData.skill)}</p>
+            <p className="skillmod">{Math.max(checkMod[int], checkMod[wis])}</p>
         </div>)
         nativeLanguage = (
             <div className="skillRow">
                 <p className="navLang">{nativelanguage.language}</p>
                 <p className="skillcost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
                 <p className="skillrank">{nativelanguage.rank ? nativelanguage.rank : int}</p>
-                <p className="skillmod">{Math.min(intData.skill, wisData.skill)}</p>
+                <p className="skillmod">{Math.max(checkMod[int], checkMod[wis])}</p>
             </div>
         )
     }
@@ -412,27 +428,27 @@ export default function Skills({ skillsObject, editing }) {
                         <div className="skillMods">
                             <div>
                                 <p>Str</p>
-                                <p>{strMod}</p>
+                                <p>{checkMod[str]}</p>
                             </div>
                             <div>
                                 <p>Dex</p>
-                                <p>{dexMod}</p>
+                                <p>{checkMod[dex]}</p>
                             </div>
                             <div>
                                 <p>Con</p>
-                                <p>{conMod}</p>
+                                <p>{checkMod[con]}</p>
                             </div>
                             <div>
                                 <p>Int</p>
-                                <p>{intMod}</p>
+                                <p>{checkMod[int]}</p>
                             </div>
                             <div>
                                 <p>Will</p>
-                                <p>{wisMod}</p>
+                                <p>{checkMod[wis]}</p>
                             </div>
                             <div>
                                 <p>Pre</p>
-                                <p>{chaMod}</p>
+                                <p>{checkMod[cha]}</p>
                             </div>
                         </div>
                         <div className="skillAdept">

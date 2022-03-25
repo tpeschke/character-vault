@@ -226,7 +226,7 @@ viewController = {
       }).catch(e => console.log("----------------------------- native languages -----------------------------", e)))
 
       return Promise.all(promiseArray).then(_ => {
-        character.owned = req.user ? req.user.id === character.userid : null
+        character.owned = req.user ? req.user.id === character.userid || req.user.id === 1 : null
         return character
       })
     })

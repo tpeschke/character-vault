@@ -53,14 +53,14 @@ export default class CharacterViewer extends Component {
         let cleanArray = ({ value }) => {
             if (!isNaN(+value)) { return 0 }
             value = value.toUpperCase()
-            let containsCarry = value.match(/\b([1-9][SML])\b|\b[SML]\b|\+[SML]|(\+[1-9][SML])/g)
+            let containsCarry = value.match(/([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[SMLsml]|[SMLsml]/g)
             if (!containsCarry) { return 0 }
             let currentBit = ''
             value = value.replace(/\s+/g, '')
-            value.split('').forEach(character => {
+            value.match(/[\d\.]+|\D+/g).forEach(character => {
                 if (character === 'S' || character === 'M' || character === 'L') {
                     currentBit = currentBit + character
-                    currentBit = currentBit.split('')
+                    currentBit = currentBit.match(/[\d\.]+|\D+/g)
                     let number, type, container = false
                     if (currentBit.includes('+') || currentBit.includes('-')) {
                         container = true
@@ -102,6 +102,7 @@ export default class CharacterViewer extends Component {
 
     convertFromEncumbToCarry = (value) => {
         if (value <= 0) { return "0S 0M 0L" }
+        console.log(value)
         let large = Math.floor(value / 9)
         let largeRemainder = value % 9
         let medium = Math.floor(largeRemainder / 3)
@@ -349,33 +350,33 @@ export default class CharacterViewer extends Component {
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponone
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue, isRanged: false, ...weaponone
             }
             weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weapontwo
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue, isRanged: false, ...weapontwo
             }
             weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: false, ...weaponthree
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue, isRanged: false, ...weaponthree
             }
             weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,
                 armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
+                thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
             miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
             vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
-            skillsObject = { strData, conData, dexData, intData, wisData, chaData, skillsuites, nativelanguage, skills, skilladept, int }
+            skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
             baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading }
             armor = {

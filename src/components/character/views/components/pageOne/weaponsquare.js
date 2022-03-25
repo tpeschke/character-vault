@@ -5,7 +5,7 @@ export default function weaponsquare({ weapon }) {
         miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
-        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, isRanged, updateObject, editing, id } = weapon
+        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id } = weapon
 
         if (editing) {
             return (
@@ -62,7 +62,7 @@ export default function weaponsquare({ weapon }) {
                 <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
     
                 <p className="def">{dexdefense + wisdefense + (armorbasedef + armortrainingdef + armormiscdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0) + (shieldbasedef + shieldtraindef + shieldmiscdef > 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0)}</p>
-                <p className="encumb">{totalFatigue}</p>
+                <p className="encumb">{usingshield ? totalFatigue : armorFatigue}</p>
     
                 {drShell}
     
