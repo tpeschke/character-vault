@@ -27,6 +27,7 @@ export default function weaponsquare({ weapon }) {
     let drShell = (<div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
         <p id="armorDr">{armordr}</p>
         {shieldDrShown}
+        <div className='tooltip'><p>Click to {usingshield ? 'remove' : 'add'} shield</p></div>
     </div>)
 
     let mathOperator = getMathOperator(traindamage + +miscdamage + strdamage)
@@ -44,7 +45,11 @@ export default function weaponsquare({ weapon }) {
     }
     let damageShell = (<p className="damage">{basedamage}{totalDamageModifier}</p>)
     if (isRanged) {
-        damageShell = (<p className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>{basedamage}{totalDamageModifier}</p>)
+        damageShell = (
+            <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
+                <p>{basedamage}{totalDamageModifier}</p>
+                <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
+            </div>)
     }
 
     if (isRanged || shieldbaseparry + shieldtrainparry + shieldmiscparry <= 0) {

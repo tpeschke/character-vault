@@ -245,29 +245,15 @@ export default class CharacterEditor extends Component {
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
-                        <div className="generalNotesShell">
-                            <h1>General Notes</h1>
-                            <div>
-                                <div className="generalNoteStriping">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
-                            </div>
-                        </div>
-
                         <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                     </div>
-
+                    <div id="pageThree" className="pageBase pageViewStylings">
+                        <h1>General Notes</h1>
+                        <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
+                    </div>
                 </div>
                 <div className='Buttons'>
                     <div className="left-corner-button corner-button">

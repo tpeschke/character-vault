@@ -36,7 +36,7 @@ export default class CharacterViewer extends Component {
             downloadMode: props.downloadMode,
             savedCharacter: {},
             isDownloading: false,
-            isHalfwayDone: false
+            isHalfwayDone: false,
         }
     }
 
@@ -102,7 +102,6 @@ export default class CharacterViewer extends Component {
 
     convertFromEncumbToCarry = (value) => {
         if (value <= 0) { return "0S 0M 0L" }
-        console.log(value)
         let large = Math.floor(value / 9)
         let largeRemainder = value % 9
         let medium = Math.floor(largeRemainder / 3)
@@ -257,13 +256,20 @@ export default class CharacterViewer extends Component {
                             const imgDataTwo = cavansTwo.toDataURL('image/png');
                             pdf.addPage(width, height);
                             pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
-                            let name = this.state.character.name && !isPregen ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
-                            pdf.save(`${name}.pdf`);
-                            if (isPregen) {
-                                this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
-                            } else {
-                                this.setState({ isHalfwayDone: false, isDownloading: false })
-                            }
+                            const pageThree = document.getElementById('pageThree');
+                            html2canvas(pageThree, { scale: 3 })
+                                .then((cavansTwo) => {
+                                    const imgDateThree = cavansTwo.toDataURL('image/png');
+                                    pdf.addPage(width, height);
+                                    pdf.addImage(imgDateThree, 'png', 0, 0, width, height);
+                                    let name = this.state.character.name && !isPregen ? this.state.character.name : `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`;
+                                    pdf.save(`${name}.pdf`);
+                                    if (isPregen) {
+                                        this.setState({ isHalfwayDone: false, isDownloading: false, character: this.state.savedCharacter })
+                                    } else {
+                                        this.setState({ isHalfwayDone: false, isDownloading: false })
+                                    }
+                                });
                         });
                 });
         })
@@ -323,12 +329,12 @@ export default class CharacterViewer extends Component {
             , shieldFatigue = 0
             , totalFatigue = 0
 
-            
+
         let editButton = (<i onClick={changeEditStatus} className="fas fa-edit"></i>)
         if (this.state.isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
-        
+
         let generalnotestextArea = <div></div>
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
@@ -390,7 +396,7 @@ export default class CharacterViewer extends Component {
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue
             }
 
-            generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"500"}></textarea>
+            generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
             rightCornerButton = (
                 <div className="right-corner-button corner-button">
                     <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
@@ -454,23 +460,6 @@ export default class CharacterViewer extends Component {
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
-                        <div className="generalNotesShell">
-                            <h1>General Notes</h1>
-                            <div>
-                                <div className="generalNoteStriping">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                {generalnotestextArea}
-                            </div>
-                        </div>
-
                         <ArmorBlock armor={armor} />
 
                         <ShieldBlock shield={shield} />
@@ -479,6 +468,10 @@ export default class CharacterViewer extends Component {
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
                         <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
+                    </div>
+                    <div id="pageThree" className="pageBase pageViewStylings">
+                        <h1>General Notes</h1>
+                        {generalnotestextArea}
                     </div>
                 </div>
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
