@@ -384,7 +384,7 @@ export default class CharacterViewer extends Component {
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
-            baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading }
+            baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading, updateAttribute: this.updateAttribute }
             armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
@@ -454,9 +454,9 @@ export default class CharacterViewer extends Component {
                         <Abilities abilities={abilities} />
                     </div>
                     <div id="pageTwo" className="pageTwo pageTwoMargin pageBase pageViewStylings">
-                        <Skills skillsObject={skillsObject} />
-
                         <CashAndGear cashAndGear={cashAndGear} />
+
+                        <Skills skillsObject={skillsObject} />
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
