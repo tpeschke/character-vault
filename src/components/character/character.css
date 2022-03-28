@@ -2357,7 +2357,7 @@ textarea.traitsLocation {
     margin-right: -1px;
 }
 
-.combatRow .skillRow p, .combatRow .skillRow h2, .combatRow .skillRow input, .combatCost, .combatRank {
+.combatRow .skillRow p, .combatRow .skillRow h2, .combatRow .skillRow input, .combatCost, .combatRank, .combatTotalCost {
     width: 25%;
 }
 
@@ -2384,7 +2384,7 @@ textarea.traitsLocation {
     text-align: center;
 }
 
-.combatSkillRowShell .skillRow h2, .combatRanks, .combatCost {
+.combatSkillRowShell .skillRow h2, .combatRanks, .combatCost, .combatTotalCost {
     width: 25% !important;
 }
 

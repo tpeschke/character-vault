@@ -111,3 +111,13 @@
     left: 154px;
     z-index: 0;
 }
+
+
+#combatTotalCost {
+    padding: 0 4px;
+    position: absolute !important;
+    text-align: right;
+    width: 40px;
+    left: 114px;
+    z-index: 0;
+}

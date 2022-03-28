@@ -50,6 +50,15 @@ export default class CharacterEditor extends Component {
         this.setState({ character })
     }
 
+    updatecombatSkillSuites = (value, index) => {
+        let combatskillsuites = []
+        let character = { ...this.state.character }
+        character.combatskillsuites.forEach(skillsuite => { combatskillsuites.push({ ...skillsuite }) })
+        combatskillsuites[index].rank = +value
+        character = { ...character, combatskillsuites }
+        this.setState({ character })
+    }
+
     updateNativeLanguage = (value, type) => {
         let updatedValue
         if (type !== 'language') {
@@ -127,10 +136,10 @@ export default class CharacterEditor extends Component {
         let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel,
             temperament, goals, devotions, flaws, traits, reputation, contacts,
-            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, skilladept,
+            abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
-            armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus,
-            shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites,
+            armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
+            shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
             nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice } = this.state.character
         let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
@@ -165,7 +174,7 @@ export default class CharacterEditor extends Component {
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
             , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman }
             , miscVitals = { updateAttribute: this.updateAttribute, favormax, stressthreshold, wis, chaData }
-            , baseCombatFromStats = { strData, dexData, conData, intData, wisData }
+            , baseCombatFromStats = { strData, dexData, conData, intData, wisData, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData, dexData, conData, intData, wisData, chaData }
@@ -243,7 +252,7 @@ export default class CharacterEditor extends Component {
 
                         <ShieldBlock shield={shield} editing={true} />
 
-                        <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
+                        <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} editing={true} />
 
                         <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />

@@ -20,7 +20,8 @@ export default class EditSkillList extends Component {
             defaultCost: props.defaultCost || 1,
             defaultRank: props.defaultRank || 0,
             defaultMod: props.defaultMod || 0,
-            rowWidth: props.rowWidth || '100%'
+            rowWidth: props.rowWidth || '100%',
+            isCombat: props.isCombat
         }
     }
 
@@ -44,7 +45,9 @@ export default class EditSkillList extends Component {
                 document.getElementById(`addNewSkillInputskill${this.state.type}`).value = null;
                 document.getElementById(`addNewSkillInputcost${this.state.type}`).value = null;
                 document.getElementById(`addNewSkillInputrank${this.state.type}`).value = null;
-                document.getElementById(`addNewSkillInputmod${this.state.type}`).value = null;
+                if (!this.state.isCombat) {
+                    document.getElementById(`addNewSkillInputmod${this.state.type}`).value = null;
+                }
             })
         }
     }
@@ -74,19 +77,32 @@ export default class EditSkillList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, rowWidth } = this.state
+        let { stylings, listArray, limit, rowWidth, isCombat } = this.state
         let { skilladept } = this.props
         let rowStyles = {
             width: rowWidth
         }
         let listOfInputs = listArray.map((item, i) => {
-            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
-                <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
-                <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                <p id="totalCost">({item.cost + (item.rank * 2) - skilladept})</p>
-                <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
-                <input className="modInput border-right" defaultValue={item.mod} onBlur={e => this.updateValue('mod', e.target.value, i)} />
-            </div>)
+            if (!isCombat) {
+                return (
+                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                        <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
+                        <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
+                        <p id="totalCost">({item.cost + (item.rank * 2) - skilladept})</p>
+                        <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
+                        <input className="modInput border-right" defaultValue={item.mod} onBlur={e => this.updateValue('mod', e.target.value, i)} />
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                        <input className="skillInput combatInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
+                        <input className="costInput border-right combatCost" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
+                        <p id="combatTotalCost">({item.cost + (item.rank * 2) - skilladept})</p>
+                        <input className="rankInput border-right combatRank" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
+                    </div>
+                )
+            }
         })
 
         let inputRowStyles = {
@@ -94,15 +110,29 @@ export default class EditSkillList extends Component {
             display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
         }
 
+        let addNewSkillInputs = (
+            <div className="editPairRow" style={inputRowStyles}>
+                <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
+                <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
+                <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
+                <input id={`addNewSkillInputmod${this.state.type}`} className="modInput border-right" onBlur={e => this.addNewItem(null, null, null, e.target.value)} />
+            </div>
+        )
+
+        if (isCombat) {
+            addNewSkillInputs = (
+                <div className="editPairRow" style={inputRowStyles}>
+                    <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput combatInput" onBlur={e => this.addNewItem(e.target.value, null)} />
+                    <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right combatCost" onBlur={e => this.addNewItem(null, e.target.value, null)} />
+                    <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right combatRank" onBlur={e => this.addNewItem(null, null, e.target.value)} />
+                </div>
+            )
+        }
+
         return (
             <div style={stylings}>
                 {listOfInputs}
-                <div className="editPairRow" style={inputRowStyles}>
-                    <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
-                    <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
-                    <input id={`addNewSkillInputmod${this.state.type}`} className="modInput border-right" onBlur={e => this.addNewItem(null, null, null, e.target.value)} />
-                </div>
+                {addNewSkillInputs}
             </div>
         )
     }

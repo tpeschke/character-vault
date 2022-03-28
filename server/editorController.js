@@ -218,16 +218,29 @@ editController = {
             let { nativeid, language, rank: languagerank } = nativelanguage
             promiseArray.push(db.upsert.nativeLanguage(nativeid, id, language, languagerank).catch(e => console.log("native language ~ ", e)))
 
-            skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid }) => {
+            skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
-                    promiseArray.push(db.upsert.insert.skillsuites(rank, characterskillsuitesid).catch(e => console.log("skill suite insert ~ ", e)))
+                    promiseArray.push(db.upsert.insert.skillsuites(rank, characterskillsuitesid, trained).catch(e => console.log("skill suite insert ~ ", e)))
                 } else if (!characterskillsuitesid) {
-                    promiseArray.push(db.upsert.add.skillsuites(skillsuiteid, id, rank).catch(e => console.log("skill suite add ~ ", e)))
+                    promiseArray.push(db.upsert.add.skillsuites(skillsuiteid, id, rank, trained).catch(e => console.log("skill suite add ~ ", e)))
                 }
             })
             promiseArray.push(db.delete.skills([id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
                 return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
                     return db.upsert.skills(skillsid, id, skill, cost, rank, mod).catch(e => console.log("skills upsert ~ ", e))
+                })
+            }).catch(e => console.log("skills delete ~ ", e)))
+
+            skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
+                if (characterskillsuitesid) {
+                    promiseArray.push(db.upsert.insert.skillsuitescombat(rank, characterskillsuitesid, trained).catch(e => console.log("combat skill suite insert ~ ", e)))
+                } else if (!characterskillsuitesid) {
+                    promiseArray.push(db.upsert.add.skillsuitescombat(skillsuiteid, id, rank, trained).catch(e => console.log("combat skill suite add ~ ", e)))
+                }
+            })
+            promiseArray.push(db.delete.skillscombat([id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
+                return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
+                    return db.upsert.skillscombat(skillsid, id, skill, cost, rank, mod).catch(e => console.log("combat skills upsert ~ ", e))
                 })
             }).catch(e => console.log("skills delete ~ ", e)))
 

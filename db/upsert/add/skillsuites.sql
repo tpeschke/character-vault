@@ -1,1 +1,1 @@
-insert into cvcharacterskillsuites (skillsuiteid, characterid, rank) values ($1, $2, $3)
+insert into cvcharacterskillsuites (skillsuiteid, characterid, rank, trained) values ($1, $2, $3, $4)

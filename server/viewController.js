@@ -97,6 +97,16 @@ viewController = {
               return skill
             })
 
+            character.combatskillsuites = character.combatskillsuites.map(suite => {
+              delete suite.characterskillsuitesid
+              return suite
+            })
+            character.combatskills = character.combatskills.map(skill => {
+              skill.characterid = characterid
+              delete skill.id
+              return skill
+            })
+
             res.send(character)
         })
     } else {
@@ -198,15 +208,15 @@ viewController = {
       }).catch(e => console.log("----------------------------- shield -----------------------------", e)))
       promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
         let emptySkillSuites = [
-          { skillsuiteid: 1, skillsuitename: 'Athletics', skillsuitebasecost: 30, rank: 0 },
-          { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 47, rank: 0 },
-          { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 54, rank: 0 },
-          { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 61, rank: 0 },
-          { skillsuiteid: 5, skillsuitename: 'Tactics', skillsuitebasecost: 53, rank: 0 },
-          { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 56, rank: 0 },
-          { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 84, rank: 0 },
+          { skillsuiteid: 1, skillsuitename: 'Athletics', skillsuitebasecost: 30, rank: 0, trained: false },
+          { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 47, rank: 0, trained: false },
+          { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 54, rank: 0, trained: false },
+          { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 61, rank: 0, trained: false },
+          { skillsuiteid: 5, skillsuitename: 'Tactics', skillsuitebasecost: 53, rank: 0, trained: false },
+          { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 56, rank: 0, trained: false },
+          { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 84, rank: 0, trained: false },
         ]
-
+        
         for (let i = 0; i < emptySkillSuites.length; i++) {
           for (let x = 0; x < skillsuites.length; x++) {
             if (skillsuites[x].skillsuiteid === emptySkillSuites[i].skillsuiteid) {
@@ -221,6 +231,30 @@ viewController = {
         character.skills = skills
         return true
       }).catch(e => console.log("----------------------------- skills -----------------------------", e)))
+      promiseArray.push(db.get.skillsuitescombat(character.id).then(skillsuites => {
+        let emptySkillSuites = [
+          { skillsuiteid: 1, skillsuitename: 'Armor', skillsuitebasecost: 30, rank: 0, trained: false },
+          { skillsuiteid: 2, skillsuitename: 'Melee', skillsuitebasecost: 30, rank: 0, trained: false },
+          { skillsuiteid: 3, skillsuitename: 'Ranged', skillsuitebasecost: 30, rank: 0, trained: false },
+          { skillsuiteid: 4, skillsuitename: 'Shield', skillsuitebasecost: 30, rank: 0, trained: false },
+          { skillsuiteid: 5, skillsuitename: 'Unarmed', skillsuitebasecost: 30, rank: 0, trained: false },
+        ]
+
+        for (let i = 0; i < emptySkillSuites.length; i++) {
+          for (let x = 0; x < skillsuites.length; x++) {
+            if (skillsuites[x].skillsuiteid === emptySkillSuites[i].skillsuiteid) {
+              emptySkillSuites[i] = skillsuites[x]
+              x = skillsuites.length
+            }
+          }
+        }
+        
+        character.combatskillsuites = emptySkillSuites
+      }).catch(e => console.log("----------------------------- combat skill suites -----------------------------", e)))
+      promiseArray.push(db.get.skillscombat(character.id).then(skills => {
+        character.combatskills = skills
+        return true
+      }).catch(e => console.log("----------------------------- combat skills -----------------------------", e)))
       promiseArray.push(db.get.nativeLanguage(character.id).then(nativelanguage => {
         character.nativelanguage = nativelanguage[0] || {}
       }).catch(e => console.log("----------------------------- native languages -----------------------------", e)))

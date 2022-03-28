@@ -31,18 +31,22 @@ export default class ViewSkillList extends Component {
         }
         let listOfSkills = listArray.map((item, i) => {
             if (!isCombat) {
-                return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
-                    <p className="skillInput">{item.skill}</p>
-                    <p className="costView">{item.cost + (item.rank * 2) - skilladept}</p>
-                    <p className="rankInput">{item.rank}</p>
-                    <p className="modInput">{item.mod}</p>
-                </div>)
+                return (
+                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                        <p className="skillInput">{item.skill}</p>
+                        <p className="costView">{item.cost + (item.rank * 2) - skilladept}</p>
+                        <p className="rankInput">{item.rank}</p>
+                        <p className="modInput">{item.mod}</p>
+                    </div>
+                )
             } else {
-                return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
-                <p className="skillInput combatInput">{item.skill}</p>
-                <p className="costView combatCost">{item.cost + (item.rank * 2) - skilladept}</p>
-                <p className="rankInput combatRank">{item.rank}</p>
-            </div>)
+                return (
+                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                        <p className="skillInput combatInput">{item.skill}</p>
+                        <p className="costView combatCost">{item.cost + (item.rank * 2) - skilladept}</p>
+                        <p className="rankInput combatRank">{item.rank}</p>
+                    </div>
+                )
             }
         })
 
