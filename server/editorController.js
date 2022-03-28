@@ -132,7 +132,7 @@ editController = {
 
         let { id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,
             run, sprint, weaponone, weapontwo, weaponthree, weaponfour, armorid, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef,
-            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits } = req.body
+            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits, martialadept, combatskills, combatskillsuites } = req.body
         skilladept = setToMin(skilladept, 0)
         level = setToMin(level, 1)
         crp = setToMin(crp, 0)
@@ -152,7 +152,7 @@ editController = {
         sizemod = setToMin(sizemod, 0)
         vitalityroll = setToMin(vitalityroll, 0)
 
-        db.upsert.character(id, userid, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept).then((data) => {
+        db.upsert.character(id, userid, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept, martialadept).then((data) => {
             req.params.id = id
             let promiseArray = []
             promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals => goals.id)]]).then(_ => {
@@ -231,15 +231,15 @@ editController = {
                 })
             }).catch(e => console.log("skills delete ~ ", e)))
 
-            skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
+            combatskillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
                     promiseArray.push(db.upsert.insert.skillsuitescombat(rank, characterskillsuitesid, trained).catch(e => console.log("combat skill suite insert ~ ", e)))
                 } else if (!characterskillsuitesid) {
                     promiseArray.push(db.upsert.add.skillsuitescombat(skillsuiteid, id, rank, trained).catch(e => console.log("combat skill suite add ~ ", e)))
                 }
             })
-            promiseArray.push(db.delete.skillscombat([id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
-                return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
+            promiseArray.push(db.delete.skillscombat([id, [0, ...combatskills.map(skills => skills.id)]]).then(_ => {
+                return combatskills.map(({ id: skillsid, cost, skill, rank, mod }) => {
                     return db.upsert.skillscombat(skillsid, id, skill, cost, rank, mod).catch(e => console.log("combat skills upsert ~ ", e))
                 })
             }).catch(e => console.log("skills delete ~ ", e)))

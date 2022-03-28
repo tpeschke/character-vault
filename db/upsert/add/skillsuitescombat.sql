@@ -1,1 +1,1 @@
-insert into cvcharactercombatskillsuites (skillsuiteid, characterid, rank, trained) values ($1, $2, $3, $4)
+insert into cvcharactercombatskillsuites (combatskillsuiteid, characterid, rank, trained) values ($1, $2, $3, $4)
