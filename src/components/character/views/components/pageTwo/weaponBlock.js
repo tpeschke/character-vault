@@ -74,7 +74,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                     <input type="number" defaultValue={trainparry} onChange={event => updateValue(event.target.value, "trainparry")} />
                     <input type="number" defaultValue={traindamage} onChange={event => updateValue(event.target.value, "traindamage")} />
                     <p> </p>
-                    <p>Tr</p>
+                    <p>Ski</p>
                 </div>
 
                 <div className="weaponCalculatedStats">
@@ -182,7 +182,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                 <p>{trainparry}</p>
                 <p>{traindamage}</p>
                 <p> </p>
-                <p>Tr</p>
+                <p>Ski</p>
             </div>
 
             {miscInputs}

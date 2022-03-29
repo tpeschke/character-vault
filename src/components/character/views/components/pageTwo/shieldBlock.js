@@ -48,7 +48,7 @@ export default function ShieldBlock({ shield, editing }) {
                     <input className="shieldtrainencumbLocation" type="number" defaultValue={shieldtrainfatigue} onChange={event => updateAttribute(event.target.value, "shieldtrainfatigue")} />
                     <input className="shieldtrainparryLocation" type="number" defaultValue={shieldtrainparry} onChange={event => updateAttribute(event.target.value, "shieldtrainparry")} />
                     <input className="shieldtrainbreakLocation" type="number" defaultValue={shieldtrainbreak} onChange={event => updateAttribute(event.target.value, "shieldtrainbreak")} />
-                    <p>Train</p>
+                    <p>Skills</p>
                 </div>
 
                 <div className="calculatedStats">
@@ -114,7 +114,7 @@ export default function ShieldBlock({ shield, editing }) {
                     <p>{shieldtrainfatigue}</p>
                     <p>{shieldtrainparry}</p>
                     <p>{shieldtrainbreak}</p>
-                    <p>Train</p>
+                    <p>Skills</p>
                 </div>
 
                 <div className="calculatedStats">
@@ -178,7 +178,7 @@ export default function ShieldBlock({ shield, editing }) {
                     <p> </p>
                     <p> </p>
                     <p> </p>
-                    <p>Train</p>
+                    <p>Skills</p>
                 </div>
 
                 <div className="calculatedStats">

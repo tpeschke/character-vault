@@ -44,7 +44,7 @@ export default function ArmorBlock({ armor, editing }) {
                     <input type="number" defaultValue={armortrainfatigue} onChange={event => updateAttribute(event.target.value, "armortrainfatigue")} />
                     <input type="number" defaultValue={armortrainrecovery} onChange={event => updateAttribute(event.target.value, "armortrainrecovery")} />
                     <input type="number" defaultValue={armortraininit} onChange={event => updateAttribute(event.target.value, "armortraininit")} />
-                    <p>Train</p>
+                    <p>Skills</p>
                 </div>
 
                 <div className="calculatedStats">
@@ -124,7 +124,7 @@ export default function ArmorBlock({ armor, editing }) {
                 <p>{armortrainfatigue}</p>
                 <p>{armortrainrecovery}</p>
                 <p>{armortraininit}</p>
-                <p>Train</p>
+                <p>Skills</p>
             </div>
 
             {miscInputs}

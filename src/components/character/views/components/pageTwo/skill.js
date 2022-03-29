@@ -440,27 +440,27 @@ export default function Skills({ skillsObject, editing }) {
                             <div className="skillMods">
                                 <div>
                                     <p>Str</p>
-                                    <p>{checkMod[str]}</p>
+                                    <p>{skillsuites ? checkMod[str] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Dex</p>
-                                    <p>{checkMod[dex]}</p>
+                                    <p>{skillsuites ? checkMod[dex] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Con</p>
-                                    <p>{checkMod[con]}</p>
+                                    <p>{skillsuites ? checkMod[con] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Int</p>
-                                    <p>{checkMod[int]}</p>
+                                    <p>{skillsuites ? checkMod[int] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Will</p>
-                                    <p>{checkMod[wis]}</p>
+                                    <p>{skillsuites ? checkMod[wis] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Pre</p>
-                                    <p>{checkMod[cha]}</p>
+                                    <p>{skillsuites ? checkMod[cha] : ''}</p>
                                 </div>
                             </div>
                             <div className="skillAdept">
