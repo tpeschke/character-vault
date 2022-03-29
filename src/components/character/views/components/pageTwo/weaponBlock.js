@@ -50,7 +50,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                     <p>Type</p>
                     <input className="basedamageLocation" type="text" defaultValue={type} onChange={event => updateValue(event.target.value, "type")} />
                 </div>
-                <div className="weaponBonusArea" className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
+                <div className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
                     <p>Bonus</p>
                     <textarea defaultValue={bonus} onChange={event => updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
                 </div>
@@ -158,7 +158,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                 <p>Type</p>
                 <p className="basedamageLocation">{type}</p>
             </div>
-            <div className="weaponBonusArea" className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
+            <div className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
                 <p>Bonus</p>
                 <p>{bonus}</p>
             </div>
