@@ -24,11 +24,11 @@ export default function Skills({ skillsObject, editing }) {
         cha = 1
     }
     let checkMod = {
-        1: -3,
-        2: -2,
-        3: -2,
-        4: -1,
-        5: -1,
+        1: -4,
+        2: -3,
+        3: -3,
+        4: -2,
+        5: -2,
         6: -1,
         7: -1,
         8: 0,
@@ -39,11 +39,13 @@ export default function Skills({ skillsObject, editing }) {
         13: 1,
         14: 1,
         15: 1,
-        16: 1,
-        17: 1,
-        18: 1,
+        16: 2,
+        17: 2,
+        18: 2,
         19: 2,
-        20: 2
+        20: 3,
+        21: 3,
+        22: 4
     }
 
     if (editing) {
