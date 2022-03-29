@@ -2425,3 +2425,12 @@ textarea.traitsLocation {
     min-width: unset;
     height: 20px;
 }
+
+.skillsUntrainedDiv {
+    position: absolute;
+    left: 83px;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
