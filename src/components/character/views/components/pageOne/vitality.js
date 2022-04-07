@@ -2,17 +2,135 @@ import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
+function calculatePanickedLeft(honor) {
+    let left = '0px'
+        , display = 'inherit'
+    if (honor >= 0 && honor <= 5) {
+        left = '0px'
+    } else if (honor >= 6 && honor <= 10) {
+        left = '81px'
+    } else if (honor >= 11 && honor <= 15) {
+        left = '163px'
+    } else if (honor >= 16 && honor <= 20) {
+        left = '244px'
+    } else if (honor >= 21 && honor <= 25) {
+        left = '0px'
+        display = 'none'
+    }
+    return { left, display }
+}
+
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id } = vitality
+    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
         currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
     }
 
+    let panickedCircle = <div className="circle panickedCircle"></div>
+
+    let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+    let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+    if (id !== 'blank') {
+        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+        damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+        damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+    }
+
+    let stressCategories = (
+        <div className="woundCategoryShell">
+            {panickedCircle}
+            <div className="hurtLocation">
+                <p>U</p>
+                <p>1 - {(shownThreshold * .25).toFixed(0) - 1}</p>
+            </div>
+            <div className="bloodiedLocation">
+                <p>N</p>
+                <p>{(shownThreshold * .25).toFixed(0)} - {(shownThreshold * .5).toFixed(0) - 1}</p>
+            </div>
+            <div className="woundedLocation">
+                <p>S</p>
+                <p>{(shownThreshold * .50).toFixed(0)} - {(shownThreshold * .75).toFixed(0) - 1}</p>
+            </div>
+            <div className="criticalLocation">
+                <p>Br</p>
+                <p>{(shownThreshold * .75).toFixed(0)} - {shownThreshold}</p>
+            </div>
+        </div>
+    )
+    if (stressthreshold) {
+        stressCategories = (
+            <div className="woundCategoryShell">
+                {panickedCircle}
+                <div className="hurtLocation">
+                    <p>U</p>
+                    <p>1 - {(stressthreshold * .25).toFixed(0) - 1}</p>
+                </div>
+                <div className="bloodiedLocation">
+                    <p>N</p>
+                    <p>{(stressthreshold * .25).toFixed(0)} - {(stressthreshold * .5).toFixed(0) - 1}</p>
+                </div>
+                <div className="woundedLocation">
+                    <p>S</p>
+                    <p>{(stressthreshold * .50).toFixed(0)} - {(stressthreshold * .75).toFixed(0) - 1}</p>
+                </div>
+                <div className="criticalLocation">
+                    <p>Br</p>
+                    <p>{(stressthreshold * .75).toFixed(0)} - {stressthreshold}</p>
+                </div>
+            </div>
+        )
+    }
+    if (id === 'blank') {
+        stressCategories = (
+            <div className="woundCategoryShell">
+                <div className="hurtLocation">
+                    <p>U</p>
+                    <p> </p>
+                </div>
+                <div className="bloodiedLocation">
+                    <p>N</p>
+                    <p> </p>
+                </div>
+                <div className="woundedLocation">
+                    <p>S</p>
+                    <p> </p>
+                </div>
+                <div className="criticalLocation">
+                    <p>Br</p>
+                    <p> </p>
+                </div>
+            </div>
+        )
+    }
+
     if (editing) {
         return (
             <div className="vitalsShell">
+                <h1>Stress Threshold</h1>
+                <div className="woundCategoryShell">
+                    <div className="hurtLocation">
+                        <p>U</p>
+                        <p> </p>
+                    </div>
+                    <div className="bloodiedLocation">
+                        <p>N</p>
+                        <p> </p>
+                    </div>
+                    <div className="woundedLocation">
+                        <p>S</p>
+                        <p> </p>
+                    </div>
+                    <div className="criticalLocation">
+                        <p>Br</p>
+                        <p> </p>
+                    </div>
+                </div>
+                <div className="stressShell editingStressThreshold">
+                    <p className='stressThreshold'>Stress Threshold</p>
+                    <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold ? stressthreshold : +wis * 3} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
+                </div>
                 <h1>Vitality</h1>
                 <div className="woundCategoryShell">
                     <div className="hurtLocation">
@@ -56,12 +174,9 @@ export default function Vitality({ vitality, editing }) {
                             <p>Wound</p>
                             <p>Wound</p>
                             <p>Wound</p>
-                            <p>Wound</p>
-                            <p>Wound</p>
-                            <p>Wound</p>
                         </div>
                         <div></div>
-                        <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                        <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
                     </div>
                     <div className="damageShellRight">
                         <div className="woundTitleShell">
@@ -70,11 +185,8 @@ export default function Vitality({ vitality, editing }) {
                             <p>Wound</p>
                             <p>Wound</p>
                             <p>Wound</p>
-                            <p>Wound</p>
-                            <p>Wound</p>
-                            <p>Wound</p>
                         </div>
-                        <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+                        <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
                     </div>
                 </div>
 
@@ -100,13 +212,11 @@ export default function Vitality({ vitality, editing }) {
         )
     }
 
-    let panickedCircle = <div></div>
-    let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
-    let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+    let stress = <p> </p>
+    let relaxationInput = <p> </p>
     if (id !== 'blank') {
-        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
-        damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
-        damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={8} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+        stress = <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
+        relaxationInput = <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
     }
 
     let minVitality = null
@@ -116,7 +226,6 @@ export default function Vitality({ vitality, editing }) {
 
     let woundCategories = (
         <div className="woundCategoryShell">
-            {panickedCircle}
             <div className="hurtLocation">
                 <p>H</p>
                 <p> </p>
@@ -139,7 +248,6 @@ export default function Vitality({ vitality, editing }) {
     if (shownVitality) {
         woundCategories = (
             <div className="woundCategoryShell">
-                {panickedCircle}
                 <div className="hurtLocation">
                     <p>H</p>
                     <p>1 - {(shownVitality * .25).toFixed(0) - 1}</p>
@@ -163,6 +271,18 @@ export default function Vitality({ vitality, editing }) {
 
     return (
         <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
+            <h1>Stress Threshold</h1>
+            {stressCategories}
+            <div className="stressShell">
+                <div>
+                    <p>Stress</p>
+                    {stress}
+                </div>
+                <div>
+                    <p>Relxation</p>
+                    {relaxationInput}
+                </div>
+            </div>
             <h1>Vitality</h1>
             {woundCategories}
 
@@ -189,17 +309,11 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                         <p>Wound</p>
-                        <p>Wound</p>
-                        <p>Wound</p>
-                        <p>Wound</p>
                     </div>
                     {damageOnePairList}
                 </div>
                 <div className="damageShellRight">
                     <div className="woundTitleShell">
-                        <p>Wound</p>
-                        <p>Wound</p>
-                        <p>Wound</p>
                         <p>Wound</p>
                         <p>Wound</p>
                         <p>Wound</p>

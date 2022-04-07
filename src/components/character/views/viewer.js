@@ -379,8 +379,8 @@ export default class CharacterViewer extends Component {
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue, isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
-            miscVitals = { con, currentstress, updateAttribute: this.updateAttribute, shownThreshold, relaxation, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, calculatePanickedLeft, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData }
+            miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
+            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
@@ -510,24 +510,6 @@ function calculateHonorDiceLeft(honor) {
         left = '199px'
     }
     return left
-}
-
-function calculatePanickedLeft(honor) {
-    let left = '0px'
-        , display = 'inherit'
-    if (honor >= 0 && honor <= 5) {
-        left = '0px'
-    } else if (honor >= 6 && honor <= 10) {
-        left = '81px'
-    } else if (honor >= 11 && honor <= 15) {
-        left = '163px'
-    } else if (honor >= 16 && honor <= 20) {
-        left = '244px'
-    } else if (honor >= 21 && honor <= 25) {
-        left = '0px'
-        display = 'none'
-    }
-    return { left, display }
 }
 
 function checkIfHuman(race) {

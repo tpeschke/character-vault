@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function MiscVitals({ miscVitals, editing }) {
-    let { currentstress, updateAttribute, totalEncumb, woundMultiplier, shownThreshold, relaxation, currentfavor, chaData, favormax, stressthreshold, wis, anointed, id } = miscVitals
+    let { updateAttribute, relaxation, currentfavor, chaData, favormax, anointed, id } = miscVitals
 
     let anointedDiv = (<div className="anointedDiv"></div>)
     if (id !== 'blank') {
@@ -19,20 +19,6 @@ export default function MiscVitals({ miscVitals, editing }) {
     if (editing) {
         return (
             <div className="stressThresholdShell">
-                <div className="vitalShell">
-                    <div>
-                        <p>Stress</p>
-                        <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
-                    </div>
-                    <div>
-                        <p>Threshold</p>
-                        <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold ? stressthreshold : +wis * 3} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
-                    </div>
-                    <div>
-                        <p>Relxation</p>
-                        <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
-                    </div>
-                </div>
                 <div className="vitalShell">
                     <div>
                         <p>Favor</p>
@@ -57,30 +43,13 @@ export default function MiscVitals({ miscVitals, editing }) {
         )
     }
 
-    let stress = <p> </p>
-    let relaxationInput = <p> </p>
     let favorInput = <p> </p>
     if (id !== 'blank') {
-        stress = <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
-        relaxationInput = <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
         favorInput = <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => updateAttribute(event.target.value, "currentfavor")} />
     }
+
     return (
-        <div className="stressThresholdShell" key={currentstress}>
-            <div className="vitalShell">
-                <div>
-                    <p>Stress</p>
-                    {stress}
-                </div>
-                <div>
-                    <p>Threshold</p>
-                    <p className={(totalEncumb * woundMultiplier) + currentstress > shownThreshold ? "stressthresholdLocation mentalBreak" : "stressthresholdLocation"}>{shownThreshold}</p>
-                </div>
-                <div>
-                    <p>Relxation</p>
-                    {relaxationInput}
-                </div>
-            </div>
+        <div className="stressThresholdShell">
             <div className="vitalShell">
                 <div>
                     <p>Favor</p>

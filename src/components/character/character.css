@@ -1218,7 +1218,7 @@ input.secondarylevelLocation {
 }
 
 .vitalsShell {
-    top: 580px;
+    top: 574px;
     position: absolute;
     width: 325px;
     right: 20px;
@@ -2433,4 +2433,33 @@ textarea.traitsLocation {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.stressShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stressShell div {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.stressShell div p, .stressShell div input {
+    width: 50%;
+}
+
+.stressShell div:first-child {
+    border: 2px solid #990000;
+}
+
+.stressShell div p:first-child, .editingStressThreshold p {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+.editingStressThreshold input, .editingStressThreshold p {
+    width: 50%;
 }
