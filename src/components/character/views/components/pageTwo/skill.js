@@ -45,7 +45,8 @@ export default function Skills({ skillsObject, editing }) {
         19: 2,
         20: 3,
         21: 3,
-        22: 4
+        22: 3,
+        23: 4
     }
 
     if (editing) {
@@ -60,27 +61,27 @@ export default function Skills({ skillsObject, editing }) {
                                 <div className="skillMods">
                                     <div>
                                         <p>Str</p>
-                                        <p> </p>
+                                        <p>{checkMod[str]}</p>
                                     </div>
                                     <div>
                                         <p>Dex</p>
-                                        <p> </p>
+                                        <p>{checkMod[dex]}</p>
                                     </div>
                                     <div>
                                         <p>Con</p>
-                                        <p> </p>
+                                        <p>{checkMod[con]}</p>
                                     </div>
                                     <div>
                                         <p>Int</p>
-                                        <p> </p>
+                                        <p>{checkMod[int]}</p>
                                     </div>
                                     <div>
                                         <p>Will</p>
-                                        <p> </p>
+                                        <p>{checkMod[wis]}</p>
                                     </div>
                                     <div>
                                         <p>Pre</p>
-                                        <p> </p>
+                                        <p>{checkMod[cha]}</p>
                                     </div>
                                 </div>
                                 <div className="skillAdept">
@@ -101,49 +102,49 @@ export default function Skills({ skillsObject, editing }) {
                                 {skillsuites[0].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 0)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 0)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[0].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[0].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[str], checkMod[con])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Lore</p>
                                 {skillsuites[1].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 1)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 1)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[1].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[1].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{checkMod[int]}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Streetwise</p>
                                 {skillsuites[2].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 2)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 2)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[2].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[2].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Survival</p>
                                 {skillsuites[3].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 3)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 3)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[3].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[con], checkMod[wis])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Tactics</p>
                                 {skillsuites[4].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 4)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 4)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[4].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Trades</p>
                                 {skillsuites[5].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 5)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 5)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[5].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[5].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[dex], checkMod[int])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Weirdcraft</p>
                                 {skillsuites[6].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 6)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 6)}></div>}
                                 <p className="skillcost">{Math.floor((30 + (skillsuites[6].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[6].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod"> </p>
+                                <p className="skillmod">{Math.max(checkMod[int], checkMod[wis])}</p>
                             </div>
                         </div>
                         <div className="skillsuiteShell">

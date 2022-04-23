@@ -89,7 +89,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
                 <div className="weaponCalculatedStats">
                     <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
                     <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
-                    <p>{returnZeroIfNaN(trainparry + +miscparry)}</p>
+                    <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
                     <p>{returnZeroIfNaN(traindamage + +miscdamage)}</p>
                     <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                     <p>To</p>
@@ -190,7 +190,7 @@ export default function WeaponBlock({ weapon, updateObject, returnZeroIfNaN, edi
             <div className="weaponCalculatedStats">
                 <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
                 <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
-                <p>{returnZeroIfNaN(trainparry + +miscparry)}</p>
+                <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
                 <p>{returnZeroIfNaN(traindamage + +miscdamage)}</p>
                 <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                 <p>To</p>

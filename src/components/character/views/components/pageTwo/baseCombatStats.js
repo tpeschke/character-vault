@@ -3,19 +3,190 @@ import ViewSkillList from '../pairComponents/viewSkillList'
 import EditSkillList from '../pairComponents/editSkillList'
 
 export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
-    let { strData, dexData, intData, wisData, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained } = baseCombatFromStats
+    let { str, int, dex, wis, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained } = baseCombatFromStats
 
-    if (!strData) {
-        strData = { damage: 0 }
+    let dexAtk = {
+        1: -3,
+        2: -2,
+        3: -2,
+        4: -2,
+        5: -2,
+        6: -1,
+        7: -1,
+        8: -1,
+        9: -1,
+        10: 0,
+        11: 1,
+        12: 1,
+        13: 1,
+        14: 1,
+        15: 2,
+        16: 2,
+        17: 2,
+        18: 2,
+        19: 2,
+        20: 3,
+        21: 3,
+        22: 3,
+        23: 3
     }
-    if (!dexData) {
-        dexData = { attack: 0, defense: 0, init: 0 }
+
+
+    let dexDef = {
+        1: -3,
+        2: -2,
+        3: -2,
+        4: -2,
+        5: -2,
+        6: -1,
+        7: -1,
+        8: -1,
+        9: -1,
+        10: 0,
+        11: 1,
+        12: 1,
+        13: 1,
+        14: 1,
+        15: 2,
+        16: 2,
+        17: 2,
+        18: 2,
+        19: 2,
+        20: 3,
+        21: 3,
+        22: 3,
+        23: 3
     }
-    if (!intData) {
-        intData = { attack: 0 }
+
+    let dexInit = {
+        1: 4,
+        2: 3,
+        3: 2,
+        4: 2,
+        5: 1,
+        6: 1,
+        7: 1,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: 0,
+        16: -1,
+        17: -1,
+        18: -1,
+        19: -2,
+        20: -3,
+        21: -3,
+        22: -3,
+        23: -3
     }
-    if (!wisData) {
-        wisData = { defense: 0, init: 0 }
+
+    let intAtk = {
+        1: -4,
+        2: -3,
+        3: -2,
+        4: -2,
+        5: -2,
+        6: -1,
+        7: -1,
+        8: -1,
+        9: -1,
+        10: 0,
+        11: 1,
+        12: 1,
+        13: 1,
+        14: 1,
+        15: 2,
+        16: 2,
+        17: 3,
+        18: 3,
+        19: 3,
+        20: 4,
+        21: 4,
+        22: 4,
+        23: 4
+    }
+
+    let willDef = {
+        1: -4,
+        2: -3,
+        3: -3,
+        4: -3,
+        5: -2,
+        6: -2,
+        7: -1,
+        8: -1,
+        9: -1,
+        10: 0,
+        11: 1,
+        12: 1,
+        13: 1,
+        14: 2,
+        15: 2,
+        16: 2,
+        17: 3,
+        18: 3,
+        19: 3,
+        20: 4,
+        21: 4,
+        22: 4,
+        23: 4
+    }
+
+    let willInit = {
+        1: 5,
+        2: 4,
+        3: 3,
+        4: 3,
+        5: 2,
+        6: 2,
+        7: 1,
+        8: 1,
+        9: 1,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: -1,
+        16: -1,
+        17: -2,
+        18: -2,
+        19: -3,
+        20: -4,
+        21: -4,
+        22: -4,
+        23: -4
+    }
+
+
+    let strDam = {
+        1: -4,
+        2: -3,
+        3: -3,
+        4: -3,
+        5: -2,
+        6: -2,
+        7: -1,
+        8: -1,
+        9: -1,
+        10: 0,
+        11: 1,
+        12: 1,
+        13: 1,
+        14: 2,
+        15: 2,
+        16: 2,
+        17: 3,
+        18: 3,
+        19: 3,
+        20: 4,
+        21: 4,
+        22: 4,
+        23: 4
     }
 
     if (editing) {
@@ -28,19 +199,19 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                             <div className="combatMods">
                                 <div>
                                     <p>Atk</p>
-                                    <p> </p>
+                                    <p>{combatskillsuites ? dexAtk[dex] + intAtk[int] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Def</p>
-                                    <p> </p>
+                                    <p>{combatskillsuites ? dexDef[dex] + willDef[wis] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Init</p>
-                                    <p> </p>
+                                    <p>{combatskillsuites ? dexInit[dex] + willInit[wis] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Dam</p>
-                                    <p> </p>
+                                    <p>{combatskillsuites ? strDam[str] : ''}</p>
                                 </div>
                             </div>
                             <div className="martialadept combatAdept">
@@ -95,7 +266,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                                 <h2>Cost</h2>
                                 <h2>Rank</h2>
                             </div>
-                            <div className="stripings">
+                            <div className="stripings combatStripings">
                                 <div className="stripeDiv">
                                     <div></div>
                                     <div></div>
@@ -140,7 +311,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                                 <h2>Cost</h2>
                                 <h2>Rank</h2>
                             </div>
-                            <div className="stripings">
+                            <div className="stripings combatStripings">
                                 <div className="stripeDiv">
                                     <div></div>
                                     <div></div>
@@ -269,19 +440,19 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                         <div className="combatMods">
                             <div>
                                 <p>Atk</p>
-                                <p>{combatskillsuites ? dexData.attack + intData.attack : ''}</p>
+                                <p>{combatskillsuites ? dexAtk[dex] + intAtk[int] : ''}</p>
                             </div>
                             <div>
                                 <p>Def</p>
-                                <p>{combatskillsuites ? dexData.defense + wisData.defense : ''}</p>
+                                <p>{combatskillsuites ? dexDef[dex] + willDef[wis] : ''}</p>
                             </div>
                             <div>
                                 <p>Init</p>
-                                <p>{combatskillsuites ? dexData.init + wisData.init : ''}</p>
+                                <p>{combatskillsuites ? dexInit[dex] + willInit[wis] : ''}</p>
                             </div>
                             <div>
                                 <p>Dam</p>
-                                <p>{combatskillsuites ? strData.damage : ''}</p>
+                                <p>{combatskillsuites ? strDam[str] : ''}</p>
                             </div>
                         </div>
                         <div className="martialadept combatAdept">
@@ -311,7 +482,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                             <h2>Cost</h2>
                             <h2>Rank</h2>
                         </div>
-                        <div className="stripings">
+                        <div className="stripings combatStripings">
                             <div className="stripeDiv">
                                 <div></div>
                                 <div></div>
@@ -356,7 +527,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                             <h2>Cost</h2>
                             <h2>Rank</h2>
                         </div>
-                        <div className="stripings">
+                        <div className="stripings combatStripings">
                             <div className="stripeDiv">
                                 <div></div>
                                 <div></div>

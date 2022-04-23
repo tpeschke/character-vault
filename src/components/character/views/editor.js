@@ -183,10 +183,10 @@ export default class CharacterEditor extends Component {
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
             , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman }
             , miscVitals = { updateAttribute: this.updateAttribute, chaData }
-            , baseCombatFromStats = { strData, dexData, conData, intData, wisData, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
+            , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal, favormax, stressthreshold, wis, relaxation }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
-            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, strData, dexData, conData, intData, wisData, chaData, updateTrained: this.updateTrained }
+            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery,

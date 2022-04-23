@@ -347,7 +347,7 @@ export default class CharacterViewer extends Component {
             shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
 
-            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, drawback }
+            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, updateAttribute: this.updateAttribute, }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             movement = { crawl, walk, jog, run, sprint, overCarry }
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
@@ -384,7 +384,7 @@ export default class CharacterViewer extends Component {
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
-            baseCombatFromStats = { strData, dexData, conData, intData, wisData, isDownloading, updateAttribute: this.updateAttribute, martialadept, combatskillsuites, combatskills }
+            baseCombatFromStats = { str, dex, int, wis, isDownloading, updateAttribute: this.updateAttribute, martialadept, combatskillsuites, combatskills }
             armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
@@ -396,7 +396,11 @@ export default class CharacterViewer extends Component {
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue
             }
 
-            generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
+            if (isDownloading) {
+                generalnotestextArea = <p>{generalnotes}</p>
+            } else {
+                generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
+            }
             rightCornerButton = (
                 <div className="right-corner-button corner-button">
                     <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>

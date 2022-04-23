@@ -1511,6 +1511,7 @@ input.secondarylevelLocation {
     height: 1033px;
     max-height: 1033px;
     overflow: hidden;
+    white-space: pre-wrap;
 }
 
 .cashAndGearShell {
@@ -2389,12 +2390,16 @@ textarea.traitsLocation {
 }
 
 .combatSkillRowShell .skillRow h2:first-child, .combatInput {
-    width: 50% !important;
+    width: 55% !important;
 }
 
 .combatSkillRowShell .stripings div {
     height: 19.6px;
-    width: 50%;
+    width: 55%;
+}
+
+.combatStripings .stripeDiv div:first-child {
+    width: 55%;
 }
 
 .stripeDiv div:first-child {

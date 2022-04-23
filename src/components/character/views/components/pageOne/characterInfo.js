@@ -3,6 +3,7 @@ import "./plates.css"
 
 export default function CharacterInfo({ characterInfo, editing }) {
     let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute, id } = characterInfo
+
     let plates = (
         <div className="plates">
             <p className="namePlate">Character Name</p>
@@ -43,7 +44,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
 
     let currentEx = <p className="excurrentLocation"> </p>
     if (id !== 'blank') {
-        currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => this.updateAttribute(event.target.value, "excurrent")} />
+        currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => updateAttribute(event.target.value, "excurrent")} />
     }
 
     return (
