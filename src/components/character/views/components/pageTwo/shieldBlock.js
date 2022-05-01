@@ -60,10 +60,10 @@ export default function ShieldBlock({ shield, editing }) {
                 </div>
 
                 <div className="calculatedStats">
-                    <p>{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
+                    <p>{+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef}</p>
                     <p>{shieldFatigue}</p>
-                    <p>{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-                    <p>{shieldbasebreak + shieldtrainbreak + shieldmiscbreak}</p>
+                    <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
+                    <p>{+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak}</p>
                     <p>Total</p>
                 </div>
             </div>
@@ -126,10 +126,10 @@ export default function ShieldBlock({ shield, editing }) {
                 </div>
 
                 <div className="calculatedStats">
-                    <p>{shieldbasedef + shieldtraindef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef}</p>
+                    <p>{+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef}</p>
                     <p>{shieldFatigue}</p>
-                    <p>{returnZeroIfNaN(shieldbaseparry + shieldtrainparry + shieldmiscparry)}</p>
-                    <p>{shieldbasebreak + shieldtrainbreak + shieldmiscbreak}</p>
+                    <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
+                    <p>{+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak}</p>
                     <p>Total</p>
                 </div>
             </div>

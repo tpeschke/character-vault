@@ -2,10 +2,29 @@ import React from 'react'
 
 export default function ArmorBlock({ armor, editing }) {
 
-    let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit,
+    let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit,
         armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute, armormiscfatigue,
-        armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN, id } = armor
+        armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN, id, calculateArmorDefense, armorbasefatigue } = armor
 
+    if (!armorbasefatiguemod && armorbasefatigue) {
+        switch (armorbasefatigue) {
+            case 'A':
+                armorbasefatiguemod = -4;
+                break;
+            case 'H':
+                armorbasefatiguemod = -3;
+                break;
+            case 'B':
+                armorbasefatiguemod = -2;
+                break;
+            case 'W':
+                armorbasefatiguemod = -1;
+                break;
+            case 'C':
+                armorbasefatiguemod = 0;
+                break;
+        }
+    }
     if (editing) {
         return (
             <div className="armorBlockShell">
@@ -33,7 +52,7 @@ export default function ArmorBlock({ armor, editing }) {
                 </div>
                 <div className="calculatedStats">
                     <input type="number" defaultValue={armorbasedef} onChange={event => updateAttribute(event.target.value, "armorbasedef")} />
-                    <input type="text" defaultValue={armorbasefatigue} onChange={event => updateAttribute(event.target.value, "armorbasefatigue")} />
+                    <input type="text" defaultValue={armorbasefatiguemod} onChange={event => updateAttribute(event.target.value, "armorbasefatiguemod")} />
                     <input type="number" defaultValue={armorbaserecovery} onChange={event => updateAttribute(event.target.value, "armorbaserecovery")} />
                     <input type="number" defaultValue={armorbaseinit} onChange={event => updateAttribute(event.target.value, "armorbaseinit")} />
                     <p>Base</p>
@@ -56,10 +75,10 @@ export default function ArmorBlock({ armor, editing }) {
                 </div>
 
                 <div className="calculatedStats">
-                    <p>{armorbasedef + armortrainingdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef}</p>
-                    <p>{armorFatigue}</p>
+                    <p>{+armorbasedef + +armortrainingdef < 0 ? +armorbasedef + +armortrainingdef + +armormiscdef : 0 + +armormiscdef}</p>
+                    <p>{+armorbasefatiguemod + +armortrainfatigue + +armormiscfatigue}</p>
                     <p>{armorRecovery}</p>
-                    <p>{armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit}</p>
+                    <p>{+armorbaseinit + +armortraininit > 0 ? +armorbaseinit + +armortraininit + +armormiscinit : 0 + +armormiscinit}</p>
                     <p>Total</p>
                 </div>
             </div>
@@ -68,12 +87,12 @@ export default function ArmorBlock({ armor, editing }) {
 
     let miscInputs = (
         <div className="calculatedStats">
-        <p> </p>
-        <p> </p>
-        <p> </p>
-        <p> </p>
-        <p>Misc</p>
-    </div>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p>Misc</p>
+        </div>
     )
     if (id !== 'blank') {
         miscInputs = (
@@ -113,7 +132,7 @@ export default function ArmorBlock({ armor, editing }) {
             </div>
             <div className="calculatedStats">
                 <p>{armorbasedef}</p>
-                <p>{armorbasefatigue}</p>
+                <p>{armorbasefatiguemod}</p>
                 <p>{armorbaserecovery}</p>
                 <p>{armorbaseinit}</p>
                 <p>Base</p>
@@ -130,8 +149,8 @@ export default function ArmorBlock({ armor, editing }) {
             {miscInputs}
 
             <div className="calculatedStats">
-                <p>{returnZeroIfNaN(armorbasedef + armortrainingdef > 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>
-                <p>{armorFatigue}</p>
+                <p>{returnZeroIfNaN(armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>
+                <p>{armorbasefatiguemod + armortrainfatigue + armormiscfatigue}</p>
                 <p>{armorRecovery}</p>
                 <p>{returnZeroIfNaN(armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit)}</p>
                 <p>Total</p>
