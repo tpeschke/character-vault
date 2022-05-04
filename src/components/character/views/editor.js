@@ -35,10 +35,21 @@ export default class CharacterEditor extends Component {
         this.setState({ character })
     }
 
+    updateManyArrributes = (ObjectOfAttributes) => {
+        let character = { ...this.state.character, ...ObjectOfAttributes }
+        this.setState({character})
+    }
+
     updateObject = (object, key, value) => {
         let character = { ...this.state.character }
         character[object][key] = value
         this.setState({ character })
+    }
+
+    updateEntireObject = (oldObject, newObject) => {
+        let character = { ...this.state.character}
+        character[oldObject] = newObject
+        this.setState({character})
     }
 
     updateSkillsuites = (value, index) => {
@@ -146,7 +157,7 @@ export default class CharacterEditor extends Component {
         let addToDefense = 0
 
         if (baseAndRanks > 0) {
-            addToDefense = Math.ceil(baseAndRanks/3)
+            addToDefense = Math.ceil(baseAndRanks / 3)
             baseAndRanks = 0
         }
 
@@ -162,7 +173,7 @@ export default class CharacterEditor extends Component {
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
             nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod } = this.state.character
-        let { updateCharacter, cancelUpdate } = this.state
+        let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
             , { isUpdating } = this.props
             , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
             , isHuman = checkIfHuman(race)
@@ -185,6 +196,8 @@ export default class CharacterEditor extends Component {
         weapontwo.totalRecoveryModifiers = +weapontwo.trainrecovery + +weapontwo.miscrecovery
         weaponthree.totalRecoveryModifiers = +weaponthree.trainrecovery + +weaponthree.miscrecovery
         weaponfour.totalRecoveryModifiers = +weaponfour.trainrecovery + +weaponfour.miscrecovery
+
+        weaponfour.isRanged = true
 
         let armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armortrainfatigue, armormiscfatigue);
         let shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
@@ -269,16 +282,16 @@ export default class CharacterEditor extends Component {
 
                         <CashAndGear cashAndGear={cashAndGear} editing={true} />
 
-                        <ArmorBlock armor={armor} editing={true} />
+                        <ArmorBlock armor={armor} updateManyArrributes={this.updateManyArrributes} editing={true} />
 
-                        <ShieldBlock shield={shield} editing={true} />
+                        <ShieldBlock shield={shield} updateManyArrributes={this.updateManyArrributes} editing={true} />
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} editing={true} />
 
-                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
+                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
+                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
+                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
+                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                     </div>
                     <div id="pageThree" className="pageBase pageViewStylings">
                         <h1>General Notes</h1>
