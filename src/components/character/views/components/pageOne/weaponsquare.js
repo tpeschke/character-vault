@@ -25,6 +25,9 @@ export default function weaponsquare({ weapon }) {
         , addedDice = ''
 
     if (traindamage > 0) {
+        if (!type) {
+            type = 'S'
+        }
         if (type.toUpperCase() === 'S') {
             addedDice = ` +${Math.ceil(traindamage / 2)}d4! `
             mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strdamage))
