@@ -19,7 +19,10 @@ export default {
         17: { damage: 3, carry: 15, skill: 1, confrontation: 'D8!' },
         18: { damage: 3, carry: 16, skill: 2, confrontation: 'D10!' },
         19: { damage: 3, carry: 17, skill: 2, confrontation: 'D12!' },
-        20: { damage: 4, carry: 18, skill: 3, confrontation: 'D20!' }
+        20: { damage: 4, carry: 18, skill: 3, confrontation: 'D20!' },
+        21: { damage: 4, carry: 19, skill: 3, confrontation: 'D20!' },
+        22: { damage: 4, carry: 20, skill: 3, confrontation: 'D20!' },
+        23: { damage: 4, carry: 21, skill: 3, confrontation: 'D20!' }
     },
     dexTable: {
         1: { attack: -3, defense: -3, init: 4, skill: -3, confrontation: 'n/a' },

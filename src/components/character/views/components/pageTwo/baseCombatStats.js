@@ -28,7 +28,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         20: 3,
         21: 3,
         22: 3,
-        23: 3
+        23: 4
     }
 
 
@@ -55,7 +55,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         20: 3,
         21: 3,
         22: 3,
-        23: 3
+        23: 4
     }
 
     let dexInit = {
@@ -80,8 +80,8 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         19: -2,
         20: -3,
         21: -3,
-        22: -3,
-        23: -3
+        22: -4,
+        23: -4
     }
 
     let intAtk = {
@@ -106,8 +106,8 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         19: 3,
         20: 4,
         21: 4,
-        22: 4,
-        23: 4
+        22: 5,
+        23: 5
     }
 
     let willDef = {
@@ -132,8 +132,8 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         19: 3,
         20: 4,
         21: 4,
-        22: 4,
-        23: 4
+        22: 5,
+        23: 5
     }
 
     let willInit = {
@@ -158,8 +158,8 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         19: -3,
         20: -4,
         21: -4,
-        22: -4,
-        23: -4
+        22: -5,
+        23: -5
     }
 
 
@@ -186,7 +186,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         20: 4,
         21: 4,
         22: 4,
-        23: 4
+        23: 5
     }
 
     if (editing) {

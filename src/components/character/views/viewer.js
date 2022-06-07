@@ -97,6 +97,7 @@ export default class CharacterViewer extends Component {
         geartwo.forEach(cleanArray)
         gearthree.forEach(cleanArray)
         gearfour.forEach(cleanArray)
+
         this.setState({ adjustedCarry: totalCarry })
     }
 
@@ -336,7 +337,7 @@ export default class CharacterViewer extends Component {
             quarterMastering = 0
         }
         let shownCarry = this.convertFromEncumbToCarry(strData.carry + quarterMastering)
-            , overCarry = strData.carry - this.state.adjustedCarry
+            , overCarry = (strData.carry + quarterMastering) - this.state.adjustedCarry
             , { changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , isHuman = checkIfHuman(race)
