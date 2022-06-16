@@ -239,7 +239,7 @@ export default class CharacterViewer extends Component {
         let addToDefense = 0
 
         if (baseAndRanks > 0) {
-            addToDefense = Math.ceil(baseAndRanks/3)
+            addToDefense = Math.ceil(baseAndRanks / 3)
             baseAndRanks = 0
         }
 
@@ -266,6 +266,14 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = (isPregen) => {
+        if (this.state.character.id === 'blank') {
+            this.generateBlankPDF()
+        } else {
+            this.generateNormalPDF(isPregen)
+        }
+    }
+
+    generateNormalPDF = (isPregen) => {
         this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
             html2canvas(pageOne, { scale: 3 })
@@ -275,7 +283,6 @@ export default class CharacterViewer extends Component {
                     var width = pdf.internal.pageSize.getWidth();
                     var height = pdf.internal.pageSize.getHeight();
                     pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
-
                     this.setState({ isHalfwayDone: true })
                     const pageTwo = document.getElementById('pageTwo');
                     html2canvas(pageTwo, { scale: 3 })
@@ -292,8 +299,6 @@ export default class CharacterViewer extends Component {
                                     let name;
                                     if (this.state.character.name && !isPregen) {
                                         name = this.state.character.name
-                                    } else if (this.state.character.id === 'blank') {
-                                        name = 'Bonfire Blank Character Sheet'
                                     } else {
                                         name = `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`
                                     }
@@ -304,6 +309,30 @@ export default class CharacterViewer extends Component {
                                         this.setState({ isHalfwayDone: false, isDownloading: false })
                                     }
                                 });
+                        });
+                });
+        })
+    }
+
+    generateBlankPDF = () => {
+        this.setState({ isDownloading: true }, _ => {
+            const pageOne = document.getElementById('pageOne');
+            html2canvas(pageOne, { scale: 3 })
+                .then((canvasOne) => {
+                    const imgDataOne = canvasOne.toDataURL('image/png');
+                    const pdf = new jsPDF("p", "mm", "letter");
+                    var width = pdf.internal.pageSize.getWidth();
+                    var height = pdf.internal.pageSize.getHeight();
+                    pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
+                    this.setState({ isHalfwayDone: true })
+                    const pageTwo = document.getElementById('pageTwo');
+                    html2canvas(pageTwo, { scale: 3 })
+                        .then((cavansTwo) => {
+                            const imgDataTwo = cavansTwo.toDataURL('image/png');
+                            pdf.addPage(width, height);
+                            pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
+                            pdf.save(`Bonfire Blank Character Sheet.pdf`);
+                            this.setState({ isHalfwayDone: false, isDownloading: false })
                         });
                 });
         })
