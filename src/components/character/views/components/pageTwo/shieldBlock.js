@@ -173,10 +173,10 @@ export default class ShieldBlock extends Component {
                     </div>
 
                     <div className="calculatedStats">
-                        <p>{+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef}</p>
-                        <p>{shieldFatigue}</p>
+                        <p>{returnZeroIfNaN(+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef)}</p>
+                        <p>{returnZeroIfNaN(shieldFatigue)}</p>
                         <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
-                        <p>{+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak}</p>
+                        <p>{returnZeroIfNaN(+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak)}</p>
                         <p>Total</p>
                     </div>
                 </div>

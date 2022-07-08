@@ -93,14 +93,14 @@ export default function weaponsquare({ weapon }) {
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
                 <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
 
-                <p className="def">{dexdefense + wisdefense + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef)}</p>
+                <p className="def">{returnZeroIfNaN(dexdefense + wisdefense + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
                 <p className="encumb">{usingshield ? totalFatigue : armorFatigue}</p>
 
                 {drShell}
 
-                <p className="measure">{basemeasure}</p>
+                <p className="measure">{returnZeroIfNaN(basemeasure)}</p>
                 {damageShell}
-                <p className="parry">{parryShown}</p>
+                <p className="parry">{returnZeroIfNaN(parryShown)}</p>
 
             </div>
         )

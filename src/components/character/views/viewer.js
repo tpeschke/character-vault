@@ -345,7 +345,15 @@ export default class CharacterViewer extends Component {
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
-            , strData = strTable[str]
+            
+            str = str ? str : 1
+            dex = dex ? dex : 1
+            con = con ? con : 1
+            int = int ? int : 1
+            wis = wis ? wis : 1
+            cha = cha ? cha : 1
+
+        let  strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
             , intData = intTable[int]

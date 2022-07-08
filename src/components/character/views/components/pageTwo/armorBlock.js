@@ -120,7 +120,7 @@ export default class ArmorBlock extends Component {
 
                     <div className="calculatedStats">
                         <p>{+armorbasedef + +armortrainingdef < 0 ? +armorbasedef + +armortrainingdef + +armormiscdef : 0 + +armormiscdef}</p>
-                        <p>{+armorbasefatiguemod + +armortrainfatigue + +armormiscfatigue}</p>
+                        <p>{returnZeroIfNaN(+armorbasefatiguemod + +armortrainfatigue + +armormiscfatigue)}</p>
                         <p>{armorRecovery}</p>
                         <p>{+armorbaseinit + +armortraininit > 0 ? +armorbaseinit + +armortraininit + +armormiscinit : 0 + +armormiscinit}</p>
                         <p>Total</p>
@@ -194,7 +194,7 @@ export default class ArmorBlock extends Component {
 
                 <div className="calculatedStats">
                     <p>{returnZeroIfNaN(armorbasedef + armortrainingdef < 0 ? armorbasedef + armortrainingdef + armormiscdef : 0 + + armormiscdef)}</p>
-                    <p>{id !== 'blank' ? armorbasefatiguemod + armortrainfatigue + armormiscfatigue : ''}</p>
+                    <p>{id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + armortrainfatigue + armormiscfatigue) : ''}</p>
                     <p>{armorRecovery}</p>
                     <p>{returnZeroIfNaN(armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit)}</p>
                     <p>Total</p>
