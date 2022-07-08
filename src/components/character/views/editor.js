@@ -244,7 +244,7 @@ export default class CharacterEditor extends Component {
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, calculateArmorDefense: this.calculateArmorDefense,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                armormiscrecovery, armormiscinit, armorFatigue, armorbasefatiguemod
+                armormiscrecovery, armormiscinit, armorFatigue, armorbasefatiguemod, returnZeroIfNaN: this.returnZeroIfNaN
             }
             , shield = {
                 shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
