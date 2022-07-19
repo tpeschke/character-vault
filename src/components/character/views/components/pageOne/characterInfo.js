@@ -46,7 +46,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
     if (id !== 'blank') {
         currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => updateAttribute(event.target.value, "excurrent")} />
     }
-console.log(drawback)
+
     return (
         <div>
             {plates}
