@@ -418,7 +418,7 @@ export default class CharacterViewer extends Component {
             shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
 
-            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, updateAttribute: this.updateAttribute, }
+            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, updateAttribute: this.updateAttribute, drawback }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             movement = { crawl, walk, jog, run, sprint, overCarry }
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
