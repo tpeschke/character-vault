@@ -212,7 +212,7 @@ viewController = {
           { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 47, rank: 0, trained: false },
           { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 54, rank: 0, trained: false },
           { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 61, rank: 0, trained: false },
-          { skillsuiteid: 5, skillsuitename: 'Tactics', skillsuitebasecost: 53, rank: 0, trained: false },
+          { skillsuiteid: 5, skillsuitename: 'Strategy', skillsuitebasecost: 53, rank: 0, trained: false },
           { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 56, rank: 0, trained: false },
           { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 84, rank: 0, trained: false },
         ]

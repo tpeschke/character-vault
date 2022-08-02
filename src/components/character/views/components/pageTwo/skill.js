@@ -119,18 +119,18 @@ export default function Skills({ skillsObject, editing }) {
                                 <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                             </div>
                             <div className="skillRow">
+                                <p>Strategy</p>
+                                {skillsuites[4].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 4)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 4)}></div>}
+                                <p className="skillcost">{Math.floor((20 + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
+                                {skillsuites[4].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} /> : <p className="skillrank">U</p>}
+                                <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
+                            </div>
+                            <div className="skillRow">
                                 <p>Survival</p>
                                 {skillsuites[3].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 3)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 3)}></div>}
                                 <p className="skillcost">{Math.floor((20 + (skillsuites[3].rank * 5)) * (1 - (skilladept * .10)))}</p>
                                 {skillsuites[3].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} /> : <p className="skillrank">U</p>}
                                 <p className="skillmod">{Math.max(checkMod[con], checkMod[wis])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Tactics</p>
-                                {skillsuites[4].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 4)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 4)}></div>}
-                                <p className="skillcost">{Math.floor((20 + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[4].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
                             </div>
                             <div className="skillRow">
                                 <p>Trades</p>
@@ -342,7 +342,7 @@ export default function Skills({ skillsObject, editing }) {
     )
     let tactics = (
         <div className="skillRow">
-            <p>Tactics</p>
+            <p>Strategy</p>
             <p className="skillcost"> </p>
             <p className='skillrank'> </p>
             <p className="skillmod"> </p>
@@ -404,7 +404,7 @@ export default function Skills({ skillsObject, editing }) {
         )
         tactics = (
             <div className="skillRow">
-                <p>Tactics</p>
+                <p>Strategy</p>
                 <p className="skillcost">{Math.floor((20 + (skillsuites[4].rank * 5)) * (1 - (skilladept * .10)))}</p>
                 <p className="skillrank">{skillsuites[4].trained ? skillsuites[4].rank : 'U'}</p>
                 <p className="skillmod">{Math.max(checkMod[wis], checkMod[cha])}</p>
@@ -482,8 +482,8 @@ export default function Skills({ skillsObject, editing }) {
                         {athletics}
                         {lore}
                         {streetwise}
-                        {survival}
                         {tactics}
+                        {survival}
                         {trades}
                         {weirdcraft}
                     </div>

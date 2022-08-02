@@ -25,6 +25,7 @@ class Character extends Component {
         if (this.state.downloadMode) {
             this.setState({ isEditingMode: false })
         }
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         let id = this.props.match.params.id.split('.')[0]
         if (this.props.location.search.split('=').length === 1) {
             if (id === 'blank') {
