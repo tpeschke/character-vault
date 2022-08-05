@@ -278,6 +278,7 @@ export default class CharacterViewer extends Component {
     }
 
     generateNormalPDF = (isPregen) => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
             html2canvas(pageOne, { scale: 3 })
@@ -428,29 +429,29 @@ export default class CharacterViewer extends Component {
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
             weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false, ...weaponone
             }
             weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false, ...weapontwo
             }
             weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false, ...weaponthree
             }
             weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
-                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, strdamage: strData.damage,
+                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject, ...weaponfour
             }

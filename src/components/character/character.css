@@ -304,6 +304,9 @@ input[type=number] {
     font-size: 30px;
     color: gray
 }
+.fa-file-download {
+    bottom: 19px !important;
+}
 
 .fa-window-close {
     font-size: 26px;

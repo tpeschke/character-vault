@@ -1,12 +1,13 @@
 import React from 'react'
+import combatStatMods from '../pageTwo/combatStatTables'
 
 export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, calculateRecovery, totalRecoveryModifiers, armorRecovery, size, trainattack,
-        miscattack, dexattack, intattack, dexinit, wisinit, armorbaseinit, armortraininit, armormiscinit, miscinit, dexdefense, wisdefense,
+        miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
-        miscdamage, strdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
+        miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense } = weapon
-
+    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam } = combatStatMods
     if (editing) {
         return (
             <div className={`weaponsquare weapon${position}`}></div>
@@ -30,19 +31,19 @@ export default function weaponsquare({ weapon }) {
         }
         if (type.toUpperCase() === 'S') {
             addedDice = ` +${Math.ceil(traindamage / 2)}d4! `
-            mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strdamage))
-            totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage)
+            mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
+            totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
         } else if (type.toUpperCase() === 'P') {
             addedDice = ` +${Math.ceil(traindamage / 4)}d8! `
-            mathOperator = getMathOperator(+miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage))
-            totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage)
+            mathOperator = getMathOperator(+miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
+            totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
         } else {
-            mathOperator = getMathOperator(traindamage + +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage))
-            totalDamageModifier = traindamage + +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage)
+            mathOperator = getMathOperator(traindamage + +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
+            totalDamageModifier = traindamage + +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
         }
     } else {
-        mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strdamage))
-        totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strdamage)
+        mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
+        totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
     }
 
     if (totalDamageModifier === 0) {
@@ -89,11 +90,11 @@ export default function weaponsquare({ weapon }) {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, false))}</p>
-                <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexattack + intattack)}</p>
-                <p className="init">{returnZeroIfNaN(dexinit + wisinit + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, !isRanged))}</p>
+                <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
+                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
 
-                <p className="def">{returnZeroIfNaN(dexdefense + wisdefense + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p className="def">{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
                 <p className="encumb">{usingshield ? totalFatigue : armorFatigue}</p>
 
                 {drShell}
@@ -120,10 +121,10 @@ function getMathOperator(total) {
     return '+'
 }
 
-function returnCorrectStr(isRanged, thrownweapon, strdamage) {
+function returnCorrectStr(isRanged, thrownweapon, strDam) {
     if (isRanged && !thrownweapon) {
         return 0
     } else {
-        return strdamage
+        return strDam
     }
 }
