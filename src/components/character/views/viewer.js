@@ -37,10 +37,14 @@ export default class CharacterViewer extends Component {
             savedCharacter: {},
             isDownloading: false,
             isHalfwayDone: false,
+            isAboveLimit: true
         }
     }
 
     componentWillMount() {
+        axios.get('/api/isUserAboveLimit').then(({data}) => {
+            this.setState({ isAboveLimit: data.isUserAboveLimit})
+        })
         let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         if (this.state.character.id !== 'blank') {
             this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
@@ -344,7 +348,7 @@ export default class CharacterViewer extends Component {
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod } = this.state.character
-            , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone } = this.state
+            , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
             
             str = str ? str : 1
             dex = dex ? dex : 1
@@ -473,7 +477,7 @@ export default class CharacterViewer extends Component {
                 generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
             }
             rightCornerButton = (
-                <div className="right-corner-button corner-button">
+                <div className={owned || (!owned && !isAboveLimit) ? "right-corner-button corner-button": "displayNone"}>
                     <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
                         {editButton}
                     </div>
@@ -485,7 +489,7 @@ export default class CharacterViewer extends Component {
                             <p>Copy Character</p>
                         </div>
                     </div>
-                    <div className={owned ? "copyCharacter zindexNegOne" : "displayNone"}>
+                    <div className={owned && !isAboveLimit ? "copyCharacter zindexNegOne" : "displayNone"}>
                         <div className="copyCharacter centerIconRight">
                             <i onClick={this.props.copyCharacter} className="fas fa-clone"></i>
                         </div>

@@ -82,6 +82,15 @@ function checkLogin (req, res, next) {
 }
 
 app.get('/api/characters', checkLogin, viewCtrl.viewUsersCharacters)
+app.get('/api/characterLimit', checkLogin, (req, res) => {
+    if (req.user.id === 1) {
+        res.send({limit: false})
+    } else {
+        res.send({limit: (req.user.patreon * 20) + 10})
+    }
+})
+app.get('/api/isUserAboveLimit', checkLogin, viewCtrl.isUserAboveLimit)
+
 app.patch('/api/removeCharacter/:characterid', checkLogin, editCtrl.removeCharacter)
 app.patch('/api/updateSingleThing/:characterid', checkLogin, editCtrl.updateSingleThing)
 app.patch('/api/updateSingleThingOnObject/:characterid', checkLogin, editCtrl.updateSingleThingOnObject)

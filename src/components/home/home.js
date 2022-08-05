@@ -15,7 +15,8 @@ export default class Home extends Component {
             showModel: false,
             characterId: null,
             needsToLogOn: true,
-            isCheckingLogin: true
+            isCheckingLogin: true,
+            limit: true
         }
     }
 
@@ -31,6 +32,9 @@ export default class Home extends Component {
             } else {
                 this.setState({ isCheckingLogin: false })
             }
+        })
+        axios.get('/api/characterLimit').then(({ data }) => {
+            this.setState({ limit: data.limit })
         })
         this.getVault()
     }
@@ -113,14 +117,25 @@ export default class Home extends Component {
                     <div>
                         {characterList}
                     </div>
-                    <i className={needsToLogOn ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
+                    <div className='characterListButtonShell'>
+                        <p>
+                            <i className={needsToLogOn || (this.state.limit && characters.length >= this.state.limit) ? "displayNone" : "fas fa-plus"} onClick={this.createNewCharacter}></i>
+                            <i className={!needsToLogOn && (this.state.limit && characters.length >= this.state.limit) ? "fas fa-plus greyed-out" : "displayNone"}></i>
+                        </p>
+                        <div className={needsToLogOn ? "displayNone" : ""}>
+                            <p>{characters.length} / {!this.state.limit ? 0 : this.state.limit}</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="characterShell">
                     <h4><i className="fas fa-cogs"></i>Character Vault</h4>
                     <div>
                         {vaultList}
                     </div>
-                    <i className="fas fa-redo-alt" onClick={this.getVault}></i>
+                    <div className='characterListButtonShell'>
+                        <i className="fas fa-redo-alt" onClick={this.getVault}></i>
+                        <div></div>
+                    </div>
                 </div>
                 <Model showModel={this.state.showModel} toggleModel={this.toggleModel} characterId={this.state.characterId} />
             </div>)

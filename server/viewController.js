@@ -1,4 +1,16 @@
 viewController = {
+  isUserAboveLimit: function(req, res) {
+    const db = req.app.get('db')
+    if (req.user.id === 1) {
+      res.send({isUserAboveLimit: false})
+    } else {
+      db.get.userCharacterCount(req.user.id).then(result => {
+        let count = result[0].count
+        let limit = (req.user.patreon * 20) + 10
+        res.send({isUserAboveLimit: count >= limit})
+      })
+    }
+  },
   viewUsersCharacters: function (req, res) {
     const db = req.app.get('db')
     let { id } = req.user
@@ -29,7 +41,7 @@ viewController = {
             character.id = characterid
             character.name = character.name + " - copy"
             character.nativelanguage.characterid = characterid
-            character.userid = req.user.patreon
+            character.userid = req.user.id
             
             character.weaponfour.characterid = characterid
             delete character.weaponfour.weaponid

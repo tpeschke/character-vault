@@ -69,7 +69,11 @@ class Character extends Component {
     updateCharacter = function (updatedCharacter) {
         this.setState({ isUpdating: true }, _ => {
             axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
-                this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false })
+                // if (this.props.match.path === "/new/:id") {
+
+                // } else {
+                    this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false })
+                // }
             })
         })
     }

@@ -15,7 +15,7 @@ h4 {
     position: absolute;
     color: white;
     font-size: 62px;
-    left: -24px;
+    left: -27px;
     top: -4px;
 }
 
@@ -88,16 +88,35 @@ h4 {
     padding-right: 70px;
 }
 
+.characterListButtonShell {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 35px;
+}
+
 .fa-plus, .fa-redo-alt {
-    margin: 15px 5px 0px 60px;
     padding: 5px;
     border-radius: 15px;
+}
+
+.fa-redo-alt {
+    margin: 15px 0 0
 }
 
 .fa-plus:hover, .fa-redo-alt:hover {
     background: #2192b8;
     transition: .6s;
     color: whitesmoke;
+}
+
+.greyed-out {
+    color: grey
+}
+
+
+.greyed-out:hover {
+    color: grey;
+    background: transparent;
 }
 
 .fa-minus {
