@@ -10,7 +10,7 @@ export default class Home extends Component {
         super()
 
         this.state = {
-            characters: null,
+            characters: [],
             vault: null,
             showModel: false,
             characterId: null,
