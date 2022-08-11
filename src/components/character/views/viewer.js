@@ -269,6 +269,12 @@ export default class CharacterViewer extends Component {
         })
     }
 
+    updateEntireObject = (oldObject, newObject) => {
+        let character = { ...this.state.character}
+        character[oldObject] = newObject
+        this.setState({character})
+    }
+
     generatePdf = (isPregen) => {
         if (this.state.character.id === 'blank') {
             this.generateBlankPDF()
@@ -544,10 +550,10 @@ export default class CharacterViewer extends Component {
 
                         <ShieldBlock shield={shield} />
 
-                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
-                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
-                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
-                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} />
+                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                     </div>
                     <div id="pageThree" className="pageBase pageViewStylings">
                         <h1>General Notes</h1>

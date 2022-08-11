@@ -19,17 +19,18 @@ export default class WeaponBlock extends Component {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/ranged`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.map(choice => {
-                    return <option value={choice.name} />
+                    return <option value={`${choice.name} (${choice.type})`} />
                 })
-                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' })
+                
+                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' }, _ => this.changeWeaponName(this.state.weapon.name))
             })
         } else {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/melee`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.map(choice => {
-                    return <option value={choice.name} />
+                    return <option value={`${choice.name} (${choice.type})`}></option>
                 })
-                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' })
+                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' }, _ => this.changeWeaponName(this.state.weapon.name))
             })
         }
     }
@@ -44,12 +45,11 @@ export default class WeaponBlock extends Component {
         this.state.updateObject(`weapon${this.state.weapon.position}`, key, value)
     }
 
-    changeWeaponName = (event) => {
-        let selectedName = event.target.value
+    changeWeaponName = (selectedName) => {
         let { weaponChoices, weapon, updateEntireObject } = this.state
 
         for (let i = 0; i < weaponChoices.length; i++) {
-            if (selectedName === weaponChoices[i].name) {
+            if (selectedName === weaponChoices[i].name || selectedName === `${weaponChoices[i].name} (${weaponChoices[i].type})`) {
                 let { bonus, dam, measure, name, parry, rec, size, type } = weaponChoices[i]
                 let newWeapon = { bonus, basedamage: dam, basemeasure: measure, name, baseparry: parry, baserecovery: rec, size, type }
                 weapon = { ...weapon, ...newWeapon }
@@ -83,7 +83,7 @@ export default class WeaponBlock extends Component {
             return (
                 <div className={`weaponProfile${position} weaponProfileShell`}>
                     <h2>Weapon Workspace</h2>
-                    <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={this.changeWeaponName} />
+                    <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value)} />
                     <datalist id={weaponChoiceType}>
                         {weaponOptions}
                     </datalist>
@@ -108,7 +108,7 @@ export default class WeaponBlock extends Component {
                     </div>
                     <div className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
                         <p>Bonus</p>
-                        <textarea value={bonus} onChange={event => this.updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
+                        <textarea value={bonus ? bonus : ''} onChange={event => this.updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
                     </div>
                     <div className="weaponTraitArea">
                         <p>Traits</p>

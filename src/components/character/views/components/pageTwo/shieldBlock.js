@@ -21,12 +21,11 @@ export default class ShieldBlock extends Component {
             shieldOptions = data.map(choice => {
                 return <option value={choice.name} />
             })
-            this.setState({ shieldChoices, shieldOptions })
+            this.setState({ shieldChoices, shieldOptions }, _ => this.changeShieldName(this.state.shield.name))
         })
     }
 
-    changeShieldName = (event) => {
-        let selectedName = event.target.value
+    changeShieldName = (selectedName) => {
         let { shieldChoices, shield, updateManyArrributes } = this.state
 
         for (let i = 0; i < shieldChoices.length; i++) {
@@ -53,7 +52,7 @@ export default class ShieldBlock extends Component {
                 <div className="shieldBlockShell">
                     <h2>Shield Workspace</h2>
                     {/* <input className="shieldnameLocation" type="text" value={shieldname} onChange={event => updateAttribute(event.target.value, "shieldname")} /> */}
-                    <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={this.changeShieldName} />
+                    <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
                     <datalist id="shieldChoices">
                         {shieldOptions}
                     </datalist>
@@ -71,7 +70,7 @@ export default class ShieldBlock extends Component {
                     </div>
                     <div className="armorBonusArea shieldBonusArea">
                         <p>Bonus</p>
-                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus} onChange={event => updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
+                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus ? shieldbonus : ''} onChange={event => updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
                     </div>
 
                     <div className="calculatedStats calculatedStatsHeading">
