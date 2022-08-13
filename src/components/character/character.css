@@ -458,25 +458,25 @@ input.secondarylevelLocation {
 }
 
 .crpLocation {
-    left: 551px;
-    top: 44px;
+    left: 104px;
+    top: 67px;
     width: 46px;
     text-align: center;
     border-bottom: 2px solid;
 }
 
 .excurrentLocation {
-    left: 331px;
-    top: 66px;
+    left: 192px;
+    top: 65px;
     text-align: center;
-    width: 115px;
+    width: 68px;
     border-bottom: 2px solid;
 }
 
 .extolevelLocation {
-    left: 95px;
-    top: 66px;
-    width: 151px;
+    left: 342px;
+    top: 67px;
+    width: 106px;
     text-align: center;
     border-bottom: 2px solid;
 }

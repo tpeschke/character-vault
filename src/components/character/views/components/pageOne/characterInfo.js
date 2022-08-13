@@ -13,9 +13,10 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="archetypePlate">Archetypes</p>
             <p className="archetypeSlashPlate">/</p>
             <p className="levelPlate">Act. LvL</p>
-            <p className="crpPlate">CrP</p>
-            <p className="nextExPlate">Ex (To Next)</p>
-            <p className="currentExPlate">Ex (Current)</p>
+            <p className="crpTitle">CrP:</p>
+            <p className="crpPlate">Unspent</p>
+            <p className="currentExPlate">Spent</p>
+            <p className="nextExPlate">Spent To Lvl</p>
             <p className="primaryDrawbackPlate">Primary Drawback</p>
             <p className="drawbackFirstScorePlate"></p>
             <p className="drawbackSecondScorePlate"></p>
@@ -58,8 +59,8 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
             <p className="levelLocation">{level ? level : ' '}</p>
             <p className="crpLocation">{crp ? crp : ' '}</p>
-            <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
             {currentEx}
+            <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
             <p className="drawbackLocation">{drawback}</p>
         </div>
     )
