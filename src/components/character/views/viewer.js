@@ -276,10 +276,10 @@ export default class CharacterViewer extends Component {
     }
 
     generatePdf = (isPregen) => {
-        if (this.state.character.id === 'blank' || this.state.character.secretgeneralnotes) {
-            this.generateBlankPDF(isPregen)
-        } else {
+        if (!(this.state.character.secretgeneralnotes || this.state.character.id === 'blank') || this.state.character.owned) {
             this.generateNormalPDF(isPregen)
+        } else {
+            this.generateBlankPDF(isPregen)
         }
     }
 
@@ -563,7 +563,7 @@ export default class CharacterViewer extends Component {
                         <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                     </div>
-                    <div id="pageThree" className={secretgeneralnotes || id === 'blank' ? "displayNone" : "pageBase pageViewStylings"}>
+                    <div id="pageThree" className={!(secretgeneralnotes || id === 'blank') || owned ? "pageBase pageViewStylings" : "displayNone"}>
                         <h1>General Notes</h1>
                         {generalnotestextArea}
                     </div>
