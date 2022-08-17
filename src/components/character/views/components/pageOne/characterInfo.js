@@ -47,6 +47,10 @@ export default function CharacterInfo({ characterInfo, editing }) {
     if (id !== 'blank') {
         currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => updateAttribute(event.target.value, "excurrent")} />
     }
+    let crplocation = <p className="crpLocation">{crp ? crp : ' '}</p>
+    if (id !== 'blank') {
+        crplocation = <input className="crpLocation" type="number" min="0" defaultValue={crp} onChange={event => updateAttribute(event.target.value, "crp")} />
+    }
 
     return (
         <div>
@@ -58,7 +62,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="secondaryLocation">{secondarya ? secondarya : ' '}</p>
             <p className="secondarylevelLocation">{secondarylevel === 0 ? "" : secondarylevel}</p>
             <p className="levelLocation">{level ? level : ' '}</p>
-            <p className="crpLocation">{crp ? crp : ' '}</p>
+            {crplocation}
             {currentEx}
             <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
             <p className="drawbackLocation">{drawback}</p>

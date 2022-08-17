@@ -1069,11 +1069,32 @@ input.secondarylevelLocation {
     justify-content: space-around !important;
 }
 
-.anointedDiv {
+.anointedDiv, .secretNotesDiv {
     padding: 1px;
     border: 1px solid grey;
+    background: whitesmoke;
     width: 19.6px;
     height: 19.6px;
+}
+
+.general-notes-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #990000;
+}
+
+.general-notes-header h1 {
+    width: 50%;
+}
+
+.general-notes-header .general-notes-subtitle p {
+    position: unset;
+    margin: 0 15px 0 5px;
+    color: whitesmoke
+}
+
+.general-notes-subtitle {
+    display: flex;
 }
 
 .currentstressLocation {

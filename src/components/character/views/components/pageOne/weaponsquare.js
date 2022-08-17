@@ -30,11 +30,11 @@ export default function weaponsquare({ weapon }) {
             type = 'S'
         }
         if (type.toUpperCase() === 'S') {
-            addedDice = ` +${Math.ceil(traindamage / 2)}d4! `
+            addedDice = ` +${Math.floor(traindamage / 2)}d4! `
             mathOperator = getMathOperator(+miscdamage + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
             totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
         } else if (type.toUpperCase() === 'P') {
-            addedDice = ` +${Math.ceil(traindamage / 4)}d8! `
+            addedDice = ` +${Math.floor(traindamage / 4)}d8! `
             mathOperator = getMathOperator(+miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str]))
             totalDamageModifier = +miscdamage + + returnCorrectStr(isRanged, !thrownweapon, strDam[str])
         } else {
@@ -65,9 +65,9 @@ export default function weaponsquare({ weapon }) {
         , shieldDrShown = <div></div>
 
     if (usingshield && shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><i className="fas fa-shield-alt"></i>:{shielddr}{trainparry > 0 ? `+${Math.ceil(shieldtrainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><i className="fas fa-shield-alt"></i>:{shielddr}{trainparry > 0 ? `+${Math.floor(shieldtrainparry / 3)}` : ''}</p>
     } else if (usingshield && !shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><i className="fas fa-shield-alt"></i>:2/d{trainparry > 0 ? `+${Math.ceil(trainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><i className="fas fa-shield-alt"></i>:2/d{trainparry > 0 ? `+${Math.floor(trainparry / 3)}` : ''}</p>
     }
 
     let drShell = (

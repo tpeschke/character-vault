@@ -30,14 +30,15 @@ export default class CharacterEditor extends Component {
     }
 
     updateAttribute = (value, type) => {
+        console.log(value, type)
         let character = { ...this.state.character }
         character[type] = value
-        this.setState({ character })
+        this.setState({ character }, _=> console.log(character))
     }
 
     updateManyArrributes = (ObjectOfAttributes) => {
         let character = { ...this.state.character, ...ObjectOfAttributes }
-        this.setState({character})
+        this.setState({ character })
     }
 
     updateObject = (object, key, value) => {
@@ -47,9 +48,9 @@ export default class CharacterEditor extends Component {
     }
 
     updateEntireObject = (oldObject, newObject) => {
-        let character = { ...this.state.character}
+        let character = { ...this.state.character }
         character[oldObject] = newObject
-        this.setState({character})
+        this.setState({ character })
     }
 
     updateSkillsuites = (value, index) => {
@@ -157,7 +158,7 @@ export default class CharacterEditor extends Component {
         let addToDefense = 0
 
         if (baseAndRanks > 0) {
-            addToDefense = Math.ceil(baseAndRanks / 3)
+            addToDefense = Math.floor(baseAndRanks / 3)
             baseAndRanks = 0
         }
 
@@ -172,7 +173,7 @@ export default class CharacterEditor extends Component {
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
-            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod } = this.state.character
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes } = this.state.character
         let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
             , { isUpdating } = this.props
             , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
@@ -252,6 +253,11 @@ export default class CharacterEditor extends Component {
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
             }
 
+        let secretNotesDiv = (<div className="secretNotesDiv" onClick={_ => this.updateAttribute(true, "secretgeneralnotes")}></div>)
+        if (secretgeneralnotes) {
+            secretNotesDiv = (<div className="secretNotesDiv" onClick={_ => this.updateAttribute(false, "secretgeneralnotes")}><i className="fas fa-check"></i></div>)
+        }
+
         return (
             <div>
                 <div id="pdf" className='pdfViewStylings editing'>
@@ -294,7 +300,13 @@ export default class CharacterEditor extends Component {
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
                     </div>
                     <div id="pageThree" className="pageBase pageViewStylings">
-                        <h1>General Notes</h1>
+                        <div className='general-notes-header'>
+                            <h1>General Notes</h1>
+                            <div className='general-notes-subtitle'>
+                                {secretNotesDiv}
+                                <p>Don't Reveal Notes to Other Users</p>
+                            </div>
+                        </div>
                         <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
                     </div>
                 </div>

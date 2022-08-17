@@ -21,7 +21,7 @@ export default class WeaponBlock extends Component {
                 weaponOptions = data.map(choice => {
                     return <option value={`${choice.name} (${choice.type})`} />
                 })
-                
+
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' }, _ => this.changeWeaponName(this.state.weapon.name))
             })
         } else {

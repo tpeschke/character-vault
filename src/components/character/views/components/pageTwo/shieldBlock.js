@@ -40,37 +40,41 @@ export default class ShieldBlock extends Component {
         }
     }
 
+    updateAttribute = (value, type) => {
+        this.setState({ shield: { ...this.state.shield, [type]: value } })
+        this.state.shield.updateAttribute(value, type)
+    }
 
     render() {
         let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
             shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue,
-            returnZeroIfNaN, updateAttribute, shieldsize, shieldFatigue, id } = this.state.shield
+            returnZeroIfNaN, shieldsize, shieldFatigue, id } = this.state.shield
         let { editing, shieldOptions } = this.state
 
         if (editing) {
             return (
                 <div className="shieldBlockShell">
                     <h2>Shield Workspace</h2>
-                    {/* <input className="shieldnameLocation" type="text" value={shieldname} onChange={event => updateAttribute(event.target.value, "shieldname")} /> */}
+                    {/* <input className="shieldnameLocation" type="text" value={shieldname} onChange={event => this.updateAttribute(event.target.value, "shieldname")} /> */}
                     <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
                     <datalist id="shieldChoices">
                         {shieldOptions}
                     </datalist>
                     <div className="basicStats">
                         <p>DR</p>
-                        <input className="shielddrLocation" type="text" value={shielddr} onChange={event => updateAttribute(event.target.value, "shielddr")} />
+                        <input className="shielddrLocation" type="text" value={shielddr} onChange={event => this.updateAttribute(event.target.value, "shielddr")} />
                     </div>
                     <div className="basicStats">
                         <p>Size</p>
-                        <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => updateAttribute(event.target.value, "shieldsize")} />
+                        <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
                     </div>
                     <div className="basicStats">
                         <p>Cover</p>
-                        <input className="shieldcoverLocation" type="text" value={shieldcover} onChange={event => updateAttribute(event.target.value, "shieldcover")} />
+                        <input className="shieldcoverLocation" type="text" value={shieldcover} onChange={event => this.updateAttribute(event.target.value, "shieldcover")} />
                     </div>
                     <div className="armorBonusArea shieldBonusArea">
                         <p>Bonus</p>
-                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus ? shieldbonus : ''} onChange={event => updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
+                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
                     </div>
 
                     <div className="calculatedStats calculatedStatsHeading">
@@ -82,26 +86,26 @@ export default class ShieldBlock extends Component {
                     </div>
 
                     <div className="calculatedStats">
-                        <input className="shieldbasedefLocation" type="number" value={shieldbasedef} onChange={event => updateAttribute(event.target.value, "shieldbasedef")} />
-                        <input className="shieldbaseencumbLocation" type="number" value={shieldbasefatigue} onChange={event => updateAttribute(event.target.value, "shieldbasefatigue")} />
-                        <input className="shieldbaseparryLocation" type="number" value={shieldbaseparry} onChange={event => updateAttribute(event.target.value, "shieldbaseparry")} />
-                        <input className="shieldbasebreakLocation" type="number" value={shieldbasebreak} onChange={event => updateAttribute(event.target.value, "shieldbasebreak")} />
+                        <input className="shieldbasedefLocation" type="number" value={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
+                        <input className="shieldbaseencumbLocation" type="number" value={shieldbasefatigue} onChange={event => this.updateAttribute(event.target.value, "shieldbasefatigue")} />
+                        <input className="shieldbaseparryLocation" type="number" value={shieldbaseparry} onChange={event => this.updateAttribute(event.target.value, "shieldbaseparry")} />
+                        <input className="shieldbasebreakLocation" type="number" value={shieldbasebreak} onChange={event => this.updateAttribute(event.target.value, "shieldbasebreak")} />
                         <p>Base</p>
                     </div>
 
                     <div className="calculatedStats">
-                        <input className="shieldtraindefLocation" type="number" value={shieldtraindef} onChange={event => updateAttribute(event.target.value, "shieldtraindef")} />
-                        <input className="shieldtrainencumbLocation" type="number" value={shieldtrainfatigue} onChange={event => updateAttribute(event.target.value, "shieldtrainfatigue")} />
-                        <input className="shieldtrainparryLocation" type="number" value={shieldtrainparry} onChange={event => updateAttribute(event.target.value, "shieldtrainparry")} />
-                        <input className="shieldtrainbreakLocation" type="number" value={shieldtrainbreak} onChange={event => updateAttribute(event.target.value, "shieldtrainbreak")} />
+                        <input className="shieldtraindefLocation" type="number" value={shieldtraindef} onChange={event => this.updateAttribute(event.target.value, "shieldtraindef")} />
+                        <input className="shieldtrainencumbLocation" type="number" value={shieldtrainfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldtrainfatigue")} />
+                        <input className="shieldtrainparryLocation" type="number" value={shieldtrainparry} onChange={event => this.updateAttribute(event.target.value, "shieldtrainparry")} />
+                        <input className="shieldtrainbreakLocation" type="number" value={shieldtrainbreak} onChange={event => this.updateAttribute(event.target.value, "shieldtrainbreak")} />
                         <p>Skills</p>
                     </div>
 
                     <div className="calculatedStats">
-                        <input type="number" value={shieldmiscdef} onBlur={event => updateAttribute(event.target.value, "shieldmiscdef")} />
-                        <input type="number" value={shieldmiscfatigue} onBlur={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onBlur={event => updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
+                        <input type="number" value={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
+                        <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                        <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 
@@ -164,10 +168,10 @@ export default class ShieldBlock extends Component {
                     </div>
 
                     <div className="calculatedStats">
-                        <input type="number" value={shieldmiscdef} onBlur={event => updateAttribute(event.target.value, "shieldmiscdef")} />
-                        <input type="number" value={shieldmiscfatigue} onBlur={event => updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onBlur={event => updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onBlur={event => updateAttribute(event.target.value, "shieldmiscbreak")} />
+                        <input type="number" value={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
+                        <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                        <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 

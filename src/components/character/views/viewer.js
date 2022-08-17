@@ -42,8 +42,8 @@ export default class CharacterViewer extends Component {
     }
 
     componentWillMount() {
-        axios.get('/api/isUserAboveLimit').then(({data}) => {
-            this.setState({ isAboveLimit: data.isUserAboveLimit})
+        axios.get('/api/isUserAboveLimit').then(({ data }) => {
+            this.setState({ isAboveLimit: data.isUserAboveLimit })
         })
         let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
         if (this.state.character.id !== 'blank') {
@@ -270,14 +270,14 @@ export default class CharacterViewer extends Component {
     }
 
     updateEntireObject = (oldObject, newObject) => {
-        let character = { ...this.state.character}
+        let character = { ...this.state.character }
         character[oldObject] = newObject
-        this.setState({character})
+        this.setState({ character })
     }
 
     generatePdf = (isPregen) => {
-        if (this.state.character.id === 'blank') {
-            this.generateBlankPDF()
+        if (this.state.character.id === 'blank' || this.state.character.secretgeneralnotes) {
+            this.generateBlankPDF(isPregen)
         } else {
             this.generateNormalPDF(isPregen)
         }
@@ -287,7 +287,7 @@ export default class CharacterViewer extends Component {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
-            html2canvas(pageOne, { scale: 3 })
+            html2canvas(pageOne, { scale: 2 })
                 .then((canvasOne) => {
                     const imgDataOne = canvasOne.toDataURL('image/png');
                     const pdf = new jsPDF("p", "mm", "letter");
@@ -296,13 +296,13 @@ export default class CharacterViewer extends Component {
                     pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
                     this.setState({ isHalfwayDone: true })
                     const pageTwo = document.getElementById('pageTwo');
-                    html2canvas(pageTwo, { scale: 3 })
+                    html2canvas(pageTwo, { scale: 2 })
                         .then((cavansTwo) => {
                             const imgDataTwo = cavansTwo.toDataURL('image/png');
                             pdf.addPage(width, height);
                             pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
                             const pageThree = document.getElementById('pageThree');
-                            html2canvas(pageThree, { scale: 3 })
+                            html2canvas(pageThree, { scale: 2 })
                                 .then((cavansTwo) => {
                                     const imgDateThree = cavansTwo.toDataURL('image/png');
                                     pdf.addPage(width, height);
@@ -325,10 +325,10 @@ export default class CharacterViewer extends Component {
         })
     }
 
-    generateBlankPDF = () => {
+    generateBlankPDF = (isPregen) => {
         this.setState({ isDownloading: true }, _ => {
             const pageOne = document.getElementById('pageOne');
-            html2canvas(pageOne, { scale: 3 })
+            html2canvas(pageOne, { scale: 2 })
                 .then((canvasOne) => {
                     const imgDataOne = canvasOne.toDataURL('image/png');
                     const pdf = new jsPDF("p", "mm", "letter");
@@ -337,12 +337,20 @@ export default class CharacterViewer extends Component {
                     pdf.addImage(imgDataOne, 'png', 0, 0, width, height - 5);
                     this.setState({ isHalfwayDone: true })
                     const pageTwo = document.getElementById('pageTwo');
-                    html2canvas(pageTwo, { scale: 3 })
+                    html2canvas(pageTwo, { scale: 2 })
                         .then((cavansTwo) => {
                             const imgDataTwo = cavansTwo.toDataURL('image/png');
                             pdf.addPage(width, height);
                             pdf.addImage(imgDataTwo, 'png', 0, 0, width, height);
-                            pdf.save(`Bonfire Blank Character Sheet.pdf`);
+                            let name;
+                            if (this.state.character.id === 'blank') {
+                                name = `Bonfire Blank Character Sheet.pdf`
+                            } else if (this.state.character.name && !isPregen) {
+                                name = this.state.character.name
+                            } else {
+                                name = `${this.state.character.race} ${this.state.character.primarya}/${this.state.character.secondarya}`
+                            }
+                            pdf.save(name);
                             this.setState({ isHalfwayDone: false, isDownloading: false })
                         });
                 });
@@ -354,17 +362,17 @@ export default class CharacterViewer extends Component {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
-            
-            str = str ? str : 1
-            dex = dex ? dex : 1
-            con = con ? con : 1
-            int = int ? int : 1
-            wis = wis ? wis : 1
-            cha = cha ? cha : 1
 
-        let  strData = strTable[str]
+        str = str ? str : 1
+        dex = dex ? dex : 1
+        con = con ? con : 1
+        int = int ? int : 1
+        wis = wis ? wis : 1
+        cha = cha ? cha : 1
+
+        let strData = strTable[str]
             , dexData = dexTable[dex]
             , conData = conTable[con]
             , intData = intTable[int]
@@ -484,7 +492,7 @@ export default class CharacterViewer extends Component {
                 generalnotestextArea = <textarea className="generalnotestextArea" defaultValue={generalnotes} onBlur={event => this.updateAttribute(event.target.value, "generalnotes")} maxLength={"10000"}></textarea>
             }
             rightCornerButton = (
-                <div className={owned || (!owned && !isAboveLimit) ? "right-corner-button corner-button": "displayNone"}>
+                <div className={owned || (!owned && !isAboveLimit) ? "right-corner-button corner-button" : "displayNone"}>
                     <div className={owned ? "right-corner-button corner-button zindexOne" : "displayNone"}>
                         {editButton}
                     </div>
@@ -555,7 +563,7 @@ export default class CharacterViewer extends Component {
                         <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                         <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                     </div>
-                    <div id="pageThree" className="pageBase pageViewStylings">
+                    <div id="pageThree" className={secretgeneralnotes || id === 'blank' ? "displayNone" : "pageBase pageViewStylings"}>
                         <h1>General Notes</h1>
                         {generalnotestextArea}
                     </div>
