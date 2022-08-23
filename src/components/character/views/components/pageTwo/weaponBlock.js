@@ -134,11 +134,11 @@ export default class WeaponBlock extends Component {
                     </div>
 
                     <div className="weaponCalculatedStats">
-                        <input type="number" value={miscattack} onBlur={event => this.updateValue(event.target.value, "miscattack")} />
-                        <input type="number" value={miscrecovery} onBlur={event => this.updateValue(event.target.value, "miscrecovery")} />
-                        <input type="number" value={miscparry} onBlur={event => this.updateValue(event.target.value, "miscparry")} />
-                        <input type="number" value={miscdamage} onBlur={event => this.updateValue(event.target.value, "miscdamage")} />
-                        <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onBlur={event => this.updateValue(event.target.value, "miscinit")} />
+                        <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
+                        <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
+                        <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                        <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
+                        <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onChange={event => this.updateValue(event.target.value, "miscinit")} />
                         <p>Mi</p>
                     </div>
 
@@ -181,11 +181,11 @@ export default class WeaponBlock extends Component {
         if (id !== 'blank') {
             miscInputs = (
                 <div className="weaponCalculatedStats">
-                    <input type="number" value={miscattack} onBlur={event => this.updateValue(event.target.value, "miscattack")} />
-                    <input type="number" value={miscrecovery} onBlur={event => this.updateValue(event.target.value, "miscrecovery")} />
-                    <input type="number" value={miscparry} onBlur={event => this.updateValue(event.target.value, "miscparry")} />
-                    <input type="number" value={miscdamage} onBlur={event => this.updateValue(event.target.value, "miscdamage")} />
-                    <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onBlur={event => this.updateValue(event.target.value, "miscinit")} />
+                    <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
+                    <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
+                    <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                    <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
+                    <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onChange={event => this.updateValue(event.target.value, "miscinit")} />
                     <p>Mi</p>
                 </div>
             )

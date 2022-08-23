@@ -30,7 +30,6 @@ export default class CharacterEditor extends Component {
     }
 
     updateAttribute = (value, type) => {
-        console.log(value, type)
         let character = { ...this.state.character }
         character[type] = value
         this.setState({ character }, _=> console.log(character))
