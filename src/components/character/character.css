@@ -826,7 +826,28 @@ input.secondarylevelLocation {
 .temperamentLocation {
     left: 20px;
     top: 383px;
-    width: 224px;
+    width: 182px;
+    background-color: lightgray;
+}
+
+strong {
+    font-size: 12px;
+    font-family: 'Vollkorn SC', serif;
+}
+
+.racial-temp-edit-shell {
+    display: flex;
+    width: 200px;
+    background-color: lightgray;
+}
+
+p.temperamentLocation {
+    width: 213px;
+}
+
+.racial-temp-edit-shell strong {
+    margin-top: 4px;
+    margin-right: 4px;
 }
 
 .extrahonordiceLocation {
@@ -1979,7 +2000,7 @@ input.secondarylevelLocation {
 .socialBodyShell {
     display: flex;
     justify-content: space-between;
-    height: 216px;
+    height: 294px;
     overflow: hidden;
 }
 

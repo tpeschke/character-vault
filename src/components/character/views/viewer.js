@@ -362,7 +362,7 @@ export default class CharacterViewer extends Component {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
 
         str = str ? str : 1
@@ -440,7 +440,7 @@ export default class CharacterViewer extends Component {
             characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, updateAttribute: this.updateAttribute, drawback }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             movement = { crawl, walk, jog, run, sprint, overCarry }
-            social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts }
+            social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions }
             weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,

@@ -96,7 +96,6 @@ export default class EditPairList extends Component {
             height: height || 'unset'
         }
         
-
         return (
             <div style={stylings} className="viewPairListStriping">
                 <div className="stripesShell" style={heightStyling}>

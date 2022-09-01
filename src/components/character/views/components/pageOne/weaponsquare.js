@@ -57,7 +57,7 @@ export default function weaponsquare({ weapon }) {
         damageShell = (
             <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
                 <p>{basedamage}{addedDice}{totalDamageModifier}</p>
-                <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
+                <div className='tooltip'><p>Click to {!thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
             </div>)
     }
 

@@ -48,6 +48,7 @@ editController = {
                 promiseArray.push(db.get.devotions(characterid).then(result => otherArray.push(result)))
                 promiseArray.push(db.get.flaws(characterid).then(result => otherArray.push(result)))
                 promiseArray.push(db.get.traits(characterid).then(result => otherArray.push(result)))
+                promiseArray.push(db.get.descriptions(characterid).then(result => otherArray.push(result)))
                 promiseArray.push(db.get.gearone(characterid).then(result => gearArray = [...gearArray, ...result]))
                 promiseArray.push(db.get.geartwo(characterid).then(result => gearArray = [...gearArray, ...result]))
                 promiseArray.push(db.get.gearthree(characterid).then(result => gearArray = [...gearArray, ...result]))
@@ -132,7 +133,7 @@ editController = {
 
         let { id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,
             run, sprint, weaponone, weapontwo, weaponthree, weaponfour, armorid, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatiguemod, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef,
-            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits, martialadept, combatskills, combatskillsuites, secretgeneralnotes } = req.body
+            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits, martialadept, combatskills, combatskillsuites, secretgeneralnotes, descriptions } = req.body
         skilladept = setToMin(skilladept, 0)
         level = setToMin(level, 1)
         crp = setToMin(crp, 0)
@@ -175,6 +176,11 @@ editController = {
                     return db.upsert.traits(traitsid, id, title, value)
                 })
             }).catch(e => console.log("traits ~ ", e)))
+            promiseArray.push(db.delete.descriptions([id, [0, ...req.body.descriptions.map(descriptions => descriptions.id)]]).then(_ => {
+                return req.body.descriptions.map(({ id: descriptionsid, value, title }) => {
+                    return db.upsert.descriptions(descriptionsid, id, title, value)
+                })
+            }).catch(e => console.log("descriptions ~ ", e)))
             promiseArray.push(db.delete.reputation([id, [0, ...reputation.map(reputation => reputation.id)]]).then(_ => {
                 return reputation.map(({ id: reputationid, value }) => {
                     return db.upsert.reputation(reputationid, id, value)

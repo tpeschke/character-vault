@@ -156,6 +156,10 @@ viewController = {
         character.traits = traits
         return true
       }).catch(e => console.log("----------------------------- traits -----------------------------", e)))
+      promiseArray.push(db.get.descriptions(character.id).then(descriptions => {
+        character.descriptions = descriptions
+        return true
+      }).catch(e => console.log("----------------------------- descriptions -----------------------------", e)))
       promiseArray.push(db.get.reputation(character.id).then(reputation => {
         character.reputation = reputation
         return true

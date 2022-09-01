@@ -173,7 +173,7 @@ export default class CharacterEditor extends Component {
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
             nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes } = this.state.character
-        let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
+        let { updateCharacter, cancelUpdate, updateEntireObject, description } = this.state
             , { isUpdating } = this.props
             , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
             , isHuman = checkIfHuman(race)
@@ -206,7 +206,7 @@ export default class CharacterEditor extends Component {
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
-            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman }
+            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, description }
             , miscVitals = { updateAttribute: this.updateAttribute, chaData }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal, favormax, stressthreshold, wis, relaxation }

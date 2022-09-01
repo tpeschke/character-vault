@@ -5,7 +5,7 @@ import EditList from '../pairComponents/editList'
 import EditPairList from '../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
-    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor } = social
+    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions } = social
 
     if (editing) {
         return (
@@ -31,20 +31,21 @@ export default function Social({ social, editing }) {
                 </div>
                 <div className="socialBodyShell">
                     <div className="socialLeftShell">
-                        <h2>Temperament</h2>
-                        <input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} />
                         <h2>Goals</h2>
-                        <EditList stylings={{ width: '224px', height: '56px' }} height='56px' listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
+                        <EditList stylings={{ width: '224px' }} listArray={goals} limit={3} updateFunction={updateAttribute} type={"goals"} />
                         <h2>Devotions</h2>
-                        <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={4} updateFunction={updateAttribute} type={"devotions"} />
+                        <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
+                        <h2>Flaws</h2>
+                        <EditPairList  rowWidth={'224px'} listArray={flaws} limit={4} updateFunction={updateAttribute} type={"flaws"}/>
                     </div>
                     <div className="socialRightShell">
-                        <h2>Traits</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={10} updateFunction={updateAttribute} type={"traits"} />
+                        <h2>Descriptions</h2>
+                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
+                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={4} updateFunction={updateAttribute} type={"descriptions"} />
+                        <h2>Convictions</h2>
+                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
                     </div>
                 </div>
-                <h2>Flaws</h2>
-                <EditPairList stylings={{ width: '428px', height: '60px' }} rowWidth={'212px'}  height={'60px'} listArray={flaws} limit={6} updateFunction={updateAttribute} type={"flaws"} defaultValue={"d4!"} />
                 <h2>Reputation</h2>
                 <div className="reputationShell">
                     <EditList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
@@ -102,20 +103,21 @@ export default function Social({ social, editing }) {
             </div>
             <div className="socialBodyShell">
                 <div className="socialLeftShell">
-                    <h2>Temperament</h2>
-                    <p className="temperamentLocation">{temperament}</p>
                     <h2>Goals</h2>
                     <ViewList listArray={goals} limit={3} />
                     <h2>Devotions</h2>
-                    <ViewPairList listArray={devotions} limit={4} />
+                    <ViewPairList listArray={devotions} limit={5} />
+                    <h2>Flaws</h2>
+                    <ViewPairList listArray={flaws} limit={4} />
                 </div>
                 <div className="socialRightShell">
-                    <h2>Traits</h2>
-                    <ViewPairList listArray={traits} limit={10} />
+                    <h2>Descriptions</h2>
+                    <p className="temperamentLocation"><strong>RT </strong> {temperament}</p>
+                    <ViewPairList listArray={descriptions} limit={4} />
+                    <h2>Convictions</h2>
+                    <ViewPairList listArray={traits} limit={8} />
                 </div>
             </div>
-            <h2>Flaws</h2>
-            <ViewPairList stylings={{ width: '428px', height: '60px' }} rowWidth={'212px'} height={'60px'} listArray={flaws} limit={6} />
             <h2>Reputation</h2>
             <div className="reputationShell">
                 <ViewList stylings={{ left: '95px', width: '331px' }} listArray={reputation} limit={3} />

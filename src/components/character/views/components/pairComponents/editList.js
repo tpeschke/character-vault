@@ -9,7 +9,8 @@ export default class EditList extends Component {
             listArray: props.listArray || [],
             limit: props.limit,
             updateFunction: props.updateFunction,
-            type: props.type
+            type: props.type,
+            height: props.height,
         }
     }
 
@@ -43,7 +44,7 @@ export default class EditList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit } = this.state
+        let { stylings, listArray, limit, height } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let inputStyles = {
                 width: '100%'
@@ -58,15 +59,19 @@ export default class EditList extends Component {
 
         let stripes = []
         for (let i = 0; i < limit; i++) {
-            stripes.push((<div className="pairRowStriping" style={inputStyles} key={`${this.makeId()}`}> </div>))
+            stripes.push((<div className="pairRowStriping" key={`${this.makeId()}`}> </div>))
+        }
+
+        let heightStyling = {
+            height: height || 'unset'
         }
 
         return (
             <div style={stylings} className="viewList viewPairListStriping">
-                <div className="stripesShell">
+                <div className="stripesShell" style={heightStyling}>
                     {stripes}
                 </div>
-                <div className="contentListShell">
+                <div className="contentListShell" style={heightStyling}>
                     {listOfInputs}
                     <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id={`addNewItemInput${this.state.type}`} />
                 </div>

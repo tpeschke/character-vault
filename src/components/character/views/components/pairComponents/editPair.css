@@ -37,6 +37,7 @@
 
 .viewPairListStriping {
     position: relative;
+    overflow: hidden;
 }
 
 .viewPairListStriping .stripesShell, .viewPairListStriping .contentPairListShell, .viewPairListStriping .contentListShell {
