@@ -172,16 +172,16 @@ export default class CharacterEditor extends Component {
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
-            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes } = this.state.character
-        let { updateCharacter, cancelUpdate, updateEntireObject, description } = this.state
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions } = this.state.character
+        let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
             , { isUpdating } = this.props
             , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
             , isHuman = checkIfHuman(race)
-
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
+
         let strData = str ? strTable[str] : strTable[1]
             , dexData = dex ? dexTable[dex] : dexTable[1]
             , conData = con ? conTable[con] : conTable[1]
@@ -206,7 +206,7 @@ export default class CharacterEditor extends Component {
         let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
-            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, description }
+            , social = { updateAttribute: this.updateAttribute, temperament, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, descriptions }
             , miscVitals = { updateAttribute: this.updateAttribute, chaData }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal, favormax, stressthreshold, wis, relaxation }
