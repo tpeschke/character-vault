@@ -129,7 +129,7 @@ export default function Vitality({ vitality, editing }) {
                 </div>
                 <div className="stressShell editingStressThreshold">
                     <p className='stressThreshold'>Stress Threshold</p>
-                    <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold ? stressthreshold : +wis * 3} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
+                    <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                 </div>
                 <h1>Vitality</h1>
                 <div className="woundCategoryShell">
@@ -279,7 +279,7 @@ export default function Vitality({ vitality, editing }) {
                     {stress}
                 </div>
                 <div>
-                    <p>Relxation</p>
+                    <p>Relaxation</p>
                     {relaxationInput}
                 </div>
             </div>

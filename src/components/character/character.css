@@ -826,8 +826,15 @@ input.secondarylevelLocation {
 .temperamentLocation {
     left: 20px;
     top: 383px;
-    width: 182px;
+    width: 156px;
     background-color: lightgray;
+}
+
+.temperamentrankLocation {
+    border-left: 1px solid grey;
+    width: 27px;
+    text-align: center;
+    margin-left: 1px;
 }
 
 strong {
@@ -841,8 +848,24 @@ strong {
     background-color: lightgray;
 }
 
-p.temperamentLocation {
+div.temperamentLocation {
     width: 213px;
+    display: flex;
+    align-items: center;
+}
+
+div.temperamentLocation strong {
+    margin-top: 4px;
+    margin-right: 4px;
+}
+
+div.temperamentLocation p:last-child {
+    min-width: 25px;
+    text-align: center;
+}
+
+div.temperamentLocation p:nth-child(2) {
+    min-width: 168px;
 }
 
 .racial-temp-edit-shell strong {

@@ -5,7 +5,7 @@ import EditList from '../pairComponents/editList'
 import EditPairList from '../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
-    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions } = social
+    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions, temperamentrank } = social
 
     if (editing) {
         return (
@@ -40,7 +40,7 @@ export default function Social({ social, editing }) {
                     </div>
                     <div className="socialRightShell">
                         <h2>Descriptions</h2>
-                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
+                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /><input className="temperamentrankLocation" type="int" defaultValue={temperamentrank} onChange={event => updateAttribute(event.target.value, "temperamentrank")} /></div>
                         <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={4} updateFunction={updateAttribute} type={"descriptions"} />
                         <h2>Convictions</h2>
                         <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
@@ -112,7 +112,7 @@ export default function Social({ social, editing }) {
                 </div>
                 <div className="socialRightShell">
                     <h2>Descriptions</h2>
-                    <p className="temperamentLocation"><strong>RT </strong> {temperament}</p>
+                    <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p><p>{temperamentrank}</p></div>
                     <ViewPairList listArray={descriptions} limit={4} />
                     <h2>Convictions</h2>
                     <ViewPairList listArray={traits} limit={8} />
