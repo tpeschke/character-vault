@@ -398,7 +398,7 @@ export default class CharacterViewer extends Component {
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , isHuman = checkIfHuman(race)
             , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
-            , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
+            , shownThreshold = stressthreshold ? stressthreshold : 0
 
         let characterInfo = { id }
             , stats = {}

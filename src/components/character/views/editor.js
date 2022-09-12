@@ -190,7 +190,7 @@ export default class CharacterEditor extends Component {
             , chaData = cha ? chaTable[cha] : chaTable[1]
 
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
-            , shownThreshold = stressthreshold ? stressthreshold : +wis * 3
+            , shownThreshold = stressthreshold ? stressthreshold : 0
 
         weaponone.totalRecoveryModifiers = +weaponone.trainrecovery + +weaponone.miscrecovery
         weapontwo.totalRecoveryModifiers = +weapontwo.trainrecovery + +weapontwo.miscrecovery
