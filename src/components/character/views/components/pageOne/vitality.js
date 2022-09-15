@@ -20,8 +20,26 @@ function calculatePanickedLeft(honor) {
     return { left, display }
 }
 
+function calculateWoundedLeft(fatigue) {
+    let left = '0px'
+        , display = 'inherit'
+    if (fatigue === 'H') {
+        left = '0px'
+    } else if (fatigue === 'B') {
+        left = '81px'
+    } else if (fatigue === 'W') {
+        left = '163px'
+    } else if (fatigue === 'C') {
+        left = '244px'
+    } else if (fatigue === 'A') {
+        left = '0px'
+        display = 'none'
+    }
+    return { left, display }
+}
+
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation } = vitality
+    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
@@ -29,11 +47,13 @@ export default function Vitality({ vitality, editing }) {
     }
 
     let panickedCircle = <div className="circle panickedCircle"></div>
+    let woundCircle = <div className="circle woundCircle"></div>
 
     let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
     let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
         panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+        woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}></div>
         damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
         damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     }
@@ -153,7 +173,7 @@ export default function Vitality({ vitality, editing }) {
 
                 <div className="currentDamageRow">
                     <div className="currentBox">
-                        <p>Current</p>
+                        <p>Total Dam</p>
                         <p className="currentDamageLocation"> </p>
                     </div>
                     <p className="tinyGrey">Severity</p>
@@ -248,6 +268,7 @@ export default function Vitality({ vitality, editing }) {
     if (shownVitality) {
         woundCategories = (
             <div className="woundCategoryShell">
+                {woundCircle}
                 <div className="hurtLocation">
                     <p>H</p>
                     <p>1 - {(shownVitality * .25).toFixed(0) - 1}</p>
@@ -288,7 +309,7 @@ export default function Vitality({ vitality, editing }) {
 
             <div className="currentDamageRow">
                 <div className="currentBox">
-                    <p>Current</p>
+                    <p>Total Dam</p>
                     <p className="currentDamageLocation">{currentDamage > 0 ? currentDamage : " "}</p>
                 </div>
                 <p className="tinyGrey">Severity</p>

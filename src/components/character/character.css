@@ -343,6 +343,22 @@ input[type=number] {
     right: 14px;
 }
 
+.dr-icon  {
+    float: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+
+.armor-dr-icon {
+    background-image: url("../../assets/armor.svg");
+}
+
+.shield-dr-icon {
+    background-image: url("../../assets/shield.svg");  
+}
+
 .pageTwoMargin {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -951,7 +967,7 @@ div.temperamentLocation p:nth-child(2) {
 .weaponsquare .encumb {
     position: absolute;
     top: 62px;
-    left: 60px;
+    left: 62px;
     height: 24px;
     width: 38px;
     text-align: center;
@@ -960,14 +976,14 @@ div.temperamentLocation p:nth-child(2) {
 
 .weaponsquare .drshell {
     display: flex;
-    justify-content: space-around;
     flex-direction: column;
     position: absolute;
-    top: 58px;
-    left: 98px;
-    height: 40px;
+    top: 51px;
+    left: 97px;
+    height: 53px;
     width: 47px;
     text-align: center;
+    justify-content: center;
 }
 
 .drshell .tooltip, .damage .tooltip {
@@ -1002,9 +1018,10 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 #shieldDr {
+    border-top: 1px solid lightgrey;
     position: unset;
     margin: 0;
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .weaponsquare .measure {
@@ -1018,15 +1035,25 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .weaponsquare .damage {
-    top: 96px;
-    left: 50px;
+    top: 95px;
+    left: 48px;
     height: 38px;
-    width: 58px;
+    width: 61px;
     word-wrap: break-word;
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     position: absolute;
+    display: flex;
+    align-items: center;
+    line-height: 13px;
+    justify-content: space-around;
 }
+
+.weaponsquare .damage .tooltip p {
+    align-items: unset;
+    line-height: 18px;
+}
+
 
 .weaponsquare .damage p {
     word-wrap: break-word;
@@ -1034,6 +1061,9 @@ div.temperamentLocation p:nth-child(2) {
     font-size: 12px;
     height: 38px;
     width: 58px;
+    display: flex;
+    align-items: center;
+    line-height: 13px;
 }
 
 .weaponsquare .parry {
@@ -1700,7 +1730,7 @@ div.temperamentLocation p:nth-child(2) {
     z-index: 2;
 }
 
-.panickedCircle {
+.panickedCircle, .woundCircle {
     width: 24px !important;
     position: absolute;
     z-index: 2;

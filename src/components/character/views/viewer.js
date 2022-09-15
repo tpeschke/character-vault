@@ -470,7 +470,7 @@ export default class CharacterViewer extends Component {
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, }
+            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
