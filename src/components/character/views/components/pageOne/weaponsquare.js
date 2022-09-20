@@ -109,7 +109,7 @@ function displayDamage(basedamage, damageType, traingingDamage, strDam) {
         d12s: 0,
         d20s: 0
     }
-console.log(squareDamage)
+
     squareDamage.split('+').forEach(dice => {
         let index = dice.indexOf("d")
             , substring = dice.substring(index)
