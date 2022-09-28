@@ -74,7 +74,7 @@ export default class ShieldBlock extends Component {
                     </div>
                     <div className="armorBonusArea shieldBonusArea">
                         <p>Bonus</p>
-                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
+                        <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
                     </div>
 
                     <div className="calculatedStats calculatedStatsHeading">
@@ -140,7 +140,7 @@ export default class ShieldBlock extends Component {
                     </div>
                     <div className="armorBonusArea shieldBonusArea">
                         <p>Bonus</p>
-                        <p className="shieldbonusLocation">{shieldbonus}</p>
+                        <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
                     </div>
 
                     <div className="calculatedStats calculatedStatsHeading">
