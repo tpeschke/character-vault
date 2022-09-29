@@ -8,7 +8,8 @@ export default class ArmorBlock extends Component {
         this.state = {
             ...props,
             armorChoices: [],
-            armorOptions: []
+            armorOptions: [],
+            seed: Math.random()
         }
     }
 
@@ -26,17 +27,24 @@ export default class ArmorBlock extends Component {
 
     changeArmorName = (event) => {
         let selectedName = event.target.value
-        let { armorChoices, armor, updateManyArrributes } = this.state
+        let { armorChoices, armor, updateManyAttributes } = this.state
 
-        for (let i = 0; i < armorChoices.length; i++) {
-            if (selectedName === armorChoices[i].name) {
-                let { def, dr, fatigue, name, init, rec, skill } = armorChoices[i]
-                let newArmor = { armordr: dr, armorbasedef: def, armorname: name, armorbasefatiguemod: fatigue, armorbaseinit: init, armorbaserecovery: rec, armorskilladj: skill }
-                armor = { ...armor, ...newArmor }
-                updateManyArrributes(armor)
-                this.setState({ armor })
-                i = armorChoices.length
+        if (selectedName) {
+            for (let i = 0; i < armorChoices.length; i++) {
+                if (selectedName === armorChoices[i].name) {
+                    let { def, dr, fatigue, name, init, rec, skill } = armorChoices[i]
+                    let newArmor = { armordr: dr, armorbasedef: def, armorname: name, armorbasefatiguemod: fatigue, armorbaseinit: init, armorbaserecovery: rec, armorskilladj: skill }
+                    armor = { ...armor, ...newArmor }
+                    updateManyAttributes(armor)
+                    this.setState({ armor })
+                    i = armorChoices.length
+                }
             }
+        } else {
+            let newArmor = { armordr: null, armorbasedef: null, armorname: null, armorbasefatiguemod: null, armorbaseinit: null, armorbaserecovery: null, armorskilladj: null }
+            armor = { ...armor, ...newArmor }
+            updateManyAttributes(armor)
+            this.setState({ armor, seed: Math.random() })
         }
     }
 
@@ -90,7 +98,7 @@ export default class ArmorBlock extends Component {
 
         if (editing) {
             return (
-                <div className="armorBlockShell">
+                <div className="armorBlockShell" key={this.state.seed}>
                     <h2>Armor Workspace</h2>
                     <input className="armornameLocation" defaultValue={armorname} type="text" list="armorChoices" onChange={this.changeArmorName} />
                     <datalist id="armorChoices">

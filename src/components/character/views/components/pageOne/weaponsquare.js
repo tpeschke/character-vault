@@ -82,21 +82,6 @@ export default function weaponsquare({ weapon }) {
     }
 }
 
-function getMathOperator(total) {
-    if (total <= 0) {
-        return ''
-    }
-    return '+'
-}
-
-function returnCorrectStr(isRanged, thrownweapon, strDam) {
-    if (isRanged && !thrownweapon) {
-        return 0
-    } else {
-        return strDam
-    }
-}
-
 function displayDamage(basedamage, damageType, traingingDamage, strDam) {
     let squareDamage = basedamage ? basedamage : ''
 

@@ -32,10 +32,10 @@ export default class CharacterEditor extends Component {
     updateAttribute = (value, type) => {
         let character = { ...this.state.character }
         character[type] = value
-        this.setState({ character }, _=> console.log(character))
+        this.setState({ character })
     }
 
-    updateManyArrributes = (ObjectOfAttributes) => {
+    updateManyAttributes = (ObjectOfAttributes) => {
         let character = { ...this.state.character, ...ObjectOfAttributes }
         this.setState({ character })
     }
@@ -287,9 +287,9 @@ export default class CharacterEditor extends Component {
 
                         <CashAndGear cashAndGear={cashAndGear} editing={true} />
 
-                        <ArmorBlock armor={armor} updateManyArrributes={this.updateManyArrributes} editing={true} />
+                        <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} editing={true} />
 
-                        <ShieldBlock shield={shield} updateManyArrributes={this.updateManyArrributes} editing={true} />
+                        <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} editing={true} />
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} editing={true} />
 

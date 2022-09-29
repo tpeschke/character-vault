@@ -9,7 +9,8 @@ export default class WeaponBlock extends Component {
             ...props,
             weaponChoices: [],
             weaponOptions: [],
-            weaponChoiceType: ''
+            weaponChoiceType: '',
+            seed: Math.random()
         }
     }
 
@@ -46,21 +47,32 @@ export default class WeaponBlock extends Component {
     }
 
     changeWeaponName = (selectedName, damageType) => {
-        console.log(selectedName, damageType)
         let { weaponChoices, weapon, updateEntireObject } = this.state
 
-        for (let i = 0; i < weaponChoices.length; i++) {
-            if (selectedName === `${weaponChoices[i].name} (${weaponChoices[i].type})` || `${selectedName} (${damageType})` === `${weaponChoices[i].name} (${weaponChoices[i].type})`) {
-                console.log(weaponChoices[i])
-                let { bonus, dam, measure, name, parry, rec, size, type } = weaponChoices[i]
-                let newWeapon = { bonus, basedamage: dam, basemeasure: measure, name, baseparry: parry, baserecovery: rec, size, type }
-                weapon = { ...weapon, ...newWeapon }
-                console.log(weapon)
-                updateEntireObject(`weapon${weapon.position}`, weapon)
-                this.setState({ weapon })
-                i = weaponChoices.length
+        if (selectedName) {
+            for (let i = 0; i < weaponChoices.length; i++) {
+                if (selectedName === `${weaponChoices[i].name} (${weaponChoices[i].type})` || `${selectedName} (${damageType})` === `${weaponChoices[i].name} (${weaponChoices[i].type})`) {
+                    let { bonus, dam, measure, name, parry, rec, size, type } = weaponChoices[i]
+                    let newWeapon = { bonus, basedamage: dam, basemeasure: measure, name, baseparry: parry, baserecovery: rec, size, type, thrownweapon: this.updateThrownStatus(name, weapon.position) }
+                    weapon = { ...weapon, ...newWeapon }
+                    updateEntireObject(`weapon${weapon.position}`, weapon)
+                    this.setState({ weapon }, _=> this.updateThrownStatus())
+                    i = weaponChoices.length
+                }
             }
+        } else {
+            let newWeapon = { bonus: null, basedamage: null, basemeasure: null, name: null, baseparry: null, baserecovery: null, size: null, type: null, thrownweapon: null}
+            weapon = { ...weapon, ...newWeapon }
+            updateEntireObject(`weapon${weapon.position}`, weapon)
+            this.setState({ weapon, seed: Math.random() }, _=> this.updateThrownStatus())
         }
+    }
+
+    updateThrownStatus (name, position) {
+        if (position === 'four') {
+            return name.toUpperCase() === 'JAVELIN' || name.toUpperCase() === 'THROWING AXE' || name.toUpperCase() === 'THROWING KNIFE'
+        }
+        return false
     }
 
     render() {
@@ -84,7 +96,7 @@ export default class WeaponBlock extends Component {
             }
 
             return (
-                <div className={`weaponProfile${position} weaponProfileShell`}>
+                <div className={`weaponProfile${position} weaponProfileShell`} key={this.state.seed}>
                     <h2>Weapon Workspace</h2>
                     <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value, type)} />
                     <datalist id={weaponChoiceType}>

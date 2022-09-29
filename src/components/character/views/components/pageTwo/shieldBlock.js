@@ -10,7 +10,8 @@ export default class ShieldBlock extends Component {
         this.state = {
             ...props,
             shieldChoices: [],
-            shieldOptions: []
+            shieldOptions: [],
+            seed: Math.random()
         }
     }
 
@@ -21,22 +22,32 @@ export default class ShieldBlock extends Component {
             shieldOptions = data.map(choice => {
                 return <option value={choice.name} />
             })
-            this.setState({ shieldChoices, shieldOptions }, _ => this.changeShieldName(this.state.shield.name))
+            this.setState({ shieldChoices, shieldOptions }, _ => this.changeShieldName(this.state.shield.shieldname))
         })
     }
 
     changeShieldName = (selectedName) => {
-        let { shieldChoices, shield, updateManyArrributes } = this.state
-
-        for (let i = 0; i < shieldChoices.length; i++) {
-            if (selectedName === shieldChoices[i].name) {
-                let { bonus, cover, def, dr, fatigue, flanks, name, parry, size } = shieldChoices[i]
-                let newshield = {shieldname: name, shieldbaseparry: parry, shieldbasefatigue: fatigue, shieldbasedef: def, shielddr: dr, shieldcover: cover, shieldbonus: bonus, shieldsize: size}
-                shield = { ...shield, ...newshield }
-                updateManyArrributes(shield)
-                this.setState({ shield })
-                i = shieldChoices.length
+        let { shieldChoices, shield, updateManyAttributes } = this.state
+        if (selectedName) {
+            for (let i = 0; i < shieldChoices.length; i++) {
+                if (selectedName === shieldChoices[i].name) {
+                    let { bonus, cover, def, dr, fatigue, flanks, name, parry, size } = shieldChoices[i]
+                    let newshield = { shieldname: name, shieldbaseparry: parry, shieldbasefatigue: fatigue, shieldbasedef: def, shielddr: dr, shieldcover: cover, shieldbonus: bonus, shieldsize: size }
+                    shield = { ...shield, ...newshield }
+                    updateManyAttributes(shield)
+                    this.setState({ shield }, _ => {
+                        this.updateAttribute(true, 'usingshield')
+                    })
+                    i = shieldChoices.length
+                }
             }
+        } else {
+            let newshield = { shieldname: null, shieldbaseparry: null, shieldbasefatigue: null, shieldbasedef: null, shielddr: null, shieldcover: null, shieldbonus: null, shieldsize: null }
+            shield = { ...shield, ...newshield }
+            updateManyAttributes(shield)
+            this.setState({ shield, seed: Math.random() }, _ => {
+                this.updateAttribute(false, 'usingshield')
+            })
         }
     }
 
@@ -53,7 +64,7 @@ export default class ShieldBlock extends Component {
 
         if (editing) {
             return (
-                <div className="shieldBlockShell">
+                <div className="shieldBlockShell" key={this.state.seed}>
                     <h2>Shield Workspace</h2>
                     {/* <input className="shieldnameLocation" type="text" value={shieldname} onChange={event => this.updateAttribute(event.target.value, "shieldname")} /> */}
                     <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />

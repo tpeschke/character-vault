@@ -221,6 +221,11 @@ export default class CharacterViewer extends Component {
         }
     }
 
+    updateManyAttributes = (ObjectOfAttributes) => {
+        let character = { ...this.state.character, ...ObjectOfAttributes }
+        this.setState({ character })
+    }
+
     updateObject = (object, key, value) => {
         let character = { ...this.state.character }
         if (!isNaN(+value)) {
@@ -554,9 +559,9 @@ export default class CharacterViewer extends Component {
 
                         <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
-                        <ArmorBlock armor={armor} />
+                        <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} />
 
-                        <ShieldBlock shield={shield} />
+                        <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} />
 
                         <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
