@@ -158,7 +158,7 @@ function displayDamage(basedamage, damageType, traingingDamage, strDam) {
                 diceObject.d3s += 1
             } else if (leftover === 2) {
                 diceObject.d4s += 1
-            } else if (leftover === 4) {
+            } else if (leftover === 3) {
                 diceObject.d6s += 1
             }
         } else {
