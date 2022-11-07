@@ -74,18 +74,55 @@ h4 {
 }
 
 .character p {
-    min-width: 24%;
-    text-align: center;
+    width: 25%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
+.character p:hover span, .character p:focus span {
+    display: inline-block;
+    animation-name: scroll-text;
+    animation-duration: 7s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+@keyframes scroll-text {
+    0% {
+      transform: translateX(0%);
+    }
+    90% {
+      transform: translateX(-100%);
+    }
+    95% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 
 .character p:first-child {
     font-weight: 700;
     text-align: left;
-    padding-left: 70px;
     font-size: 13px;
+    width: 50%;
+    margin-left: 15px;
 }
+
+.character p:nth-child(2) {
+    width: 20%;
+}
+
+.character p:nth-child(4) {
+    width: 15%;
+}
+
 .character p:last-child {
-    padding-right: 70px;
+    padding-right: 15px;
     line-height: 1.3;
 }
 
@@ -123,7 +160,7 @@ h4 {
 .fa-minus {
     padding: 5px;
     border-radius: 15px;
-    margin-right: 70px;
+    margin-right: 15px;
 }
 .fa-minus:hover {
     color: #2192b8 !important;

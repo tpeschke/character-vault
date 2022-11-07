@@ -84,9 +84,9 @@ export default class Home extends Component {
                     return (
                         <div className="character">
                             <Link className="characterLink" key={id} to={`/view/${id}`}>
-                                <p>{name}</p>
-                                <p>{race}</p>
-                                <p>{primarya}/{secondarya}</p>
+                                <p><span>{name}</span></p>
+                                <p><span>{race}</span></p>
+                                <p><span>{primarya}/{secondarya}</span></p>
                                 <p>Level: {level}</p>
                                 <i className="fas fa-minus" onClick={e => this.toggleModelWithNoBubbling(true, id, e)}></i>
                             </Link>
@@ -101,9 +101,9 @@ export default class Home extends Component {
             return (
                 <div className="character">
                     <Link className="characterLink" key={id} to={`/view/${id}`}>
-                        <p>{name}</p>
-                        <p>{race}</p>
-                        <p>{primarya}/{secondarya}</p>
+                        <p><span>{name}</span></p>
+                        <p><span>{race}</span></p>
+                        <p><span>{primarya}/{secondarya}</span></p>
                         <p>Level: {level}</p>
                     </Link>
                 </div>
