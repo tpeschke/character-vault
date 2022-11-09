@@ -39,7 +39,7 @@ export default class Modal extends Component {
                             <li>Archetypes</li>
                             <li>Level</li>
                             <li>Stats</li>
-                            <li>Honor</li>
+                            <li>Integrity</li>
                             <li>Temperament</li>
                             <li>Devotions</li>
                             <li>Flaws</li>

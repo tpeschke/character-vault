@@ -10,11 +10,11 @@ export default function Social({ social, editing }) {
     if (editing) {
         return (
             <div className="socialShell">
-                <h1>Honor</h1>
+                <h1>Characteristics</h1>
                 <div className="honorShell">
                     <div>
                         <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => updateAttribute(event.target.value, "honor")} />
-                        <p>Honor</p>
+                        <p>Integrity</p>
                     </div>
                     <div className="honorCategoryShell">
                         <div className="circle" style={{ left: honorDiceLeft }}> </div>
@@ -25,7 +25,7 @@ export default function Social({ social, editing }) {
                         <p>21-25: {isHuman ? 'd12!' : 'd10!'}</p>
                     </div>
                     <div>
-                        <p>Honor Dice</p>
+                        <p>Grit Dice</p>
                         <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => updateAttribute(event.target.value, "extrahonordice")} />
                     </div>
                 </div>
@@ -82,11 +82,11 @@ export default function Social({ social, editing }) {
 
     return (
         <div className="socialShell" key={goals.length}>
-            <h1>Honor</h1>
+            <h1>Characteristics</h1>
             <div className="honorShell">
                 <div>
                     {honorInput}
-                    <p>Honor</p>
+                    <p>Integrity</p>
                 </div>
                 <div className="honorCategoryShell">
                     {honorCircle}
@@ -97,7 +97,7 @@ export default function Social({ social, editing }) {
                     <p>21-25: {isHuman ? 'd12!' : 'd10!'}</p>
                 </div>
                 <div>
-                    <p>Honor Dice</p>
+                    <p>Grit Dice</p>
                     {honorDieInput}
                 </div>
             </div>
