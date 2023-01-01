@@ -6,7 +6,8 @@ export default function weaponsquare({ weapon }) {
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
-        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense } = weapon
+        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
+        shieldcover } = weapon
     let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart } = combatStatMods
     if (editing) {
         return (
@@ -34,9 +35,9 @@ export default function weaponsquare({ weapon }) {
         , shieldDrShown = <div></div>
 
     if (usingshield && shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon'/>{shielddr}{trainparry > 0 ? `+${Math.floor(shieldtrainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />{shielddr}{trainparry > 0 ? `+${Math.floor(shieldtrainparry / 3)}` : ''}</p>
     } else if (usingshield && !shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon'/>2/d{trainparry > 0 ? `+${Math.floor(trainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />2/d{trainparry > 0 ? `+${Math.floor(trainparry / 3)}` : ''}</p>
     }
 
     let drShell = (
@@ -55,6 +56,25 @@ export default function weaponsquare({ weapon }) {
         )
     }
 
+    let cover = (
+        <div className="def">
+            <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+        </div>
+    )
+
+    console.log(shieldcover)
+    if (shieldcover) {
+        cover = (
+            <div className="def">
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p id="shieldCover">
+                    <div className='dr-icon shield-dr-icon' /> {shieldcover}
+                </p>
+            </div>
+        )
+    }
+
+
     if (id !== 'blank') {
         return (
             <div className={`weaponsquare weapon${position}`}>
@@ -62,7 +82,7 @@ export default function weaponsquare({ weapon }) {
                 <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, !isRanged))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
                 <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
-                <p className="def">{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                {cover}
                 <p className="encumb">{type}</p>
 
                 {drShell}
@@ -71,7 +91,7 @@ export default function weaponsquare({ weapon }) {
                 {damageShell}
                 <p className="parry">{returnZeroIfNaN(parryShown)}</p>
 
-            </div>
+            </div >
         )
     } else {
         return (
@@ -198,5 +218,5 @@ function displayDamage(basedamage, damageType, traingingDamage, strDam) {
         diceString += ` ${strDam + crushingDamageMod}`
     }
 
-   return diceString
+    return diceString
 }

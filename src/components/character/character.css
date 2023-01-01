@@ -956,12 +956,18 @@ div.temperamentLocation p:nth-child(2) {
 
 .weaponsquare .def {
     position: absolute;
-    top: 60px;
-    left: 0px;
-    height: 34px;
-    width: 68px;
+    z-index: 1;
+    left: 15px;
+    top: 48px;
+    font-size: 17px;
+    height: 53px;
+    width: 47px;
     text-align: center;
-    font-size: 18px;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
 .weaponsquare .encumb {
@@ -1011,13 +1017,13 @@ div.temperamentLocation p:nth-child(2) {
     z-index: 9999;
 }
 
-#armorDr {
+#armorDr, #def {
     position: unset;
     margin: 0;
     font-size: 13px;
 }
 
-#shieldDr {
+#shieldDr, #shieldCover {
     border-top: 1px solid lightgrey;
     position: unset;
     margin: 0;

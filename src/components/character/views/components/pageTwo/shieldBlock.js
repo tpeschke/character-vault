@@ -53,7 +53,9 @@ export default class ShieldBlock extends Component {
 
     updateAttribute = (value, type) => {
         this.setState({ shield: { ...this.state.shield, [type]: value } })
-        this.state.shield.updateAttribute(value, type)
+        if (this.state.shield.updateAttribute) {
+            this.state.shield.updateAttribute(value, type)
+        }
     }
 
     render() {
