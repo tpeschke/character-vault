@@ -56,13 +56,15 @@ export default function weaponsquare({ weapon }) {
         )
     }
 
-    let cover = (
-        <div className="def">
-            <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
-        </div>
-    )
+    let cover = <div className="def"></div>
 
-    console.log(shieldcover)
+    if (id !== 'blank') {
+        cover = (
+            <div className="def">
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+            </div>
+        )
+    }
     if (shieldcover) {
         cover = (
             <div className="def">
