@@ -433,10 +433,10 @@ export default class CharacterViewer extends Component {
         let generalnotestextArea = <div></div>
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
-            weaponone.totalRecoveryModifiers = weaponone.trainrecovery + +weaponone.miscrecovery
-            weapontwo.totalRecoveryModifiers = weapontwo.trainrecovery + +weapontwo.miscrecovery
-            weaponthree.totalRecoveryModifiers = weaponthree.trainrecovery + +weaponthree.miscrecovery
-            weaponfour.totalRecoveryModifiers = weaponfour.trainrecovery + +weaponfour.miscrecovery
+            weaponone.totalRecoveryModifiers = Math.floor(weaponone.trainrecovery/2) + +weaponone.miscrecovery
+            weapontwo.totalRecoveryModifiers = Math.floor(weapontwo.trainrecovery/2) + +weapontwo.miscrecovery
+            weaponthree.totalRecoveryModifiers = Math.floor(weaponthree.trainrecovery/2) + +weaponthree.miscrecovery
+            weaponfour.totalRecoveryModifiers = Math.floor(weaponfour.trainrecovery/2) + +weaponfour.miscrecovery
 
             armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + armortrainfatigue + armormiscfatigue;
             shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;

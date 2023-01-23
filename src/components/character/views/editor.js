@@ -192,10 +192,11 @@ export default class CharacterEditor extends Component {
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : 0
 
-        weaponone.totalRecoveryModifiers = +weaponone.trainrecovery + +weaponone.miscrecovery
-        weapontwo.totalRecoveryModifiers = +weapontwo.trainrecovery + +weapontwo.miscrecovery
-        weaponthree.totalRecoveryModifiers = +weaponthree.trainrecovery + +weaponthree.miscrecovery
-        weaponfour.totalRecoveryModifiers = +weaponfour.trainrecovery + +weaponfour.miscrecovery
+        weaponone.totalRecoveryModifiers = Math.floor(weaponone.trainrecovery / 2) + +weaponone.miscrecovery
+        weapontwo.totalRecoveryModifiers = Math.floor(weapontwo.trainrecovery / 2) + +weapontwo.miscrecovery
+        weaponthree.totalRecoveryModifiers = Math.floor(weaponthree.trainrecovery / 2) + +weaponthree.miscrecovery
+        weaponfour.totalRecoveryModifiers = Math.floor(weaponfour.trainrecovery / 2) + +weaponfour.miscrecovery
+
 
         weaponfour.isRanged = true
 

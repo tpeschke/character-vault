@@ -22,6 +22,8 @@ export default function weaponsquare({ weapon }) {
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name}` }
 
+    traindamage = Math.ceil(traindamage/2)
+
     let damageShell = (<p className="damage">{displayDamage(basedamage, type, traindamage, strDamChart[str])}</p>)
     if (isRanged) {
         damageShell = (

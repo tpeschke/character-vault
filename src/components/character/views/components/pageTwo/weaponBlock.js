@@ -161,7 +161,7 @@ export default class WeaponBlock extends Component {
                         <p>{returnZeroIfNaN(+trainattack + +miscattack)}</p>
                         <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
                         <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                        <p>{returnZeroIfNaN(+traindamage + +miscdamage)}</p>
+                        <p>{returnZeroIfNaN(Math.ceil(+traindamage/2) + +miscdamage)}</p>
                         <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                         <p>To</p>
                     </div>
@@ -262,7 +262,7 @@ export default class WeaponBlock extends Component {
                     <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
                     <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
                     <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                    <p>{returnZeroIfNaN(traindamage + +miscdamage)}</p>
+                    <p>{returnZeroIfNaN(Math.ceil(+traindamage/2) + +miscdamage)}</p>
                     <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                     <p>To</p>
                 </div>
