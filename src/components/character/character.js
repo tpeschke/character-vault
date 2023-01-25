@@ -11,6 +11,7 @@ class Character extends Component {
 
         this.state = {
             downloadMode: props.match.path === "/download/:id",
+            loading: true,
             character: null,
             isEditingMode:
                 props.match.path === "/new/:id",
@@ -42,7 +43,12 @@ class Character extends Component {
             } else {
                 axios.get(`/api/view/${id}`).then(({ data: character }) => {
                     this.setState({ character }, _ => {
-                        document.title = this.state.character.name
+                        this.setState({loading: false})
+                        if (character) {
+                            document.title = this.state.character.name
+                        } else {
+                            document.title = '404 Not Found'
+                        }
                     })
                 })
             }
@@ -106,9 +112,12 @@ class Character extends Component {
     }
 
     render() {
-        let { downloadMode, character, isEditingMode, isUpdating } = this.state
-        if (!character) {
+        let { downloadMode, character, isEditingMode, isUpdating, loading } = this.state
+        if (!character && loading) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
+        } else if (!character && !loading) {
+            
+            return (<div className="spinnerShell" id="not-found"><p>404</p><p>Character Not Found</p></div>)
         }
         let view = <CharacterViewer character={character} updateSharedCharacter={this.updateSharedCharacter} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} copyCharacter={this.copyCharacter} />
 

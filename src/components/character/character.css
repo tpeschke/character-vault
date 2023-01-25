@@ -2574,3 +2574,20 @@ textarea.traitsLocation {
 .editingStressThreshold input, .editingStressThreshold p {
     width: 50%;
 }
+
+#not-found { 
+    text-align: center;
+    width: 400px;
+}
+
+#not-found p {
+    color: whitesmoke;
+    font-family: "north";
+    margin: 0;
+    font-size: 30px;
+    text-shadow: 4px 2px 2px #222
+}
+
+#not-found p:first-child {
+    font-size: 145px;
+}
