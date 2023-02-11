@@ -378,6 +378,10 @@ input, textarea {
     font-size: 13px;
 }
 
+textarea {
+    font-size: 11px;
+}
+
 .editing input {
     background: rgba(173, 216, 230, 0.50) !important;
 }
@@ -1802,6 +1806,23 @@ div.temperamentLocation p:nth-child(2) {
     width: 70px;
 }
 
+.twinShieldStats div {
+    padding: 0;
+    width: 50%;
+}
+
+.twinShieldStats div p, .twinShieldStats div input {
+    width: 50%;
+    text-align: center;
+}
+
+.twinShieldStats div p:first-child, .twinShieldStats div input:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    text-align: left;
+}
+
 .armornameLocation {
     padding: 0 2px;
     background: lightgrey;
@@ -1812,14 +1833,19 @@ div.temperamentLocation p:nth-child(2) {
     position: relative;
     max-width: 100%;
     min-width: 100%;
-    max-height: 73px;
-    min-height: 73px;
+    max-height: 50px;
+    min-height: 50px;
     overflow: hidden;
 }
 
+.armorBonusAreaView {
+    max-height: 51px;
+    min-height: 51px;
+}
+
 .shieldBonusArea {
-    max-height: 54px;
-    min-height: 54px;
+    max-height: 74px;
+    min-height: 74px;
 }
 
 .armorBonusArea p:first-child {
@@ -1873,7 +1899,7 @@ div.temperamentLocation p:nth-child(2) {
 
 .shieldBlockShell {
     position: absolute;
-    top: 785px;
+    top: 765px;
     left: 20px;
     width: 151px;
     border: 2px #222 solid;
@@ -2365,6 +2391,7 @@ textarea.traitsLocation {
 
 .navLang {
     width: 95px !important;
+    font-size: 11px !important;
 }
 
 .advSkillBackgroundShell {

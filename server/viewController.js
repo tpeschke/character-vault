@@ -227,12 +227,12 @@ viewController = {
         promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
           let emptySkillSuites = [
             { skillsuiteid: 1, skillsuitename: 'Athletics', skillsuitebasecost: 30, rank: 0, trained: false },
-            { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 47, rank: 0, trained: false },
-            { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 54, rank: 0, trained: false },
-            { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 61, rank: 0, trained: false },
-            { skillsuiteid: 5, skillsuitename: 'Strategy', skillsuitebasecost: 53, rank: 0, trained: false },
-            { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 56, rank: 0, trained: false },
-            { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 84, rank: 0, trained: false },
+            { skillsuiteid: 2, skillsuitename: 'Lore', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 3, skillsuitename: 'Streetwise', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 4, skillsuitename: 'Survival', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 5, skillsuitename: 'Strategy', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 6, skillsuitename: 'Trades', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 7, skillsuitename: 'Weirdcraft', skillsuitebasecost: 40, rank: 0, trained: false },
           ]
   
           for (let i = 0; i < emptySkillSuites.length; i++) {
@@ -251,11 +251,11 @@ viewController = {
         }).catch(e => console.log("----------------------------- skills -----------------------------", e)))
         promiseArray.push(db.get.skillsuitescombat(character.id).then(skillsuites => {
           let emptySkillSuites = [
-            { skillsuiteid: 1, skillsuitename: 'Armor', skillsuitebasecost: 30, rank: 0, trained: false },
-            { skillsuiteid: 2, skillsuitename: 'Melee', skillsuitebasecost: 30, rank: 0, trained: false },
-            { skillsuiteid: 3, skillsuitename: 'Ranged', skillsuitebasecost: 30, rank: 0, trained: false },
-            { skillsuiteid: 4, skillsuitename: 'Shield', skillsuitebasecost: 30, rank: 0, trained: false },
-            { skillsuiteid: 5, skillsuitename: 'Unarmed', skillsuitebasecost: 30, rank: 0, trained: false },
+            { skillsuiteid: 1, skillsuitename: 'Armor', skillsuitebasecost: 40, rank: 0, trained: false },
+            { skillsuiteid: 2, skillsuitename: 'Melee', skillsuitebasecost: 40, rank: 0, trained: false },
+            { skillsuiteid: 3, skillsuitename: 'Ranged', skillsuitebasecost: 40, rank: 0, trained: false },
+            { skillsuiteid: 4, skillsuitename: 'Shield', skillsuitebasecost: 40, rank: 0, trained: false },
+            { skillsuiteid: 5, skillsuitename: 'Unarmed', skillsuitebasecost: 40, rank: 0, trained: false },
           ]
   
           for (let i = 0; i < emptySkillSuites.length; i++) {

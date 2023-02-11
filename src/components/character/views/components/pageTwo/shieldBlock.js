@@ -77,9 +77,15 @@ export default class ShieldBlock extends Component {
                         <p>DR</p>
                         <input className="shielddrLocation" type="text" value={shielddr} onChange={event => this.updateAttribute(event.target.value, "shielddr")} />
                     </div>
-                    <div className="basicStats">
-                        <p>Size</p>
-                        <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
+                    <div className="twinShieldStats">
+                        <div>
+                            <p>Def</p>
+                            <input className="shieldsizeLocation" type="text" value={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
+                        </div>
+                        <div>
+                            <p>Size</p>
+                            <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
+                        </div>
                     </div>
                     <div className="basicStats">
                         <p>Cover</p>
@@ -138,9 +144,15 @@ export default class ShieldBlock extends Component {
                         <p>DR</p>
                         <p className="shielddrLocation">{shielddr}</p>
                     </div>
-                    <div className="basicStats">
-                        <p>Size</p>
-                        <p className="shieldsizeLocation">{shieldsize}</p>
+                    <div className="twinShieldStats">
+                        <div>
+                            <p>Def</p>
+                            <p className="shielddrLocation">{shieldbasedef}</p>
+                        </div>
+                        <div>
+                            <p>Size</p>
+                            <p className="shieldsizeLocation">{shieldsize}</p>
+                        </div>
                     </div>
                     <div className="basicStats">
                         <p>Cover</p>
@@ -197,9 +209,15 @@ export default class ShieldBlock extends Component {
                         <p>DR</p>
                         <p className="shielddrLocation"> </p>
                     </div>
-                    <div className="basicStats">
-                        <p>Size</p>
-                        <p className="shieldsizeLocation"> </p>
+                    <div className="twinShieldStats">
+                        <div>
+                            <p>Def</p>
+                            <p className="shielddrLocation"> </p>
+                        </div>
+                        <div>
+                            <p>Size</p>
+                            <p className="shieldsizeLocation"> </p>
+                        </div>
                     </div>
                     <div className="basicStats">
                         <p>Cover</p>

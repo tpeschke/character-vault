@@ -192,7 +192,7 @@ export default class ArmorBlock extends Component {
                     <p>Skill Adju.</p>
                     <p>{armorskilladj}</p>
                 </div>
-                <div className="armorBonusArea">
+                <div className="armorBonusArea armorBonusAreaView">
                     <p>Bonus</p>
                     <p>{armorbonus}</p>
                 </div>

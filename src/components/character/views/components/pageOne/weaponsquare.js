@@ -60,17 +60,22 @@ export default function weaponsquare({ weapon }) {
 
     let cover = <div className="def"></div>
 
+    let shieldModifiers = 0
+    if (usingshield) {
+        shieldModifiers = shieldbasedef + shieldmiscdef < 0 ? shieldbasedef + shieldmiscdef : 0 + shieldmiscdef
+    }
+
     if (id !== 'blank') {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldmiscdef < 0 ? shieldbasedef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + shieldModifiers)}</p>
             </div>
         )
     }
-    if (shieldcover) {
+    if (shieldcover && usingshield) {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldmiscdef < 0 ? shieldbasedef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + shieldModifiers)}</p>
                 <p id="shieldCover">
                     <div className='dr-icon shield-dr-icon' /> {shieldcover}
                 </p>
