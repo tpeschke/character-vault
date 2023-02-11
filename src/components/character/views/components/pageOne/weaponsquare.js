@@ -4,7 +4,7 @@ import combatStatMods from '../pageTwo/combatStatTables'
 export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, calculateRecovery, totalRecoveryModifiers, armorRecovery, size, trainattack,
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str,
-        armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
+        armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
         shieldcover } = weapon
@@ -37,9 +37,9 @@ export default function weaponsquare({ weapon }) {
         , shieldDrShown = <div></div>
 
     if (usingshield && shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />{shielddr}{trainparry > 0 ? `+${Math.floor(shieldtrainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />{shielddr}</p>
     } else if (usingshield && !shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />2/d{trainparry > 0 ? `+${Math.floor(trainparry / 3)}` : ''}</p>
+        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />2/d</p>
     }
 
     let drShell = (
@@ -63,14 +63,14 @@ export default function weaponsquare({ weapon }) {
     if (id !== 'blank') {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldmiscdef < 0 ? shieldbasedef + shieldmiscdef : 0 + shieldmiscdef))}</p>
             </div>
         )
     }
     if (shieldcover) {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldtraindef + shieldmiscdef < 0 ? shieldbasedef + shieldtraindef + shieldmiscdef : 0 + shieldmiscdef))}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + (shieldbasedef + shieldmiscdef < 0 ? shieldbasedef + shieldmiscdef : 0 + shieldmiscdef))}</p>
                 <p id="shieldCover">
                     <div className='dr-icon shield-dr-icon' /> {shieldcover}
                 </p>

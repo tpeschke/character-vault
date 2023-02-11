@@ -23,6 +23,7 @@ function calculatePanickedLeft(honor) {
 function calculateWoundedLeft(fatigue) {
     let left = '0px'
         , display = 'inherit'
+        , borderColor = null
     if (fatigue === 'H') {
         left = '0px'
     } else if (fatigue === 'B') {
@@ -31,11 +32,18 @@ function calculateWoundedLeft(fatigue) {
         left = '163px'
     } else if (fatigue === 'C') {
         left = '244px'
-    } else if (fatigue === 'A') {
-        left = '0px'
-        display = 'none'
+    } else {
+        left = '-23px'
     }
     return { left, display }
+}
+
+function showAlwaysFatiguedPenalty(fatigue) {
+    if (fatigue === 'H' || fatigue === 'B' || fatigue === 'W' || fatigue === 'C') {
+        return ''
+    } else {
+        return fatigue
+    }
 }
 
 export default function Vitality({ vitality, editing }) {
@@ -53,7 +61,7 @@ export default function Vitality({ vitality, editing }) {
     let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
         panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
-        woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}></div>
+        woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}>{showAlwaysFatiguedPenalty(usingshield ? totalFatigue : armorFatigue)}</div>
         damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
         damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     }

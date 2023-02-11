@@ -188,7 +188,7 @@ export default class CharacterViewer extends Component {
         } else if (number === -3) {
             return 'H';
         } else {
-            return 'A';
+            return number + 3;
         }
     }
 

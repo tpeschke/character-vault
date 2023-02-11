@@ -1741,6 +1741,7 @@ div.temperamentLocation p:nth-child(2) {
     width: 24px !important;
     position: absolute;
     z-index: 2;
+    color: red
 }
 
 .circle-fill {
@@ -1855,6 +1856,10 @@ div.temperamentLocation p:nth-child(2) {
     width: 25px;
     text-align: center;
     border-right: 2px solid grey;
+}
+
+.calculatedStats.shield p, .calculatedStats.shield input, .calculatedStats.shield.calculatedStatsHeading p {
+    width: 33px;
 }
 
 .calculatedStats p:last-child {

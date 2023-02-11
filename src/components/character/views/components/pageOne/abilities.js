@@ -5,7 +5,7 @@ export default function Abilities({ abilities, editing }) {
     if (editing) {
         return (
             <div className="abilitiesShell">
-                <h1>Archetype Abilities & Trainings</h1>
+                <h1>Archetype/Racial Abilities & Trainings</h1>
                 <div className="abilitiesContentShell">
                     <div className="abilityShell">
                         <div className="contactStriping">
@@ -56,7 +56,7 @@ export default function Abilities({ abilities, editing }) {
     }
     return (
         <div className="abilitiesShell">
-            <h1>Archetype Abilities & Trainings</h1>
+            <h1>Archetype/Racial Abilities & Trainings</h1>
             <div className="abilitiesContentShell">
                 <div className="abilityShell">
                     <div className="contactStriping">

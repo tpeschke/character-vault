@@ -90,40 +90,35 @@ export default class ShieldBlock extends Component {
                         <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
                     </div>
 
-                    <div className="calculatedStats calculatedStatsHeading">
-                        <p>Def</p>
+                    <div className="calculatedStats shield calculatedStatsHeading">
                         <p>Fat</p>
                         <p>Pry</p>
                         <p>Brk</p>
                         <p> </p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <input className="shieldbasedefLocation" type="number" value={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
+                    <div className="calculatedStats shield">
                         <input className="shieldbaseencumbLocation" type="number" value={shieldbasefatigue} onChange={event => this.updateAttribute(event.target.value, "shieldbasefatigue")} />
                         <input className="shieldbaseparryLocation" type="number" value={shieldbaseparry} onChange={event => this.updateAttribute(event.target.value, "shieldbaseparry")} />
                         <input className="shieldbasebreakLocation" type="number" value={shieldbasebreak} onChange={event => this.updateAttribute(event.target.value, "shieldbasebreak")} />
                         <p>Base</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <input className="shieldtraindefLocation" type="number" value={shieldtraindef} onChange={event => this.updateAttribute(event.target.value, "shieldtraindef")} />
+                    <div className="calculatedStats shield">
                         <input className="shieldtrainencumbLocation" type="number" value={shieldtrainfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldtrainfatigue")} />
                         <input className="shieldtrainparryLocation" type="number" value={shieldtrainparry} onChange={event => this.updateAttribute(event.target.value, "shieldtrainparry")} />
                         <input className="shieldtrainbreakLocation" type="number" value={shieldtrainbreak} onChange={event => this.updateAttribute(event.target.value, "shieldtrainbreak")} />
                         <p>Skills</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <input type="number" value={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
+                    <div className="calculatedStats shield">
                         <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
                         <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
                         <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p>{+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef}</p>
+                    <div className="calculatedStats shield">
                         <p>{shieldFatigue}</p>
                         <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
                         <p>{+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak}</p>
@@ -156,40 +151,35 @@ export default class ShieldBlock extends Component {
                         <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
                     </div>
 
-                    <div className="calculatedStats calculatedStatsHeading">
-                        <p>Def</p>
+                    <div className="calculatedStats shield calculatedStatsHeading">
                         <p>Fat</p>
                         <p>Pry</p>
                         <p>Brk</p>
                         <p> </p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p>{shieldbasedef}</p>
+                    <div className="calculatedStats shield">
                         <p>{shieldbasefatigue}</p>
                         <p>{shieldbaseparry}</p>
                         <p>{shieldbasebreak}</p>
                         <p>Base</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p>{shieldtraindef}</p>
+                    <div className="calculatedStats shield">
                         <p>{shieldtrainfatigue}</p>
                         <p>{shieldtrainparry}</p>
                         <p>{shieldtrainbreak}</p>
                         <p>Skills</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <input type="number" value={shieldmiscdef} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscdef")} />
+                    <div className="calculatedStats shield">
                         <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
                         <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
                         <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p>{returnZeroIfNaN(+shieldbasedef + +shieldtraindef < 0 ? +shieldbasedef + +shieldtraindef + +shieldmiscdef : 0 + +shieldmiscdef)}</p>
+                    <div className="calculatedStats shield">
                         <p>{returnZeroIfNaN(shieldFatigue)}</p>
                         <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
                         <p>{returnZeroIfNaN(+shieldbasebreak + +shieldtrainbreak + +shieldmiscbreak)}</p>
@@ -220,40 +210,35 @@ export default class ShieldBlock extends Component {
                         <p className="shieldbonusLocation"> </p>
                     </div>
 
-                    <div className="calculatedStats calculatedStatsHeading">
-                        <p>Def</p>
+                    <div className="calculatedStats shield calculatedStatsHeading">
                         <p>Fat</p>
                         <p>Pry</p>
                         <p>Brk</p>
                         <p> </p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p> </p>
+                    <div className="calculatedStats shield">
                         <p> </p>
                         <p> </p>
                         <p> </p>
                         <p>Base</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p> </p>
+                    <div className="calculatedStats shield">
                         <p> </p>
                         <p> </p>
                         <p> </p>
                         <p>Skills</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p> </p>
+                    <div className="calculatedStats shield">
                         <p> </p>
                         <p> </p>
                         <p> </p>
                         <p>Misc</p>
                     </div>
 
-                    <div className="calculatedStats">
-                        <p> </p>
+                    <div className="calculatedStats shield">
                         <p> </p>
                         <p> </p>
                         <p> </p>
