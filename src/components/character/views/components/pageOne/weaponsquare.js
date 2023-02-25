@@ -1,13 +1,28 @@
 import React from 'react'
 import combatStatMods from '../pageTwo/combatStatTables'
 
+const calculateRecovery = (recovery, size, isMelee) => {
+    let minimumRecovery
+    if (!size) {
+        size = "L"
+    }
+    if (size.toUpperCase() === 'S') {
+        isMelee ? minimumRecovery = 2 : minimumRecovery = 3
+    } else if (size.toUpperCase() === 'M') {
+        isMelee ? minimumRecovery = 3 : minimumRecovery = 4
+    } else {
+        isMelee ? minimumRecovery = 4 : minimumRecovery = 5
+    }
+    return recovery < minimumRecovery ? minimumRecovery : recovery
+}
+
 export default function weaponsquare({ weapon }) {
-    let { position, returnZeroIfNaN, calculateRecovery, totalRecoveryModifiers, armorRecovery, size, trainattack,
+    let { position, returnZeroIfNaN, armorRecovery, size, trainattack,
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
-        shieldcover } = weapon
+        shieldcover, miscrecovery, trainrecovery } = weapon
     let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart } = combatStatMods
     if (editing) {
         return (
@@ -22,7 +37,7 @@ export default function weaponsquare({ weapon }) {
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name}` }
 
-    traindamage = Math.ceil(traindamage/2)
+    traindamage = Math.floor(traindamage/2)
 
     let damageShell = (<p className="damage">{displayDamage(basedamage, type, traindamage, strDamChart[str])}</p>)
     if (isRanged) {
@@ -88,7 +103,7 @@ export default function weaponsquare({ weapon }) {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + totalRecoveryModifiers + armorRecovery, size, !isRanged))}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + Math.floor(trainrecovery/2) + +miscrecovery + armorRecovery, size, !isRanged))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
                 <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
                 {cover}

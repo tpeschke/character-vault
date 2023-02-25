@@ -2,7 +2,7 @@ import React from 'react'
 import "./plates.css"
 
 export default function CharacterInfo({ characterInfo, editing }) {
-    let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, extolevel, excurrent, drawback, updateAttribute, id } = characterInfo
+    let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, excurrent, drawback, updateAttribute, id } = characterInfo
 
     let plates = (
         <div className="plates">
@@ -64,7 +64,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="levelLocation">{level ? level : ' '}</p>
             {crplocation}
             {currentEx}
-            <p className="extolevelLocation">{extolevel ? extolevel : ' '}</p>
+            <p className="extolevelLocation">{level ? level * 50 : ' '}</p>
             <p className="drawbackLocation">{drawback}</p>
         </div>
     )

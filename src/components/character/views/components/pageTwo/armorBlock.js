@@ -53,7 +53,7 @@ export default class ArmorBlock extends Component {
         let addToDefense = 0
 
         if (baseAndRanks > 0) {
-            addToDefense = Math.ceil(baseAndRanks / 3)
+            addToDefense = Math.floor(baseAndRanks / 3)
             baseAndRanks = 0
         }
 

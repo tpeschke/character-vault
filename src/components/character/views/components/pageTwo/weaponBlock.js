@@ -23,7 +23,7 @@ export default class WeaponBlock extends Component {
                     return <option value={`${choice.name} (${choice.type})`} />
                 })
 
-                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' }, _ => this.changeWeaponName(this.state.weapon.name, weapon.type))
+                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' })
             })
         } else {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/melee`).then(({ data }) => {
@@ -31,7 +31,7 @@ export default class WeaponBlock extends Component {
                 weaponOptions = data.map(choice => {
                     return <option value={`${choice.name} (${choice.type})`}></option>
                 })
-                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' }, _ => this.changeWeaponName(this.state.weapon.name, weapon.type))
+                this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' })
             })
         }
     }
@@ -77,7 +77,7 @@ export default class WeaponBlock extends Component {
 
     render() {
         let { position, name, basemeasure, basedamage, baseparry, baserecovery, size, type, bonus, traits, trainrecovery, trainattack, traindamage, trainparry,
-            miscattack, miscdamage, miscinit, miscparry, miscrecovery, totalRecoveryModifiers, id } = this.state.weapon
+            miscattack, miscdamage, miscinit, miscparry, miscrecovery, id } = this.state.weapon
         let { returnZeroIfNaN, editing, weaponOptions, weaponChoiceType } = this.state
 
         if (editing) {
@@ -159,9 +159,9 @@ export default class WeaponBlock extends Component {
 
                     <div className="weaponCalculatedStats">
                         <p>{returnZeroIfNaN(+trainattack + +miscattack)}</p>
-                        <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+                        <p>{returnZeroIfNaN(Math.floor(trainrecovery/2) + +miscrecovery)}</p>
                         <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                        <p>{returnZeroIfNaN(Math.ceil(+traindamage/2) + +miscdamage)}</p>
+                        <p>{returnZeroIfNaN(Math.floor(+traindamage/2) + +miscdamage)}</p>
                         <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                         <p>To</p>
                     </div>
@@ -260,9 +260,9 @@ export default class WeaponBlock extends Component {
 
                 <div className="weaponCalculatedStats">
                     <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
-                    <p>{returnZeroIfNaN(totalRecoveryModifiers)}</p>
+                    <p>{returnZeroIfNaN(Math.floor(trainrecovery/2) + +miscrecovery)}</p>
                     <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                    <p>{returnZeroIfNaN(Math.ceil(+traindamage/2) + +miscdamage)}</p>
+                    <p>{returnZeroIfNaN(Math.floor(+traindamage/2) + +miscdamage)}</p>
                     <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                     <p>To</p>
                 </div>

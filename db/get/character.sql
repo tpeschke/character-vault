@@ -1,3 +1,2 @@
-select main.*, cvex.extolevel from cvcharactermain main
-left join cvex on cvex.level = main.level
+select * from cvcharactermain main
 where main.id = $1

@@ -2,18 +2,19 @@ import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
-function calculatePanickedLeft(honor) {
+function calculatePanickedLeft(honor, dwarfModifier) {
     let left = '0px'
         , display = 'inherit'
-    if (honor >= 0 && honor <= 5) {
+        , dwarfHonorMod = dwarfModifier * -5
+    if (honor >= 0 + dwarfHonorMod && honor <= 5 + dwarfHonorMod) {
         left = '0px'
-    } else if (honor >= 6 && honor <= 10) {
+    } else if (honor >= 6 + dwarfHonorMod && honor <= 10 + dwarfHonorMod) {
         left = '81px'
-    } else if (honor >= 11 && honor <= 15) {
+    } else if (honor >= 11 + dwarfHonorMod && honor <= 15 + dwarfHonorMod) {
         left = '163px'
-    } else if (honor >= 16 && honor <= 20) {
+    } else if (honor >= 16 + dwarfHonorMod && honor <= 20 + dwarfHonorMod) {
         left = '244px'
-    } else if (honor >= 21 && honor <= 25) {
+    } else if (honor >= 21 + dwarfHonorMod && honor <= 25 + dwarfHonorMod) {
         left = '0px'
         display = 'none'
     }
@@ -32,6 +33,8 @@ function calculateWoundedLeft(fatigue) {
         left = '163px'
     } else if (fatigue === 'C') {
         left = '244px'
+    } else if (fatigue === 'N') {
+        display = 'none'
     } else {
         left = '-23px'
     }
@@ -47,7 +50,7 @@ function showAlwaysFatiguedPenalty(fatigue) {
 }
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield } = vitality
+    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield, dwarfModifier } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
@@ -60,7 +63,7 @@ export default function Vitality({ vitality, editing }) {
     let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
     let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
-        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor)}></div>
+        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor, dwarfModifier)}></div>
         woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}>{showAlwaysFatiguedPenalty(usingshield ? totalFatigue : armorFatigue)}</div>
         damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
         damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />

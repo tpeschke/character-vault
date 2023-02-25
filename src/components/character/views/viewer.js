@@ -116,20 +116,7 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
-    calculateRecovery = (recovery, size, isMelee) => {
-        let minimumRecovery
-        if (!size) {
-            size = "L"
-        }
-        if (size.toUpperCase() === 'S') {
-            isMelee ? minimumRecovery = 2 : minimumRecovery = 3
-        } else if (size.toUpperCase() === 'M') {
-            isMelee ? minimumRecovery = 3 : minimumRecovery = 4
-        } else {
-            isMelee ? minimumRecovery = 4 : minimumRecovery = 5
-        }
-        return recovery < minimumRecovery ? minimumRecovery : recovery
-    }
+
 
     returnZeroIfNaN = (thing) => {
         if (isNaN(+thing)) {
@@ -179,7 +166,9 @@ export default class CharacterViewer extends Component {
     }
 
     convertToFatigueLetter = (number) => {
-        if (number >= 0) {
+        if (number > 0) {
+            return 'N';
+        } else if (number === 0) {
             return 'C';
         } else if (number === -1) {
             return 'W';
@@ -248,7 +237,7 @@ export default class CharacterViewer extends Component {
         let addToDefense = 0
 
         if (baseAndRanks > 0) {
-            addToDefense = Math.ceil(baseAndRanks / 3)
+            addToDefense = Math.floor(baseAndRanks / 3)
             baseAndRanks = 0
         }
 
@@ -364,7 +353,7 @@ export default class CharacterViewer extends Component {
 
     render() {
         let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
-        let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extolevel, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
+        let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
             owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank } = this.state.character
@@ -397,8 +386,16 @@ export default class CharacterViewer extends Component {
         } else {
             quarterMastering = 0
         }
-        let shownCarry = this.convertFromEncumbToCarry(strData.carry + quarterMastering)
-            , overCarry = (strData.carry + quarterMastering) - this.state.adjustedCarry
+
+        let isRatfolk = race && (race.toUpperCase() === 'RATFOLK' || race.toUpperCase() === 'RAT FOLK') ? true : false
+            , carryFromStr = strData.carry
+
+        if (isRatfolk) {
+            carryFromStr *= 2
+        }
+
+        let shownCarry = this.convertFromEncumbToCarry(carryFromStr + quarterMastering)
+            , overCarry = (carryFromStr + quarterMastering) - this.state.adjustedCarry
             , { changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , isHuman = checkIfHuman(race)
@@ -433,21 +430,17 @@ export default class CharacterViewer extends Component {
         let generalnotestextArea = <div></div>
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
-            weaponone.totalRecoveryModifiers = Math.floor(weaponone.trainrecovery/2) + +weaponone.miscrecovery
-            weapontwo.totalRecoveryModifiers = Math.floor(weapontwo.trainrecovery/2) + +weapontwo.miscrecovery
-            weaponthree.totalRecoveryModifiers = Math.floor(weaponthree.trainrecovery/2) + +weaponthree.miscrecovery
-            weaponfour.totalRecoveryModifiers = Math.floor(weaponfour.trainrecovery/2) + +weaponfour.miscrecovery
-
-            armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + armortrainfatigue + armormiscfatigue;
+            const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF') ? 1 : 0;
+            armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + armortrainfatigue + armormiscfatigue + dwarfModifier;
             shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
 
-            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, extolevel, excurrent, updateAttribute: this.updateAttribute, drawback }
+            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute, drawback }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             movement = { crawl, walk, jog, run, sprint, overCarry }
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions, temperamentrank }
             weapononeobject = {
-                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
@@ -455,7 +448,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weaponone
             }
             weapontwoobject = {
-                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
@@ -463,7 +456,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weapontwo
             }
             weaponthreeobject = {
-                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
@@ -471,7 +464,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weaponthree
             }
             weaponfourobject = {
-                returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
+                returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
@@ -479,7 +472,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
+            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
