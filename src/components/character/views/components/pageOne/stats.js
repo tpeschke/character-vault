@@ -9,27 +9,27 @@ export default function Stats({ stats, editing }) {
                 <h1>Stats</h1>
                 <div className="statRowsShell">
                     <div>
-                        <input className="strLocation" type="number" max="20" min="1" defaultValue={str} onChange={event => updateAttribute(event.target.value, "str")} />
+                        <input className="strLocation" type="number" max="23" min="1" defaultValue={str} onChange={event => updateAttribute(event.target.value, "str")} />
                         <p>Str</p>
                     </div>
                     <div>
-                        <input className="dexLocation" type="number" max="20" min="1" defaultValue={dex} onChange={event => updateAttribute(event.target.value, "dex")} />
+                        <input className="dexLocation" type="number" max="23" min="1" defaultValue={dex} onChange={event => updateAttribute(event.target.value, "dex")} />
                         <p>Dex</p>
                     </div>
                     <div>
-                        <input className="conLocation" type="number" max="20" min="1" defaultValue={con} onChange={event => updateAttribute(event.target.value, "con")} />
+                        <input className="conLocation" type="number" max="23" min="1" defaultValue={con} onChange={event => updateAttribute(event.target.value, "con")} />
                         <p>Con</p>
                     </div>
                     <div>
-                        <input className="intLocation" type="number" max="20" min="1" defaultValue={int} onChange={event => updateAttribute(event.target.value, "int")} />
+                        <input className="intLocation" type="number" max="23" min="1" defaultValue={int} onChange={event => updateAttribute(event.target.value, "int")} />
                         <p>Int</p>
                     </div>
                     <div>
-                        <input className="wisLocation" type="number" max="20" min="1" defaultValue={wis} onChange={event => updateAttribute(event.target.value, "wis")} />
+                        <input className="wisLocation" type="number" max="23" min="1" defaultValue={wis} onChange={event => updateAttribute(event.target.value, "wis")} />
                         <p>Will</p>
                     </div>
                     <div>
-                        <input className="chaLocation" type="number" max="20" min="1" defaultValue={cha} onChange={event => updateAttribute(event.target.value, "cha")} />
+                        <input className="chaLocation" type="number" max="23" min="1" defaultValue={cha} onChange={event => updateAttribute(event.target.value, "cha")} />
                         <p>Pres</p>
                     </div>
                 </div>
