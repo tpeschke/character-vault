@@ -22,7 +22,7 @@ export default {
         20: { damage: 4, carry: 18, skill: 3, confrontation: 'D20!' },
         21: { damage: 4, carry: 19, skill: 3, confrontation: 'D20!' },
         22: { damage: 4, carry: 20, skill: 3, confrontation: 'D20!' },
-        23: { damage: 4, carry: 21, skill: 3, confrontation: 'D20!' }
+        23: { damage: 4, carry: 21, skill: 3, confrontation: 'D20!' },
     },
     dexTable: {
         1: { attack: -3, defense: -3, init: 4, skill: -3, confrontation: 'n/a' },
@@ -44,7 +44,10 @@ export default {
         17: { attack: 2, defense: 2, init: -1, skill: 1, confrontation: 'D8!' },
         18: { attack: 2, defense: 2, init: -1, skill: 2, confrontation: 'D10!' },
         19: { attack: 2, defense: 3, init: -2, skill: 2, confrontation: 'D12!' },
-        20: { attack: 3, defense: 3, init: -3, skill: 3, confrontation: 'D20!' }
+        20: { attack: 3, defense: 3, init: -3, skill: 3, confrontation: 'D20!' },
+        21: { attack: 3, defense: 3, init: -3, skill: 3, confrontation: 'D20!' },
+        22: { attack: 3, defense: 3, init: -3, skill: 3, confrontation: 'D20!' },
+        23: { attack: 3, defense: 3, init: -3, skill: 3, confrontation: 'D20!' },
     },
     conTable: {
         1: { vitalitymin: 1, encumb: 10, skill: -3, confrontation: 'n/a' },

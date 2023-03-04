@@ -216,28 +216,28 @@ export default class CharacterEditor extends Component {
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorRecovery, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorRecovery, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorRecovery, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dexattack: dexData.attack, intattack: intData.attack, dexinit: dexData.init, wisinit: wisData.init, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense, wisdefense: wisData.defense,
+                armorRecovery, armorbaseinit, armortraininit, armormiscinit, dexdefense: dexData.defense,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, editing: true,
