@@ -21,7 +21,7 @@ import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
 import WeaponBlock from './components/pageTwo/weaponBlock'
 
-import statTables from '../statTables';
+import statTables from '../statTables'
 
 export default class CharacterViewer extends Component {
     constructor(props) {
@@ -57,12 +57,15 @@ export default class CharacterViewer extends Component {
         let cleanArray = ({ value }) => {
             if (!isNaN(+value)) { return 0 }
             value = value.toUpperCase()
+
             let containsCarry = value.match(/([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[SMLsml]|[SMLsml]/g)
             if (!containsCarry) { return 0 }
+
             let currentBit = ''
+
             value = value.replace(/\s+/g, '')
             value.match(/[\d\.]+|\D+/g).forEach(character => {
-                if (character === 'S' || character === 'M' || character === 'L') {
+                if (character.includes('S') || character.includes('M') || character.includes('L')) {
                     currentBit = currentBit + character
                     currentBit = currentBit.match(/[\d\.]+|\D+/g)
                     let number, type, container = false
@@ -70,6 +73,15 @@ export default class CharacterViewer extends Component {
                         container = true
                         number = +currentBit[1]
                         type = currentBit[2]
+                    } if (currentBit[0].includes('+') || currentBit[0].includes('-')) {
+                        container = true
+                        if (!isNaN(+currentBit[1])) {
+                            number = +currentBit[1]
+                            type = currentBit[2]
+                        } else {
+                            number = 1
+                            type = currentBit[0][1]
+                        }
                     } else if (+currentBit[0]) {
                         number = +currentBit[0]
                         type = currentBit[1]
@@ -352,11 +364,10 @@ export default class CharacterViewer extends Component {
     }
 
     render() {
-        let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank, prebreatherstress, stressroll } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
 
         str = str ? str : 1
@@ -366,13 +377,14 @@ export default class CharacterViewer extends Component {
         wis = wis ? wis : 1
         cha = cha ? cha : 1
 
-        let strData = strTable[str]
-            , dexData = dexTable[dex]
-            , conData = conTable[con]
-            , intData = intTable[int]
-            , wisData = wisTable[wis]
-            , chaData = chaTable[cha]
-            , shownHonor = honor ? honor : chaData.honor
+        let chaData = statTables.chaTable[cha]
+            , strData = statTables.strTable[str]
+            , dexData = statTables.dexTable[dex]
+            , conData = statTables.conTable[con]
+            , intData = statTables.intTable[int]
+            , wisData = statTables.wisTable[wis]
+
+        let shownHonor = honor ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
 
         let quarterMastering = this.state.character.skills.filter(({ skill }) => {
@@ -472,7 +484,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
+            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, prebreatherstress, stressroll }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }

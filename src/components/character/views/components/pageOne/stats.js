@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Stats({ stats, editing }) {
-    let { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, updateAttribute, isDownloading } = stats
+    let { str, dex, con, int, wis, cha, updateAttribute } = stats
 
     if (editing) {
         return (

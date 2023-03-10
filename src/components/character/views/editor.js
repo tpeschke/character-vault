@@ -15,7 +15,30 @@ import ShieldBlock from './components/pageTwo/shieldBlock'
 import WeaponSquare from './components/pageOne/weaponsquare'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 
-import statTables from '../statTables';
+import statTables from '../statTables'
+
+const chaTable = {
+    1: { favor: 1, honorstart: 5, skill: -3, confrontation: 'n/a' },
+    2: { favor: 1, honorstart: 10, skill: -2, confrontation: 'n/a' },
+    3: { favor: 1, honorstart: 10, skill: -2, confrontation: 'n/a' },
+    4: { favor: 1, honorstart: 10, skill: -1, confrontation: 'n/a' },
+    5: { favor: 1, honorstart: 15, skill: -1, confrontation: 'n/a' },
+    6: { favor: 1, honorstart: 15, skill: -1, confrontation: 'n/a' },
+    7: { favor: 2, honorstart: 15, skill: -1, confrontation: 'n/a' },
+    8: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
+    9: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
+    10: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
+    11: { favor: 3, honorstart: 15, skill: 0, confrontation: 'n/a' },
+    12: { favor: 3, honorstart: 15, skill: 0, confrontation: 'D4!' },
+    13: { favor: 4, honorstart: 15, skill: 1, confrontation: 'D4!' },
+    14: { favor: 4, honorstart: 15, skill: 1, confrontation: 'D6!' },
+    15: { favor: 5, honorstart: 15, skill: 1, confrontation: 'D6!' },
+    16: { favor: 6, honorstart: 15, skill: 1, confrontation: 'D8!' },
+    17: { favor: 7, honorstart: 20, skill: 1, confrontation: 'D10!' },
+    18: { favor: 8, honorstart: 20, skill: 2, confrontation: 'D12!' },
+    19: { favor: 8, honorstart: 20, skill: 2, confrontation: 'D20!' },
+    20: { favor: 9, honorstart: 25, skill: 3, confrontation: 'D20!+d4!' }
+}
 
 export default class CharacterEditor extends Component {
     constructor(props) {
@@ -164,15 +187,14 @@ export default class CharacterEditor extends Component {
         return baseAndRanks + addToDefense + +misc
     }
 
-    render() {
-        let { strTable, dexTable, conTable, intTable, wisTable, chaTable } = statTables
+    render() { 
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel,
             temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
-            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions } = this.state.character
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions, prebreatherstress, stressroll } = this.state.character
         let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
             , { isUpdating } = this.props
             , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
@@ -182,12 +204,7 @@ export default class CharacterEditor extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
-        let strData = str ? strTable[str] : strTable[1]
-            , dexData = dex ? dexTable[dex] : dexTable[1]
-            , conData = con ? conTable[con] : conTable[1]
-            , intData = int ? intTable[int] : intTable[1]
-            , wisData = wis ? wisTable[wis] : wisTable[1]
-            , chaData = cha ? chaTable[cha] : chaTable[1]
+        let dexData = statTables.dexTable[dex]
 
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : 0
@@ -208,9 +225,9 @@ export default class CharacterEditor extends Component {
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
             , social = { updateAttribute: this.updateAttribute, temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, descriptions }
-            , miscVitals = { updateAttribute: this.updateAttribute, chaData }
+            , miscVitals = { updateAttribute: this.updateAttribute }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
-            , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal, favormax, stressthreshold, wis, relaxation }
+            , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, vitalityTotal, favormax, stressthreshold, wis, relaxation, prebreatherstress, stressroll }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }

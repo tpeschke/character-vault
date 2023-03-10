@@ -50,7 +50,7 @@ function showAlwaysFatiguedPenalty(fatigue) {
 }
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield, dwarfModifier } = vitality
+    let { shownVitality, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield, dwarfModifier, prebreatherstress, stressroll } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
@@ -158,9 +158,15 @@ export default function Vitality({ vitality, editing }) {
                         <p> </p>
                     </div>
                 </div>
-                <div className="stressShell editingStressThreshold">
-                    <p className='stressThreshold'>Stress Threshold</p>
-                    <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
+                <div className="editingStressThreshold">
+                    <div>
+                        <p className='stressThreshold'>Stress Threshold</p>
+                        <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
+                    </div>
+                    <div>
+                        <p>Roll</p>
+                        <input className="stressthresholdLocation" type="number" min="0" placeholder={stressroll} defaultValue={stressroll} onChange={event => updateAttribute(event.target.value, "stressroll")} />
+                    </div>
                 </div>
                 <h1>Vitality</h1>
                 <div className="woundCategoryShell">
@@ -245,8 +251,10 @@ export default function Vitality({ vitality, editing }) {
 
     let stress = <p> </p>
     let relaxationInput = <p> </p>
+    let prebreatherstressHolder = <p> </p>
     if (id !== 'blank') {
         stress = <input className="currentstressLocation" type="number" defaultValue={currentstress} onBlur={event => updateAttribute(event.target.value, "currentstress")} />
+        prebreatherstressHolder = <input className="currentstressLocation" type="number" defaultValue={prebreatherstress} onBlur={event => updateAttribute(event.target.value, "prebreatherstress")} />
         relaxationInput = <input className="relaxationLocation" type="number" defaultValue={relaxation} onBlur={event => updateAttribute(event.target.value, "relaxation")} />
     }
 
@@ -308,11 +316,17 @@ export default function Vitality({ vitality, editing }) {
             <div className="stressShell">
                 <div>
                     <p>Stress</p>
+                    {prebreatherstressHolder}
+                    /
                     {stress}
                 </div>
                 <div>
-                    <p>Relaxation</p>
+                    <p>Relax</p>
                     {relaxationInput}
+                </div>
+                <div>
+                    <p>Roll</p>
+                    <p>{stressroll}</p>
                 </div>
             </div>
             <h1>Vitality</h1>
