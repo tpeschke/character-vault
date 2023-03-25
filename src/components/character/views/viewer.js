@@ -155,8 +155,12 @@ export default class CharacterViewer extends Component {
         return fatiguemod
     }
 
-    calculateTotalFatigue = (armorFatigue = 0, shieldFatigue = 0) => {
-        return this.convertToFatigueLetter(armorFatigue + shieldFatigue)
+    calculateTotalFatigue = (armorFatigue = 0, shieldFatigue = 0, overCarry = 0) => {
+        let overCarryToAdd = 0
+        if (overCarry <= -3) {
+            overCarryToAdd = Math.ceil(overCarry / 3)
+        }
+        return this.convertToFatigueLetter(armorFatigue + shieldFatigue + overCarryToAdd)
     }
 
     convertFromFatigueLetter = (fatigue) => {
@@ -445,7 +449,7 @@ export default class CharacterViewer extends Component {
             const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF') ? 1 : 0;
             armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + armortrainfatigue + armormiscfatigue + dwarfModifier;
             shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
-            totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
+            totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue, overCarry);
 
             characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute, drawback }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
@@ -484,7 +488,7 @@ export default class CharacterViewer extends Component {
                 shieldcover, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
-            vitality = { shownVitality, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, prebreatherstress, stressroll }
+            vitality = { shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, prebreatherstress, stressroll }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
