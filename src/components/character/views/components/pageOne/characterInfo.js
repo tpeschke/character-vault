@@ -1,6 +1,14 @@
 import React from 'react'
 import "./plates.css"
 
+const getCrPRequirement = (level) => {
+    let total = 0
+    for (let i = 1; i <= level; i++) {
+        total = 175 + total + (i * 2)
+    }
+    return total
+}
+
 export default function CharacterInfo({ characterInfo, editing }) {
     let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, excurrent, drawback, updateAttribute, id } = characterInfo
 
@@ -64,7 +72,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="levelLocation">{level ? level : ' '}</p>
             {crplocation}
             {currentEx}
-            <p className="extolevelLocation">{level ? level * 50 : ' '}</p>
+            <p className="extolevelLocation">{level ? getCrPRequirement(level) : ' '}</p>
             <p className="drawbackLocation">{drawback}</p>
         </div>
     )
