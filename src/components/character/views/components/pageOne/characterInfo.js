@@ -4,7 +4,7 @@ import "./plates.css"
 const getCrPRequirement = (level) => {
     let total = 0
     for (let i = 1; i <= level; i++) {
-        total = 175 + total + (i * 2)
+        total = 50 + total + (i * 3)
     }
     return total
 }
