@@ -415,7 +415,6 @@ export default class CharacterViewer extends Component {
             , { changeEditStatus } = this.props
             , honorDiceLeft = calculateHonorDiceLeft(shownHonor)
             , isHuman = checkIfHuman(race)
-            , armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
             , shownThreshold = stressthreshold ? stressthreshold : 0
 
         let characterInfo = { id }
@@ -457,7 +456,7 @@ export default class CharacterViewer extends Component {
             social = { shownHonor, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions, temperamentrank }
             weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
@@ -465,7 +464,7 @@ export default class CharacterViewer extends Component {
             }
             weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
@@ -473,7 +472,7 @@ export default class CharacterViewer extends Component {
             }
             weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
@@ -481,7 +480,7 @@ export default class CharacterViewer extends Component {
             }
             weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
-                armorRecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
+                armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject,
@@ -496,7 +495,7 @@ export default class CharacterViewer extends Component {
             armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, armorbasefatiguemod,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
+                armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
             }
             shield = {
                 shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,

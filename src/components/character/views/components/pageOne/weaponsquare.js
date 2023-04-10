@@ -17,8 +17,8 @@ const calculateRecovery = (recovery, size, isMelee) => {
 }
 
 export default function weaponsquare({ weapon }) {
-    let { position, returnZeroIfNaN, armorRecovery, size, trainattack,
-        miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str,
+    let { position, returnZeroIfNaN, size, trainattack,
+        miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
@@ -98,6 +98,7 @@ export default function weaponsquare({ weapon }) {
         )
     }
 
+    let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
 
     if (id !== 'blank') {
         return (

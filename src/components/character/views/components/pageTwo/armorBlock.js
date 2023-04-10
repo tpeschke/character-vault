@@ -73,7 +73,7 @@ export default class ArmorBlock extends Component {
     render() {
         let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit,
             armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, armormiscfatigue,
-            armormiscrecovery, armormiscinit, armorRecovery, armorFatigue, returnZeroIfNaN, id, armorbasefatigue } = this.state.armor
+            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue } = this.state.armor
         let { editing, armorOptions } = this.state
 
         if (!armorbasefatiguemod && armorbasefatigue) {
@@ -151,7 +151,7 @@ export default class ArmorBlock extends Component {
                     <div className="calculatedStats">
                         <p>{this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef)}</p>
                         <p>{returnZeroIfNaN(+armorbasefatiguemod + +armortrainfatigue + +armormiscfatigue)}</p>
-                        <p>{armorRecovery}</p>
+                        <p>{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
                         <p>{+armorbaseinit + +armortraininit > 0 ? +armorbaseinit + +armortraininit + +armormiscinit : 0 + +armormiscinit}</p>
                         <p>Total</p>
                     </div>
@@ -225,7 +225,7 @@ export default class ArmorBlock extends Component {
                 <div className="calculatedStats">
                     <p>{this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef)}</p>
                     <p>{id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + armortrainfatigue + armormiscfatigue) : ''}</p>
-                    <p>{armorRecovery}</p>
+                    <p>{armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0}</p>
                     <p>{returnZeroIfNaN(armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit)}</p>
                     <p>Total</p>
                 </div>
