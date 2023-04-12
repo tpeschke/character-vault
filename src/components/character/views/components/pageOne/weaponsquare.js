@@ -48,7 +48,7 @@ export default function weaponsquare({ weapon }) {
             </div>)
     }
 
-    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
+    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + (shieldtrainparry * -1) + shieldmiscparry : baseparry + trainparry + miscparry
         , shieldDrShown = <div></div>
 
     if (usingshield && shieldbaseparry) {
@@ -98,15 +98,15 @@ export default function weaponsquare({ weapon }) {
         )
     }
 
-    let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
+    let armorRecovery = armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0
 
     if (id !== 'blank') {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + Math.floor(trainrecovery/2) + +miscrecovery + armorRecovery, size, !isRanged))}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.floor(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
-                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + armortraininit > 0 ? armorbaseinit + armortraininit + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
+                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + (armortraininit * -1) > 0 ? armorbaseinit + (armortraininit * -1) + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
                 {cover}
                 <p className="encumb">{type}</p>
 

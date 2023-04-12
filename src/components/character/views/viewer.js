@@ -446,8 +446,8 @@ export default class CharacterViewer extends Component {
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
             const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF') ? 1 : 0;
-            armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + armortrainfatigue + armormiscfatigue + dwarfModifier;
-            shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
+            armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + Math.floor(armortrainfatigue / 2) + armormiscfatigue + dwarfModifier;
+            shieldFatigue = shieldbasefatigue + Math.floor(shieldtrainfatigue / 2) + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue, overCarry);
 
             characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute, drawback }
