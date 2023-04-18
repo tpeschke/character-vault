@@ -37,7 +37,8 @@ export default class CharacterViewer extends Component {
             savedCharacter: {},
             isDownloading: false,
             isHalfwayDone: false,
-            isAboveLimit: true
+            isAboveLimit: true,
+            showArmor: true
         }
     }
 
@@ -50,6 +51,10 @@ export default class CharacterViewer extends Component {
             this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
             this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con })
         }
+    }
+
+    toggleArmor = () => {
+        this.setState({ showArmor: !this.state.showArmor }, _=>console.log(this.state.showArmor))
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -248,7 +253,10 @@ export default class CharacterViewer extends Component {
         }
     }
 
-    calculateArmorDefense = (base, ranks, misc) => {
+    calculateArmorDefense = (base, ranks, misc, showArmor) => {
+        if (!showArmor) {
+            return 0
+        }
         let baseAndRanks = +base + +ranks
         let addToDefense = 0
 
@@ -446,7 +454,7 @@ export default class CharacterViewer extends Component {
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
             const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF') ? 1 : 0;
-            armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + Math.floor(armortrainfatigue / 2) + armormiscfatigue + dwarfModifier;
+            armorFatigue = this.state.showArmor ? this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + Math.floor(armortrainfatigue / 2) + armormiscfatigue + dwarfModifier : 0;
             shieldFatigue = shieldbasefatigue + Math.floor(shieldtrainfatigue / 2) + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue, overCarry);
 
@@ -460,7 +468,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, ...weaponone
+                shieldcover, showArmor: this.state.showArmor, ...weaponone
             }
             weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -468,7 +476,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, ...weapontwo
+                shieldcover, showArmor: this.state.showArmor, ...weapontwo
             }
             weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -476,7 +484,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, ...weaponthree
+                shieldcover, showArmor: this.state.showArmor, ...weaponthree
             }
             weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -484,7 +492,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject,
-                shieldcover, ...weaponfour
+                shieldcover, showArmor: this.state.showArmor, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
             vitality = { shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, prebreatherstress, stressroll }
@@ -496,6 +504,7 @@ export default class CharacterViewer extends Component {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, armorbasefatiguemod,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
                 armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
+                toggleArmor: this.toggleArmor
             }
             shield = {
                 shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,

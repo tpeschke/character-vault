@@ -16,13 +16,28 @@ const calculateRecovery = (recovery, size, isMelee) => {
     return recovery < minimumRecovery ? minimumRecovery : recovery
 }
 
+const getName = (usingshield, shieldname, name, showArmor) => {
+    let finalName = name
+    if (finalName) {
+        if (usingshield && shieldname && name) {
+            finalName += ` & ${shieldname}`
+        }
+    
+        if (!showArmor) {
+            finalName += ` (w/o armor)`
+        }
+    }
+
+    return finalName
+}
+
 export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, size, trainattack,
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
-        shieldcover, miscrecovery, trainrecovery } = weapon
+        shieldcover, miscrecovery, trainrecovery, showArmor } = weapon
     let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart } = combatStatMods
     if (editing) {
         return (
@@ -59,7 +74,7 @@ export default function weaponsquare({ weapon }) {
 
     let drShell = (
         <div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
-            <p id="armorDr">{armordr}</p>
+            <p id="armorDr">{showArmor ? armordr : 0}</p>
             {shieldDrShown}
             <div className='tooltip'><p>Click to {usingshield ? 'remove' : 'add'} shield</p></div>
         </div>
@@ -68,7 +83,7 @@ export default function weaponsquare({ weapon }) {
     if (isRanged) {
         drShell = (
             <div className="drshell">
-                <p id="armorDr">{armordr}</p>
+                <p id="armorDr">{showArmor ? armordr : 0}</p>
             </div>
         )
     }
@@ -83,14 +98,14 @@ export default function weaponsquare({ weapon }) {
     if (id !== 'blank') {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + shieldModifiers)}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef, showArmor) + shieldModifiers)}</p>
             </div>
         )
     }
     if (shieldcover && usingshield) {
         cover = (
             <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef) + shieldModifiers)}</p>
+                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef, showArmor) + shieldModifiers)}</p>
                 <p id="shieldCover">
                     <div className='dr-icon shield-dr-icon' /> {shieldcover}
                 </p>
@@ -99,14 +114,19 @@ export default function weaponsquare({ weapon }) {
     }
 
     let armorRecovery = armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0
+    let armorInit = (armorbaseinit + (armortraininit * -1) > 0 ? armorbaseinit + (armortraininit * -1) + armormiscinit : 0 + armormiscinit)
 
+    if (!showArmor) {
+        armorRecovery = 0
+        armorInit = 0
+    }
     if (id !== 'blank') {
         return (
             <div className={`weaponsquare weapon${position}`}>
-                <p className="name">{usingshield && shieldname && name ? `${name} & ${shieldname}` : name}</p>
+                <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
                 <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.floor(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
-                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + (armorbaseinit + (armortraininit * -1) > 0 ? armorbaseinit + (armortraininit * -1) + armormiscinit : 0 + armormiscinit) + +miscinit)}</p>
+                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
                 {cover}
                 <p className="encumb">{type}</p>
 

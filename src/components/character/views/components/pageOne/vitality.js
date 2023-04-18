@@ -50,7 +50,9 @@ function showAlwaysFatiguedPenalty(fatigue) {
 }
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, overCarry, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, armorFatigue, usingshield, dwarfModifier, prebreatherstress, stressroll } = vitality
+    let { shownVitality, overCarry, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, 
+        vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, 
+        armorFatigue, usingshield, dwarfModifier, prebreatherstress, stressroll } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {

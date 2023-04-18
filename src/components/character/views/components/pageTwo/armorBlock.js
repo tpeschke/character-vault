@@ -73,7 +73,7 @@ export default class ArmorBlock extends Component {
     render() {
         let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit,
             armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, armormiscfatigue,
-            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue } = this.state.armor
+            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue, toggleArmor } = this.state.armor
         let { editing, armorOptions } = this.state
 
         if (!armorbasefatiguemod && armorbasefatigue) {
@@ -183,7 +183,7 @@ export default class ArmorBlock extends Component {
         return (
             <div className="armorBlockShell">
                 <h2>Armor Workspace</h2>
-                <p className="armornameLocation">{armorname}</p>
+                <button className="armornameLocation" onClick={toggleArmor}>{armorname}</button>
                 <div className="basicStats">
                     <p>DR</p>
                     <p>{armordr}</p>

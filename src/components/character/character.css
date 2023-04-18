@@ -1824,23 +1824,26 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .armornameLocation {
-    padding: 0 2px;
+    padding: 3px 2px 0;
     background: lightgrey;
     width: 100%;
+    border-radius: 0;
+    text-align: left;
+    font-size: 12px;
 }
 
 .armorBonusArea {
     position: relative;
     max-width: 100%;
     min-width: 100%;
-    max-height: 50px;
-    min-height: 50px;
+    max-height: 49px;
+    min-height: 49px;
     overflow: hidden;
 }
 
 .armorBonusAreaView {
-    max-height: 51px;
-    min-height: 51px;
+    max-height: 49px;
+    min-height: 49px;
 }
 
 .shieldBonusArea {
@@ -2335,7 +2338,7 @@ textarea.traitsLocation {
 }
 
 .skillMods div p:nth-child(2), .combatMods div p:nth-child(2) {
-    width: 24px;
+    width: 20px;
     text-align: center;
 }
 
@@ -2347,7 +2350,7 @@ textarea.traitsLocation {
 }
 
 .skilladeptLocation {
-    width: 140px;
+    width: 120px;
     text-align: center;
 }
 
@@ -2518,8 +2521,8 @@ textarea.traitsLocation {
     padding-left: 5px;
 }
 
-.combatAdept input, .combatAdept p {
-    width: 50%;
+.combatAdept input:nth-child(2), .combatAdept p:nth-child(2) {
+    width: 100px;
     text-align: center;
 }
 
