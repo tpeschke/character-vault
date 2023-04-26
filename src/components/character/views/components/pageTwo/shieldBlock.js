@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios"
 
+const sortFunction = function (a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+}
 
 // export default function ShieldBlock({ shield, editing }) {
 export default class ShieldBlock extends Component {
@@ -19,7 +28,7 @@ export default class ShieldBlock extends Component {
         let { shieldChoices, shieldOptions } = this.state
         axios.get(`https://bonfire.dragon-slayer.net/getShields`).then(({ data }) => {
             shieldChoices = data
-            shieldOptions = data.map(choice => {
+            shieldOptions = data.sort(sortFunction).map(choice => {
                 return <option value={choice.name} />
             })
             this.setState({ shieldChoices, shieldOptions }, _ => this.changeShieldName(this.state.shield.shieldname))

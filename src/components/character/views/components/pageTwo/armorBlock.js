@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import axios from "axios"
 
+const sortFunction = function (a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+}
+
 export default class ArmorBlock extends Component {
     constructor(props) {
         super(props)
@@ -18,7 +28,7 @@ export default class ArmorBlock extends Component {
         axios.get(`https://bonfire.dragon-slayer.net/getArmor`).then(({ data }) => {
             armorChoices = data
             armorChoices.push({ def: 0, dr: 0, fatigue: 0, name: "Unarmored", init: 0, rec: 0, skill: 0 })
-            armorOptions = data.map(choice => {
+            armorOptions = data.sort(sortFunction).map(choice => {
                 return <option value={choice.name} />
             })
             this.setState({ armorChoices, armorOptions })

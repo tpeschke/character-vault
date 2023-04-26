@@ -63,7 +63,7 @@ export default function weaponsquare({ weapon }) {
             </div>)
     }
 
-    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + (shieldtrainparry * -1) + shieldmiscparry : baseparry + trainparry + miscparry
+    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
         , shieldDrShown = <div></div>
 
     if (usingshield && shieldbaseparry) {

@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import axios from "axios"
 
+const sortFunction = function (a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+}
+
 export default class WeaponBlock extends Component {
     constructor(props) {
         super(props)
@@ -18,8 +28,8 @@ export default class WeaponBlock extends Component {
         let { weapon, weaponChoices, weaponOptions } = this.state
         if (weapon.position === 'four') {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/ranged`).then(({ data }) => {
-                weaponChoices = data
-                weaponOptions = data.map(choice => {
+                weaponChoices = data.filter((a, b) => a.name - b.name)
+                weaponOptions = data.sort(sortFunction).map(choice => {
                     return <option value={`${choice.name} (${choice.type})`} />
                 })
 
@@ -28,7 +38,7 @@ export default class WeaponBlock extends Component {
         } else {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/melee`).then(({ data }) => {
                 weaponChoices = data
-                weaponOptions = data.map(choice => {
+                weaponOptions = data.sort(sortFunction).map(choice => {
                     return <option value={`${choice.name} (${choice.type})`}></option>
                 })
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' })
@@ -56,19 +66,19 @@ export default class WeaponBlock extends Component {
                     let newWeapon = { bonus, basedamage: dam, basemeasure: measure, name, baseparry: parry, baserecovery: rec, size, type, thrownweapon: this.updateThrownStatus(name, weapon.position) }
                     weapon = { ...weapon, ...newWeapon }
                     updateEntireObject(`weapon${weapon.position}`, weapon)
-                    this.setState({ weapon }, _=> this.updateThrownStatus())
+                    this.setState({ weapon }, _ => this.updateThrownStatus())
                     i = weaponChoices.length
                 }
             }
         } else {
-            let newWeapon = { bonus: null, basedamage: null, basemeasure: null, name: null, baseparry: null, baserecovery: null, size: null, type: null, thrownweapon: null}
+            let newWeapon = { bonus: null, basedamage: null, basemeasure: null, name: null, baseparry: null, baserecovery: null, size: null, type: null, thrownweapon: null }
             weapon = { ...weapon, ...newWeapon }
             updateEntireObject(`weapon${weapon.position}`, weapon)
-            this.setState({ weapon, seed: Math.random() }, _=> this.updateThrownStatus())
+            this.setState({ weapon, seed: Math.random() }, _ => this.updateThrownStatus())
         }
     }
 
-    updateThrownStatus (name, position) {
+    updateThrownStatus(name, position) {
         if (position === 'four') {
             return name.toUpperCase() === 'JAVELIN' || name.toUpperCase() === 'THROWING AXE' || name.toUpperCase() === 'THROWING KNIFE'
         }
@@ -159,9 +169,9 @@ export default class WeaponBlock extends Component {
 
                     <div className="weaponCalculatedStats">
                         <p>{returnZeroIfNaN(+trainattack + +miscattack)}</p>
-                        <p>{returnZeroIfNaN((Math.floor(trainrecovery/2) * -1) + +miscrecovery)}</p>
+                        <p>{returnZeroIfNaN((Math.floor(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                         <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                        <p>{returnZeroIfNaN(Math.floor(+traindamage/2) + +miscdamage)}</p>
+                        <p>{returnZeroIfNaN(Math.floor(+traindamage / 2) + +miscdamage)}</p>
                         <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                         <p>To</p>
                     </div>
@@ -260,9 +270,9 @@ export default class WeaponBlock extends Component {
 
                 <div className="weaponCalculatedStats">
                     <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
-                    <p>{returnZeroIfNaN((Math.floor(trainrecovery/2) * -1) + +miscrecovery)}</p>
+                    <p>{returnZeroIfNaN((Math.floor(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                     <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                    <p>{returnZeroIfNaN(Math.floor(+traindamage/2) + +miscdamage)}</p>
+                    <p>{returnZeroIfNaN(Math.floor(+traindamage / 2) + +miscdamage)}</p>
                     <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                     <p>To</p>
                 </div>

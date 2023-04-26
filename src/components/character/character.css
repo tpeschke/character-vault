@@ -1803,7 +1803,7 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .basicStats p:first-child, .basicStats p:last-child, .basicStats input:first-child, .basicStats input:last-child {
-    width: 70px;
+    width: 75px;
 }
 
 .twinShieldStats div {
