@@ -5,19 +5,13 @@ import ViewPairList from '../pairComponents/viewPairList'
 function calculatePanickedLeft(honor, dwarfModifier) {
     let left = '0px'
         , display = 'inherit'
-        , dwarfHonorMod = dwarfModifier * -5
-    if (honor >= 0 + dwarfHonorMod && honor <= 5 + dwarfHonorMod) {
-        left = '0px'
-    } else if (honor >= 6 + dwarfHonorMod && honor <= 10 + dwarfHonorMod) {
-        left = '81px'
-    } else if (honor >= 11 + dwarfHonorMod && honor <= 15 + dwarfHonorMod) {
-        left = '163px'
-    } else if (honor >= 16 + dwarfHonorMod && honor <= 20 + dwarfHonorMod) {
+
+    if (dwarfModifier) {
         left = '244px'
-    } else if (honor >= 21 + dwarfHonorMod && honor <= 25 + dwarfHonorMod) {
-        left = '0px'
-        display = 'none'
+    } else {
+        left = '163px'
     }
+
     return { left, display }
 }
 
