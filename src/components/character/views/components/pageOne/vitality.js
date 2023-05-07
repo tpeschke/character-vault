@@ -7,9 +7,9 @@ function calculatePanickedLeft(honor, dwarfModifier) {
         , display = 'inherit'
 
     if (dwarfModifier) {
-        left = '244px'
+        display = 'none'
     } else {
-        left = '163px'
+        left = '244px'
     }
 
     return { left, display }
