@@ -34,10 +34,6 @@ export default function MiscVitals({ miscVitals, editing }) {
                             <div></div>
                         </div>
                     </div>
-                    <div>
-                        <p>Min</p>
-                        <p className="favorminLocation"> </p>
-                    </div>
                 </div>
             </div>
         )
@@ -64,10 +60,6 @@ export default function MiscVitals({ miscVitals, editing }) {
                     <div className="checkboxShellInner">
                         {anointedDiv}
                     </div>
-                </div>
-                <div>
-                    <p>Min</p>
-                    <p className="favorminLocation">{minFavor}</p>
                 </div>
             </div>
         </div>
