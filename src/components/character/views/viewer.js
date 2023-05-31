@@ -255,7 +255,7 @@ export default class CharacterViewer extends Component {
 
     calculateArmorDefense = (base, ranks, misc, showArmor) => {
         if (!showArmor) {
-            return 0
+            return +misc
         }
         let baseAndRanks = +base + +ranks
         let addToDefense = 0
@@ -504,7 +504,7 @@ export default class CharacterViewer extends Component {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, armorbasefatiguemod,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
                 armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
-                toggleArmor: this.toggleArmor
+                toggleArmor: this.toggleArmor, showArmor: this.state.showArmor
             }
             shield = {
                 shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,

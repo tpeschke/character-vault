@@ -10,6 +10,10 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+.buttonStrikeThrough {
+    text-decoration: line-through;
+}
+
 .fa-spinner {
     font-size: 75px;
     color: white;

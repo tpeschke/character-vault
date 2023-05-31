@@ -117,8 +117,8 @@ export default function weaponsquare({ weapon }) {
     let armorInit = (armorbaseinit + (armortraininit * -1) > 0 ? armorbaseinit + (armortraininit * -1) + armormiscinit : 0 + armormiscinit)
 
     if (!showArmor) {
-        armorRecovery = 0
-        armorInit = 0
+        armorRecovery = armormiscrecovery
+        armorInit = armormiscinit
     }
     if (id !== 'blank') {
         return (

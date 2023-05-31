@@ -58,6 +58,11 @@ export default class ArmorBlock extends Component {
         }
     }
 
+    toggleArmor = () => {
+        this.state.armor.toggleArmor()
+        this.setState({ armor: {...this.state.armor, showArmor: !this.state.armor.showArmor}, seed: Math.random() })
+    }
+
     calculateArmorDefense = (base, ranks, misc) => {
         let baseAndRanks = +base + +ranks
         let addToDefense = 0
@@ -83,7 +88,7 @@ export default class ArmorBlock extends Component {
     render() {
         let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit,
             armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, armormiscfatigue,
-            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue, toggleArmor } = this.state.armor
+            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue, showArmor } = this.state.armor
         let { editing, armorOptions } = this.state
 
         if (!armorbasefatiguemod && armorbasefatigue) {
@@ -191,9 +196,9 @@ export default class ArmorBlock extends Component {
         }
 
         return (
-            <div className="armorBlockShell">
+            <div className="armorBlockShell" key={this.state.seed}>
                 <h2>Armor Workspace</h2>
-                <button className="armornameLocation" onClick={toggleArmor}>{armorname}</button>
+                <button className="armornameLocation" onClick={this.toggleArmor}><p className={showArmor ? null : 'buttonStrikeThrough'}>{armorname}</p></button>
                 <div className="basicStats">
                     <p>DR</p>
                     <p>{armordr}</p>

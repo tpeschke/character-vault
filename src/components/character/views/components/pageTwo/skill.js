@@ -305,7 +305,7 @@ export default function Skills({ skillsObject, editing }) {
                                 </div>
                             </div>
                         </div>
-                        <EditSkillList stylings={{ width: '549px', height: '275px' }} rowWidth={'274px'} limit={26} listArray={skills} updateFunction={updateAttribute} type={"skills"} skilladept={skilladept} />
+                        <EditSkillList stylings={{ width: '549px', height: '275px' }} rowWidth={'274px'} limit={28} listArray={skills} updateFunction={updateAttribute} type={"skills"} skilladept={skilladept} />
                     </div>
                 </div>
             </div>
