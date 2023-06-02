@@ -70,6 +70,37 @@ input[type=number] {
     padding: 5px 0;
 }
 
+.dieAndMinShell {
+    margin-top: 5px;
+    border: solid 2px black;
+}
+
+.dieAndMinShell div {
+    display: flex;
+}
+
+.dieAndMinShell div:nth-child(even) {
+    background-color: lightgray;
+}
+
+.dieAndMinShell div p {
+    width: 25%;
+    text-align: center;
+}
+
+.dieAndMinShell div p:first-child {
+    width: 75%;
+    text-align: left;
+    font-family: 'Vollkorn SC', serif;
+    font-size: 11px;
+    padding: 2px 0 0 5px;
+}
+
+.dieAndMinShell input {
+    width: 25%;
+    text-align: center;
+}
+
 .fakebutton:hover {
     background: rgba(173, 216, 230, 0.50);
     transition: .8s;
@@ -1115,10 +1146,10 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .stressThresholdShell {
-    top: 425px;
-    right: 193px;
+    top: 420px;
+    right: 186px;
     position: absolute;
-    width: 153px;
+    width: 159px;
 }
 
 .vitalShell {
@@ -1244,7 +1275,7 @@ div.temperamentLocation p:nth-child(2) {
 .rangeShell {
     display: flex;
     flex-direction: column;
-    top: 425px;
+    top: 420px;
     right: 20px;
     width: 151px;
     position: absolute;
@@ -1466,6 +1497,7 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .vitalyRollsShell {
+    width: 33%;
     display: flex;
     justify-content: space-between;
 }
@@ -2593,7 +2625,7 @@ textarea.traitsLocation {
 .stressShell div {
     display: flex;
     align-items: center;
-    width: 24%;
+    width: 50%;
 }
 
 .editingStressThreshold div {
@@ -2601,13 +2633,8 @@ textarea.traitsLocation {
     align-items: center;
 }
 
-.editingStressThreshold div:first-child {
-    width: 70%;
-    margin-right: 5px;
-}
-
-.editingStressThreshold div:last-child {
-    width: 30%;
+.editingStressThreshold div {
+    width: 100%;
 }
 
 .stressShell div p, .stressShell div input {
@@ -2617,10 +2644,6 @@ textarea.traitsLocation {
 .stressShell div:first-child {
     border: 2px solid #990000;
     width: 49%;
-}
-
-.stressShell div:last-child {
-    border-left: 2px solid lightgrey
 }
 
 .stressShell div p:first-child, .editingStressThreshold p {

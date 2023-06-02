@@ -1,7 +1,10 @@
 import React from 'react'
 
 export default function MiscVitals({ miscVitals, editing }) {
-    let { updateAttribute, relaxation, currentfavor, chaData, favormax, anointed, id } = miscVitals
+    let { updateAttribute, currentfavor, chaData, favormax, anointed, id, vitalitydice, wis, con, stressdie } = miscVitals
+
+    const minStress = minStressDictionary[wis]
+    const minVitality = minVitalityDictionary[con]
 
     let anointedDiv = (<div className="anointedDiv"></div>)
     if (id !== 'blank') {
@@ -35,6 +38,25 @@ export default function MiscVitals({ miscVitals, editing }) {
                         </div>
                     </div>
                 </div>
+
+                <div className="dieAndMinShell">
+                    <div>
+                        <p>Vitality Die</p>
+                        <input className="currentfavorLocation" type="text" defaultValue={vitalitydice} onBlur={event => updateAttribute(event.target.value, "vitalitydice")} />
+                    </div>
+                    <div>
+                        <p>Min Vitality</p>
+                        <p>{minVitality}</p>
+                    </div>
+                    <div>
+                        <p>Stress Thes. Die</p>
+                        <input className="currentfavorLocation" type="text" defaultValue={stressdie} onBlur={event => updateAttribute(event.target.value, "stressdie")} />
+                    </div>
+                    <div>
+                        <p>Min Stress Thes.</p>
+                        <p>{minStress}</p>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -62,6 +84,76 @@ export default function MiscVitals({ miscVitals, editing }) {
                     </div>
                 </div>
             </div>
+            <div className="dieAndMinShell">
+                <div>
+                    <p>Vitality Die</p>
+                    <p>{vitalitydice}</p>
+                </div>
+                <div>
+                    <p>Min Vitality</p>
+                    <p>{minVitality}</p>
+                </div>
+                <div>
+                    <p>Stress Thes. Die</p>
+                    <p>{stressdie}</p>
+                </div>
+                <div>
+                    <p>Min Stress Thes.</p>
+                    <p>{minStress}</p>
+                </div>
+            </div>
         </div>
     )
+}
+
+const minStressDictionary = {
+    1: 1,
+    2: 1,
+    3: 1,
+    4: 1,
+    5: 1,
+    6: 1,
+    7: 1,
+    8: 2,
+    9: 2,
+    10: 2,
+    11: 2,
+    12: 2,
+    13: 2,
+    14: 3,
+    15: 3,
+    16: 3,
+    17: 3,
+    18: 3,
+    19: 4,
+    20: 4,
+    21: 4,
+    22: 4,
+    23: 4
+}
+
+const minVitalityDictionary = {
+    1: 1,
+    2: 1,
+    3: 1,
+    4: 1,
+    5: 1,
+    6: 1,
+    7: 1,
+    8: 1,
+    9: 2,
+    10: 2,
+    11: 2,
+    12: 2,
+    13: 2,
+    14: 3,
+    15: 3,
+    16: 4,
+    17: 4,
+    18: 5,
+    19: 5,
+    20: 6,
+    21: 6,
+    22: 6,
+    23: 6
 }

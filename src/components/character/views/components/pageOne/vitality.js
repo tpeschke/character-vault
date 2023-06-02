@@ -159,10 +159,6 @@ export default function Vitality({ vitality, editing }) {
                         <p className='stressThreshold'>Stress Threshold</p>
                         <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     </div>
-                    <div>
-                        <p>Roll</p>
-                        <input className="stressthresholdLocation" type="number" min="0" placeholder={stressroll} defaultValue={stressroll} onChange={event => updateAttribute(event.target.value, "stressroll")} />
-                    </div>
                 </div>
                 <h1>Vitality</h1>
                 <div className="woundCategoryShell">
@@ -227,18 +223,6 @@ export default function Vitality({ vitality, editing }) {
                     <div>
                         <p>Size Mod</p>
                         <input className="sizemodLocation" type="number" min="0" defaultValue={sizemod} onChange={event => updateAttribute(event.target.value, "sizemod")} />
-                    </div>
-                    <div>
-                        <p>Roll</p>
-                        <input className="vitalityrollLocation" type="number" min="0" defaultValue={vitalityroll} onChange={event => updateAttribute(event.target.value, "vitalityroll")} />
-                    </div>
-                    <div>
-                        <p>Vit Die</p>
-                        <input className="vitalitydiceLocation" type="text" defaultValue={vitalitydice} onChange={event => updateAttribute(event.target.value, "vitalitydice")} />
-                    </div>
-                    <div>
-                        <p>Min Vit</p>
-                        <p className="vitalityminLocation"> </p>
                     </div>
                 </div>
             </div>
@@ -317,12 +301,8 @@ export default function Vitality({ vitality, editing }) {
                     {stress}
                 </div>
                 <div>
-                    <p>Relax</p>
+                    <p>Relaxation</p>
                     {relaxationInput}
-                </div>
-                <div>
-                    <p>Roll</p>
-                    <p>{stressroll}</p>
                 </div>
             </div>
             <h1>Vitality</h1>
@@ -370,18 +350,6 @@ export default function Vitality({ vitality, editing }) {
                 <div>
                     <p>Size Mod</p>
                     <p className="sizemodLocation">{sizemod}</p>
-                </div>
-                <div>
-                    <p>Roll</p>
-                    <p className="vitalityrollLocation">{vitalityroll}</p>
-                </div>
-                <div>
-                    <p>Vit Die</p>
-                    <p className="vitalitydiceLocation">{vitalitydice}</p>
-                </div>
-                <div>
-                    <p>Min Vit</p>
-                    <p className="vitalityminLocation">{minVitality}</p>
                 </div>
             </div>
         </div>

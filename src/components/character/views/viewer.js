@@ -379,7 +379,7 @@ export default class CharacterViewer extends Component {
         let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank, prebreatherstress, stressroll } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank, prebreatherstress, stressroll, stressdie } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
 
         str = str ? str : 1
@@ -494,7 +494,7 @@ export default class CharacterViewer extends Component {
                 thrownweapon: true, dead: dead, shieldname, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject,
                 shieldcover, showArmor: this.state.showArmor, ...weaponfour
             }
-            miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox }
+            miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox, vitalitydice, wis, stressdie }
             vitality = { shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, prebreatherstress, stressroll }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
