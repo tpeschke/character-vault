@@ -127,9 +127,9 @@ export default class ShieldBlock extends Component {
                     </div>
 
                     <div className="calculatedStats shield">
-                        <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+                        <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                        <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 
@@ -194,9 +194,9 @@ export default class ShieldBlock extends Component {
                     </div>
 
                     <div className="calculatedStats shield">
-                        <input type="number" value={shieldmiscfatigue} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onBlur={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+                        <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                        <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
 
