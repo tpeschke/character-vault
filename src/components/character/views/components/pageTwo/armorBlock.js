@@ -240,7 +240,7 @@ export default class ArmorBlock extends Component {
                 <div className="calculatedStats">
                     <p>{this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef)}</p>
                     <p>{id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : ''}</p>
-                    <p>{armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0}</p>
+                    <p>{id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : ''}</p>
                     <p>{returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit)}</p>
                     <p>Total</p>
                 </div>

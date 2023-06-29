@@ -1,18 +1,45 @@
 import React from 'react'
 import combatStatMods from '../pageTwo/combatStatTables'
 
-const calculateRecovery = (recovery, size, isMelee) => {
+const calculateRecovery = (recovery, size, isMelee, type) => {
     let minimumRecovery
     if (!size) {
         size = "L"
     }
-    if (size.toUpperCase() === 'S') {
-        isMelee ? minimumRecovery = 2 : minimumRecovery = 3
-    } else if (size.toUpperCase() === 'M') {
-        isMelee ? minimumRecovery = 3 : minimumRecovery = 4
-    } else {
-        isMelee ? minimumRecovery = 4 : minimumRecovery = 5
+    if (!type) {
+        type = "C"
     }
+
+    if (!isMelee) {
+        const mins = {
+            S: 3,
+            M: 4,
+            L: 5
+        }
+
+        minimumRecovery = mins[size.toUpperCase()]
+    } else {
+        const mins = {
+            P: {
+                S: 2,
+                M: 2,
+                L: 2
+            },
+            S: {
+                S: 3,
+                M: 4,
+                L: 5
+            },
+            C: {
+                S: 4,
+                M: 5,
+                L: 6
+            }
+        }
+
+        minimumRecovery = mins[size.toUpperCase()][type.toUpperCase()]
+    }
+
     return recovery < minimumRecovery ? minimumRecovery : recovery
 }
 
@@ -124,7 +151,7 @@ export default function weaponsquare({ weapon }) {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.floor(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged))}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.floor(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
                 <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
                 {cover}
