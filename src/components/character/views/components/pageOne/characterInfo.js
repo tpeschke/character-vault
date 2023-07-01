@@ -2,11 +2,7 @@ import React from 'react'
 import "./plates.css"
 
 const getCrPRequirement = (level) => {
-    let total = 0
-    for (let i = 1; i <= level; i++) {
-        total = 50 + total + (i * 3)
-    }
-    return total
+    return 50 + (level * 3)
 }
 
 export default function CharacterInfo({ characterInfo, editing }) {

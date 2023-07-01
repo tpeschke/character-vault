@@ -133,8 +133,6 @@ export default class CharacterViewer extends Component {
         return `${small}S ${medium}M ${large}L`
     }
 
-
-
     returnZeroIfNaN = (thing) => {
         if (isNaN(+thing)) {
             return null

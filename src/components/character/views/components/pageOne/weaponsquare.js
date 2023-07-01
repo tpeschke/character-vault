@@ -37,7 +37,7 @@ const calculateRecovery = (recovery, size, isMelee, type) => {
             }
         }
 
-        minimumRecovery = mins[size.toUpperCase()][type.toUpperCase()]
+        minimumRecovery = mins[type.toUpperCase()][size.toUpperCase()]
     }
 
     return recovery < minimumRecovery ? minimumRecovery : recovery
