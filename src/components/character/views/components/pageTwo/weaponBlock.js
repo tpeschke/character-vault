@@ -28,11 +28,10 @@ export default class WeaponBlock extends Component {
         let { weapon, weaponChoices, weaponOptions } = this.state
         if (weapon.position === 'four') {
             axios.get(`https://bonfire.dragon-slayer.net/getWeapons/ranged`).then(({ data }) => {
-                weaponChoices = data.filter((a, b) => a.name - b.name)
+                weaponChoices = data
                 weaponOptions = data.sort(sortFunction).map(choice => {
                     return <option value={`${choice.name} (${choice.type})`} />
                 })
-
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' })
             })
         } else {
@@ -60,8 +59,10 @@ export default class WeaponBlock extends Component {
         let { weaponChoices, weapon, updateEntireObject } = this.state
 
         if (selectedName) {
+            console.log(selectedName)
+            console.log(weaponChoices)
             for (let i = 0; i < weaponChoices.length; i++) {
-                if (selectedName === `${weaponChoices[i].name} (${weaponChoices[i].type})` || `${selectedName} (${damageType})` === `${weaponChoices[i].name} (${weaponChoices[i].type})`) {
+                if (selectedName === `${weaponChoices[i].name} (${weaponChoices[i].type})` || `${selectedName} (${damageType})` === `${weaponChoices[i].name} (${weaponChoices[i].type})` || selectedName === weaponChoices[i].name) {
                     let { bonus, dam, measure, name, parry, rec, size, type } = weaponChoices[i]
                     let newWeapon = { bonus, basedamage: dam, basemeasure: measure, name, baseparry: parry, baserecovery: rec, size, type, thrownweapon: this.updateThrownStatus(name, weapon.position) }
                     weapon = { ...weapon, ...newWeapon }
