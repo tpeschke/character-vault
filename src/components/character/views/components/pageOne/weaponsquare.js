@@ -79,7 +79,7 @@ export default function weaponsquare({ weapon }) {
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name}` }
 
-    traindamage = Math.floor(traindamage/2)
+    traindamage = Math.ceil(traindamage/2)
 
     let damageShell = (<p className="damage">{displayDamage(basedamage, type, traindamage, strDamChart[str])}</p>)
     if (isRanged) {
@@ -151,7 +151,7 @@ export default function weaponsquare({ weapon }) {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.floor(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type))}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
                 <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
                 {cover}

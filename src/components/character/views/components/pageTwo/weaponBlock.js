@@ -170,9 +170,9 @@ export default class WeaponBlock extends Component {
 
                     <div className="weaponCalculatedStats">
                         <p>{returnZeroIfNaN(+trainattack + +miscattack)}</p>
-                        <p>{returnZeroIfNaN((Math.floor(trainrecovery / 2) * -1) + +miscrecovery)}</p>
+                        <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                         <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                        <p>{returnZeroIfNaN(Math.floor(+traindamage / 2) + +miscdamage)}</p>
+                        <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
                         <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                         <p>To</p>
                     </div>
@@ -271,9 +271,9 @@ export default class WeaponBlock extends Component {
 
                 <div className="weaponCalculatedStats">
                     <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
-                    <p>{returnZeroIfNaN((Math.floor(trainrecovery / 2) * -1) + +miscrecovery)}</p>
+                    <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                     <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                    <p>{returnZeroIfNaN(Math.floor(+traindamage / 2) + +miscdamage)}</p>
+                    <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
                     <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
                     <p>To</p>
                 </div>
