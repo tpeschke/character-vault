@@ -88,7 +88,7 @@ export default class EditSkillList extends Component {
                     <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                         <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
                         <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                        <p id="totalCost">({item.cost + (item.rank * 2) - skilladept})</p>
+                        <p id="totalCost">({item.cost + (item.rank * 3) - skilladept})</p>
                         <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
                         <input className="modInput border-right" defaultValue={item.mod} onBlur={e => this.updateValue('mod', e.target.value, i)} />
                     </div>
@@ -98,7 +98,7 @@ export default class EditSkillList extends Component {
                     <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
                         <input className="skillInput combatInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
                         <input className="costInput border-right combatCost" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                        <p id="combatTotalCost">({item.cost + (item.rank * 2) - skilladept})</p>
+                        <p id="combatTotalCost">({item.cost + (item.rank * 3) - skilladept})</p>
                         <input className="rankInput border-right combatRank" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
                     </div>
                 )
