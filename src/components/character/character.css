@@ -1878,8 +1878,8 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .armorBonusAreaView {
-    max-height: 49px;
-    min-height: 49px;
+    max-height: 44px;
+    min-height: 44px;
 }
 
 .shieldBonusArea {
@@ -2679,7 +2679,8 @@ textarea.traitsLocation {
 
 #not-found p {
     color: whitesmoke;
-    font-family: "north";
+    font-family: "hamlet";
+    letter-spacing: 2px;
     margin: 0;
     font-size: 30px;
     text-shadow: 4px 2px 2px #222

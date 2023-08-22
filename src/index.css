@@ -3,8 +3,8 @@
   src: url('./assets/jancient.ttf') format("truetype");
 }
 @font-face {
-  font-family: 'north';
-  src: url('./assets/north.ttf') format("truetype");
+  font-family: 'hamlet';
+  src: url('./assets/Hamletornot.ttf') format("truetype");
 }
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn+SC&display=swap');
 
@@ -26,7 +26,8 @@ a {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: "north";
+  font-family: "hamlet";
+  letter-spacing: 1px;
 }
 
 h1 {
