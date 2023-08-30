@@ -3,13 +3,15 @@ import combatStatMods from '../pageTwo/combatStatTables'
 
 const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     let minimumRecovery
-    if (!size) {
-        size = "H"
-    }
+    let sizeWasFalse = false
     if (!type) {
         type = "C"
     }
-
+    
+    if (!size) {
+        size = "H"
+        sizeWasFalse = true
+    }
     if (!isMelee) {
         const mins = {
             S: 3,
@@ -51,7 +53,11 @@ const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
             L: 3,
             H: 4
         }
-        recovery += Math.floor(strRec * modifier[size])
+        if (sizeWasFalse) {
+            recovery += Math.floor(strRec * modifier.S)
+        } else {
+            recovery += Math.floor(strRec * modifier[size])
+        }
     }
 
     return recovery < minimumRecovery ? minimumRecovery : recovery
