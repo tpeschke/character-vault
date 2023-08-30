@@ -228,7 +228,7 @@ export default class CharacterEditor extends Component {
             , social = { updateAttribute: this.updateAttribute, temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, descriptions }
             , miscVitals = { updateAttribute: this.updateAttribute, vitalitydice, con, wis, stressdie, vitalityTotal, favormax, currentfavor }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
-            , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, stressthreshold, wis, relaxation, prebreatherstress, stressroll }
+            , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, stressthreshold, wis, relaxation, prebreatherstress, stressroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }

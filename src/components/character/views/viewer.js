@@ -271,10 +271,11 @@ export default class CharacterViewer extends Component {
 
         let devotions = characterDeepCopy.devotions.map(devotion => { return { ...devotion, title: null } })
             , traits = characterDeepCopy.traits.map(trait => { return { ...trait, title: null } })
+            , descriptions = characterDeepCopy.descriptions.map(description => { return { ...description, title: null } })
             , nativelanguage = { ...characterDeepCopy.nativelanguage, language: null }
 
         let cleansedCharacter = {
-            ...characterDeepCopy, currentstress: null, damageone: [], damagetwo: [], goals: [],
+            ...characterDeepCopy, currentstress: null, damageone: [], damagetwo: [], goals: [], descriptions,
             name: null, extrahonordice: null, relaxation: null, reputation: [], contacts: "", devotions, traits, nativelanguage
         }
 
