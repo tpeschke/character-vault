@@ -2374,7 +2374,7 @@ textarea.traitsLocation {
 }
 
 .skillMods div p:nth-child(2), .combatMods div p:nth-child(2) {
-    width: 20px;
+    width: 24px;
     text-align: center;
 }
 
@@ -2548,6 +2548,7 @@ textarea.traitsLocation {
     justify-content: space-between;
     border-top: 2px solid lightgrey;
     height: 19.6px;
+    width: 75% !important;
 }
 
 .combatAdept p:first-child {
@@ -2558,7 +2559,7 @@ textarea.traitsLocation {
 }
 
 .combatAdept input:nth-child(2), .combatAdept p:nth-child(2) {
-    width: 100px;
+    width: 55px;
     text-align: center;
 }
 

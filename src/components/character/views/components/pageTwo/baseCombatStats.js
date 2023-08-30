@@ -6,7 +6,7 @@ import combatStatMods from './combatStatTables'
 export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
     let { str, int, dex, wis, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained } = baseCombatFromStats
 
-    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam } = combatStatMods
+    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam, strRec } = combatStatMods
 
     if (editing) {
         return (
@@ -32,10 +32,14 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                                     <p>Dam</p>
                                     <p>{combatskillsuites ? strDam[str] : ''}</p>
                                 </div>
-                            </div>
-                            <div className="martialadept combatAdept">
-                                <p>Martial Adept(s)</p>
-                                <input className="skilladeptLocation" type="number" defaultValue={martialadept} onChange={event => updateAttribute(event.target.value, "martialadept")} />
+                                <div>
+                                    <p>Rec</p>
+                                    <p>{combatskillsuites ? strRec[str] : ''}</p>
+                                </div>
+                                <div className="martialadept combatAdept">
+                                    <p>Martial Adept(s)</p>
+                                    <input className="skilladeptLocation" type="number" defaultValue={martialadept} onChange={event => updateAttribute(event.target.value, "martialadept")} />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -273,10 +277,14 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                                 <p>Dam</p>
                                 <p>{combatskillsuites ? strDam[str] : ''}</p>
                             </div>
-                        </div>
-                        <div className="martialadept combatAdept">
-                            <p>Martial Adept(s)</p>
-                            <p className="martialadeptLocation">{martialadept}</p>
+                            <div>
+                                <p>Rec</p>
+                                <p>{combatskillsuites ? strRec[str] : ''}</p>
+                            </div>
+                            <div className="martialadept combatAdept">
+                                <p>Martial Adept(s)</p>
+                                <p className="martialadeptLocation">{martialadept}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

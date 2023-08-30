@@ -18,26 +18,26 @@ import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 import statTables from '../statTables'
 
 const chaTable = {
-    1: { favor: 1, honorstart: 5, skill: -3, confrontation: 'n/a' },
-    2: { favor: 1, honorstart: 10, skill: -2, confrontation: 'n/a' },
-    3: { favor: 1, honorstart: 10, skill: -2, confrontation: 'n/a' },
-    4: { favor: 1, honorstart: 10, skill: -1, confrontation: 'n/a' },
-    5: { favor: 1, honorstart: 15, skill: -1, confrontation: 'n/a' },
-    6: { favor: 1, honorstart: 15, skill: -1, confrontation: 'n/a' },
-    7: { favor: 2, honorstart: 15, skill: -1, confrontation: 'n/a' },
-    8: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
-    9: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
-    10: { favor: 2, honorstart: 15, skill: 0, confrontation: 'n/a' },
-    11: { favor: 3, honorstart: 15, skill: 0, confrontation: 'n/a' },
-    12: { favor: 3, honorstart: 15, skill: 0, confrontation: 'D4!' },
-    13: { favor: 4, honorstart: 15, skill: 1, confrontation: 'D4!' },
-    14: { favor: 4, honorstart: 15, skill: 1, confrontation: 'D6!' },
-    15: { favor: 5, honorstart: 15, skill: 1, confrontation: 'D6!' },
-    16: { favor: 6, honorstart: 15, skill: 1, confrontation: 'D8!' },
-    17: { favor: 7, honorstart: 20, skill: 1, confrontation: 'D10!' },
-    18: { favor: 8, honorstart: 20, skill: 2, confrontation: 'D12!' },
-    19: { favor: 8, honorstart: 20, skill: 2, confrontation: 'D20!' },
-    20: { favor: 9, honorstart: 25, skill: 3, confrontation: 'D20!+d4!' }
+    1: { favor: 1, honorstart: 5, skill: -3 },
+    2: { favor: 1, honorstart: 10, skill: -2 },
+    3: { favor: 1, honorstart: 10, skill: -2 },
+    4: { favor: 1, honorstart: 10, skill: -1 },
+    5: { favor: 1, honorstart: 15, skill: -1 },
+    6: { favor: 1, honorstart: 15, skill: -1 },
+    7: { favor: 2, honorstart: 15, skill: -1 },
+    8: { favor: 2, honorstart: 15, skill: 0 },
+    9: { favor: 2, honorstart: 15, skill: 0 },
+    10: { favor: 2, honorstart: 15, skill: 0 },
+    11: { favor: 3, honorstart: 15, skill: 0 },
+    12: { favor: 3, honorstart: 15, skill: 0 },
+    13: { favor: 4, honorstart: 15, skill: 1 },
+    14: { favor: 4, honorstart: 15, skill: 1 },
+    15: { favor: 5, honorstart: 15, skill: 1 },
+    16: { favor: 6, honorstart: 15, skill: 1 },
+    17: { favor: 7, honorstart: 20, skill: 1 },
+    18: { favor: 8, honorstart: 20, skill: 2 },
+    19: { favor: 8, honorstart: 20, skill: 2 },
+    20: { favor: 9, honorstart: 25, skill: 3 }
 }
 
 export default class CharacterEditor extends Component {

@@ -1,10 +1,10 @@
 import React from 'react'
 import combatStatMods from '../pageTwo/combatStatTables'
 
-const calculateRecovery = (recovery, size, isMelee, type) => {
+const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     let minimumRecovery
     if (!size) {
-        size = "L"
+        size = "H"
     }
     if (!type) {
         type = "C"
@@ -14,7 +14,8 @@ const calculateRecovery = (recovery, size, isMelee, type) => {
         const mins = {
             S: 3,
             M: 4,
-            L: 5
+            L: 5,
+            H: 6
         }
 
         minimumRecovery = mins[size.toUpperCase()]
@@ -23,21 +24,34 @@ const calculateRecovery = (recovery, size, isMelee, type) => {
             P: {
                 S: 2,
                 M: 2,
-                L: 2
+                L: 2,
+                H: 2
             },
             S: {
                 S: 3,
                 M: 4,
-                L: 5
+                L: 5,
+                H: 6
             },
             C: {
                 S: 4,
                 M: 5,
-                L: 6
+                L: 6,
+                H: 7
             }
         }
 
         minimumRecovery = mins[type.toUpperCase()][size.toUpperCase()]
+    }
+
+    if (isMelee || isBow) {
+        const modifier = {
+            S: 1,
+            M: 2,
+            L: 3,
+            H: 4
+        }
+        recovery += Math.floor(strRec * modifier[size])
     }
 
     return recovery < minimumRecovery ? minimumRecovery : recovery
@@ -65,7 +79,7 @@ export default function weaponsquare({ weapon }) {
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
         shieldcover, miscrecovery, trainrecovery, showArmor } = weapon
-    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart } = combatStatMods
+    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart, strRec } = combatStatMods
     if (editing) {
         return (
             <div className={`weaponsquare weapon${position}`}></div>
@@ -147,11 +161,14 @@ export default function weaponsquare({ weapon }) {
         armorRecovery = armormiscrecovery
         armorInit = armormiscinit
     }
+
+    const isBow = name ? name.toUpperCase().includes('BOW') : false
+
     if (id !== 'blank') {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type))}</p>
+                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type, strRec[str], isBow))}</p>
                 <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
                 <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
                 {cover}
