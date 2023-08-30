@@ -54,7 +54,7 @@ export default class CharacterEditor extends Component {
 
     updateAttribute = (value, type) => {
         let character = { ...this.state.character }
-        if (!isNaN(+value)) {
+        if (!isNaN(+value) && typeof value !== 'object') {
             value = +value
         }
         character[type] = value
@@ -231,7 +231,7 @@ export default class CharacterEditor extends Component {
             , vitality = { updateAttribute: this.updateAttribute, sizemod, vitalitydice, vitalityroll, stressthreshold, wis, relaxation, prebreatherstress, stressroll, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
-            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, updateAttribute: this.updateAttribute }
+            , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
