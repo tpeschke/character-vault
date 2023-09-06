@@ -7,7 +7,7 @@ const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     if (!type) {
         type = "C"
     }
-    
+
     if (!size) {
         size = "H"
         sizeWasFalse = true
@@ -69,7 +69,7 @@ const getName = (usingshield, shieldname, name, showArmor) => {
         if (usingshield && shieldname && name) {
             finalName += ` & ${shieldname}`
         }
-    
+
         if (!showArmor) {
             finalName += ` (w/o armor)`
         }
@@ -99,43 +99,31 @@ export default function weaponsquare({ weapon }) {
     if (!basemeasure) { basemeasure = 'n/a' }
     if (name && type) { name = `${name}` }
 
-    traindamage = Math.ceil(traindamage/2)
+    traindamage = Math.ceil(traindamage / 2)
 
-    let damageShell = (<p className="damage">{displayDamage(basedamage, type, traindamage, strDamChart[str])}</p>)
+    let damageString = displayDamage(basedamage, type, traindamage, strDamChart[str])
     if (isRanged) {
-        damageShell = (
-            <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
-                <p>{displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)}</p>
-                <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
-            </div>)
+        damageString = displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)
+        // damageShell = (
+        //     <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
+        //         <p>{displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)}</p>
+        //         <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
+        //     </div>)
     }
 
     let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
-        , shieldDrShown = <div></div>
+        , shieldDrShown = ''
 
     if (usingshield && shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />{shielddr}</p>
+        shieldDrShown = shielddr
     } else if (usingshield && !shieldbaseparry) {
-        shieldDrShown = <p id="shieldDr"><div className='dr-icon shield-dr-icon' />2/d</p>
+        shieldDrShown = '2/d'
     }
 
-    let drShell = (
-        <div className="drshell fakebutton" onClick={_ => updateAttribute(!usingshield, 'usingshield')}>
-            <p id="armorDr">{showArmor ? armordr : 0}</p>
-            {shieldDrShown}
-            <div className='tooltip'><p>Click to {usingshield ? 'remove' : 'add'} shield</p></div>
-        </div>
-    )
+    let armorDR = showArmor ? armordr : 0
 
-    if (isRanged) {
-        drShell = (
-            <div className="drshell">
-                <p id="armorDr">{showArmor ? armordr : 0}</p>
-            </div>
-        )
-    }
-
-    let cover = <div className="def"></div>
+    let cover = 0
+    let defense = 0
 
     let shieldModifiers = 0
     if (usingshield) {
@@ -143,21 +131,13 @@ export default function weaponsquare({ weapon }) {
     }
 
     if (id !== 'blank') {
-        cover = (
-            <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef, showArmor) + shieldModifiers)}</p>
-            </div>
-        )
+        defense = returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef, showArmor) + shieldModifiers)
+    } else {
+        defense = ''
+        cover = ''
     }
     if (shieldcover && usingshield) {
-        cover = (
-            <div className="def">
-                <p id='def'>{returnZeroIfNaN(dexDef[dex] + willDef[wis] + calculateArmorDefense(armorbasedef, armortrainingdef, armormiscdef, showArmor) + shieldModifiers)}</p>
-                <p id="shieldCover">
-                    <div className='dr-icon shield-dr-icon' /> {shieldcover}
-                </p>
-            </div>
-        )
+        cover = shieldcover
     }
 
     let armorRecovery = armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0
@@ -174,24 +154,134 @@ export default function weaponsquare({ weapon }) {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
-                <p className="recovery">{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery/2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type, strRec[str], isBow))}</p>
-                <p className="attack">{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
-                <p className="init">{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
-                {cover}
-                <p className="encumb">{type}</p>
-
-                {drShell}
-
-                <p className="measure">{returnZeroIfNaN(basemeasure)}</p>
-                {damageShell}
-                <p className="parry">{returnZeroIfNaN(parryShown)}</p>
-
-            </div >
+                <div className='combat-table-shell'>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Attacks</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Meas</p>
+                            <p>{returnZeroIfNaN(basemeasure)}</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Atk</p>
+                            <p>{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Damage</p>
+                            <p className='double'>{damageString}</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Type</p>
+                            <p>{type}</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Rec</p>
+                            <p>{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery / 2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type, strRec[str], isBow))}</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Init</p>
+                            <p>{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
+                        </div>
+                    </div>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Defenses</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Def</p>
+                            <p>{defense}</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Flanks</p>
+                            <p>6</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Parry</p>
+                            <p>{returnZeroIfNaN(parryShown)}</p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Cover</p>
+                            <p>{cover}</p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Parry DR</p>
+                            <p>{shieldDrShown}</p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>DR</p>
+                            <p>{armorDR}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            // <div className={`weaponsquare weapon${position}`}>
+            //     {damageShell}
+            // </div >
         )
     } else {
         return (
             <div className={`weaponsquare weapon${position}`}>
-
+                <div className='combat-table-shell'>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Attacks</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Meas</p>
+                            <p></p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Atk</p>
+                            <p></p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Damage</p>
+                            <p className='double'> </p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Type</p>
+                            <p></p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Rec</p>
+                            <p></p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Init</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Defenses</p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Def</p>
+                            <p></p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Flanks</p>
+                            <p></p>
+                        </div>
+                        <div>
+                            <p className='first-cell'>Parry</p>
+                            <p></p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Cover</p>
+                            <p></p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>Parry DR</p>
+                            <p></p>
+                        </div>
+                        <div className='column'>
+                            <p className='first-cell'>DR</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

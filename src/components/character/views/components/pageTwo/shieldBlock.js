@@ -67,10 +67,15 @@ export default class ShieldBlock extends Component {
         }
     }
 
+    toggleShield = () => {
+        this.state.shield.updateAttribute(!this.state.shield.usingshield, 'usingshield')
+        this.setState({ shield: { ...this.state.shield, usingshield: !this.state.shield.usingshield } })
+    }
+
     render() {
         let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
             shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue,
-            returnZeroIfNaN, shieldsize, shieldFatigue, id } = this.state.shield
+            returnZeroIfNaN, shieldsize, shieldFatigue, id, usingshield } = this.state.shield
         let { editing, shieldOptions } = this.state
 
         if (editing) {
@@ -147,7 +152,7 @@ export default class ShieldBlock extends Component {
             return (
                 <div className="shieldBlockShell">
                     <h2>Shield Workspace</h2>
-                    <p className="shieldnameLocation">{shieldname}</p>
+                    <button className="shieldnameLocation" onClick={this.toggleShield}><p className={usingshield ? null : 'buttonStrikeThrough'}>{shieldname}</p></button>
 
                     <div className="basicStats">
                         <p>DR</p>

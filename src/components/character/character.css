@@ -936,20 +936,86 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .weaponsquare {
-    background: url('../../assets/weaponsquare.png');
-    background-size: contain;
     position: absolute;
     height: 151px;
     width: 158px;
 }
 
+.combat-table-shell {
+    font-size: 10px;
+    height: 151px;
+    width: 158px;
+    display: flex;
+}
+
+.combat-table-shell p {
+    position: unset;
+}
+
+.combat-table-column {
+    width: 49%;
+    height: 100%;
+}
+
+.combat-table-column div p {
+    width: 65%;
+    font-size: 10px;
+    text-align: right;
+    margin: 0;
+    height: 15.1px
+}
+
+.combat-table-shell .combat-table-column:nth-child(2) {
+    border-left: 1px solid;
+}
+.combat-table-shell .combat-table-column div:nth-child(odd){
+    background-color: lightgray;
+}
+
+.combat-table-column div:first-child {
+    font-family: "hamlet";
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    background-color: #222 !important;
+    color: whitesmoke;
+    width: 100%;
+}
+
+.combat-table-column div { 
+    display: flex;
+    justify-content: space-between;
+}
+.combat-table-column div p {
+    padding: 0 5px;
+}
+
+.first-cell {
+    width: 35% !important;
+    font-weight: bold;
+    font-family: 'Vollkorn SC', serif;
+    font-size: 11px !important;
+}
+
+.combat-table-column .column {
+    flex-direction: column;
+}
+
+.combat-table-column .column p {
+    width: 100% !important;
+    text-align: left;
+}
+
+.combat-table-column .column .double {
+    height: 45px;
+}
+
 .weaponone {
-    top: 87px;
+    top: 82px;
     left: 471px;
 }
 
 .weapontwo {
-    top: 87px;
+    top: 82px;
     left: 640px;
 }
 
@@ -1878,8 +1944,8 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .armorBonusAreaView {
-    max-height: 44px;
-    min-height: 44px;
+    max-height: 48px;
+    min-height: 48px;
 }
 
 .shieldBonusArea {
@@ -1945,8 +2011,12 @@ div.temperamentLocation p:nth-child(2) {
 }
 
 .shieldnameLocation {
-    padding: 0 2px;
+    padding: 3px 2px 0;
     background: lightgrey;
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    font-size: 12px;
     width: 100%;
 }
 
