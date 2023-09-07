@@ -41,7 +41,7 @@ export default class ShieldBlock extends Component {
             for (let i = 0; i < shieldChoices.length; i++) {
                 if (selectedName === shieldChoices[i].name) {
                     let { bonus, cover, def, dr, fatigue, flanks, name, parry, size } = shieldChoices[i]
-                    let newshield = { shieldname: name, shieldbaseparry: parry, shieldbasefatigue: fatigue, shieldbasedef: def, shielddr: dr, shieldcover: cover, shieldbonus: bonus, shieldsize: size }
+                    let newshield = { shieldname: name, shieldbaseparry: parry, shieldbasefatigue: fatigue, shieldbasedef: def, shielddr: dr, shieldcover: cover, shieldbonus: bonus, shieldsize: size, shieldflanks: flanks }
                     shield = { ...shield, ...newshield }
                     updateManyAttributes(shield)
                     this.setState({ shield }, _ => {
@@ -51,7 +51,7 @@ export default class ShieldBlock extends Component {
                 }
             }
         } else {
-            let newshield = { shieldname: null, shieldbaseparry: null, shieldbasefatigue: null, shieldbasedef: null, shielddr: null, shieldcover: null, shieldbonus: null, shieldsize: null }
+            let newshield = { shieldname: null, shieldbaseparry: null, shieldbasefatigue: null, shieldbasedef: null, shielddr: null, shieldcover: null, shieldbonus: null, shieldsize: null, shieldflanks: null }
             shield = { ...shield, ...newshield }
             updateManyAttributes(shield)
             this.setState({ shield, seed: Math.random() }, _ => {
@@ -74,7 +74,7 @@ export default class ShieldBlock extends Component {
 
     render() {
         let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-            shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue,
+            shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldflanks,
             returnZeroIfNaN, shieldsize, shieldFatigue, id, usingshield } = this.state.shield
         let { editing, shieldOptions } = this.state
 

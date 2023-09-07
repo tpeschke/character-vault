@@ -83,7 +83,7 @@ export default function weaponsquare({ weapon }) {
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
-        miscparry, thrownweapon, updateAttribute, shieldname, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
+        miscparry, thrownweapon, updateAttribute, shieldname, shieldflanks, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
         shieldcover, miscrecovery, trainrecovery, showArmor } = weapon
     let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart, strRec } = combatStatMods
     if (editing) {
@@ -112,12 +112,10 @@ export default function weaponsquare({ weapon }) {
     }
 
     let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
-        , shieldDrShown = ''
+        , shieldDrShown = '2/d'
 
     if (usingshield && shieldbaseparry) {
         shieldDrShown = shielddr
-    } else if (usingshield && !shieldbaseparry) {
-        shieldDrShown = '2/d'
     }
 
     let armorDR = showArmor ? armordr : 0
@@ -194,7 +192,7 @@ export default function weaponsquare({ weapon }) {
                         </div>
                         <div>
                             <p className='first-cell'>Flanks</p>
-                            <p>6</p>
+                            <p>{shieldflanks && usingshield ? shieldflanks : 1}</p>
                         </div>
                         <div>
                             <p className='first-cell'>Parry</p>

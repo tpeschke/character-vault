@@ -195,7 +195,7 @@ export default class CharacterEditor extends Component {
             temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
-            armorbasefatigue, armorbaseinit, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
+            armorbasefatigue, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
             nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions, prebreatherstress, stressroll, stressdie, currentfavor } = this.state.character
         let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
@@ -237,28 +237,28 @@ export default class CharacterEditor extends Component {
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponone
+                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weapontwo
+                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponthree
+                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, totalFatigue, isRanged: true, updateObject: this.updateObject, editing: true,
+                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: true, updateObject: this.updateObject, editing: true,
                 shieldcover, ...weaponfour
             }
             , armor = {
@@ -267,7 +267,7 @@ export default class CharacterEditor extends Component {
                 armormiscrecovery, armormiscinit, armorFatigue, armorbasefatiguemod, returnZeroIfNaN: this.returnZeroIfNaN
             }
             , shield = {
-                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+                shieldname, shieldflanks, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
                 shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
             }
