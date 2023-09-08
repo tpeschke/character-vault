@@ -84,7 +84,7 @@ export default function weaponsquare({ weapon }) {
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, shieldflanks, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
-        shieldcover, miscrecovery, trainrecovery, showArmor } = weapon
+        shieldcover, miscrecovery, trainrecovery, showArmor, maxrange } = weapon
     let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart, strRec } = combatStatMods
     if (editing) {
         return (
@@ -104,11 +104,15 @@ export default function weaponsquare({ weapon }) {
     let damageString = displayDamage(basedamage, type, traindamage, strDamChart[str])
     if (isRanged) {
         damageString = displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)
-        // damageShell = (
-        //     <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
-        //         <p>{displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)}</p>
-        //         <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
-        //     </div>)
+    }
+    
+    let damageTag = <p className='double'>{damageString}</p>
+    if (position === 'four') {
+        damageTag = (
+            <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
+                <p>{damageString}</p>
+                <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
+            </div>)
     }
 
     let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
@@ -158,8 +162,8 @@ export default function weaponsquare({ weapon }) {
                             <p>Attacks</p>
                         </div>
                         <div>
-                            <p className='first-cell'>Meas</p>
-                            <p>{returnZeroIfNaN(basemeasure)}</p>
+                            <p className='first-cell'>{position === 'four' ? 'R.I.' : 'Meas'}</p>
+                            <p>{maxrange ? (maxrange / 6).toFixed(0) : returnZeroIfNaN(basemeasure)}</p>
                         </div>
                         <div>
                             <p className='first-cell'>Atk</p>
@@ -167,7 +171,7 @@ export default function weaponsquare({ weapon }) {
                         </div>
                         <div className='column'>
                             <p className='first-cell'>Damage</p>
-                            <p className='double'>{damageString}</p>
+                            {damageTag}
                         </div>
                         <div>
                             <p className='first-cell'>Type</p>
@@ -213,9 +217,6 @@ export default function weaponsquare({ weapon }) {
                     </div>
                 </div>
             </div>
-            // <div className={`weaponsquare weapon${position}`}>
-            //     {damageShell}
-            // </div >
         )
     } else {
         return (
@@ -226,7 +227,7 @@ export default function weaponsquare({ weapon }) {
                             <p>Attacks</p>
                         </div>
                         <div>
-                            <p className='first-cell'>Meas</p>
+                            <p className='first-cell'>{position === 'four' ? 'R.I.' : 'Meas'}</p>
                             <p></p>
                         </div>
                         <div>

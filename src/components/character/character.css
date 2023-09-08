@@ -1097,7 +1097,7 @@ div.temperamentLocation p:nth-child(2) {
     justify-content: center;
 }
 
-.drshell .tooltip, .damage .tooltip {
+.damage .tooltip {
     position: absolute;
     right: -63px;
     z-index: -111;
@@ -1145,37 +1145,13 @@ div.temperamentLocation p:nth-child(2) {
     font-size: 18px;
 }
 
-.weaponsquare .damage {
-    top: 95px;
-    left: 48px;
-    height: 38px;
-    width: 61px;
-    word-wrap: break-word;
-    text-align: center;
-    font-size: 10px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    line-height: 13px;
-    justify-content: space-around;
+.weaponsquare .damage { 
+    height: 45px;
 }
 
 .weaponsquare .damage .tooltip p {
     align-items: unset;
     line-height: 18px;
-}
-
-
-.weaponsquare .damage p {
-    word-wrap: break-word;
-    text-align: center;
-    font-size: 12px;
-    height: 38px;
-    width: 58px;
-    display: flex;
-    align-items: center;
-    line-height: 13px;
-    justify-content: space-around;
 }
 
 .weaponsquare .parry {
