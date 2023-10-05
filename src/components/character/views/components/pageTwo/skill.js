@@ -418,7 +418,7 @@ export default function Skills({ skillsObject, editing }) {
         </div>)
         weirdcraft = (<div className="skillRow">
             <p>Weirdcraft</p>
-            <p className="skillcost">{Math.floor((40 + (skillsuites[6].rank * 10)) * (1 - (skilladept * .10)))}</p>
+            <p className="skillcost">{Math.floor((40 - int + (skillsuites[6].rank * 10)) * (1 - (skilladept * .10)))}</p>
             <p className="skillrank">{skillsuites[6].trained ? skillsuites[6].rank : 'U'}</p>
             <p className="skillmod">{Math.max(checkMod[int], checkMod[wis])}</p>
         </div>)
