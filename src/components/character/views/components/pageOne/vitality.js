@@ -73,7 +73,7 @@ export default function Vitality({ vitality, editing }) {
                 <p>1 - {(shownThreshold * .25).toFixed(0) - 1}</p>
             </div>
             <div className="bloodiedLocation">
-                <p>N</p>
+                <p>T</p>
                 <p>{(shownThreshold * .25).toFixed(0)} - {(shownThreshold * .5).toFixed(0) - 1}</p>
             </div>
             <div className="woundedLocation">
@@ -95,7 +95,7 @@ export default function Vitality({ vitality, editing }) {
                     <p>1 - {(stressthreshold * .25).toFixed(0) - 1}</p>
                 </div>
                 <div className="bloodiedLocation">
-                    <p>N</p>
+                    <p>T</p>
                     <p>{(stressthreshold * .25).toFixed(0)} - {(stressthreshold * .5).toFixed(0) - 1}</p>
                 </div>
                 <div className="woundedLocation">
@@ -117,7 +117,7 @@ export default function Vitality({ vitality, editing }) {
                     <p> </p>
                 </div>
                 <div className="bloodiedLocation">
-                    <p>N</p>
+                    <p>T</p>
                     <p> </p>
                 </div>
                 <div className="woundedLocation">
@@ -142,7 +142,7 @@ export default function Vitality({ vitality, editing }) {
                         <p> </p>
                     </div>
                     <div className="bloodiedLocation">
-                        <p>N</p>
+                        <p>T</p>
                         <p> </p>
                     </div>
                     <div className="woundedLocation">
