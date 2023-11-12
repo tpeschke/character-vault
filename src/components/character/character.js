@@ -4,6 +4,8 @@ import { withRouter } from "react-router";
 import axios from "axios"
 import CharacterViewer from './views/viewer'
 import CharacterEditor from './views/editor'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Character extends Component {
     constructor(props) {
@@ -43,7 +45,7 @@ class Character extends Component {
             } else {
                 axios.get(`/api/view/${id}`).then(({ data: character }) => {
                     this.setState({ character }, _ => {
-                        this.setState({loading: false})
+                        this.setState({ loading: false })
                         if (character) {
                             document.title = this.state.character.name
                         } else {
@@ -74,13 +76,21 @@ class Character extends Component {
 
     updateCharacter = function (updatedCharacter) {
         this.setState({ isUpdating: true }, _ => {
-            axios.post('/api/upsertCharacter', updatedCharacter).then(({ data: character }) => {
-                if (this.props.match.path === "/new/:id") {
-                    this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false }, _ => {
-                        this.props.history.push(`/view/${character.id}`)
+            axios.post('/api/upsertCharacter', updatedCharacter).then(({ data }) => {
+                if (data.error) {
+                    toast.error(data.message, {
+                        theme: "colored",
                     })
+                    this.setState({ isUpdating: false })
                 } else {
-                    this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false })
+                    const character = data
+                    if (this.props.match.path === "/new/:id") {
+                        this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false }, _ => {
+                            this.props.history.push(`/view/${character.id}`)
+                        })
+                    } else {
+                        this.setState({ character, isEditingMode: !this.state.isEditingMode, isUpdating: false })
+                    }
                 }
             })
         })
@@ -116,7 +126,7 @@ class Character extends Component {
         if (!character && loading) {
             return (<div className="spinnerShell"><i className="fas fa-spinner"></i></div>)
         } else if (!character && !loading) {
-            
+
             return (<div className="spinnerShell" id="not-found"><p>404</p><p>Character Not Found</p></div>)
         }
         let view = <CharacterViewer character={character} updateSharedCharacter={this.updateSharedCharacter} changeEditStatus={this.changeEditStatus} downloadMode={downloadMode} copyCharacter={this.copyCharacter} />
@@ -127,6 +137,7 @@ class Character extends Component {
         return (
             <div id="loaded">
                 {view}
+                <ToastContainer />
             </div>
         )
     }

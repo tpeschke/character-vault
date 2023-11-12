@@ -11,6 +11,15 @@ function setToMin(value = 0, min) {
 function setToMax(value = 0, max) {
     return +value <= max ? +value : max
 }
+
+function sendErrorForward (location, error, res) {
+    if (res) {
+        res.send({error: true, message: error.message + ` (${location} - EDIT)`})
+    } else {
+        console.log('EDIT ' + location + ' ~ ', error.message)
+    }
+}
+
 editController = {
     addCharacter: (req, res) => {
         const db = req.app.get('db')
@@ -18,8 +27,8 @@ editController = {
             req.params.id = data[0].id
             assembleCharacter(req).then((character) => {
                 res.send(data[0])
-            })
-        })
+            }).catch(e => sendErrorForward('assembling character', e.message, res))
+        }).catch(e => sendErrorForward('upsert character', e.message, res))
     },
     removeCharacter: (req, res) => {
         const db = req.app.get('db')
@@ -33,7 +42,7 @@ editController = {
             //         res.send({ message: 'character removed' })
             //     })
             // }
-        })
+        }).catch(e => sendErrorForward('worth of delete', e.message, res))
     },
     checkToSeeIfDeleteWorthy: async (req) => {
         const db = req.app.get('db')
@@ -65,7 +74,7 @@ editController = {
             } else {
                 return true
             }
-        })
+        }).catch(e => sendErrorForward('worth of delete inner', e.message, res))
     },
     updateSingleThing: (req, res) => {
         const db = req.app.get('db')
@@ -102,7 +111,7 @@ editController = {
                 return body[keyName].map(({ id, value, title }) => {
                     return db.upsert[keyName](id, characterid, title, value)
                 })
-            }))
+            })).catch(e => sendErrorForward('update single thing array', e.message, res))
 
             Promise.all(promiseArray).then(_ => {
                 res.send({ messsage: "updated" })
@@ -110,7 +119,7 @@ editController = {
         } else {
             db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
                 res.send({ messsage: "updated" })
-            })
+            }).catch(e => sendErrorForward('update single thing single', e.message, res))
         }
     },
     updateSingleThingOnObject: (req, res) => {
@@ -126,7 +135,7 @@ editController = {
         }
         db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
             res.send({ messsage: "updated" })
-        })
+        }).catch(e => sendErrorForward('update single thing object', e.message, res))
     },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')
@@ -162,102 +171,102 @@ editController = {
                 return goals.map(({ id: goalid, value }) => {
                     return db.upsert.goals(goalid, id, value)
                 })
-            }).catch(e => console.log("goals ~ ", e)))
+            }).catch(e => sendErrorForward('goals', e, res)))
             promiseArray.push(db.delete.devotions([id, [0, ...devotions.map(devotions => devotions.id)]]).then(_ => {
                 return devotions.map(({ id: devotionid, value, title }) => {
                     return db.upsert.devotions(devotionid, id, title, setToMin(value, 0))
                 })
-            }).catch(e => console.log("devotions ~ ", e)))
+            }).catch(e => sendErrorForward('devotions', e, res)))
             promiseArray.push(db.delete.flaws([id, [0, ...flaws.map(flaws => flaws.id)]]).then(_ => {
                 return flaws.map(({ id: flawid, value, title }) => {
                     return db.upsert.flaws(flawid, id, title, value)
                 })
-            }).catch(e => console.log("flaws ~ ", e)))
+            }).catch(e => sendErrorForward('flaws', e, res)))
             promiseArray.push(db.delete.traits([id, [0, ...req.body.traits.map(traits => traits.id)]]).then(_ => {
                 return req.body.traits.map(({ id: traitsid, value, title }) => {
                     return db.upsert.traits(traitsid, id, title, value)
                 })
-            }).catch(e => console.log("traits ~ ", e)))
+            }).catch(e => sendErrorForward('traits', e, res)))
             promiseArray.push(db.delete.descriptions([id, [0, ...req.body.descriptions.map(descriptions => descriptions.id)]]).then(_ => {
                 return req.body.descriptions.map(({ id: descriptionsid, value, title }) => {
                     return db.upsert.descriptions(descriptionsid, id, title, value)
                 })
-            }).catch(e => console.log("descriptions ~ ", e)))
+            }).catch(e => sendErrorForward('descriptions', e, res)))
             promiseArray.push(db.delete.reputation([id, [0, ...reputation.map(reputation => reputation.id)]]).then(_ => {
                 return reputation.map(({ id: reputationid, value }) => {
                     return db.upsert.reputation(reputationid, id, value)
                 })
-            }).catch(e => console.log("reputation ~ ", e)))
+            }).catch(e => sendErrorForward('reputation', e, res)))
             promiseArray.push(db.delete.gearone([id, [0, ...gearone.map(gearone => gearone.id)]]).then(_ => {
                 return gearone.map(({ id: gearoneid, value, title }) => {
                     return db.upsert.gearone(gearoneid, id, title, value)
                 })
-            }).catch(e => console.log("gear one ~ ", e)))
+            }).catch(e => sendErrorForward('gear one', e, res)))
             promiseArray.push(db.delete.geartwo([id, [0, ...geartwo.map(geartwo => geartwo.id)]]).then(_ => {
                 return geartwo.map(({ id: geartwoid, value, title }) => {
                     return db.upsert.geartwo(geartwoid, id, title, value)
                 })
-            }).catch(e => console.log("gear two ~ ", e)))
+            }).catch(e => sendErrorForward('gear two', e, res)))
             promiseArray.push(db.delete.gearthree([id, [0, ...gearthree.map(gearthree => gearthree.id)]]).then(_ => {
                 return gearthree.map(({ id: gearthreeid, value, title }) => {
                     return db.upsert.gearthree(gearthreeid, id, title, value)
                 })
-            }).catch(e => console.log("gear three ~ ", e)))
+            }).catch(e => sendErrorForward('gear three', e, res)))
             promiseArray.push(db.delete.gearfour([id, [0, ...gearfour.map(gearfour => gearfour.id)]]).then(_ => {
                 return gearfour.map(({ id: gearfourid, value, title }) => {
                     return db.upsert.gearfour(gearfourid, id, title, value)
                 })
-            }).catch(e => console.log("gear four ~ ", e)))
+            }).catch(e => sendErrorForward('gear four', e, res)))
             let { weaponid, trainattack, trainparry, trainrecovery, traindamage, miscattack, miscparry, miscrecovery, miscdamage, miscinit, name, basedamage, baserecovery, baseparry, basemeasure, type, bonus, traits, size } = weaponone
-            promiseArray.push(db.upsert.weaponone(weaponid, id, trainattack, trainparry, trainrecovery, traindamage, miscattack, miscparry, miscrecovery, miscdamage, miscinit, name, basedamage, baserecovery, baseparry, basemeasure, type, bonus, traits, size).catch(e => console.log("weapon one ~ ", e)))
+            promiseArray.push(db.upsert.weaponone(weaponid, id, trainattack, trainparry, trainrecovery, traindamage, miscattack, miscparry, miscrecovery, miscdamage, miscinit, name, basedamage, baserecovery, baseparry, basemeasure, type, bonus, traits, size).catch(e => sendErrorForward('weapon one', e, res)))
 
             let { weaponid: weaponidtwo, trainattack: trainattacktwo, trainparry: trainparrytwo, trainrecovery: trainrecoverytwo, traindamage: traindamagetwo, miscattack: miscattacktwo, miscparry: miscparrytwo, miscrecovery: miscrecoverytwo, miscdamage: miscdamagetwo, miscinit: miscinittwo, name: nametwo, basedamage: basedamagetwo, baserecovery: baserecoverytwo, baseparry: baseparrytwo, basemeasure: basemeasuretwo, type: typetwo, bonus: bonustwo, traits: traitstwo, size: sizetwo } = weapontwo
-            promiseArray.push(db.upsert.weapontwo(weaponidtwo, id, trainattacktwo, trainparrytwo, trainrecoverytwo, traindamagetwo, miscattacktwo, miscparrytwo, miscrecoverytwo, miscdamagetwo, miscinittwo, nametwo, basedamagetwo, baserecoverytwo, baseparrytwo, basemeasuretwo, typetwo, bonustwo, traitstwo, sizetwo).catch(e => console.log("weapon two ~ ", e)))
+            promiseArray.push(db.upsert.weapontwo(weaponidtwo, id, trainattacktwo, trainparrytwo, trainrecoverytwo, traindamagetwo, miscattacktwo, miscparrytwo, miscrecoverytwo, miscdamagetwo, miscinittwo, nametwo, basedamagetwo, baserecoverytwo, baseparrytwo, basemeasuretwo, typetwo, bonustwo, traitstwo, sizetwo).catch(e => sendErrorForward('weapon two', e, res)))
 
             let { weaponid: weaponidthree, trainattack: trainattackthree, trainparry: trainparrythree, trainrecovery: trainrecoverythree, traindamage: traindamagethree, miscattack: miscattackthree, miscparry: miscparrythree, miscrecovery: miscrecoverythree, miscdamage: miscdamagethree, miscinit: miscinitthree, name: namethree, basedamage: basedamagethree, baserecovery: baserecoverythree, baseparry: baseparrythree, basemeasure: basemeasurethree, type: typethree, bonus: bonusthree, traits: traitsthree, size: sizethree } = weaponthree
-            promiseArray.push(db.upsert.weaponthree(weaponidthree, id, trainattackthree, trainparrythree, trainrecoverythree, traindamagethree, miscattackthree, miscparrythree, miscrecoverythree, miscdamagethree, miscinitthree, namethree, basedamagethree, baserecoverythree, baseparrythree, basemeasurethree, typethree, bonusthree, traitsthree, sizethree).catch(e => console.log("weapon three ~ ", e)))
+            promiseArray.push(db.upsert.weaponthree(weaponidthree, id, trainattackthree, trainparrythree, trainrecoverythree, traindamagethree, miscattackthree, miscparrythree, miscrecoverythree, miscdamagethree, miscinitthree, namethree, basedamagethree, baserecoverythree, baseparrythree, basemeasurethree, typethree, bonusthree, traitsthree, sizethree).catch(e => sendErrorForward('weapon three', e, res)))
 
             let { weaponid: weaponidfour, trainattack: trainattackfour, trainrecovery: trainrecoveryfour, traindamage: traindamagefour, miscattack: miscattackfour, miscrecovery: miscrecoveryfour, miscdamage: miscdamagefour, miscinit: miscinitfour, name: namefour, basedamage: basedamagefour, baserecovery: baserecoveryfour, type: typefour, bonus: bonusfour, traits: traitsfour, size: sizefour } = weaponfour
-            promiseArray.push(db.upsert.weaponfour(weaponidfour, id, trainattackfour, trainrecoveryfour, traindamagefour, miscattackfour, miscrecoveryfour, miscdamagefour, miscinitfour, namefour, basedamagefour, baserecoveryfour, typefour, bonusfour, traitsfour, sizefour).catch(e => console.log("weapon four ~ ", e)))
+            promiseArray.push(db.upsert.weaponfour(weaponidfour, id, trainattackfour, trainrecoveryfour, traindamagefour, miscattackfour, miscrecoveryfour, miscdamagefour, miscinitfour, namefour, basedamagefour, baserecoveryfour, typefour, bonusfour, traitsfour, sizefour).catch(e => sendErrorForward('weapon four', e, res)))
 
-            promiseArray.push(db.upsert.armor(armorid, id, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatiguemod, armorbaseinit).catch(e => console.log("armor ~ ", armorid, id, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatiguemod, armorbaseinit, e)))
-            promiseArray.push(db.upsert.shield(shieldid, id, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry ? +shieldtrainparry : 0, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldflanks).catch(e => console.log("shield ~ ", e)))
+            promiseArray.push(db.upsert.armor(armorid, id, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatiguemod, armorbaseinit).catch(e => sendErrorForward('armor', e, res)))
+            promiseArray.push(db.upsert.shield(shieldid, id, shieldname, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry ? +shieldtrainparry : 0, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldflanks).catch(e => sendErrorForward('shield', e, res)))
 
             let { nativeid, language, rank: languagerank } = nativelanguage
-            promiseArray.push(db.upsert.nativeLanguage(nativeid, id, language, languagerank).catch(e => console.log("native language ~ ", e)))
+            promiseArray.push(db.upsert.nativeLanguage(nativeid, id, language, languagerank).catch(e => sendErrorForward('native language', e, res)))
 
             skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
-                    promiseArray.push(db.upsert.insert.skillsuites(rank, characterskillsuitesid, trained).catch(e => console.log("skill suite insert ~ ", e)))
+                    promiseArray.push(db.upsert.insert.skillsuites(rank, characterskillsuitesid, trained).catch(e => sendErrorForward('skill suites update', e, res)))
                 } else if (!characterskillsuitesid) {
-                    promiseArray.push(db.upsert.add.skillsuites(skillsuiteid, id, rank, trained).catch(e => console.log("skill suite add ~ ", e)))
+                    promiseArray.push(db.upsert.add.skillsuites(skillsuiteid, id, rank, trained).catch(e => sendErrorForward('skill suites add', e, res)))
                 }
             })
             promiseArray.push(db.delete.skills([id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
                 return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
-                    return db.upsert.skills(skillsid, id, skill, cost, rank, mod).catch(e => console.log("skills upsert ~ ", e))
+                    return db.upsert.skills(skillsid, id, skill, cost, rank, mod).catch(e => sendErrorForward('skills update', e, res))
                 })
-            }).catch(e => console.log("skills delete ~ ", e)))
+            }).catch(e => sendErrorForward('skills delete', e, res)))
 
             combatskillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
-                    promiseArray.push(db.upsert.insert.skillsuitescombat(rank, characterskillsuitesid, trained).catch(e => console.log("combat skill suite insert ~ ", e)))
+                    promiseArray.push(db.upsert.insert.skillsuitescombat(rank, characterskillsuitesid, trained).catch(e => sendErrorForward('combat skill suites update', e, res)))
                 } else if (!characterskillsuitesid) {
-                    promiseArray.push(db.upsert.add.skillsuitescombat(skillsuiteid, id, rank, trained).catch(e => console.log("combat skill suite add ~ ", e)))
+                    promiseArray.push(db.upsert.add.skillsuitescombat(skillsuiteid, id, rank, trained).catch(e => sendErrorForward('combat skill suites add', e, res)))
                 }
             })
             promiseArray.push(db.delete.skillscombat([id, [0, ...combatskills.map(skills => skills.id)]]).then(_ => {
                 return combatskills.map(({ id: skillsid, cost, skill, rank, mod }) => {
-                    return db.upsert.skillscombat(skillsid, id, skill, cost, rank, mod).catch(e => console.log("combat skills upsert ~ ", e))
+                    return db.upsert.skillscombat(skillsid, id, skill, cost, rank, mod).catch(e => sendErrorForward('combat skills update', e, res))
                 })
-            }).catch(e => console.log("skills delete ~ ", e)))
+            }).catch(e => sendErrorForward('combat skills delete', e, res)))
 
             Promise.all(promiseArray).then(_ => {
                 assembleCharacter(req).then((character) => {
                     res.send(character)
                 })
-            })
-        })
+            }).catch(e => sendErrorForward('main final promise', e.message, res))
+        }).catch(e => sendErrorForward('main update', e, res))
     }
 }
 

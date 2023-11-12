@@ -1,3 +1,11 @@
+function sendErrorForward (location, error, res) {
+  if (res) {
+      res.send({error: true, message: error.message + ` (${location} - VIEW)`})
+  } else {
+      console.log('VIEW ' + location + ' ~ ', error.message)
+  }
+}
+
 viewController = {
   isUserAboveLimit: function (req, res) {
     const db = req.app.get('db')
@@ -8,7 +16,7 @@ viewController = {
         let count = result[0].count
         let limit = (req.user.patreon * 20) + 10
         res.send({ isUserAboveLimit: count >= limit })
-      })
+      }).catch(e => sendErrorForward('is user above limit', e.message, res))
     }
   },
   viewUsersCharacters: function (req, res) {
@@ -16,7 +24,7 @@ viewController = {
     let { id } = req.user
     db.get.allUsersCharacters(id).then(data => {
       res.send(data)
-    })
+    }).catch(e => sendErrorForward('view users characters', e.message, res))
   },
   viewAllCharacters: function (req, res) {
     const db = req.app.get('db')
@@ -26,7 +34,7 @@ viewController = {
     }
     db.get.allCharacters(id).then(data => {
       res.send(data)
-    })
+    }).catch(e => sendErrorForward('view all characters', e.message, res))
   },
   viewCharacter: function (req, res) {
     if (req.query.template) {
@@ -120,11 +128,11 @@ viewController = {
         })
 
         res.send(character)
-      })
+      }).catch(e => sendErrorForward('assemble one', e.message, res))
     } else {
       viewController.assembleCharacter(req).then(character => {
         res.send(character)
-      })
+      }).catch(e => sendErrorForward('assemble two', e.message, res))
     }
   },
   assembleCharacter: async function (req) {
@@ -137,51 +145,51 @@ viewController = {
         promiseArray.push(db.get.damageone(character.id).then(damageone => {
           character.damageone = damageone
           return true
-        }).catch(e => console.log("----------------------------- damage one -----------------------------", e)))
+        }).catch(e => sendErrorForward('damage one', e.message, res)))
         promiseArray.push(db.get.damagetwo(character.id).then(damagetwo => {
           character.damagetwo = damagetwo
           return true
-        }).catch(e => console.log("----------------------------- damage two -----------------------------", e)))
+        }).catch(e => sendErrorForward('damage two', e.message, res)))
         promiseArray.push(db.get.goals(character.id).then(goals => {
           character.goals = goals
           return true
-        }).catch(e => console.log("----------------------------- goals -----------------------------", e)))
+        }).catch(e => sendErrorForward('goals', e.message, res)))
         promiseArray.push(db.get.devotions(character.id).then(devotions => {
           character.devotions = devotions
           return true
-        }).catch(e => console.log("----------------------------- devotions -----------------------------", e)))
+        }).catch(e => sendErrorForward('devotions', e.message, res)))
         promiseArray.push(db.get.flaws(character.id).then(flaws => {
           character.flaws = flaws
           return true
-        }).catch(e => console.log("----------------------------- flaws -----------------------------", e)))
+        }).catch(e => sendErrorForward('flaws', e.message, res)))
         promiseArray.push(db.get.traits(character.id).then(traits => {
           character.traits = traits
           return true
-        }).catch(e => console.log("----------------------------- traits -----------------------------", e)))
+        }).catch(e => sendErrorForward('convictions', e.message, res)))
         promiseArray.push(db.get.descriptions(character.id).then(descriptions => {
           character.descriptions = descriptions
           return true
-        }).catch(e => console.log("----------------------------- descriptions -----------------------------", e)))
+        }).catch(e => sendErrorForward('descriptions', e.message, res)))
         promiseArray.push(db.get.reputation(character.id).then(reputation => {
           character.reputation = reputation
           return true
-        }).catch(e => console.log("----------------------------- reputation -----------------------------", e)))
+        }).catch(e => sendErrorForward('reputations', e.message, res)))
         promiseArray.push(db.get.gearone(character.id).then(gearone => {
           character.gearone = gearone
           return true
-        }).catch(e => console.log("----------------------------- gear one -----------------------------", e)))
+        }).catch(e => sendErrorForward('gear one', e.message, res)))
         promiseArray.push(db.get.geartwo(character.id).then(geartwo => {
           character.geartwo = geartwo
           return true
-        }).catch(e => console.log("----------------------------- gear two -----------------------------", e)))
+        }).catch(e => sendErrorForward('gear two', e.message, res)))
         promiseArray.push(db.get.gearthree(character.id).then(gearthree => {
           character.gearthree = gearthree
           return true
-        }).catch(e => console.log("----------------------------- gear three -----------------------------", e)))
+        }).catch(e => sendErrorForward('gear three', e.message, res)))
         promiseArray.push(db.get.gearfour(character.id).then(gearfour => {
           character.gearfour = gearfour
           return true
-        }).catch(e => console.log("----------------------------- gear four -----------------------------", e)))
+        }).catch(e => sendErrorForward('gear four', e.message, res)))
         promiseArray.push(db.get.weaponone(character.id).then(weaponone => {
           if (weaponone[0]) {
             weaponone[0].position = 'one'
@@ -190,7 +198,7 @@ viewController = {
             character.weaponone = { position: 'one' }
           }
           return true
-        }).catch(e => console.log("----------------------------- weapon one -----------------------------", e)))
+        }).catch(e => sendErrorForward('weapon one', e.message, res)))
         promiseArray.push(db.get.weapontwo(character.id).then(weapontwo => {
           if (weapontwo[0]) {
             weapontwo[0].position = 'two'
@@ -199,7 +207,7 @@ viewController = {
             character.weapontwo = { position: 'two' }
           }
           return true
-        }).catch(e => console.log("----------------------------- weapon two -----------------------------", e)))
+        }).catch(e => sendErrorForward('twapon two', e.message, res)))
         promiseArray.push(db.get.weaponthree(character.id).then(weaponthree => {
           if (weaponthree[0]) {
             weaponthree[0].position = 'three'
@@ -208,7 +216,7 @@ viewController = {
             character.weaponthree = { position: 'three' }
           }
           return true
-        }).catch(e => console.log("----------------------------- weapon three -----------------------------", e)))
+        }).catch(e => sendErrorForward('weapon three', e.message, res)))
         promiseArray.push(db.get.weaponfour(character.id).then(weaponfour => {
           if (weaponfour[0]) {
             weaponfour[0].position = 'four'
@@ -217,13 +225,13 @@ viewController = {
             character.weaponfour = { position: 'four' }
           }
           return true
-        }).catch(e => console.log("----------------------------- weapon four -----------------------------", e)))
+        }).catch(e => sendErrorForward('weapon four', e.message, res)))
         promiseArray.push(db.get.armor(character.id).then(armor => {
           character = { ...armor[0], ...character }
-        }).catch(e => console.log("----------------------------- armor -----------------------------", e)))
+        }).catch(e => sendErrorForward('armor', e.message, res)))
         promiseArray.push(db.get.shield(character.id).then(shield => {
           character = { ...shield[0], ...character }
-        }).catch(e => console.log("----------------------------- shield -----------------------------", e)))
+        }).catch(e => sendErrorForward('shield', e.message, res)))
         promiseArray.push(db.get.skillsuites(character.id).then(skillsuites => {
           let emptySkillSuites = [
             { skillsuiteid: 1, skillsuitename: 'Athletics', skillsuitebasecost: 30, rank: 0, trained: false },
@@ -244,11 +252,11 @@ viewController = {
             }
           }
           character.skillsuites = emptySkillSuites
-        }).catch(e => console.log("----------------------------- skill suites -----------------------------", e)))
+        }).catch(e => sendErrorForward('skill suites', e.message, res)))
         promiseArray.push(db.get.skills(character.id).then(skills => {
           character.skills = skills
           return true
-        }).catch(e => console.log("----------------------------- skills -----------------------------", e)))
+        }).catch(e => sendErrorForward('skills', e.message, res)))
         promiseArray.push(db.get.skillsuitescombat(character.id).then(skillsuites => {
           let emptySkillSuites = [
             { skillsuiteid: 1, skillsuitename: 'Armor', skillsuitebasecost: 40, rank: 0, trained: false },
@@ -268,14 +276,14 @@ viewController = {
           }
   
           character.combatskillsuites = emptySkillSuites
-        }).catch(e => console.log("----------------------------- combat skill suites -----------------------------", e)))
+        }).catch(e => sendErrorForward('combat skill suites', e.message, res)))
         promiseArray.push(db.get.skillscombat(character.id).then(skills => {
           character.combatskills = skills
           return true
-        }).catch(e => console.log("----------------------------- combat skills -----------------------------", e)))
+        }).catch(e => sendErrorForward('combat skills', e.message, res)))
         promiseArray.push(db.get.nativeLanguage(character.id).then(nativelanguage => {
           character.nativelanguage = nativelanguage[0] || {}
-        }).catch(e => console.log("----------------------------- native languages -----------------------------", e)))
+        }).catch(e => sendErrorForward('native language', e.message, res)))
       }
 
       return Promise.all(promiseArray).then(_ => {
@@ -284,7 +292,7 @@ viewController = {
         }
         return character
       })
-    })
+    }).catch(e => sendErrorForward('main final promise', e.message, res))
   },
   getCharacterForCombatCounter: (req, res) => {
     const db = req.app.get('db')
@@ -318,15 +326,15 @@ viewController = {
           character.selectedName = character.weapons[0].name
         }
         return true
-      }))
+      })).catch(e => sendErrorForward('combat weapons', e.message, res))
       Promise.all(finalPromise).then(actualFinal => {
         if (character.name && character.recovery) {
           res.send(character)
         } else {
           res.send({ message: "This id doesn't belong to a valid character", color: 'red' })
         }
-      })
-    })
+      }).catch(e => sendErrorForward('combat final promise', e.message, res))
+    }).catch(e => sendErrorForward('get character for combat', e.message, res))
   }
 }
 
