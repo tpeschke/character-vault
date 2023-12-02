@@ -7,7 +7,8 @@ export default class ViewList extends Component {
         this.state = {
             stylings: { position: 'relative', ...props.stylings },
             limit: props.limit,
-            listArray: props.listArray || []
+            listArray: props.listArray || [],
+            objectKey: props.objectKey || 'value'
         }
     }
 
@@ -16,12 +17,12 @@ export default class ViewList extends Component {
     };
 
     render() {
-        let { stylings, listArray, limit } = this.state
+        let { stylings, listArray, limit, objectKey } = this.state
         let inputStyles = {
             width: '100%'
         }
         let listOfThingsToDisplay = listArray.map((item, i) => {
-            return <p style={inputStyles} key={`${this.makeId()}`}>{item.value}</p>
+            return <p style={inputStyles} key={`${this.makeId()}`}>{item[objectKey]}</p>
         })
 
         let stripes = []

@@ -11,6 +11,7 @@ export default class EditList extends Component {
             updateFunction: props.updateFunction,
             type: props.type,
             height: props.height,
+            objectKey: props.objectKey || 'value'
         }
     }
 
@@ -38,18 +39,18 @@ export default class EditList extends Component {
         if (!value || value === '') {
             listArray.splice(index, 1)
         } else {
-            listArray[index] = { ...listArray[index], value }
+            listArray[index] = { ...listArray[index], [this.state.objectKey]: value }
         }
         this.setState({ listArray }, _ => this.state.updateFunction(this.state.listArray, this.state.type))
     }
 
     render() {
-        let { stylings, listArray, limit, height } = this.state
+        let { stylings, listArray, limit, height, objectKey } = this.state
         let listOfInputs = listArray.map((item, i) => {
             let inputStyles = {
                 width: '100%'
             }
-            return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item.value} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item[objectKey]} onBlur={e => this.updateValue(e.target.value, i)} />
         })
 
         let inputStyles = {
