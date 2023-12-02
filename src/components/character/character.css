@@ -881,7 +881,7 @@ input.secondarylevelLocation {
 .temperamentLocation {
     left: 20px;
     top: 383px;
-    width: 156px;
+    width: 205px;
     background-color: lightgray;
 }
 
@@ -899,7 +899,7 @@ strong {
 
 .racial-temp-edit-shell {
     display: flex;
-    width: 200px;
+    width: 224px;
     background-color: lightgray;
 }
 
@@ -910,17 +910,7 @@ div.temperamentLocation {
 }
 
 div.temperamentLocation strong {
-    margin-top: 4px;
-    margin-right: 4px;
-}
-
-div.temperamentLocation p:last-child {
-    min-width: 25px;
-    text-align: center;
-}
-
-div.temperamentLocation p:nth-child(2) {
-    min-width: 168px;
+    margin: 0px 4px;
 }
 
 .racial-temp-edit-shell strong {

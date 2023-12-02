@@ -115,7 +115,7 @@ export default function weaponsquare({ weapon }) {
             </div>)
     }
 
-    let parryShown = isRanged ? 'n/a' : usingshield ? shieldbaseparry + shieldtrainparry + shieldmiscparry : baseparry + trainparry + miscparry
+    let parryShown = isRanged ? 'n/a' : usingshield ? `${shieldbaseparry + shieldtrainparry + shieldmiscparry} (${baseparry + trainparry + miscparry})` : baseparry + trainparry + miscparry
         , shieldDrShown = '2/d'
 
     if (usingshield && shieldbaseparry) {
@@ -200,7 +200,7 @@ export default function weaponsquare({ weapon }) {
                         </div>
                         <div>
                             <p className='first-cell'>Parry</p>
-                            <p>{returnZeroIfNaN(parryShown)}</p>
+                            <p>{parryShown}</p>
                         </div>
                         <div className='column'>
                             <p className='first-cell'>Cover</p>

@@ -36,12 +36,12 @@ export default function Social({ social, editing }) {
                         <h2>Devotions</h2>
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
                         <h2>Flaws</h2>
-                        <EditPairList  rowWidth={'224px'} listArray={flaws} limit={4} updateFunction={updateAttribute} type={"flaws"}/>
+                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
+                        <EditPairList  rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"}/>
                     </div>
                     <div className="socialRightShell">
                         <h2>Descriptions</h2>
-                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /><input className="temperamentrankLocation" type="int" defaultValue={temperamentrank} onChange={event => updateAttribute(event.target.value, "temperamentrank")} /></div>
-                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={4} updateFunction={updateAttribute} type={"descriptions"} />
+                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
                         <h2>Convictions</h2>
                         <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
                     </div>
@@ -108,12 +108,12 @@ export default function Social({ social, editing }) {
                     <h2>Devotions</h2>
                     <ViewPairList listArray={devotions} limit={5} />
                     <h2>Flaws</h2>
-                    <ViewPairList listArray={flaws} limit={4} />
+                    <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p></div>
+                    <ViewPairList listArray={flaws} limit={3} />
                 </div>
                 <div className="socialRightShell">
                     <h2>Descriptions</h2>
-                    <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p><p>{temperamentrank}</p></div>
-                    <ViewPairList listArray={descriptions} limit={4} />
+                    <ViewPairList listArray={descriptions} limit={5} />
                     <h2>Convictions</h2>
                     <ViewPairList listArray={traits} limit={8} />
                 </div>
