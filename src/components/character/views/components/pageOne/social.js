@@ -40,10 +40,10 @@ export default function Social({ social, editing }) {
                         <EditList objectKey={'title'} rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"}/>
                     </div>
                     <div className="socialRightShell">
-                        <h2>Descriptions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
                         <h2>Convictions</h2>
                         <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
+                        <h2>Descriptions</h2>
+                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
                     </div>
                 </div>
                 <h2>Reputation</h2>
@@ -112,10 +112,10 @@ export default function Social({ social, editing }) {
                     <ViewList listArray={flaws} limit={3} objectKey={'title'} />
                 </div>
                 <div className="socialRightShell">
-                    <h2>Descriptions</h2>
-                    <ViewPairList listArray={descriptions} limit={5} />
                     <h2>Convictions</h2>
                     <ViewPairList listArray={traits} limit={8} />
+                    <h2>Descriptions</h2>
+                    <ViewPairList listArray={descriptions} limit={5} />
                 </div>
             </div>
             <h2>Reputation</h2>

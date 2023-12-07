@@ -2,14 +2,23 @@ import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
-function calculatePanickedLeft(honor, dwarfModifier) {
+function calculatePanickedLeft(honor, dwarfModifier, stresslockout) {
     let left = '0px'
         , display = 'inherit'
+    const modifedStressLockout = dwarfModifier ? stresslockout - 1 : stresslockout
 
     if (dwarfModifier) {
         display = 'none'
+    } else if (modifedStressLockout === 4) {
+        left = '-23px'
+    } else if (modifedStressLockout === 3) {
+        left = '0px'
+    } else if (modifedStressLockout === 2) {
+        left = '81px'
+    } else if (modifedStressLockout === 1) {
+        left = '163px'
     } else {
-        left = '244px'
+        left = '245px'
     }
 
     return { left, display }
@@ -46,7 +55,7 @@ function showAlwaysFatiguedPenalty(fatigue) {
 export default function Vitality({ vitality, editing }) {
     let { shownVitality, overCarry, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, 
         vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue, 
-        armorFatigue, usingshield, dwarfModifier, prebreatherstress, stressroll } = vitality
+        armorFatigue, usingshield, dwarfModifier, prebreatherstress, stressroll, stresslockout } = vitality
 
     let currentDamage = 0
     if (damageone && damagetwo) {
@@ -59,10 +68,18 @@ export default function Vitality({ vitality, editing }) {
     let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
     let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
-        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor, dwarfModifier)}></div>
+        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor, dwarfModifier, stresslockout)}>{stresslockout >= 4 ? 'A' : '' }</div>
         woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}>{showAlwaysFatiguedPenalty(usingshield ? totalFatigue : armorFatigue)}</div>
         damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
         damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+    }
+
+    const updateStressLockout = (value) => {
+        if (value === stresslockout) {
+            updateAttribute(null, 'stresslockout')
+        } else {
+            updateAttribute(value, 'stresslockout')
+        }
     }
 
     let stressCategories = (
@@ -70,19 +87,19 @@ export default function Vitality({ vitality, editing }) {
             {panickedCircle}
             <div className="hurtLocation">
                 <p>U</p>
-                <p>1 - {(shownThreshold * .25).toFixed(0) - 1}</p>
+                <p className={stresslockout >= 4 ? 'strikeout' : ''}>1 - {(shownThreshold * .25).toFixed(0) - 1}</p>
             </div>
             <div className="bloodiedLocation">
                 <p>T</p>
-                <p>{(shownThreshold * .25).toFixed(0)} - {(shownThreshold * .5).toFixed(0) - 1}</p>
+                <p className={stresslockout >= 3 ? 'strikeout' : ''}>{(shownThreshold * .25).toFixed(0)} - {(shownThreshold * .5).toFixed(0) - 1}</p>
             </div>
             <div className="woundedLocation">
                 <p>S</p>
-                <p>{(shownThreshold * .50).toFixed(0)} - {(shownThreshold * .75).toFixed(0) - 1}</p>
+                <p className={stresslockout >= 2 ? 'strikeout' : ''}>{(shownThreshold * .50).toFixed(0)} - {(shownThreshold * .75).toFixed(0) - 1}</p>
             </div>
             <div className="criticalLocation">
                 <p>Br</p>
-                <p>{(shownThreshold * .75).toFixed(0)} - {shownThreshold}</p>
+                <p className={stresslockout >= 1 ? 'strikeout' : ''}>{(shownThreshold * .75).toFixed(0)} - {shownThreshold}</p>
             </div>
         </div>
     )
@@ -139,19 +156,19 @@ export default function Vitality({ vitality, editing }) {
                 <div className="woundCategoryShell">
                     <div className="hurtLocation">
                         <p>U</p>
-                        <p> </p>
+                        <p><i className={stresslockout >= 4 ? 'locked-out fa-solid fa-rectangle-xmark' : 'fa-solid fa-rectangle-xmark'} onClick={_ => updateStressLockout(4)}></i></p>
                     </div>
                     <div className="bloodiedLocation">
                         <p>T</p>
-                        <p> </p>
+                        <p><i className={stresslockout >= 3 ? 'locked-out fa-solid fa-rectangle-xmark' : 'fa-solid fa-rectangle-xmark'} onClick={_ => updateStressLockout(3)}></i></p>
                     </div>
                     <div className="woundedLocation">
                         <p>S</p>
-                        <p> </p>
+                        <p><i className={stresslockout >= 2 ? 'locked-out fa-solid fa-rectangle-xmark' : 'fa-solid fa-rectangle-xmark'} onClick={_ => updateStressLockout(2)}></i></p>
                     </div>
                     <div className="criticalLocation">
                         <p>Br</p>
-                        <p> </p>
+                        <p><i className={stresslockout >= 1 ? 'locked-out fa-solid fa-rectangle-xmark' : 'fa-solid fa-rectangle-xmark'} onClick={_ => updateStressLockout(1)}></i></p>
                     </div>
                 </div>
                 <div className="editingStressThreshold">

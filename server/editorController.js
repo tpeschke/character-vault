@@ -142,7 +142,7 @@ editController = {
 
         let { id, userid, name, race, primarya, secondarya, primarylevel, secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality, vitalitydice, vitalityroll, wis, int, level, temperament, goals, devotions, flaws, reputation, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog,
             run, sprint, weaponone, weapontwo, weaponthree, weaponfour, armorid, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery, armorbasefatiguemod, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef,
-            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits, martialadept, combatskills, combatskillsuites, secretgeneralnotes, descriptions, temperamentrank, prebreatherstress, stressroll, stressdie, currentfavor } = req.body
+            shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, shieldid, skillsuites, skills, nativelanguage, skilladept, traits, martialadept, combatskills, combatskillsuites, secretgeneralnotes, descriptions, temperamentrank, prebreatherstress, stressroll, stressdie, currentfavor, stresslockout } = req.body
         skilladept = setToMin(skilladept, 0)
         level = setToMin(level, 1)
         crp = setToMin(crp, 0)
@@ -164,7 +164,7 @@ editController = {
         prebreatherstress = setToMin(prebreatherstress, 0)
         stressroll = setToMin(stressroll, 0)
 
-        db.upsert.character(id, req.user.id, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept, martialadept, secretgeneralnotes, temperamentrank, prebreatherstress, stressroll, stressdie, currentfavor).then((data) => {
+        db.upsert.character(id, req.user.id, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept, martialadept, secretgeneralnotes, temperamentrank, prebreatherstress, stressroll, stressdie, currentfavor, stresslockout).then((data) => {
             req.params.id = id
             let promiseArray = []
             promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals => goals.id)]]).then(_ => {

@@ -10,6 +10,10 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+.strikeout {
+    text-decoration: line-through;
+}
+
 .buttonStrikeThrough {
     text-decoration: line-through;
 }
@@ -1593,6 +1597,18 @@ div.temperamentLocation strong {
     left: 20px;
 }
 
+.abilitiesShell .ability-header {
+    display: flex;
+}
+
+.abilitiesShell .ability-header h1 {
+    width: 33.33%;
+}
+
+.abilitiesShell .ability-header h1:first-child {
+    width: 66.67%;
+}
+
 .abilitiesContentShell {
     display: flex;
     justify-content: space-between;
@@ -2725,4 +2741,19 @@ textarea.traitsLocation {
 
 #not-found p:first-child {
     font-size: 145px;
+}
+
+.fa-rectangle-xmark {
+    margin-top: 2px;
+    font-size: 16px;
+    color: grey;
+    transition: .6s;
+}
+
+.fa-rectangle-xmark:hover {
+    color: orange;
+}
+
+.locked-out {
+    color: red
 }
