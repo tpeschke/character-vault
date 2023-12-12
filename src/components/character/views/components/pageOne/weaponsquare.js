@@ -150,6 +150,8 @@ export default function weaponsquare({ weapon }) {
         armorInit = armormiscinit
     }
 
+    let parryDr = !usingshield && trainparry && Math.floor(trainparry / 3) > 0 ? `+${Math.floor(trainparry / 3)}` : ''
+
     const isBow = name ? name.toUpperCase().includes('BOW') : false
 
     if (id !== 'blank') {
@@ -208,7 +210,7 @@ export default function weaponsquare({ weapon }) {
                         </div>
                         <div className='column'>
                             <p className='first-cell'>Parry DR</p>
-                            <p>{shieldDrShown}</p>
+                            <p>{shieldDrShown}{parryDr}</p>
                         </div>
                         <div className='column'>
                             <p className='first-cell'>DR</p>
