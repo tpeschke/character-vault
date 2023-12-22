@@ -1,4 +1,6 @@
 const { assembleCharacter } = require('./viewController')
+const { sendErrorForwardNoFile, checkForContentTypeBeforeSending } = require('./helpers')
+const sendErrorForward = sendErrorForwardNoFile('editor controller')
 
 function setToMinAndMax(value = 0, min, max) {
     return setToMax(setToMin(value, min), max)
@@ -11,22 +13,13 @@ function setToMin(value = 0, min) {
 function setToMax(value = 0, max) {
     return +value <= max ? +value : max
 }
-
-function sendErrorForward (location, error, res) {
-    if (res) {
-        res.send({error: true, message: error.message + ` (${location} - EDIT)`})
-    } else {
-        console.log('EDIT ' + location + ' ~ ', error.message)
-    }
-}
-
 editController = {
     addCharacter: (req, res) => {
         const db = req.app.get('db')
         db.upsert.add.character(req.user.id).then(data => {
             req.params.id = data[0].id
             assembleCharacter(req).then((character) => {
-                res.send(data[0])
+                checkForContentTypeBeforeSending(res, data[0])
             }).catch(e => sendErrorForward('assembling character', e.message, res))
         }).catch(e => sendErrorForward('upsert character', e.message, res))
     },
@@ -35,11 +28,11 @@ editController = {
         editController.checkToSeeIfDeleteWorthy(req).then(shouldDelete => {
             // if (shouldDelete) {
                 db.delete.all(req.params.characterid).then(_ => {
-                    res.send({ message: 'character removed' })
+                    checkForContentTypeBeforeSending(res, { message: 'character removed' })
                 })
             // } else {
             //     db.update.removeCharacter(req.params.characterid).then(data => {
-            //         res.send({ message: 'character removed' })
+            //         checkForContentTypeBeforeSending(res, { message: 'character removed' })
             //     })
             // }
         }).catch(e => sendErrorForward('worth of delete', e.message, res))
@@ -114,11 +107,11 @@ editController = {
             })).catch(e => sendErrorForward('update single thing array', e.message, res))
 
             Promise.all(promiseArray).then(_ => {
-                res.send({ messsage: "updated" })
+                checkForContentTypeBeforeSending(res, { messsage: "updated" })
             })
         } else {
             db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
-                res.send({ messsage: "updated" })
+                checkForContentTypeBeforeSending(res, { messsage: "updated" })
             }).catch(e => sendErrorForward('update single thing single', e.message, res))
         }
     },
@@ -134,7 +127,7 @@ editController = {
             }
         }
         db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
-            res.send({ messsage: "updated" })
+            checkForContentTypeBeforeSending(res, { messsage: "updated" })
         }).catch(e => sendErrorForward('update single thing object', e.message, res))
     },
     updateOrAddCharacter: (req, res) => {
@@ -263,7 +256,7 @@ editController = {
 
             Promise.all(promiseArray).then(_ => {
                 assembleCharacter(req).then((character) => {
-                    res.send(character)
+                    checkForContentTypeBeforeSending(res, character)
                 })
             }).catch(e => sendErrorForward('main final promise', e.message, res))
         }).catch(e => sendErrorForward('main update', e, res))

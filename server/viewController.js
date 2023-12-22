@@ -1,21 +1,16 @@
-function sendErrorForward (location, error, res) {
-  if (res) {
-      res.send({error: true, message: error.message + ` (${location} - VIEW)`})
-  } else {
-      console.log('VIEW ' + location + ' ~ ', error.message)
-  }
-}
+const { sendErrorForwardNoFile, checkForContentTypeBeforeSending } = require('./helpers')
+const sendErrorForward = sendErrorForwardNoFile('view controller')
 
 viewController = {
   isUserAboveLimit: function (req, res) {
     const db = req.app.get('db')
     if (req.user.id === 1) {
-      res.send({ isUserAboveLimit: false })
+      checkForContentTypeBeforeSending(res, { isUserAboveLimit: false })
     } else {
       db.get.userCharacterCount(req.user.id).then(result => {
         let count = result[0].count
         let limit = (req.user.patreon * 20) + 10
-        res.send({ isUserAboveLimit: count >= limit })
+        checkForContentTypeBeforeSending(res, { isUserAboveLimit: count >= limit })
       }).catch(e => sendErrorForward('is user above limit', e.message, res))
     }
   },
@@ -23,7 +18,7 @@ viewController = {
     const db = req.app.get('db')
     let { id } = req.user
     db.get.allUsersCharacters(id).then(data => {
-      res.send(data)
+      checkForContentTypeBeforeSending(res, data)
     }).catch(e => sendErrorForward('view users characters', e.message, res))
   },
   viewAllCharacters: function (req, res) {
@@ -33,7 +28,7 @@ viewController = {
       id = req.user.id
     }
     db.get.allCharacters(id).then(data => {
-      res.send(data)
+      checkForContentTypeBeforeSending(res, data)
     }).catch(e => sendErrorForward('view all characters', e.message, res))
   },
   viewCharacter: function (req, res) {
@@ -127,11 +122,11 @@ viewController = {
           return skill
         })
 
-        res.send(character)
+        checkForContentTypeBeforeSending(res, character)
       }).catch(e => sendErrorForward('assemble one', e.message, res))
     } else {
       viewController.assembleCharacter(req).then(character => {
-        res.send(character)
+        checkForContentTypeBeforeSending(res, character)
       }).catch(e => sendErrorForward('assemble two', e.message, res))
     }
   },
@@ -329,9 +324,9 @@ viewController = {
       })).catch(e => sendErrorForward('combat weapons', e.message, res))
       Promise.all(finalPromise).then(actualFinal => {
         if (character.name && character.recovery) {
-          res.send(character)
+          checkForContentTypeBeforeSending(res, character)
         } else {
-          res.send({ message: "This id doesn't belong to a valid character", color: 'red' })
+          checkForContentTypeBeforeSending(res, { message: "This id doesn't belong to a valid character", color: 'red' })
         }
       }).catch(e => sendErrorForward('combat final promise', e.message, res))
     }).catch(e => sendErrorForward('get character for combat', e.message, res))
