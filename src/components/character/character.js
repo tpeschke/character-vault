@@ -80,6 +80,7 @@ class Character extends Component {
                 if (data.error) {
                     toast.error(data.message, {
                         theme: "colored",
+                        autoClose: false,
                     })
                     this.setState({ isUpdating: false })
                 } else {
