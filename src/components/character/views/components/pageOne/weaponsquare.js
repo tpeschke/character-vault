@@ -14,32 +14,32 @@ const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     }
     if (!isMelee) {
         const mins = {
-            S: 3,
-            M: 4,
-            L: 5,
-            H: 6
+            S: 4,
+            M: 5,
+            L: 6,
+            H: 7
         }
 
         minimumRecovery = mins[size.toUpperCase()]
     } else {
         const mins = {
             P: {
-                S: 2,
-                M: 2,
-                L: 2,
-                H: 2
+                S: 3,
+                M: 3,
+                L: 3,
+                H: 3
             },
             S: {
-                S: 3,
-                M: 4,
-                L: 5,
-                H: 6
-            },
-            C: {
                 S: 4,
                 M: 5,
                 L: 6,
                 H: 7
+            },
+            C: {
+                S: 5,
+                M: 6,
+                L: 7,
+                H: 8
             }
         }
 
