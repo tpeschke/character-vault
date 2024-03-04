@@ -35,7 +35,7 @@ export default class Modal extends Component {
                     <div className="modelInnards">
                         <p>You'll still be able to access it through the Vault if you've filled out the following:</p>
                         <ul>
-                            <li>Race</li>
+                            <li>Ancestry</li>
                             <li>Archetypes</li>
                             <li>Level</li>
                             <li>Stats</li>

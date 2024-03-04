@@ -13,7 +13,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
             <p className="namePlate">Character Name</p>
             <p className="playerPlate">Player</p>
             <p className="playerScorePlate"></p>
-            <p className="racePlate">Race</p>
+            <p className="racePlate">Ancestry</p>
             <p className="archetypePlate">Archetypes</p>
             <p className="archetypeSlashPlate">/</p>
             <p className="levelPlate">Act. LvL</p>

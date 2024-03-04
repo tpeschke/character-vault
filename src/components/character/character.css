@@ -457,15 +457,15 @@ textarea {
 }
 
 .raceLocation {
-    left: 53px;
+    left: 80px;
     top: 43px;
     border-bottom: 2px solid;
-    width: 68px;
+    width: 122px;
     padding: 1px 5px;
 }
 
 .levelLocation {
-    left: 494px;
+    left: 569px;
     top: 44px;
     border-bottom: 2px solid;
     width: 28px;
@@ -473,11 +473,11 @@ textarea {
 }
 
 input.levelLocation {
-    left: 493px;
+    left: 569px;
 }
 
 .primaryLocation {
-    left: 205px;
+    left: 280px;
     top: 44px;
     width: 115px;
     padding-left: 5px;
@@ -485,19 +485,19 @@ input.levelLocation {
 }
 
 .primarylevelLocation {
-    left: 308px;
+    left: 369px;
     top: 44px;
 }
 
 input.primarylevelLocation {
-    left: 295px;
+    left: 369px;
     width: 25px;
     top: 44px;
     text-align: center;
 }
 
 .secondaryLocation {
-    left: 326px;
+    left: 400px;
     top: 44px;
     width: 115px;
     border-bottom: 2px solid;
@@ -505,13 +505,13 @@ input.primarylevelLocation {
 }
 
 .secondarylevelLocation {
-    left: 420px;
+    left: 489px;
     top: 43px;
     width: 25px;
 }
 
 input.secondarylevelLocation {
-    left: 416px;
+    left: 489px;
     top: 44px;
     text-align: center;
 }
