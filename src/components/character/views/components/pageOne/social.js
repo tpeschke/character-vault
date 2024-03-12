@@ -5,7 +5,7 @@ import EditList from '../pairComponents/editList'
 import EditPairList from '../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
-    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions, temperamentrank } = social
+    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, strength, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions, temperamentrank } = social
 
     if (editing) {
         return (
@@ -37,13 +37,15 @@ export default function Social({ social, editing }) {
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
                         <h2>Flaws</h2>
                         <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
-                        <EditList objectKey={'title'} rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"}/>
+                        <EditList objectKey={'title'} rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} />
                     </div>
                     <div className="socialRightShell">
                         <h2>Convictions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
+                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={7} updateFunction={updateAttribute} type={"traits"} />
                         <h2>Descriptions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
+                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={4} updateFunction={updateAttribute} type={"descriptions"} />
+                        <h2>Cultural Strength</h2>
+                        <input className='cultural-strength-input' defaultValue={strength} onBlur={event => updateAttribute(event.target.value, "strength")} />
                     </div>
                 </div>
                 <h2>Reputation</h2>
@@ -113,9 +115,11 @@ export default function Social({ social, editing }) {
                 </div>
                 <div className="socialRightShell">
                     <h2>Convictions</h2>
-                    <ViewPairList listArray={traits} limit={8} />
+                    <ViewPairList listArray={traits} limit={7} />
                     <h2>Descriptions</h2>
-                    <ViewPairList listArray={descriptions} limit={5} />
+                    <ViewPairList listArray={descriptions} limit={4} />
+                    <h2>Cultural Strength</h2>
+                    <p>{strength}</p>
                 </div>
             </div>
             <h2>Reputation</h2>

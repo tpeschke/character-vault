@@ -476,6 +476,10 @@ input.levelLocation {
     left: 569px;
 }
 
+.cultural-strength-input {
+    width: 100%;
+}
+
 .primaryLocation {
     left: 280px;
     top: 44px;
@@ -2105,9 +2109,10 @@ div.temperamentLocation strong {
 }
 
 .weaponBonusArea textarea {
-    height: 81px;
+    height: 61px;
     overflow: hidden;
     text-indent: 40px;
+    width: 100%;
 }
 
 .weaponTraitArea {
