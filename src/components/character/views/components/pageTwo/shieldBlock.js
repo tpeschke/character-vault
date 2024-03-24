@@ -26,7 +26,7 @@ export default class ShieldBlock extends Component {
 
     componentWillMount() {
         let { shieldChoices, shieldOptions } = this.state
-        axios.get(`https://bonfire.dragon-slayer.net/getShields`).then(({ data }) => {
+        axios.get(`https://bonfire.stone-fish.com/getShields`).then(({ data }) => {
             shieldChoices = data
             shieldOptions = data.sort(sortFunction).map(choice => {
                 return <option value={choice.name} />

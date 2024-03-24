@@ -25,7 +25,7 @@ export default class ArmorBlock extends Component {
 
     componentWillMount() {
         let { armorChoices, armorOptions } = this.state
-        axios.get(`https://bonfire.dragon-slayer.net/getArmor`).then(({ data }) => {
+        axios.get(`https://bonfire.stone-fish.com/getArmor`).then(({ data }) => {
             armorChoices = data
             armorChoices.push({ def: 0, dr: 0, fatigue: 0, name: "Unarmored", init: 0, rec: 0, skill: 0 })
             armorOptions = data.sort(sortFunction).map(choice => {

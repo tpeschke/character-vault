@@ -27,7 +27,7 @@ export default class WeaponBlock extends Component {
     componentWillMount() {
         let { weapon, weaponChoices, weaponOptions } = this.state
         if (weapon.position === 'four') {
-            axios.get(`https://bonfire.dragon-slayer.net/getWeapons/ranged`).then(({ data }) => {
+            axios.get(`https://bonfire.stone-fish.com/getWeapons/ranged`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.sort(sortFunction).map(choice => {
                     return <option value={`${choice.name} (${choice.type})`} />
@@ -35,7 +35,7 @@ export default class WeaponBlock extends Component {
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' })
             })
         } else {
-            axios.get(`https://bonfire.dragon-slayer.net/getWeapons/melee`).then(({ data }) => {
+            axios.get(`https://bonfire.stone-fish.com/getWeapons/melee`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.sort(sortFunction).map(choice => {
                     return <option value={`${choice.name} (${choice.type})`}></option>

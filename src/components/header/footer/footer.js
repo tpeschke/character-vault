@@ -6,9 +6,9 @@ export default function Footer() {
         <div className="footerShell">
             <a href="https://discord.com/invite/G8GVTME" target="_blank">Discord</a>
             <p>|</p>
-            <a href="https://bonfire.dragon-slayer.net/" target="_blank">Bonfire SRD</a>
+            <a href="https://bonfire.stone-fish.com/" target="_blank">Bonfire SRD</a>
             <p>|</p>
-            <a href="https://dragon-slayer.net/" target="_blank">Dragon-Slayer Site</a>
+            <a href="https://stone-fish.com/" target="_blank">Dragon-Slayer Site</a>
         </div>
         )
 }

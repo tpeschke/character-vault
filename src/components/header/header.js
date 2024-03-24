@@ -8,7 +8,7 @@ export default function Header(Page) {
         <div>
             <div className="headerShell">
                 <Link to="/">
-                    <img src="https://bestiary.dragon-slayer.net/assets/TWRealFire.png" alt="Girl in a jacket" width="50" height="50" />
+                    <img src="https://bestiary.stone-fish.com/assets/TWRealFire.png" alt="Girl in a jacket" width="50" height="50" />
                     <h1>Bonfire Character Vault</h1>
                     <p className="beta">(beta)</p>
                 </Link>
