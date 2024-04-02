@@ -152,7 +152,7 @@ export default function Vitality({ vitality, editing }) {
     if (editing) {
         return (
             <div className="vitalsShell">
-                <h1>Stress Threshold</h1>
+                <h1>Nerve</h1>
                 <div className="woundCategoryShell">
                     <div className="hurtLocation">
                         <p>U</p>
@@ -173,7 +173,7 @@ export default function Vitality({ vitality, editing }) {
                 </div>
                 <div className="editingStressThreshold">
                     <div>
-                        <p className='stressThreshold'>Stress Threshold</p>
+                        <p className='stressThreshold'>Nerve</p>
                         <input className="stressthresholdLocation" type="number" min="0" placeholder={stressthreshold} defaultValue={stressthreshold} onChange={event => updateAttribute(event.target.value, "stressthreshold")} />
                     </div>
                 </div>
@@ -308,7 +308,7 @@ export default function Vitality({ vitality, editing }) {
 
     return (
         <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
-            <h1>Stress Threshold</h1>
+            <h1>Nerve</h1>
             {stressCategories}
             <div className="stressShell">
                 <div>

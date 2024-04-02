@@ -49,11 +49,11 @@ export default function MiscVitals({ miscVitals, editing }) {
                         <p>{minVitality}</p>
                     </div>
                     <div>
-                        <p>Stress Thes. Die</p>
+                        <p>Nerve Die</p>
                         <input className="currentfavorLocation" type="text" defaultValue={stressdie} onBlur={event => updateAttribute(event.target.value, "stressdie")} />
                     </div>
                     <div>
-                        <p>Min Stress Thes.</p>
+                        <p>Min Nerve</p>
                         <p>{minStress}</p>
                     </div>
                 </div>
@@ -94,11 +94,11 @@ export default function MiscVitals({ miscVitals, editing }) {
                     <p>{minVitality}</p>
                 </div>
                 <div>
-                    <p>Stress Thes. Die</p>
+                    <p>Nerve Die</p>
                     <p>{stressdie}</p>
                 </div>
                 <div>
-                    <p>Min Stress Thes.</p>
+                    <p>Min Nerve</p>
                     <p>{minStress}</p>
                 </div>
             </div>
