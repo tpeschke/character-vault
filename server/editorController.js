@@ -27,9 +27,9 @@ editController = {
         const db = req.app.get('db')
         editController.checkToSeeIfDeleteWorthy(req).then(shouldDelete => {
             // if (shouldDelete) {
-                db.delete.all(req.params.characterid).then(_ => {
-                    checkForContentTypeBeforeSending(res, { message: 'character removed' })
-                })
+            db.delete.all(req.params.characterid).then(_ => {
+                checkForContentTypeBeforeSending(res, { message: 'character removed' })
+            })
             // } else {
             //     db.update.removeCharacter(req.params.characterid).then(data => {
             //         checkForContentTypeBeforeSending(res, { message: 'character removed' })
@@ -77,43 +77,49 @@ editController = {
             , table = 'cvcharactermain'
             , idname = 'id'
 
-        if (keyName.includes('misc') || keyName.includes('using') || keyName.includes('thrown')) {
-            if (keyName.includes('using') || keyName.includes('thrown')) {
-                body[keyName] = !!body[keyName]
+        db.get.characterUserId(characterid).then(idresult => {
+            if (idresult[0].userid === req.user.id) {
+                if (keyName.includes('misc') || keyName.includes('using') || keyName.includes('thrown')) {
+                    if (keyName.includes('using') || keyName.includes('thrown')) {
+                        body[keyName] = !!body[keyName]
+                    }
+
+                    if (keyName.includes('armor')) {
+                        table = 'cvarmor'
+                    } else if (keyName.includes('shield')) {
+                        table = 'cvshield'
+                    } else if (keyName.includes('one')) {
+                        table = 'weaponone'
+                    } else if (keyName.includes('two')) {
+                        table = 'weapontwo'
+                    } else if (keyName.includes('three')) {
+                        table = 'weaponthree'
+                    } else if (keyName.includes('four') || keyName.includes('thrownweapon')) {
+                        table = 'weaponfour'
+                    }
+                    idname = 'characterid'
+                }
+
+                if (Array.isArray(body[keyName])) {
+                    let promiseArray = []
+                    promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
+                        return body[keyName].map(({ id, value, title }) => {
+                            return db.upsert[keyName](id, characterid, title, value)
+                        })
+                    }).catch(e => sendErrorForward('update single thing array', e.message, res)))
+
+                    Promise.all(promiseArray).then(_ => {
+                        checkForContentTypeBeforeSending(res, { messsage: "updated" })
+                    })
+                } else {
+                    db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
+                        checkForContentTypeBeforeSending(res, { messsage: "updated" })
+                    }).catch(e => sendErrorForward('update single thing single', e.message, res))
+                }
+            } else {
+                checkForContentTypeBeforeSending(res, { messsage: "not updated" })
             }
-
-            if (keyName.includes('armor')) {
-                table = 'cvarmor'
-            } else if (keyName.includes('shield')) {
-                table = 'cvshield'
-            } else if (keyName.includes('one')) {
-                table = 'weaponone'
-            } else if (keyName.includes('two')) {
-                table = 'weapontwo'
-            } else if (keyName.includes('three')) {
-                table = 'weaponthree'
-            } else if (keyName.includes('four') || keyName.includes('thrownweapon')) {
-                table = 'weaponfour'
-            }
-            idname = 'characterid'
-        }
-
-        if (Array.isArray(body[keyName])) {
-            let promiseArray = []
-            promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
-                return body[keyName].map(({ id, value, title }) => {
-                    return db.upsert[keyName](id, characterid, title, value)
-                })
-            })).catch(e => sendErrorForward('update single thing array', e.message, res))
-
-            Promise.all(promiseArray).then(_ => {
-                checkForContentTypeBeforeSending(res, { messsage: "updated" })
-            })
-        } else {
-            db.query(`update ${table} set ${keyName} = $1 where ${idname} = $2`, [body[keyName], characterid]).then(result => {
-                checkForContentTypeBeforeSending(res, { messsage: "updated" })
-            }).catch(e => sendErrorForward('update single thing single', e.message, res))
-        }
+        }).catch(e => sendErrorForward('get user id single thing', e.message, res))
     },
     updateSingleThingOnObject: (req, res) => {
         const db = req.app.get('db')
@@ -126,9 +132,15 @@ editController = {
                 value = false
             }
         }
-        db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
-            checkForContentTypeBeforeSending(res, { messsage: "updated" })
-        }).catch(e => sendErrorForward('update single thing object', e.message, res))
+        db.get.characterUserId(characterid).then(idresult => {
+            if (idresult[0].userid === req.user.id) {
+                db.query(`update ${object} set ${key} = $1 where characterid = $2`, [value, characterid]).then(result => {
+                    checkForContentTypeBeforeSending(res, { messsage: "updated" })
+                }).catch(e => sendErrorForward('update single thing object', e.message, res))
+            } else {
+                checkForContentTypeBeforeSending(res, { messsage: "not updated" })
+            }
+        }).catch(e => sendErrorForward('get user id single thing on object', e.message, res))
     },
     updateOrAddCharacter: (req, res) => {
         const db = req.app.get('db')

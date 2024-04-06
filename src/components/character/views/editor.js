@@ -53,6 +53,7 @@ export default class CharacterEditor extends Component {
     }
 
     updateAttribute = (value, type) => {
+        console.log(value, type)
         let character = { ...this.state.character }
         if (!isNaN(+value) && typeof value !== 'object') {
             value = +value

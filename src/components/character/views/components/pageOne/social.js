@@ -37,7 +37,7 @@ export default function Social({ social, editing }) {
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
                         <h2>Flaws</h2>
                         <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
-                        <EditList objectKey={'title'} rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} />
+                        <EditList rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} />
                     </div>
                     <div className="socialRightShell">
                         <h2>Convictions</h2>
@@ -111,7 +111,7 @@ export default function Social({ social, editing }) {
                     <ViewPairList listArray={devotions} limit={5} />
                     <h2>Flaws</h2>
                     <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p></div>
-                    <ViewList listArray={flaws} limit={3} objectKey={'title'} />
+                    <ViewList listArray={flaws} limit={3}/>
                 </div>
                 <div className="socialRightShell">
                     <h2>Convictions</h2>

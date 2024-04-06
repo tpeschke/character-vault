@@ -1,0 +1,1 @@
+select userid from cvcharactermain c where id = $1
