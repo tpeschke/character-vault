@@ -75,7 +75,7 @@ export default function Social({ social, editing }) {
     let honorInput = <p className="honorLocation"> </p>
     let honorDieInput = <p className="extrahonordiceLocation"> </p>
     let alliesTextArea = <div className="contactsLocation contactstextArea"></div>
-    if (shownHonor) {
+    if (!!shownHonor || shownHonor === 0) {
         honorCircle = <div className="circle" style={{ left: honorDiceLeft }}> </div>
         honorInput = <input className="honorLocation" type="number" max="25" min="0" defaultValue={shownHonor} onBlur={event => updateAttribute(event.target.value, "honor")} />
         honorDieInput = <input className="extrahonordiceLocation" type="number" min="0" defaultValue={extrahonordice} onBlur={event => updateAttribute(event.target.value, "extrahonordice")} />

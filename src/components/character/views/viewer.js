@@ -395,7 +395,7 @@ export default class CharacterViewer extends Component {
             , intData = statTables.intTable[int]
             , wisData = statTables.wisTable[wis]
 
-        let shownHonor = honor ? honor : chaData.honor
+        let shownHonor = cha ? honor : chaData.honor
             , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
 
         let quarterMastering = this.state.character.skills.filter(({ skill }) => {
