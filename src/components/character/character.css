@@ -481,43 +481,19 @@ input.levelLocation {
 }
 
 .primaryLocation {
-    left: 280px;
+    left: 307px;
     top: 44px;
     width: 115px;
     padding-left: 5px;
     border-bottom: 2px solid;
-}
-
-.primarylevelLocation {
-    left: 369px;
-    top: 44px;
-}
-
-input.primarylevelLocation {
-    left: 369px;
-    width: 25px;
-    top: 44px;
-    text-align: center;
 }
 
 .secondaryLocation {
-    left: 400px;
+    left: 427px;
     top: 44px;
     width: 115px;
     border-bottom: 2px solid;
     padding-left: 5px;
-}
-
-.secondarylevelLocation {
-    left: 489px;
-    top: 43px;
-    width: 25px;
-}
-
-input.secondarylevelLocation {
-    left: 489px;
-    top: 44px;
-    text-align: center;
 }
 
 .crpLocation {
@@ -566,7 +542,7 @@ input.secondarylevelLocation {
 
 .statsShell {
     position: absolute;
-    top: 147px;
+    top: 105px;
     left: 20px;
     width: 127px;
 }
@@ -779,7 +755,7 @@ input.secondarylevelLocation {
 
 .movementShell {
     position: absolute;
-    top: 147px;
+    top: 105px;
     left: 170px;
     width: 276px;
 }
@@ -2152,7 +2128,7 @@ div.temperamentLocation strong {
 }
 
 .socialShell {
-    top: 313px;
+    top: 274px;
     position: absolute;
     left: 20px;
     width: 426px;
@@ -2188,7 +2164,7 @@ div.temperamentLocation strong {
 .socialBodyShell {
     display: flex;
     justify-content: space-between;
-    height: 294px;
+    height: 333px;
     overflow: hidden;
 }
 

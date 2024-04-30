@@ -37,13 +37,13 @@ export default function Social({ social, editing }) {
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
                         <h2>Flaws</h2>
                         <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
-                        <EditList rowWidth={'224px'} listArray={flaws} limit={3} updateFunction={updateAttribute} type={"flaws"} />
+                        <EditList rowWidth={'224px'} listArray={flaws} limit={5} updateFunction={updateAttribute} type={"flaws"} />
                     </div>
                     <div className="socialRightShell">
                         <h2>Convictions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={7} updateFunction={updateAttribute} type={"traits"} />
+                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
                         <h2>Descriptions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={4} updateFunction={updateAttribute} type={"descriptions"} />
+                        <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
                         <h2>Cultural Strength</h2>
                         <input className='cultural-strength-input' defaultValue={strength} onBlur={event => updateAttribute(event.target.value, "strength")} />
                     </div>
@@ -111,13 +111,13 @@ export default function Social({ social, editing }) {
                     <ViewPairList listArray={devotions} limit={5} />
                     <h2>Flaws</h2>
                     <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p></div>
-                    <ViewList listArray={flaws} limit={3}/>
+                    <ViewList listArray={flaws} limit={5}/>
                 </div>
                 <div className="socialRightShell">
                     <h2>Convictions</h2>
-                    <ViewPairList listArray={traits} limit={7} />
+                    <ViewPairList listArray={traits} limit={8} />
                     <h2>Descriptions</h2>
-                    <ViewPairList listArray={descriptions} limit={4} />
+                    <ViewPairList listArray={descriptions} limit={5} />
                     <h2>Cultural Strength</h2>
                     <p>{strength}</p>
                 </div>

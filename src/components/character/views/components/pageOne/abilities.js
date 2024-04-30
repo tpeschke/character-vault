@@ -1,13 +1,15 @@
 import React from 'react'
 
 export default function Abilities({ abilities, editing }) {
-    let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute } = abilities
+    let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute, drawback } = abilities
+    console.log(drawback ? true : false)
+    console.log(abilitiesthree)
     if (editing) {
         return (
             <div className="abilitiesShell">
                 <div className='ability-header'>
                     <h1>Archetype/Racial Abilities & Trainings</h1>
-                    <h1>Burdens & Injuries</h1>
+                    <h1>Burdens, Injuries, & Drawbacks</h1>
                 </div>
                 <div className="abilitiesContentShell">
                     <div className="abilityShell">
@@ -61,7 +63,7 @@ export default function Abilities({ abilities, editing }) {
         <div className="abilitiesShell">
             <div className='ability-header'>
                 <h1>Archetype/Racial Abilities & Trainings</h1>
-                <h1>Burdens & Injuries</h1>
+                <h1>Burdens, Injuries & Drawbacks</h1>
             </div>
             <div className="abilitiesContentShell">
                 <div className="abilityShell">

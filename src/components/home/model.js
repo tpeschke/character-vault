@@ -36,7 +36,7 @@ export default class Modal extends Component {
                         <p>You'll still be able to access it through the Vault if you've filled out the following:</p>
                         <ul>
                             <li>Ancestry</li>
-                            <li>Archetypes</li>
+                            <li>Class/Subclass</li>
                             <li>Level</li>
                             <li>Stats</li>
                             <li>Integrity</li>
