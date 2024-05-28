@@ -8,7 +8,7 @@ export default function Abilities({ abilities, editing }) {
         return (
             <div className="abilitiesShell">
                 <div className='ability-header'>
-                    <h1>Archetype/Racial Abilities & Trainings</h1>
+                    <h1>Class/Ancestral Abilities & Trainings</h1>
                     <h1>Burdens, Injuries, & Drawbacks</h1>
                 </div>
                 <div className="abilitiesContentShell">
@@ -62,7 +62,7 @@ export default function Abilities({ abilities, editing }) {
     return (
         <div className="abilitiesShell">
             <div className='ability-header'>
-                <h1>Archetype/Racial Abilities & Trainings</h1>
+                <h1>Class/Ancestral Abilities & Trainings</h1>
                 <h1>Burdens, Injuries & Drawbacks</h1>
             </div>
             <div className="abilitiesContentShell">

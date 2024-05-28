@@ -44,7 +44,7 @@ export default class Modal extends Component {
                             <li>Devotions</li>
                             <li>Flaws</li>
                             <li>Traits</li>
-                            <li>Archetype Ability</li>
+                            <li>Class Ability</li>
                             <li>Gear</li>
                         </ul>
                         <p>However, it'll be a pain to find and you won't be able to edit it.</p>
