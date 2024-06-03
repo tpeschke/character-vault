@@ -2671,8 +2671,11 @@ textarea.traitsLocation {
     width: 100%;
 }
 
-.stressShell div p, .stressShell div input {
-    width: 50%;
+.stressShell div p {
+    width: 35%;
+}
+.stressShell div input {
+    width: 65%;
 }
 
 .stressShell div:first-child {
