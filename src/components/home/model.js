@@ -41,7 +41,7 @@ export default class Modal extends Component {
                             <li>Stats</li>
                             <li>Integrity</li>
                             <li>Temperament</li>
-                            <li>Devotions</li>
+                            <li>Relationships</li>
                             <li>Flaws</li>
                             <li>Traits</li>
                             <li>Class Ability</li>
