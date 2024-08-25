@@ -299,9 +299,9 @@ viewController = {
         weapons: []
       }
       if (!roughCharacter.vitality || roughCharacter.vitality === 0) {
-        character.trauma = Math.floor((roughCharacter.vitalityroll + roughCharacter.sizemod + roughCharacter.con) / 2)
+        character.trauma = Math.floor((roughCharacter.vitalityroll + roughCharacter.sizemod + roughCharacter.con) / 4)
       } else {
-        character.trauma = Math.floor(roughCharacter.vitality / 2)
+        character.trauma = Math.floor(roughCharacter.vitality / 4)
       }
 
       let finalPromise = [];

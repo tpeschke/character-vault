@@ -301,7 +301,7 @@ export default function Vitality({ vitality, editing }) {
                 </div>
             </div>
         )
-        traumaThreshold = <p className="traumaLocation">{(shownVitality * .50).toFixed(0)}</p>
+        traumaThreshold = <p className="traumaLocation">{(shownVitality * .25).toFixed(0)}</p>
     }
 
     return (
