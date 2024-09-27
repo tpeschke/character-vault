@@ -2,8 +2,6 @@ import React from 'react'
 
 export default function Abilities({ abilities, editing }) {
     let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute, drawback } = abilities
-    console.log(drawback ? true : false)
-    console.log(abilitiesthree)
     if (editing) {
         return (
             <div className="abilitiesShell">

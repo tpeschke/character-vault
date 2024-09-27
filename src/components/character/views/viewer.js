@@ -410,6 +410,20 @@ export default class CharacterViewer extends Component {
             quarterMastering = 0
         }
 
+        let baseInit = this.state.character.skills.filter(({ skill }) => {
+            if (skill) {
+                return skill.toUpperCase() === "INITIATIVE"
+            }
+            return false
+        })
+        if (baseInit[0]) {
+            baseInit = 5 - Math.floor((baseInit[0].rank + baseInit[0].mod) / 2)
+        } else {
+            baseInit = 5 - Math.floor((skillsuites[4].rank + Math.min(checkMod[wis], checkMod[cha])) / 2)
+        }
+
+        console.log(baseInit)
+
         let isRatfolk = race && (race.toUpperCase() === 'RATFOLK' || race.toUpperCase() === 'RAT FOLK') ? true : false
             , carryFromStr = strData.carry
 
@@ -467,7 +481,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, showArmor: this.state.showArmor, ...weaponone
+                shieldcover, showArmor: this.state.showArmor, baseInit, ...weaponone
             }
             weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -475,7 +489,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, showArmor: this.state.showArmor, ...weapontwo
+                shieldcover, showArmor: this.state.showArmor, baseInit, ...weapontwo
             }
             weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -483,7 +497,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
-                shieldcover, showArmor: this.state.showArmor, ...weaponthree
+                shieldcover, showArmor: this.state.showArmor, baseInit, ...weaponthree
             }
             weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
@@ -491,7 +505,7 @@ export default class CharacterViewer extends Component {
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
                 thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject,
-                shieldcover, showArmor: this.state.showArmor, maxrange, ...weaponfour
+                shieldcover, showArmor: this.state.showArmor, baseInit, maxrange, ...weaponfour
             }
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox, vitalitydice, wis, stressdie }
             vitality = { stresslockout, shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, stressroll }
@@ -633,4 +647,30 @@ function calculateHonorDiceLeft(honor) {
 
 function checkIfHuman(race) {
     return race && race.toUpperCase().trim() === "HUMAN"
+}
+
+let checkMod = {
+    1: -6,
+    2: -5,
+    3: -4,
+    4: -3,
+    5: -3,
+    6: -2,
+    7: -2,
+    8: -1,
+    9: -1,
+    10: 0,
+    11: 1,
+    12: 1,
+    13: 2,
+    14: 2,
+    15: 3,
+    16: 3,
+    17: 3,
+    18: 4,
+    19: 4,
+    20: 4,
+    21: 5,
+    22: 5,
+    23: 6
 }

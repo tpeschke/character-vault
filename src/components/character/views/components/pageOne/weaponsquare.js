@@ -80,12 +80,12 @@ const getName = (usingshield, shieldname, name, showArmor) => {
 
 export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, size, trainattack,
-        miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, miscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
+        miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
         miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
         miscparry, thrownweapon, updateAttribute, shieldname, shieldflanks, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
-        shieldcover, miscrecovery, trainrecovery, showArmor, maxrange } = weapon
-    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam: strDamChart, strRec } = combatStatMods
+        shieldcover, miscrecovery, trainrecovery, showArmor, maxrange, baseInit = 5 } = weapon
+    let { dexAtk, dexDef, intAtk, willDef, strDam: strDamChart, strRec } = combatStatMods
     if (editing) {
         return (
             <div className={`weaponsquare weapon${position}`}></div>
@@ -185,7 +185,7 @@ export default function weaponsquare({ weapon }) {
                         </div>
                         <div>
                             <p className='first-cell'>Init</p>
-                            <p>{returnZeroIfNaN(dexInit[dex] + willInit[wis] + armorInit + +miscinit)}</p>
+                            <p>{returnZeroIfNaN(baseInit - armorInit)}</p>
                         </div>
                     </div>
                     <div className='combat-table-column'>

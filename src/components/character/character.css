@@ -2031,7 +2031,7 @@ div.temperamentLocation strong {
 }
 
 .weaponCalculatedStats p, .weaponCalculatedStats input {
-    width: 25px;
+    width: 28px;
     text-align: center;
     border-right: 2px solid grey;
 }
@@ -2041,7 +2041,8 @@ div.temperamentLocation strong {
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;
     text-align: left;
-    border-right: none
+    border-right: none;
+    width: 37px;
 }
 
 .armorBaseStats div p:first-child, .armorBaseStats p:first-child {
@@ -2581,7 +2582,7 @@ textarea.traitsLocation {
     justify-content: space-between;
     border-top: 2px solid lightgrey;
     height: 19.6px;
-    width: 75% !important;
+    width: 100% !important;
 }
 
 .combatAdept p:first-child {

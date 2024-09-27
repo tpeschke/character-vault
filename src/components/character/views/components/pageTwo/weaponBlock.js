@@ -86,7 +86,7 @@ export default class WeaponBlock extends Component {
 
     render() {
         let { position, name, basemeasure, basedamage, baseparry, baserecovery, size, type, bonus, traits, trainrecovery, trainattack, traindamage, trainparry,
-            miscattack, miscdamage, miscinit, miscparry, miscrecovery, id } = this.state.weapon
+            miscattack, miscdamage, miscparry, miscrecovery, id } = this.state.weapon
         let { returnZeroIfNaN, editing, weaponOptions, weaponChoiceType } = this.state
 
         if (editing) {
@@ -144,7 +144,6 @@ export default class WeaponBlock extends Component {
                         <p>Rcv</p>
                         <p>Pry</p>
                         <p>Dam</p>
-                        <p>Init</p>
                         <p> </p>
                     </div>
 
@@ -153,8 +152,7 @@ export default class WeaponBlock extends Component {
                         <input type="number" value={trainrecovery} onChange={event => this.updateValue(event.target.value, "trainrecovery")} />
                         <input type="number" value={trainparry} onChange={event => this.updateValue(event.target.value, "trainparry")} />
                         <input type="number" value={traindamage} onChange={event => this.updateValue(event.target.value, "traindamage")} />
-                        <p> </p>
-                        <p>Ski</p>
+                        <p>Skill</p>
                     </div>
 
                     <div className="weaponCalculatedStats">
@@ -162,8 +160,7 @@ export default class WeaponBlock extends Component {
                         <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
                         <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
                         <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
-                        <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onChange={event => this.updateValue(event.target.value, "miscinit")} />
-                        <p>Mi</p>
+                        <p>Misc</p>
                     </div>
 
                     <div className="weaponCalculatedStats">
@@ -171,8 +168,7 @@ export default class WeaponBlock extends Component {
                         <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                         <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
                         <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
-                        <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
-                        <p>To</p>
+                        <p>Total</p>
                     </div>
                 </div>
             )
@@ -198,8 +194,7 @@ export default class WeaponBlock extends Component {
                 <p> </p>
                 <p> </p>
                 <p> </p>
-                <p className={position !== "four" ? "" : "initfour"}> </p>
-                <p>Mi</p>
+                <p>Misc</p>
             </div>
         )
         if (id !== 'blank') {
@@ -209,8 +204,7 @@ export default class WeaponBlock extends Component {
                     <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
                     <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
                     <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
-                    <input className={position !== "four" ? "" : "initfour"} type="number" value={miscinit} onChange={event => this.updateValue(event.target.value, "miscinit")} />
-                    <p>Mi</p>
+                    <p>Misc</p>
                 </div>
             )
         }
@@ -252,7 +246,6 @@ export default class WeaponBlock extends Component {
                     <p>Rcv</p>
                     <p>Pry</p>
                     <p>Dam</p>
-                    <p>Init</p>
                     <p> </p>
                 </div>
 
@@ -261,8 +254,7 @@ export default class WeaponBlock extends Component {
                     <p>{trainrecovery}</p>
                     <p>{trainparry}</p>
                     <p>{traindamage}</p>
-                    <p> </p>
-                    <p>Ski</p>
+                    <p>Skill</p>
                 </div>
 
                 {miscInputs}
@@ -272,8 +264,7 @@ export default class WeaponBlock extends Component {
                     <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
                     <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
                     <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
-                    <p className={position !== "four" ? "" : "initfour"}>{miscinit}</p>
-                    <p>To</p>
+                    <p>Total</p>
                 </div>
             </div>
         )

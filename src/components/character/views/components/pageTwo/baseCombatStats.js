@@ -6,7 +6,7 @@ import combatStatMods from './combatStatTables'
 export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
     let { str, int, dex, wis, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained } = baseCombatFromStats
 
-    let { dexAtk, dexDef, dexInit, intAtk, willDef, willInit, strDam, strRec } = combatStatMods
+    let { dexAtk, dexDef, intAtk, willDef, strDam, strRec } = combatStatMods
 
     if (editing) {
         return (
@@ -23,10 +23,6 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                                 <div>
                                     <p>Def</p>
                                     <p>{combatskillsuites ? dexDef[dex] + willDef[wis] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Init</p>
-                                    <p>{combatskillsuites ? dexInit[dex] + willInit[wis] : ''}</p>
                                 </div>
                                 <div>
                                     <p>Dam</p>
@@ -268,10 +264,6 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
                             <div>
                                 <p>Def</p>
                                 <p>{combatskillsuites ? dexDef[dex] + willDef[wis] : ''}</p>
-                            </div>
-                            <div>
-                                <p>Init</p>
-                                <p>{combatskillsuites ? dexInit[dex] + willInit[wis] : ''}</p>
                             </div>
                             <div>
                                 <p>Dam</p>
