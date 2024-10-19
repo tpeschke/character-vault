@@ -2,14 +2,12 @@ import React from 'react'
 import EditPairList from '../pairComponents/editPairList'
 import ViewPairList from '../pairComponents/viewPairList'
 
-function calculatePanickedLeft(honor, dwarfModifier, stresslockout) {
+function calculatePanickedLeft(dwarfModifier, stresslockout = 1) {
     let left = '0px'
         , display = 'inherit'
-    const modifedStressLockout = dwarfModifier ? stresslockout - 1 : stresslockout
-
-    if (dwarfModifier) {
-        display = 'none'
-    } else if (modifedStressLockout === 4) {
+    const modifedStressLockout = dwarfModifier ? stresslockout : stresslockout + 1
+    
+    if (modifedStressLockout === 4) {
         left = '-23px'
     } else if (modifedStressLockout === 3) {
         left = '0px'
@@ -68,7 +66,7 @@ export default function Vitality({ vitality, editing }) {
     let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
     let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
     if (id !== 'blank') {
-        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(shownHonor, dwarfModifier, stresslockout)}>{stresslockout >= 4 ? 'A' : '' }</div>
+        panickedCircle = <div className="circle panickedCircle" style={calculatePanickedLeft(dwarfModifier, stresslockout)}>{stresslockout >= 4 ? 'A' : '' }</div>
         woundCircle = <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}>{showAlwaysFatiguedPenalty(usingshield ? totalFatigue : armorFatigue)}</div>
         damageOnePairList = <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
         damageTwoPairList = <EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />

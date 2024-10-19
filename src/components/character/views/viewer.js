@@ -422,8 +422,6 @@ export default class CharacterViewer extends Component {
             baseInit = 5 - Math.floor((skillsuites[4].rank + Math.min(checkMod[wis], checkMod[cha])) / 2)
         }
 
-        console.log(baseInit)
-
         let isRatfolk = race && (race.toUpperCase() === 'RATFOLK' || race.toUpperCase() === 'RAT FOLK') ? true : false
             , carryFromStr = strData.carry
 
@@ -466,8 +464,8 @@ export default class CharacterViewer extends Component {
         let generalnotestextArea = <div></div>
         let rightCornerButton = <div></div>
         if (id !== 'blank') {
-            const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF') ? 1 : 0;
-            armorFatigue = this.state.showArmor ? this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + Math.floor(armortrainfatigue / 2) + armormiscfatigue + dwarfModifier : 0;
+            const dwarfModifier = race && (race.toUpperCase() === 'DWARF' || race.toUpperCase() === 'DORF');
+            armorFatigue = this.state.showArmor ? this.calculateArmorFatigue(armorbasefatigue, armorbasefatiguemod) + Math.floor(armortrainfatigue / 2) + armormiscfatigue + dwarfModifier ? 0 : -1 : -1;
             shieldFatigue = shieldbasefatigue + Math.floor(shieldtrainfatigue / 2) + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue, overCarry);
 
