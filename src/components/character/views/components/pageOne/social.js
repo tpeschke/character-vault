@@ -36,7 +36,7 @@ export default function Social({ social, editing }) {
                         <h2>Relationships</h2>
                         <EditPairList stylings={{ width: '224px' }} listArray={devotions} limit={5} updateFunction={updateAttribute} type={"devotions"} />
                         <h2>Flaws</h2>
-                        <div className='racial-temp-edit-shell'><strong>RT</strong><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
+                        <div className='racial-temp-edit-shell'><input className="temperamentLocation" type="text" defaultValue={temperament} onChange={event => updateAttribute(event.target.value, "temperament")} /></div>
                         <EditList rowWidth={'224px'} listArray={flaws} limit={5} updateFunction={updateAttribute} type={"flaws"} />
                     </div>
                     <div className="socialRightShell">
