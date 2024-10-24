@@ -416,9 +416,10 @@ export default class CharacterViewer extends Component {
             }
             return false
         })
+
         if (baseInit[0]) {
             baseInit = 5 - Math.floor((baseInit[0].rank + baseInit[0].mod) / 2)
-        } else {
+        } else if (skillsuites) {
             baseInit = 5 - Math.floor((skillsuites[4].rank + Math.min(checkMod[wis], checkMod[cha])) / 2)
         }
 

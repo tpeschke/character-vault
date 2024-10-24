@@ -110,7 +110,7 @@ export default function Social({ social, editing }) {
                     <h2>Relationships</h2>
                     <ViewPairList listArray={devotions} limit={5} />
                     <h2>Flaws</h2>
-                    <div className="temperamentLocation"><strong>RT </strong> <p>{temperament}</p></div>
+                    <div className="temperamentLocation"><p>{temperament}</p></div>
                     <ViewList listArray={flaws} limit={5}/>
                 </div>
                 <div className="socialRightShell">
