@@ -77,7 +77,7 @@ input[type=number] {
 }
 
 .leftColumn {
-    width: 426px;
+    width: 435px;
 }
 
 .rightColumn {
@@ -100,10 +100,6 @@ input[type=number] {
 .pdfBackground {
     background-color: grey;
     padding: 15px 0;
-}
-
-.abilitiesWidth {
-    width: 33%;
 }
 
 .removeButtons {
@@ -586,97 +582,6 @@ strong {
     top: 552px;
     left: 546px;
     width: 74px;
-    text-align: center;
-}
-
-.abilitiesShell {
-    top: 856px;
-    position: absolute;
-    width: 776px;
-    left: 20px;
-}
-
-.abilitiesShell .ability-header {
-    display: flex;
-}
-
-.abilitiesShell .ability-header h1 {
-    width: 33.33%;
-}
-
-.abilitiesShell .ability-header h1:first-child {
-    width: 66.67%;
-}
-
-.abilitiesContentShell {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-}
-
-.abilityShell {
-    width: 33%;
-}
-
-.abilityShell .contactStriping div, .removedAbilityShell {
-    height: 17.6px;
-}
-
-.abilitiesoneLocation, .abilitiestwoLocation {
-    top: 0px;
-    height: 159px;
-    overflow: hidden;
-    padding: 0 2px;
-}
-
-.abilitiesonetextArea {
-    max-width: 33%;
-    min-width: 33%;
-    max-height: 165px;
-    min-height: 165px;
-    overflow: hidden;
-    position: absolute;
-}
-
-.abilitiestwotextArea {
-    width: 33%;
-    max-width: 33%;
-    min-width: 33%;
-    max-height: 165px;
-    min-height: 165px;
-    overflow: hidden;
-    position: absolute;
-}
-
-.abilitiesthreeLocation {
-    top: 0px;
-    height: 139px;
-    overflow: hidden;
-    padding: 0 2px;
-}
-
-.abilitiesthreetextArea {
-    width: 33%;
-    max-width: 33%;
-    min-width: 33%;
-    max-height: 140px;
-    min-height: 140px;
-    overflow: hidden;
-    position: absolute;
-}
-
-.removedAbilityShell {
-    display: flex;
-    justify-content: space-between;
-}
-
-.removedAbilityShell h2 {
-    padding: 0 5px;
-}
-
-.removedabilityLocation {
-    position: unset !important;
-    width: 125px;
     text-align: center;
 }
 

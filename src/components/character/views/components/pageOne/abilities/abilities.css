@@ -1,0 +1,97 @@
+.abilitiesShell {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+}
+
+.classShell {
+    width: 66%;
+}
+
+.abilitiesContentShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.abilityShell {
+    width: 49.5%;
+    position: relative;
+}
+
+.abilities {
+    position: absolute;
+    top: 0;
+}
+
+.drawbacksShell {
+    width: 33%;
+}
+
+.drawbackInnerShell {
+    position: relative;
+}
+.removedAbilityShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.removedAbilityShell h2 {
+    padding: 0 5px;
+}
+
+.removedabilityLocation {
+    width: 125px;
+    text-align: center;
+}
+
+/* .abilitiesShell {
+    width: 776px;
+    left: 20px;
+}
+
+.abilitiesShell .ability-header {
+    display: flex;
+}
+
+.abilitiesShell .ability-header h1, .abilities {
+    width: 33.33%;
+}
+
+.abilitiesShell .ability-header h1:first-child {
+    width: 66.67%;
+}
+
+.abilitiesContentShell {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.abilityShell .contactStriping div, .removedAbilityShell {
+    height: 17.6px;
+}
+
+.abilitiestwotextArea {
+    width: 33%;
+    height: 165px;
+    overflow: hidden;
+}
+
+.removedAbilityShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.removedAbilityShell h2 {
+    padding: 0 5px;
+}
+
+.removedabilityLocation {
+    width: 125px;
+    text-align: center;
+}
+
+.abilitiesWidth {
+    position: absolute;
+    width: 33%;
+} */

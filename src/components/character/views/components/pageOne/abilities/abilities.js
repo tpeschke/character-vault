@@ -1,4 +1,5 @@
 import React from 'react'
+import './abilities.css'
 
 export default function Abilities({ abilities, editing }) {
     let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute, drawback } = abilities
@@ -59,55 +60,75 @@ export default function Abilities({ abilities, editing }) {
     }
     return (
         <div className="abilitiesShell">
-            <div className='ability-header'>
+            <div className='classShell'>
                 <h1>Class/Ancestral Abilities & Trainings</h1>
-                <h1>Burdens, Injuries & Drawbacks</h1>
-            </div>
-            <div className="abilitiesContentShell">
-                <div className="abilityShell">
-                    <div className="contactStriping">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <p className="abilitiesoneLocation abilitiesWidth">{abilitiesone}</p>
-                </div>
-                <div className="abilityShell">
-                    <div className="contactStriping">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <p className="abilitiestwoLocation abilitiesWidth">{abilitiestwo}</p>
-                </div>
-                <div className="abilityShell">
-                    <div className="contactStriping">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div className="removedAbilityShell">
-                            <h2>Removed Ability</h2>
-                            <p className="removedabilityLocation">{removedability}</p>
+                <div className='abilitiesContentShell'>
+                    <div className="abilityShell">
+                        <div className="contactStriping">
+                            {createDivs(8)}
                         </div>
+                        <p className="abilities">{abilitiesone}</p>
                     </div>
-                    <p className="abilitiesthreeLocation abilitiesWidth">{abilitiesthree}</p>
+                    <div className="abilityShell">
+                        <div className="contactStriping">
+                            {createDivs(8)}
+                        </div>
+                        <p className="abilities">{abilitiestwo}</p>
+                    </div>
+                </div>
+            </div>
+            <div className='drawbacksShell'>
+                <h1>Burdens, Injuries & Drawbacks</h1>
+                <div className="drawbackInnerShell">
+                    <div className="contactStriping">
+                        {createDivs(8)}
+                    </div>
+                    <p className="abilities">{abilitiesthree}</p>
+                </div>
+                <div className="removedAbilityShell">
+                    <h2>Removed Ability</h2>
+                    <p className="removedabilityLocation">{removedability}</p>
                 </div>
             </div>
         </div>
+
+        // <div className="abilitiesShell">
+        //     <div className='ability-header'>
+        //         <h1>Class/Ancestral Abilities & Trainings</h1>
+        //         <h1>Burdens, Injuries & Drawbacks</h1>
+        //     </div>
+        //     <div className="abilitiesContentShell">
+        //         <div className="abilityShell">
+        //             <div className="contactStriping">
+        //                 {createDivs(8)}
+        //             </div>
+        //             <p className="abilities">{abilitiesone}</p>
+        //         </div>
+        //         <div className="abilityShell">
+        //             <div className="contactStriping">
+        //                 {createDivs(8)}
+        //             </div>
+        //             <p className="abilities">{abilitiestwo}</p>
+        //         </div>
+        //         <div className="abilityShell">
+        //             <div className="contactStriping">
+        //                 {createDivs(8)}
+        //                 <div className="removedAbilityShell">
+        //                     <h2>Removed Ability</h2>
+        //                     <p className="removedabilityLocation">{removedability}</p>
+        //                 </div>
+        //             </div>
+        //             <p className="abilities">{abilitiesthree}</p>
+        //         </div>
+        //     </div>
+        // </div>
     )
+}
+
+function createDivs(number) {
+    let divs = []
+    for (let i = 0; i < number; i++) {
+        divs.push((<div></div>))
+    }
+    return divs
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Abilities from './components/pageOne/abilities'
+import Abilities from './components/pageOne/abilities/abilities'
 import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
 import MiscVitals from './components/pageOne/miscVitals/miscVitals'
 import Movement from './components/pageOne/movement/movement'

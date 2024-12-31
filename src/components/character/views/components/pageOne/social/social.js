@@ -130,7 +130,7 @@ export default function Social({ social, editing }) {
                     <p>I'm Known For</p>
                     <p>I'm Known For</p>
                 </div>
-                <ViewList stylings={{ width: '331px' }} listArray={reputation} limit={3} />
+                <ViewList stylings={{ width: '340px' }} listArray={reputation} limit={3} />
             </div>
             <h2>Allies, Contacts, & Assets</h2>
             <div>
