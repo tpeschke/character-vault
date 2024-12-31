@@ -439,12 +439,10 @@ textarea {
     height: 19.6px;
 }
 
-.vitalShell div:nth-child(even),
-.rangeShell div:nth-child(odd) {
+.vitalShell div:nth-child(even) {
     background: lightgray;
 }
 
-.rangeShell p, .rangeShell input,
 .skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
 .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, 
 .statsShell input, .vitalsShell input, .combatSkills p, .combatSkills input {
@@ -620,88 +618,6 @@ strong {
     left: 546px;
     width: 74px;
     text-align: center;
-}
-
-.rangeShell {
-    display: flex;
-    flex-direction: column;
-    top: 420px;
-    right: 20px;
-    width: 151px;
-    position: absolute;
-}
-
-.rangeShell div {
-    display: flex;
-    justify-content: space-between;
-}
-
-.rangeShell div p {
-    text-align: center;
-}
-
-.rangeShell div p:first-child, .rangeShell div p:nth-child(3) {
-    font-family: 'Vollkorn SC', serif;
-    font-size: 13px;
-    font-weight: bold;
-    width: 30px;
-}
-
-.maxrangeLocation {
-    top: 552px;
-    left: 745px;
-    width: 50px;
-    text-align: center;
-}
-
-.one {
-    top: 446px;
-    left: 674px;
-}
-
-.two {
-    top: 446px;
-}
-
-.three {
-    top: 468px;
-    left: 674px;
-}
-
-.four {
-    top: 468px;
-}
-
-.five {
-    top: 490px;
-    left: 674px;
-}
-
-.six {
-    top: 490px;
-}
-
-.seven {
-    top: 510px;
-    left: 674px;
-}
-
-.eight {
-    top: 510px;
-}
-
-.nine {
-    top: 530px;
-    left: 674px;
-}
-
-.ten {
-    top: 530px;
-}
-
-.eleven {
-    top: 552px;
-    left: 674px;
 }
 
 .sizemodLocation {
