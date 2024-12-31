@@ -1,4 +1,5 @@
 import React from 'react'
+import './miscVitals.css'
 
 export default function MiscVitals({ miscVitals, editing }) {
     let { updateAttribute, currentfavor, chaData, favormax, anointed, id, vitalitydice, wis, con, stressdie } = miscVitals
@@ -79,29 +80,26 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
                 <div className="checkboxShell">
                     <p>Anointed?</p>
-                    <div className="checkboxShellInner">
+                    <div className='anointedDivShell'>
                         {anointedDiv}
                     </div>
                 </div>
             </div>
             <div className="dieAndMinShell">
-                <div>
-                    <p>Vitality Die</p>
-                    <p>{vitalitydice}</p>
-                </div>
-                <div>
-                    <p>Min Vitality</p>
-                    <p>{minVitality}</p>
-                </div>
-                <div>
-                    <p>Nerve Die</p>
-                    <p>{stressdie}</p>
-                </div>
-                <div>
-                    <p>Min Nerve</p>
-                    <p>{minStress}</p>
-                </div>
+                {rowPair('Vitality Die', vitalitydice)}
+                {rowPair('Min Vitality', minVitality)}
+                {rowPair('Nerve Die', stressdie)}
+                {rowPair('Min Nerve', minStress)}
             </div>
+        </div>
+    )
+}
+
+function rowPair (label, value) {
+    return (
+        <div>
+            <p>{label}</p>
+            <p>{value}</p>
         </div>
     )
 }

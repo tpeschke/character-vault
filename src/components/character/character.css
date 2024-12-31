@@ -89,35 +89,8 @@ input[type=number] {
     margin-top: -32px;
 }
 
-.dieAndMinShell {
+.marginTop {
     margin-top: 5px;
-    border: solid 2px black;
-}
-
-.dieAndMinShell div {
-    display: flex;
-}
-
-.dieAndMinShell div:nth-child(even) {
-    background-color: lightgray;
-}
-
-.dieAndMinShell div p {
-    width: 25%;
-    text-align: center;
-}
-
-.dieAndMinShell div p:first-child {
-    width: 75%;
-    text-align: left;
-    font-family: 'Vollkorn SC', serif;
-    font-size: 11px;
-    padding: 2px 0 0 5px;
-}
-
-.dieAndMinShell input {
-    width: 25%;
-    text-align: center;
 }
 
 #pdf {
@@ -316,7 +289,7 @@ input[type=number] {
     width: 162px;
 }
 
-.movementAndStats {
+.flexSpaceBetween {
     display: flex;
     justify-content: space-between;
 }
@@ -471,7 +444,7 @@ textarea {
     background: lightgray;
 }
 
-.stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
+.rangeShell p, .rangeShell input,
 .skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
 .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, 
 .statsShell input, .vitalsShell input, .combatSkills p, .combatSkills input {
@@ -580,51 +553,7 @@ strong {
     margin-right: 4px;
 }
 
-.stressThresholdShell {
-    top: 420px;
-    right: 186px;
-    position: absolute;
-    width: 159px;
-}
-
-.vitalShell {
-    border: 2px solid black;
-}
-
-.vitalShell div {
-    display: flex;
-    justify-content: space-between;
-}
-
-.vitalShell div p, .vitalShell div input {
-    margin: 0;
-    width: 50%;
-    height: unset;
-    min-height: unset;
-}
-
-.vitalShell div p:first-child {
-    font-family: 'Vollkorn SC', serif;
-    font-size: 11px;
-    padding-left: 5px;
-}
-
-.vitalShell div:first-child p:first-child {
-    background: #222;
-    color: whitesmoke;
-    padding-top: 1px;
-    font-size: 13px;
-    padding-left: 5px;
-    margin: -1px;
-}
-
-.checkboxShellInner {
-    width: 50%;
-    background: none !important;
-    justify-content: space-around !important;
-}
-
-.anointedDiv, .secretNotesDiv {
+.secretNotesDiv {
     padding: 1px;
     border: 1px solid grey;
     background: whitesmoke;
@@ -676,20 +605,6 @@ strong {
     top: 468px;
     left: 546px;
     width: 74px;
-    text-align: center;
-}
-
-.currentfavorLocation {
-    top: 489px;
-    left: 545px;
-    width: 75px;
-    text-align: center;
-}
-
-.favormaxLocation {
-    top: 509px;
-    left: 545px;
-    width: 75px;
     text-align: center;
 }
 

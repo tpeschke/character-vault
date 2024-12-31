@@ -13,9 +13,7 @@
 }
 
 .honorShell p {
-    padding-top: 2px;
     font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
     font-size: 11px;
 }
 
@@ -25,14 +23,19 @@
     align-items: center;
 }
 
+.honorShell input {
+    width: 30px;
+}
+
 .honorCategoryShell {
     position: relative;
+    border-left: 2px solid lightgray;
+    border-right: 2px solid lightgray;
 }
 
 .honorCategoryShell p {
-    font-size: 11px;
-    padding: 2px 0;
-    font-weight: normal;
+    height: 20px;
+    padding: 0 1px;
 }
 
 .honorLocation {

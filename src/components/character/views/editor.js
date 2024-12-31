@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Abilities from './components/pageOne/abilities'
 import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
-import MiscVitals from './components/pageOne/miscVitals'
+import MiscVitals from './components/pageOne/miscVitals/miscVitals'
 import Movement from './components/pageOne/movement/movement'
 import Ranges from './components/pageOne/ranges'
 import Social from './components/pageOne/social/social'

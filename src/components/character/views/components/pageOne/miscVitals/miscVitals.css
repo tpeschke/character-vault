@@ -1,0 +1,104 @@
+.stressThresholdShell p, .stressThresholdShell input {
+    z-index: 1;
+    margin: 0;
+    min-height: 19.6px;
+}
+
+.stressThresholdShell {
+    width: 159px;
+}
+
+.vitalShell {
+    border: 2px solid black;
+}
+
+.vitalShell div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.vitalShell div p, .vitalShell div input {
+    margin: 0;
+    width: 50%;
+    height: unset;
+    min-height: unset;
+}
+
+.vitalShell div p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-size: 11px;
+    padding-left: 5px;
+}
+
+.vitalShell div:first-child p:first-child {
+    background: #222;
+    color: whitesmoke;
+    padding-top: 1px;
+    font-size: 13px;
+    padding-left: 5px;
+    margin: -1px;
+}
+
+.favormaxLocation {
+    top: 509px;
+    left: 545px;
+    width: 75px;
+    text-align: center;
+}
+
+.currentfavorLocation {
+    top: 489px;
+    left: 545px;
+    width: 75px;
+    text-align: center;
+}
+
+.anointedDivShell {
+    margin: auto;
+}
+
+.anointedDiv {
+    padding: 1px;
+    border: 1px solid grey;
+    background: whitesmoke;
+    width: 19.6px;
+    height: 19.6px;
+}
+
+.checkboxShellInner {
+    width: 50%;
+    background: none !important;
+    justify-content: space-around !important;
+}
+
+.dieAndMinShell {
+    margin-top: 5px;
+    border: solid 2px black;
+}
+
+.dieAndMinShell div {
+    display: flex;
+}
+
+.dieAndMinShell div:nth-child(even) {
+    background-color: lightgray;
+}
+
+.dieAndMinShell div p {
+    width: 25%;
+    text-align: center;
+}
+
+.dieAndMinShell div p:first-child {
+    width: 75%;
+    text-align: left;
+    font-family: 'Vollkorn SC', serif;
+    font-size: 11px;
+    padding: 2px 0 0 5px;
+}
+
+.dieAndMinShell input {
+    width: 25%;
+    text-align: center;
+}

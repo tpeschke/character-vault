@@ -10,7 +10,7 @@ import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
 import Stats from './components/pageOne/stats/stats'
 import Movement from './components/pageOne/movement/movement'
 import Social from './components/pageOne/social/social'
-import MiscVitals from './components/pageOne/miscVitals'
+import MiscVitals from './components/pageOne/miscVitals/miscVitals'
 import Ranges from './components/pageOne/ranges'
 import Vitality from './components/pageOne/vitality'
 import Abilities from './components/pageOne/abilities'
@@ -570,7 +570,7 @@ export default class CharacterViewer extends Component {
                         <CharacterInfo characterInfo={characterInfo} />
                         <div className='pageOneMiddle'>
                             <div className='leftColumn'>
-                                <div className='movementAndStats'>
+                                <div className='flexSpaceBetween'>
                                     <Stats stats={stats} />
                                     <Movement movement={movement} />
                                 </div>
@@ -584,10 +584,10 @@ export default class CharacterViewer extends Component {
                                     <WeaponSquare weapon={weaponthreeobject} />
                                     <WeaponSquare weapon={weaponfourobject} />
                                 </div>
-
-                                <MiscVitals miscVitals={miscVitals} />
-
-                                <Ranges maxrange={maxrange} />
+                                <div className='flexSpaceBetween marginTop'>
+                                    <MiscVitals miscVitals={miscVitals} />
+                                    <Ranges maxrange={maxrange} />
+                                </div>
 
                                 <Vitality vitality={vitality} />
                             </div>
