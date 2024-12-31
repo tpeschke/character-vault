@@ -7,8 +7,8 @@ import _ from "lodash";
 
 import WeaponSquare from './components/pageOne/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
-import Stats from './components/pageOne/stats'
-import Movement from './components/pageOne/movement'
+import Stats from './components/pageOne/stats/stats'
+import Movement from './components/pageOne/movement/movement'
 import Social from './components/pageOne/social'
 import MiscVitals from './components/pageOne/miscVitals'
 import Ranges from './components/pageOne/ranges'
@@ -54,7 +54,7 @@ export default class CharacterViewer extends Component {
     }
 
     toggleArmor = () => {
-        this.setState({ showArmor: !this.state.showArmor }, _=>console.log(this.state.showArmor))
+        this.setState({ showArmor: !this.state.showArmor }, _ => console.log(this.state.showArmor))
     }
 
     reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
@@ -568,21 +568,28 @@ export default class CharacterViewer extends Component {
                 <div id="pdf" className='viewer pdfViewStylings'>
                     <div id="pageOne" className="pageOne pageBase pageViewStylings">
                         <CharacterInfo characterInfo={characterInfo} />
-                        <Stats stats={stats} />
-                        <Movement movement={movement} />
-                        <Social social={social} />
+                        <div className='pageOneMiddle'>
+                            <div className='leftColumn'>
+                                <div className='movementAndStats'>
+                                    <Stats stats={stats} />
+                                    <Movement movement={movement} />
+                                </div>
 
-                        <WeaponSquare weapon={weapononeobject} />
-                        <WeaponSquare weapon={weapontwoobject} />
-                        <WeaponSquare weapon={weaponthreeobject} />
-                        <WeaponSquare weapon={weaponfourobject} />
+                                <Social social={social} />
+                            </div>
+                            <div className='rightColumn'>
+                                <WeaponSquare weapon={weapononeobject} />
+                                <WeaponSquare weapon={weapontwoobject} />
+                                <WeaponSquare weapon={weaponthreeobject} />
+                                <WeaponSquare weapon={weaponfourobject} />
 
-                        <MiscVitals miscVitals={miscVitals} />
+                                <MiscVitals miscVitals={miscVitals} />
 
-                        <Ranges maxrange={maxrange} />
+                                <Ranges maxrange={maxrange} />
 
-                        <Vitality vitality={vitality} />
-
+                                <Vitality vitality={vitality} />
+                            </div>
+                        </div>
                         <Abilities abilities={abilities} />
                     </div>
                     <div id="pageTwo" className="pageTwo pageTwoMargin pageBase pageViewStylings">

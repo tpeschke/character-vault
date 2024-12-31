@@ -74,6 +74,15 @@ input[type=number] {
     padding: 5px 0;
 }
 
+.pageOneMiddle {
+    margin-top: 15px;
+    display: flex;
+}
+
+.leftColumn {
+    width: 426px;
+}
+
 .dieAndMinShell {
     margin-top: 5px;
     border: solid 2px black;
@@ -313,6 +322,11 @@ input[type=number] {
     width: 162px;
 }
 
+.movementAndStats {
+    display: flex;
+    justify-content: space-between;
+}
+
 .right-corner-button {
     position: relative;
     border-top-left-radius: 50px;
@@ -328,10 +342,6 @@ input[type=number] {
 .right-corner-button .copyCharacter i {
     bottom: 10px;
     right: 10px;
-}
-
-.displayNone {
-    display: none;
 }
 
 .editButton {
@@ -359,8 +369,8 @@ input[type=number] {
 }
 
 .pageBase {
-    height: 1036px;
-    width: 796px;
+    height: 1016px;
+    width: 776px;
     background-color: white;
     background-position: center;
     background-repeat: no-repeat;
@@ -443,12 +453,6 @@ textarea {
     width: 100%;
 }
 
-.statsShell {
-    position: absolute;
-    top: 105px;
-    left: 20px;
-    width: 127px;
-}
 
 .pageBase h1 {
     background: #990000;
@@ -468,39 +472,19 @@ textarea {
     height: 19.6px;
 }
 
-.statRowsShell div, .movementRowsSell div {
-    display: flex;
-    justify-content: space-between;
-}
-
-.statRowsShell div:nth-child(even), .movementRowsSell div:nth-child(even), .vitalShell div:nth-child(even),
+.vitalShell div:nth-child(even),
 .rangeShell div:nth-child(odd) {
     background: lightgray;
 }
 
-.movementRowsSell div div:nth-child(even) {
-    background: inherit;
-}
-
-.statRowsShell p, .movementRowsSell p, .stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
+.stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
 .socialShell p, .socialShell input, .skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
 .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, .weaponProfileShell p,
-.weaponProfileShell input, .statsShell input, .movementShell input, .vitalsShell input, .combatSkills p, .combatSkills input {
+.weaponProfileShell input, .statsShell input, .vitalsShell input, .combatSkills p, .combatSkills input {
     position: unset !important;
     z-index: 1;
     margin: 0;
     min-height: 19.6px;
-}
-
-.statRowsShell div div, .statRowsShell div p, .statRowsShell div input {
-    width: 50%;
-    text-align: center;
-}
-
-.statRowsShell p:nth-child(2) {
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    margin-top: 2px
 }
 
 #confDieShell {
@@ -524,18 +508,6 @@ textarea {
     color: whitesmoke
 }
 
-.strLocation {
-    left: 20px;
-    top: 171px;
-    width: 48px;
-    text-align: center;
-}
-
-.strConfrontationLocation {
-    width: 48px;
-    text-align: center;
-}
-
 .strCarryLocation {
     left: 713px;
     top: 488px;
@@ -547,18 +519,6 @@ textarea {
     left: 621px;
     top: 488px;
     width: 80px;
-    text-align: center;
-}
-
-.dexLocation {
-    left: 20px;
-    top: 192px;
-    width: 48px;
-    text-align: center;
-}
-
-.dexConfrontationLocation {
-    width: 48px;
     text-align: center;
 }
 
@@ -606,156 +566,6 @@ textarea {
 
 .baseCombatStatsShell div:nth-child(even) div p:first-child {
     color: lightgray
-}
-
-.conLocation {
-    left: 20px;
-    top: 213px;
-    width: 48px;
-    text-align: center;
-}
-
-.conConfrontationLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.intLocation {
-    left: 20px;
-    top: 234px;
-    width: 48px;
-    text-align: center;
-}
-
-.intConfrontationLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.wisLocation {
-    left: 20px;
-    top: 255px;
-    width: 48px;
-    text-align: center;
-}
-
-.wisConfrontationLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.chaLocation {
-    left: 20px;
-    top: 276px;
-    width: 48px;
-    text-align: center;
-}
-
-.chaConfrontationLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.movementShell {
-    position: absolute;
-    top: 105px;
-    left: 170px;
-    width: 276px;
-}
-
-.movementShell div p:first-child, .lengthShell {
-    font-family: 'Vollkorn SC', serif;
-    margin-top: 2px
-}
-
-.movementShell div p:first-child {
-    padding-left: 5px;
-    width: 50px;
-}
-
-.lengthShell p:first-child {
-    width: unset !important;
-    margin-top: 0
-}
-
-.lengthShell {
-    width: 173px;
-}
-
-.crawlLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.crawlLengthLocation {
-    width: 48px;
-}
-
-.walkLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.walkLengthLocation {
-    width: 48px;
-}
-
-.jogLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.jogLengthLocation {
-    width: 48px;
-}
-
-.runLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.runLengthLocation {
-    background: #f1f1f1;
-    width: 153px;
-}
-
-.sprintLocation {
-    width: 48px;
-    text-align: center;
-}
-
-.sprintLengthLocation {
-    background: white;
-    width: 153px;
-}
-
-.crawlStrike {
-    top: 33px;
-    width: 153px;
-}
-
-.walkStrike {
-    top: 56px;
-    width: 153px;
-}
-
-.jogStrike {
-    top: 80px;
-    width: 153px;
-}
-
-.runStrike {
-    top: 104px;
-}
-
-.sprintStrike {
-    top: 128px;
-}
-
-.strikeThrough {
-    position: absolute;
-    height: 3px;
-    background: #990000 !important;
 }
 
 .honorLocation {

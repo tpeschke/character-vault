@@ -41,3 +41,7 @@ a:hover h1, a:hover p {
 .beta {
   margin-left: 10px
 }
+
+.displayNone {
+  display: none;
+}

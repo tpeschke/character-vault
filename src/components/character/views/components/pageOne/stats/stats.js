@@ -1,4 +1,5 @@
 import React from 'react'
+import './stats.css'
 
 export default function Stats({ stats, editing }) {
     let { str, dex, con, int, wis, cha, updateAttribute } = stats
@@ -40,31 +41,22 @@ export default function Stats({ stats, editing }) {
         <div className="statsShell">
             <h1>Stats</h1>
             <div className="statRowsShell">
-                <div>
-                    <p className="strLocation">{str}</p>
-                    <p>Str</p>
-                </div>
-                <div>
-                    <p className="dexLocation">{dex}</p>
-                    <p>Dex</p>
-                </div>
-                <div>
-                    <p className="conLocation">{con}</p>
-                    <p>Con</p>
-                </div>
-                <div>
-                    <p className="intLocation">{int}</p>
-                    <p>Int</p>
-                </div>
-                <div>
-                    <p className="wisLocation">{wis}</p>
-                    <p>Will</p>
-                </div>
-                <div>
-                    <p className="chaLocation">{cha}</p>
-                    <p>Pre</p>
-                </div>
+                {statPairs('Str', str)}
+                {statPairs('Dex', dex)}
+                {statPairs('Con', con)}
+                {statPairs('Int', int)}
+                {statPairs('Will', wis)}
+                {statPairs('Pre', cha)}
             </div>
         </div>
+    )
+}
+
+function statPairs (stat, statNumber) {
+    return (
+        <div>
+        <p>{statNumber}</p>
+        <p>{stat}</p>
+    </div>
     )
 }

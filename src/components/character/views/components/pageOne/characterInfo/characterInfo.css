@@ -24,7 +24,7 @@
 
 .playerLocation {
     border-bottom: 2px solid;
-    width: 152px;
+    width: 123px;
 }
 
 .raceLocation {
@@ -45,13 +45,13 @@ input.levelLocation {
 
 
 .primaryLocation {
-    width: 115px;
+    width: 100px;
     padding-left: 5px;
     border-bottom: 2px solid;
 }
 
 .secondaryLocation {
-    width: 115px;
+    width: 100px;
     border-bottom: 2px solid;
     padding-left: 5px;
 }
@@ -78,5 +78,5 @@ input.levelLocation {
     background-image: url("../../../../../../assets/logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
-    width: 204px;
+    width: 213px;
 }
