@@ -1,0 +1,108 @@
+.socialShell {
+    margin-top: 10px;
+}
+
+.socialShell h2 {
+    text-align: left;
+    padding-left: 10px
+}
+
+.socialShell p, .socialShell input {
+    z-index: 1;
+    margin: 0;
+}
+
+.honorShell p {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.honorShell, .honorShell div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.honorCategoryShell {
+    position: relative;
+}
+
+.honorCategoryShell p {
+    font-size: 11px;
+    padding: 2px 0;
+    font-weight: normal;
+}
+
+.honorLocation {
+    width: 48px;
+    text-align: center;
+}
+
+.extrahonordiceLocation {
+    width: 28px;
+    text-align: center;
+}
+
+.socialBodyShell {
+    display: flex;
+    justify-content: space-between;
+    height: 333px;
+    overflow: hidden;
+}
+
+.socialRightShell, .socialLeftShell {
+    width: 224px;
+}
+
+.socialLeftShell {
+    border-right: 1px solid #222;
+}
+
+.socialLeftShell h2 {
+    margin-right: -1px
+}
+
+.temperamentLocation {
+    left: 20px;
+    top: 383px;
+    width: 205px;
+    background-color: lightgray;
+}
+
+div.temperamentLocation {
+    width: 213px;
+    display: flex;
+    align-items: center;
+}
+
+div.temperamentLocation strong {
+    margin: 0px 4px;
+}
+
+.reputationShell {
+    display: flex;
+}
+
+.reputationTitles p, .reputationTitles input {
+    font-family: 'Vollkorn SC', serif;
+    height: 18.5px;
+    padding-right: 5px;
+    padding-top: 1px;
+}
+
+.reputationTitles p:nth-child(even), .reputationTitles input:nth-child(even), .contactStriping div:nth-child(even), .honorCategoryShell p:nth-child(odd)  {
+    background: lightgray;
+}
+
+.contactStriping div {
+    height: 17.59px;
+}
+
+.contactstextArea {
+    position: absolute !important;
+    width: 422px;
+    height: 102px;
+    overflow: hidden;
+}

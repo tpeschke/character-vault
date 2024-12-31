@@ -1,8 +1,9 @@
 import React from 'react'
-import ViewList from '../pairComponents/viewList'
-import ViewPairList from '../pairComponents/viewPairList'
-import EditList from '../pairComponents/editList'
-import EditPairList from '../pairComponents/editPairList'
+import './social.css'
+import ViewList from '../../pairComponents/viewList'
+import ViewPairList from '../../pairComponents/viewPairList'
+import EditList from '../../pairComponents/editList'
+import EditPairList from '../../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
     let { shownHonor, updateAttribute, isHuman, honorDiceLeft, strength, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions, temperamentrank } = social
@@ -40,22 +41,22 @@ export default function Social({ social, editing }) {
                         <EditList rowWidth={'224px'} listArray={flaws} limit={5} updateFunction={updateAttribute} type={"flaws"} />
                     </div>
                     <div className="socialRightShell">
-                        <h2>Convictions</h2>
-                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
                         <h2>Descriptions</h2>
                         <EditPairList stylings={{ width: '200px' }} listArray={descriptions} limit={5} updateFunction={updateAttribute} type={"descriptions"} />
+                        <h2>Convictions</h2>
+                        <EditPairList stylings={{ width: '200px' }} listArray={traits} limit={8} updateFunction={updateAttribute} type={"traits"} />
                         <h2>Cultural Strength</h2>
                         <input className='cultural-strength-input' defaultValue={strength} onBlur={event => updateAttribute(event.target.value, "strength")} />
                     </div>
                 </div>
                 <h2>Reputation</h2>
                 <div className="reputationShell">
-                    <EditList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                     <div className="reputationTitles">
                         <p>I'm Know For</p>
                         <p>I'm Know For</p>
                         <p>I'm Know For</p>
                     </div>
+                    <EditList stylings={{ left: '86px', width: '340px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                 </div>
                 <h2>Allies, Contacts, & Assets</h2>
                 <div>
@@ -114,27 +115,29 @@ export default function Social({ social, editing }) {
                     <ViewList listArray={flaws} limit={5}/>
                 </div>
                 <div className="socialRightShell">
-                    <h2>Convictions</h2>
-                    <ViewPairList listArray={traits} limit={8} />
                     <h2>Descriptions</h2>
                     <ViewPairList listArray={descriptions} limit={5} />
+                    <h2>Convictions</h2>
+                    <ViewPairList listArray={traits} limit={8} />
                     <h2>Cultural Strength</h2>
                     <p>{strength}</p>
                 </div>
             </div>
             <h2>Reputation</h2>
-            <div className="reputationShell">
-                <ViewList stylings={{ left: '95px', width: '331px' }} listArray={reputation} limit={3} />
+            <div className='reputationShell'>
                 <div className="reputationTitles">
                     <p>I'm Known For</p>
                     <p>I'm Known For</p>
                     <p>I'm Known For</p>
                 </div>
+                <ViewList stylings={{ width: '331px' }} listArray={reputation} limit={3} />
             </div>
             <h2>Allies, Contacts, & Assets</h2>
             <div>
                 {alliesTextArea}
                 <div className="contactStriping">
+                    <div></div>
+                    <div></div>
                     <div></div>
                     <div></div>
                     <div></div>

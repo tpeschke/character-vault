@@ -16,7 +16,9 @@ export default class ViewPairList extends Component {
             limit: props.limit,
             height: props.height,
             converterFunction: props.converterFunction || this.converterFunction,
-            rowWidth: props.rowWidth || '100%'
+            rowStyles: {
+                width: props.rowWidth
+            }
         }
     }
 
@@ -29,32 +31,23 @@ export default class ViewPairList extends Component {
     }
 
     render() {
-        let { stylings, listArray, rowWidth, limit, height } = this.state
-        let rowStyles = {
-            width: rowWidth
-        }
+        let { stylings, listArray, limit, rowStyles } = this.state
         let listOfPairsToDisplay = listArray.map((item, i) => {
-            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+            return (<div className="editPairRow pairRow" style={rowStyles} key={`${this.makeId()}`}>
                 <p className="titleInput">- {item.title}</p>
                 <p className="valueDisplay border-right">{this.state.converterFunction(item.value)}</p>
             </div>)
         })
 
-        let stripes = []
-        for (let i = 0; i < limit; i++) {
-            stripes.push((<div className="pairRowStriping" style={rowStyles} key={`${this.makeId()}`}> </div>))
-        }
-
-        let heightStyling = {
-            height: height || 'unset'
+        for (let i = 0; i < limit - listArray.length; i++) {
+            listOfPairsToDisplay.push(( <div className="editPairRow pairRow" style={rowStyles} key={`${this.makeId()}`}>
+                                            <p className="valueDisplay border-right"> </p>
+                                        </div>))
         }
         
         return (
             <div style={stylings} className="viewPairListStriping">
-                <div className="stripesShell" style={heightStyling}>
-                    {stripes}
-                </div>
-                <div className="contentPairListShell" style={heightStyling}>
+                <div className="contentPairListShell">
                     {listOfPairsToDisplay}
                 </div>
             </div>

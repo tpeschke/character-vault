@@ -75,7 +75,7 @@ input[type=number] {
 }
 
 .pageOneMiddle {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
 }
 
@@ -478,7 +478,7 @@ textarea {
 }
 
 .stressThresholdShell p, .stressThresholdShell input, .rangeShell p, .rangeShell input,
-.socialShell p, .socialShell input, .skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
+.skillShell p, .skillShell input, .cashAndGearShell p, .cashAndGearShell input, .baseCombatStatsShell p,
 .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, .weaponProfileShell p,
 .weaponProfileShell input, .statsShell input, .vitalsShell input, .combatSkills p, .combatSkills input {
     position: unset !important;
@@ -568,27 +568,6 @@ textarea {
     color: lightgray
 }
 
-.honorLocation {
-    left: 20px;
-    top: 342px;
-    width: 48px;
-    text-align: center;
-}
-
-.temperamentLocation {
-    left: 20px;
-    top: 383px;
-    width: 205px;
-    background-color: lightgray;
-}
-
-.temperamentrankLocation {
-    border-left: 1px solid grey;
-    width: 27px;
-    text-align: center;
-    margin-left: 1px;
-}
-
 strong {
     font-size: 12px;
     font-family: 'Vollkorn SC', serif;
@@ -602,26 +581,9 @@ strong {
     background-color: lightgray;
 }
 
-div.temperamentLocation {
-    width: 213px;
-    display: flex;
-    align-items: center;
-}
-
-div.temperamentLocation strong {
-    margin: 0px 4px;
-}
-
 .racial-temp-edit-shell strong {
     margin-top: 4px;
     margin-right: 4px;
-}
-
-.extrahonordiceLocation {
-    left: 418px;
-    top: 342px;
-    width: 28px;
-    text-align: center;
 }
 
 .weaponsquare {
@@ -1273,20 +1235,6 @@ div.temperamentLocation strong {
     text-align: center;
 }
 
-.contactsLocation {
-    width: 426px;
-}
-
-.contactstextArea {
-    position: absolute !important;
-    width: 426px;
-    max-width: 426px;
-    min-width: 426px;
-    max-height: 98px;
-    min-height: 98px;
-    overflow: hidden;
-}
-
 .abilitiesShell {
     top: 856px;
     position: absolute;
@@ -1844,93 +1792,6 @@ div.temperamentLocation strong {
 .weaponProfilefour .weaponCalculatedStats:nth-child(even) {
     background: lightgray;
 }
-
-.socialShell {
-    top: 274px;
-    position: absolute;
-    left: 20px;
-    width: 426px;
-}
-
-.honorShell, .honorShell div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.honorCategoryShell {
-    position: relative;
-}
-
-.honorShell p {
-    padding-top: 2px;
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    font-size: 11px;
-}
-
-.honorCategoryShell p {
-    font-size: 11px;
-    padding: 2px 0;
-    font-weight: normal;
-}
-
-.honorCategoryShell p:nth-child(odd) {
-    background: lightgray;
-}
-
-.socialBodyShell {
-    display: flex;
-    justify-content: space-between;
-    height: 333px;
-    overflow: hidden;
-}
-
-.socialShell h2 {
-    text-align: left;
-    padding-left: 10px
-}
-
-.socialRightShell, .socialLeftShell {
-    width: 224px;
-}
-
-.socialLeftShell {
-    border-right: 1px solid #222;
-}
-
-.socialLeftShell h2 {
-    margin-right: -1px
-}
-
-.reputationShell {
-    position: relative;
-}
-
-.reputationTitles {
-    position: absolute;
-    top: 0
-}
-
-.reputationTitles p, .reputationTitles input {
-    font-family: 'Vollkorn SC', serif;
-    height: 19.6px;
-    padding-right: 5px;
-    padding-top: 1px;
-}
-
-.reputationTitles p:nth-child(even), .reputationTitles input:nth-child(even) {
-    background: lightgray;
-}
-
-.contactStriping div {
-    height: 19.6px;
-}
-
-.contactStriping div:nth-child(even) {
-    background: lightgray;
-}
-
 
 .valueDisplay {
     padding-right: 5px;

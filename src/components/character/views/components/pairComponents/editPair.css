@@ -3,7 +3,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    position: relative;
 }
 
 .pairRowStriping, .contentPairListShell input, .contentListShell input {
@@ -31,12 +30,15 @@
     border-left: none;
 }
 
-.stripesShell div:nth-child(even) {
+.pairRow {
+    height: 19.59px;
+}
+
+.contentPairListShell .pairRow:nth-child(even) {
     background: lightgray;
 }
 
 .viewPairListStriping {
-    position: relative;
     overflow: hidden;
 }
 
@@ -45,11 +47,6 @@
     flex-direction: column;
     width: 100%;
     flex-wrap: wrap;
-}
-
-.viewPairListStriping .contentPairListShell, .viewPairListStriping .contentListShell {
-    position: absolute;
-    top: 0
 }
 
 .titleInput {
@@ -92,33 +89,27 @@
 
 .rankInput {
     padding: 0 4px;
-    position: unset !important;
     text-align: center;
     width: 40px;
 }
 
 .modInput {
     padding: 0 4px;
-    position: unset !important;
     text-align: center;
     width: 40px;
 }
 
 #totalCost {
     padding: 0 4px;
-    position: absolute !important;
     text-align: right;
     width: 40px;
-    left: 154px;
     z-index: 0;
 }
 
 
 #combatTotalCost {
     padding: 0 4px;
-    position: absolute !important;
     text-align: right;
     width: 40px;
-    left: 114px;
     z-index: 0;
 }
