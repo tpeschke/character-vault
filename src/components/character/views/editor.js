@@ -12,7 +12,7 @@ import WeaponBlock from './components/pageTwo/weaponBlock'
 import CashAndGear from './components/pageTwo/cashAndGear'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
-import WeaponSquare from './components/pageOne/weaponsquare'
+import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 
 import statTables from '../statTables'

@@ -1,5 +1,6 @@
 import React from 'react'
-import combatStatMods from '../pageTwo/combatStatTables'
+import './weaponsquare.css'
+import combatStatMods from '../../pageTwo/combatStatTables'
 
 const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     let minimumRecovery
@@ -105,13 +106,13 @@ export default function weaponsquare({ weapon }) {
     if (isRanged) {
         damageString = displayDamage(basedamage, type, traindamage, thrownweapon ? strDamChart[str] : 0)
     }
-    
+
     let damageTag = <p className='double'>{damageString}</p>
     if (position === 'four') {
         damageTag = (
             <div className="damage fakebutton" onClick={_ => updateObject('weaponfour', 'thrownweapon', !thrownweapon)}>
                 <p>{damageString}</p>
-                <div className='tooltip'><p>Click to {thrownweapon ? 'remove' : 'add\n'} Str Damage bonus</p></div>
+                <div className='tooltip'><p>Click to {thrownweapon ? 'remove ' : 'add\n'}Str Damage bonus</p></div>
             </div>)
     }
 
@@ -154,73 +155,7 @@ export default function weaponsquare({ weapon }) {
 
     const isBow = name ? name.toUpperCase().includes('BOW') : false
 
-    if (id !== 'blank') {
-        return (
-            <div className={`weaponsquare weapon${position}`}>
-                <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
-                <div className='combat-table-shell'>
-                    <div className='combat-table-column'>
-                        <div>
-                            <p>Attacks</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>{position === 'four' ? 'R.I.' : 'Meas'}</p>
-                            <p>{maxrange ? (maxrange / 6).toFixed(0) : returnZeroIfNaN(basemeasure)}</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Atk</p>
-                            <p>{returnZeroIfNaN(trainattack + +miscattack + dexAtk[dex] + intAtk[int])}</p>
-                        </div>
-                        <div className='column'>
-                            <p className='first-cell'>Damage</p>
-                            {damageTag}
-                        </div>
-                        <div>
-                            <p className='first-cell'>Type</p>
-                            <p>{type}</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Rec</p>
-                            <p>{returnZeroIfNaN(calculateRecovery(baserecovery + (Math.ceil(trainrecovery / 2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type, strRec[str], isBow))}</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Init</p>
-                            <p>{returnZeroIfNaN(baseInit - armorInit)}</p>
-                        </div>
-                    </div>
-                    <div className='combat-table-column'>
-                        <div>
-                            <p>Defenses</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Def</p>
-                            <p>{defense}</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Flanks</p>
-                            <p>{shieldflanks && usingshield ? shieldflanks : 1}</p>
-                        </div>
-                        <div>
-                            <p className='first-cell'>Parry</p>
-                            <p>{parryShown}</p>
-                        </div>
-                        <div className='column'>
-                            <p className='first-cell'>Cover</p>
-                            <p>{cover}</p>
-                        </div>
-                        <div className='column'>
-                            <p className='first-cell'>Parry DR</p>
-                            <p>{shieldDrShown}{parryDr}</p>
-                        </div>
-                        <div className='column'>
-                            <p className='first-cell'>DR</p>
-                            <p>{armorDR}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    } else {
+    if (id === 'blank') {
         return (
             <div className={`weaponsquare weapon${position}`}>
                 <div className='combat-table-shell'>
@@ -285,7 +220,47 @@ export default function weaponsquare({ weapon }) {
                 </div>
             </div>
         )
+    } else {
+        return (
+            <div className={`weaponsquare`}>
+                <p className="name">{getName(usingshield, shieldname, name, showArmor)}</p>
+                <div className='combat-table-shell'>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Attacks</p>
+                        </div>
+                        {statRow(position === 'four' ? 'R.I.' : 'Meas', maxrange ? (maxrange / 6).toFixed(0) : returnZeroIfNaN(basemeasure))}
+                        {statRow('Atk', trainattack + +miscattack + dexAtk[dex] + intAtk[int], false, returnZeroIfNaN)}
+                        <div className='column'>
+                            <p className='first-cell'>Damage</p>
+                            {damageTag}
+                        </div>
+                        {statRow('Type', type)}
+                        {statRow('Rec', calculateRecovery(baserecovery + (Math.ceil(trainrecovery / 2) * -1) + +miscrecovery + armorRecovery, size, !isRanged, type, strRec[str], isBow), false, returnZeroIfNaN)}
+                        {statRow('Init', baseInit - armorInit, false, returnZeroIfNaN)}
+                    </div>
+                    <div className='combat-table-column'>
+                        <div>
+                            <p>Defenses</p>
+                        </div>
+                        {statRow('Def', defense)}
+                        {statRow('Flanks', shieldflanks && usingshield ? shieldflanks : 1)}
+                        {statRow('Parry', parryShown)}
+                        {statRow('Cover', cover, true)}
+                        {statRow('Parry DR', `${shieldDrShown}${parryDr}`, true)}
+                        {statRow('DR', armorDR, true)}
+                    </div>
+                </div>
+            </div>
+        )
     }
+}
+
+function statRow(label, value, isColumn, callback) {
+    return (<div className={isColumn ? 'column' : ''}>
+                <p className='first-cell'>{label}</p>
+                <p>{callback ? callback(value) : value}</p>
+            </div>)
 }
 
 function displayDamage(basedamage, damageType, traingingDamage, strDam) {

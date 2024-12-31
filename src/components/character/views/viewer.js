@@ -5,7 +5,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import _ from "lodash";
 
-import WeaponSquare from './components/pageOne/weaponsquare'
+import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
 import Stats from './components/pageOne/stats/stats'
 import Movement from './components/pageOne/movement/movement'
@@ -578,10 +578,12 @@ export default class CharacterViewer extends Component {
                                 <Social social={social} />
                             </div>
                             <div className='rightColumn'>
-                                <WeaponSquare weapon={weapononeobject} />
-                                <WeaponSquare weapon={weapontwoobject} />
-                                <WeaponSquare weapon={weaponthreeobject} />
-                                <WeaponSquare weapon={weaponfourobject} />
+                                <div className='weaponSquares'>
+                                    <WeaponSquare weapon={weapononeobject} />
+                                    <WeaponSquare weapon={weapontwoobject} />
+                                    <WeaponSquare weapon={weaponthreeobject} />
+                                    <WeaponSquare weapon={weaponfourobject} />
+                                </div>
 
                                 <MiscVitals miscVitals={miscVitals} />
 
