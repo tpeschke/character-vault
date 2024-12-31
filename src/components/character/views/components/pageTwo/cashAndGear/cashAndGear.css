@@ -1,0 +1,51 @@
+.cashAndGearShell p, .cashAndGearShell input {
+    z-index: 1;
+    margin: 0;
+    height: 19.6px;
+}
+
+.cashAndGearShell {
+    display: flex;
+    flex-direction: column;
+    width: 776px;
+}
+
+.cashTitle {
+    display: flex;
+}
+
+.cashAndGearShell h1 {
+    width: 446px;
+}
+
+.cashShell {
+    display: flex;
+    height: 22.4px;
+    padding: 0px 2px;
+}
+
+.cashIndividual {
+    width: 54px;
+    text-align: center;
+}
+
+.cashShell div {
+    width: 75px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px
+}
+
+.cashShell div:nth-child(odd) {
+    background: white
+}
+
+.cashShell div:nth-child(even) {
+    background: lightgray
+}
+
+.cashShell div p {
+    padding-top: 4px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+}

@@ -15,7 +15,7 @@ import Ranges from './components/pageOne/ranges/ranges'
 import Vitality from './components/pageOne/vitality/vitality'
 import Abilities from './components/pageOne/abilities/abilities'
 import Skills from './components/pageTwo/skill'
-import CashAndGear from './components/pageTwo/cashAndGear'
+import CashAndGear from './components/pageTwo/cashAndGear/cashAndGear'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
 import ArmorBlock from './components/pageTwo/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
@@ -57,7 +57,7 @@ export default class CharacterViewer extends Component {
         this.setState({ showArmor: !this.state.showArmor }, _ => console.log(this.state.showArmor))
     }
 
-    reduceAndCleanGearArrays = (gearone, geartwo, gearthree, gearfour) => {
+    reduceAndCleanGearArrays = (gearone = [], geartwo = [], gearthree = [], gearfour = []) => {
         let totalCarry = 0
         let cleanArray = ({ value }) => {
             if (!isNaN(+value)) { return 0 }
@@ -113,7 +113,8 @@ export default class CharacterViewer extends Component {
                 }
             })
         }
-
+        
+        if (!gearfour.length) { gearfour = [] }
         gearone.forEach(cleanArray)
         geartwo.forEach(cleanArray)
         gearthree.forEach(cleanArray)

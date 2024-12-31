@@ -1,6 +1,7 @@
 import React from 'react'
-import EditPairList from '../pairComponents/editPairList'
-import ViewPairList from '../pairComponents/viewPairList'
+import './cashAndGear.css'
+import EditPairList from '../../pairComponents/editPairList'
+import ViewPairList from '../../pairComponents/viewPairList'
 
 export default function Skills({ cashAndGear, editing }) {
     let { copper, updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading, id } = cashAndGear
@@ -81,10 +82,6 @@ export default function Skills({ cashAndGear, editing }) {
     let gearThreeList = <ViewPairList stylings={{ width: '194px' }} listArray={gearthree} limit={7} updateFunction={updateAttribute} type={"gearthree"} />
     let gearFourList = <ViewPairList stylings={{ width: '194px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
     if (id !== 'blank') {
-        copperInput = <input className="cashIndividual" type="text" defaultValue={copper} onBlur={event => updateAttribute(event.target.value, "copper")} />
-        silverInput = <input className="cashIndividual" type="text" defaultValue={silver} onBlur={event => updateAttribute(event.target.value, "silver")} />
-        goldInput = <input className="cashIndividual" type="text" defaultValue={gold} onBlur={event => updateAttribute(event.target.value, "gold")} />
-        platInput = <input className="cashIndividual" type="text" defaultValue={platinium} onBlur={event => updateAttribute(event.target.value, "platinium")} />
         gearOneList = <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={7} updateFunction={updateAttribute} type={"gearone"} />
         gearTwoList = <EditPairList stylings={{ width: '194px' }} listArray={geartwo} limit={7} updateFunction={updateAttribute} type={"geartwo"} />
         gearThreeList = <EditPairList stylings={{ width: '194px' }} listArray={gearthree} limit={7} updateFunction={updateAttribute} type={"gearthree"} />
@@ -92,53 +89,27 @@ export default function Skills({ cashAndGear, editing }) {
     }
     return (
         <div className="cashAndGearShell">
-            <h1>Gear & Loot</h1>
-            <div className="cashShell">
-                <div>
-                    <p>CC</p>
-                    {copperInput}
-                </div>
-                <div>
-                    <p>SC</p>
-                    {silverInput}
-                </div>
-                <div>
-                    <p>GC</p>
-                    {goldInput}
-                </div>
-                <div>
-                    <p>PC</p>
-                    {platInput}
+            <div className='cashTitle'>
+                <h1>Gear & Loot</h1>
+                <div className="cashShell">
+                    {cashPair('CC', copper, 'copper', updateAttribute)}
+                    {cashPair('SC', copper, 'silver', updateAttribute)}
+                    {cashPair('GC', copper, 'gold', updateAttribute)}
+                    {cashPair('PC', copper, 'platinium', updateAttribute)}
                 </div>
             </div>
             <div className="gearColumns">
                 <div className="gearColumn">
-                    <div className="gearHeaderShell">
-                        <h2>Item</h2>
-                        <h2>Size</h2>
-                    </div>
-                    {gearOneList}
+                    {gearColumn(gearOneList)}
                 </div>
                 <div className="gearColumn">
-                    <div className="gearHeaderShell">
-                        <h2>Item</h2>
-                        <h2>Size</h2>
-                    </div>
-                    {gearTwoList}
+                    {gearColumn(gearTwoList)}
                 </div>
                 <div className="gearColumn">
-                    <div className="gearHeaderShell">
-                        <h2>Item</h2>
-                        <h2>Size</h2>
-                    </div>
-                    {gearThreeList}
+                    {gearColumn(gearThreeList)}
                 </div>
                 <div className="gearColumn">
-                    <div className="gearHeaderShell">
-                        <h2>Item</h2>
-                        <h2>Size</h2>
-                    </div>
-                    {gearFourList}
+                    {gearColumn(gearFourList)}
                     <div className="carryShell">
                         <div className="carryBackground">
                             <p> </p>
@@ -153,5 +124,26 @@ export default function Skills({ cashAndGear, editing }) {
                 </div>
             </div>
         </div>
+    )
+}
+
+function cashPair(label, number, type, callback) {
+    return (
+        <div>
+            <p>{label}</p>
+            <input className="cashIndividual" type="text" defaultValue={number} onBlur={event => callback(event.target.value, type)} />
+        </div>
+    )
+}
+
+function gearColumn(list) {
+    return (
+        <>
+            <div className="gearHeaderShell">
+                <h2>Item</h2>
+                <h2>Size</h2>
+            </div>
+            {list}
+        </>
     )
 }
