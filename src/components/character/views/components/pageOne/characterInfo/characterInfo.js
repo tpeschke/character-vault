@@ -1,5 +1,5 @@
 import React from 'react'
-import "./plates.css"
+import "./characterInfo.css"
 
 const getCrPRequirement = (level) => {
     return 50 + (level * 3)
@@ -51,16 +51,42 @@ export default function CharacterInfo({ characterInfo, editing }) {
     }
 
     return (
-        <div>
-            {plates}
-            <p className="nameLocation">{name ? name : ' '}</p>
-            <p className="raceLocation">{race ? race : ' '}</p>
-            <p className="primaryLocation">{primarya ? primarya : ' '}</p>
-            <p className="secondaryLocation">{secondarya ? secondarya : ' '}</p>
-            <p className="levelLocation">{level ? level : ' '}</p>
-            {crplocation}
-            {currentEx}
-            <p className="extolevelLocation">{level ? getCrPRequirement(level) : ' '}</p>
+        <div className='info-shell'>
+            <div>
+                <div className='info-row'>
+                    {infoPairs('Character Name', 'nameLocation', name)}
+                    {infoPairs('Player', 'playerLocation', null)}
+                </div>
+                <div className='info-row'>
+                    {infoPairs('Ancestry', 'raceLocation', race)}
+                    <div className='info-row'>
+                        <strong>Class/Subclass</strong>
+                        <p className="primaryLocation">{primarya ? primarya : ' '}</p>
+                        <p>/</p>
+                        <p className="secondaryLocation">{secondarya ? secondarya : ' '}</p>
+                    </div>
+                    {infoPairs('Lvl', 'levelLocation', level)}
+                </div>
+                <div className='info-row'>
+                    <strong className='ultra-strong'>CrP</strong>
+                    {infoPairsEdit('Unspent', 'crpLocation', crp, updateAttribute, 'crp')}
+                    {infoPairsEdit('Unspent', 'excurrentLocation', excurrent, updateAttribute, 'excurrent')}
+                    {infoPairs('Spent to Next LvL', 'extolevelLocation', getCrPRequirement(level))}
+                </div>
+            </div>
+            <div className="bonfireLogo"></div>
         </div>
+    )
+}
+
+function infoPairs(title, className, info) {
+    return (
+        <div className='title-info-pair'><strong>{title}</strong><p className={className}>{info ? info : ' '}</p></div>
+    )
+}
+
+function infoPairsEdit(title, className, info, callback, attribute) {
+    return (
+        <div className='title-info-pair'><strong>{title}</strong><input className={className} type="number" min="0" defaultValue={info} onChange={event => callback(event.target.value, attribute)} /></div>
     )
 }

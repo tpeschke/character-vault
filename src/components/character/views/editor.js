@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Abilities from './components/pageOne/abilities'
-import CharacterInfo from './components/pageOne/characterInfo'
+import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
 import MiscVitals from './components/pageOne/miscVitals'
 import Movement from './components/pageOne/movement'
 import Ranges from './components/pageOne/ranges'

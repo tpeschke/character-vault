@@ -1,0 +1,82 @@
+.info-shell {
+    display: flex;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+}
+
+.title-info-pair {
+    display: flex;
+    align-items: center;
+}
+
+.ultra-strong {
+    font-weight: 1000;
+}
+
+.nameLocation {
+    border-bottom: 2px solid;
+    width: 272px;
+    padding: 1px 5px;
+}
+
+.playerLocation {
+    border-bottom: 2px solid;
+    width: 152px;
+}
+
+.raceLocation {
+    border-bottom: 2px solid;
+    width: 116px;
+    padding: 1px 5px;
+}
+
+.levelLocation {
+    border-bottom: 2px solid;
+    width: 28px;
+    text-align: center;
+}
+
+input.levelLocation {
+    left: 569px;
+}
+
+
+.primaryLocation {
+    width: 115px;
+    padding-left: 5px;
+    border-bottom: 2px solid;
+}
+
+.secondaryLocation {
+    width: 115px;
+    border-bottom: 2px solid;
+    padding-left: 5px;
+}
+
+.crpLocation {
+    width: 53px;
+    text-align: center;
+    border-bottom: 2px solid;
+}
+
+.excurrentLocation {
+    text-align: center;
+    width: 53px;
+    border-bottom: 2px solid;
+}
+
+.extolevelLocation {
+    width: 53px;
+    text-align: center;
+    border-bottom: 2px solid;
+}
+
+.bonfireLogo {
+    background-image: url("../../../../../../assets/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 204px;
+}

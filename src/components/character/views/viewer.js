@@ -6,7 +6,7 @@ import html2canvas from "html2canvas";
 import _ from "lodash";
 
 import WeaponSquare from './components/pageOne/weaponsquare'
-import CharacterInfo from './components/pageOne/characterInfo'
+import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
 import Stats from './components/pageOne/stats'
 import Movement from './components/pageOne/movement'
 import Social from './components/pageOne/social'
