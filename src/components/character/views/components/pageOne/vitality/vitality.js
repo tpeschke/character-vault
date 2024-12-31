@@ -1,6 +1,7 @@
 import React from 'react'
-import EditPairList from '../pairComponents/editPairList'
-import ViewPairList from '../pairComponents/viewPairList'
+import './vitality.css'
+import EditPairList from '../../pairComponents/editPairList'
+import ViewPairList from '../../pairComponents/viewPairList'
 
 function calculatePanickedLeft(dwarfModifier, stresslockout = 1) {
     let left = '0px'

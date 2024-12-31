@@ -1,0 +1,268 @@
+.vitalsShell {
+    margin-top: 5px;
+}
+
+.stressShell, .editingStressThreshold {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vitalsShell input {
+    z-index: 1;
+    margin: 0;
+}
+
+.stressShell div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.editingStressThreshold div {
+    display: flex;
+    align-items: center;
+}
+
+.editingStressThreshold div {
+    width: 100%;
+}
+
+.stressShell div p {
+    width: 35%;
+}
+
+.stressShell div input {
+    width: 65%;
+}
+
+.stressShell .relaxationLocation {
+    width: 50%;
+}
+
+.stressShell div:first-child {
+    border: 2px solid #990000;
+    width: 49%;
+}
+
+.stressShell div p:first-child, .editingStressThreshold p {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+.stressShell div:last-child p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    margin: 0;
+    font-weight: normal;
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.stressShell div:last-child p:last-child {
+    text-align: center;
+}
+
+.currentstressLocation {
+    width: 74px;
+    text-align: center;
+    z-index: 1;
+}
+
+.stressthresholdLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.mentalBreak {
+    background-color: #990000;
+    color: whitesmoke;
+}
+
+.relaxationLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.woundCategoryShell {
+    position: relative;
+    display: flex;
+}
+
+.woundCategoryShell div {
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.woundCategoryShell div:nth-child(even) {
+    background: lightgray;
+}
+
+.vitalsShell p {
+    position: unset;
+}
+
+.woundCategoryShell div p:first-child, .currentBox p:first-child, .thresholdBox p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+.woundCategoryShell p:nth-child(2) {
+    width: 60%;
+    font-size: 10px;
+}
+
+.currentDamageRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.currentBox p:first-child, .thresholdBox p:first-child {
+    font-size: 9px;
+}
+
+.currentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #990000;
+    padding: 0 3px;
+}
+
+.downloadStylings .currentBox p:last-child {
+    color: white !important
+}
+
+.sizemodLocation {
+    top: 824px;
+    width: 48px;
+    left: 524px;
+    text-align: center;
+}
+
+.thresholdBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid grey;
+}
+
+.tinyGrey {
+    font-family: 'Vollkorn SC', serif;
+    font-size: 10px !important;
+    text-align: center;
+    color: grey;
+}
+
+.damageShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.damageShellLeft, .damageShellRight {
+    display: flex;
+    justify-content: space-between;
+}
+
+.damageShellLeft {
+    width: 46%;
+}
+
+.woundTitleShell p {
+    font-family: 'Vollkorn SC', serif;
+    margin: 0;
+    color: grey;
+    height: 19.6px;
+}
+
+.damageShellLeft .woundTitleShell p {
+    width: 50px;
+}
+
+.damageShellRight .woundTitleShell p {
+    width: 77px;
+}
+
+.woundTitleShell p:nth-child(even) {
+    background: lightgray;
+}
+
+.criticalLocation {
+    width: 60%;
+    text-align: center;
+}
+
+.hurtLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.bloodiedLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.woundedLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.currentDamageLocation {
+    width: 51px;
+    text-align: center;
+}
+
+.traumaLocation {
+    width: 74px;
+    text-align: center;
+}
+
+.vitalyRollsShell {
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vitalyRollsShell div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2px;
+    border-right: 2px solid lightgrey;
+}
+
+.vitalyRollsShell div:last-child {
+    border-right: none;
+}
+
+.vitalyRollsShell div p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    margin: 0;
+    padding-top: 2px;
+    font-size: 10px;
+}
+
+.vitalyRollsShell div p:nth-child(2), .vitalyRollsShell div input:nth-child(2) {
+    width: 38%
+}
+
+.vitalityrollLocation {
+    width: 47px;
+    text-align: center;
+}
+
+.vitalitydiceLocation {
+    width: 36px;
+    text-align: center;
+}
+
+.vitalityminLocation {
+    width: 36px;
+    text-align: center;
+}

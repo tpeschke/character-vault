@@ -5,8 +5,8 @@
     width: 100%;
 }
 
-.pairRowStriping, .contentPairListShell input, .contentListShell input {
-    height: 19.6px;
+.pairRowStriping, .contentPairListShell input, .contentListShell input, .editPairRow input {
+    height: 19.59px;
     margin: 0;
 }
 

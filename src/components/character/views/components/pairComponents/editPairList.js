@@ -16,12 +16,16 @@ export default class EditPairList extends Component {
             limit: props.limit,
             updateFunction: props.updateFunction,
             type: props.type,
-            height: props.height,
+            heightStyling: {
+                height: props.height || 'unset'
+            },
             titleWidth: props.titleWidth || 75,
             valueWidth: 100 - props.titleWidth || 25,
             defaultValue: props.defaultValue || null,
             titleSameAsValue: props.titleSameAsValue || false,
-            rowWidth: props.rowWidth || '100%'
+            rowStyles: {
+                width: props.rowWidth || '100'
+            }
         }
     }
 
@@ -71,42 +75,35 @@ export default class EditPairList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, titleWidth, valueWidth, rowWidth, height } = this.state
-        let rowStyles = {
-            width: rowWidth
-        }
-        let listOfInputs = listArray.map((item, i) => {
-            return (<div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
-                <input className="titleInput" style={{ width: `${titleWidth}%` }} defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
-                <input className="valueInput border-right" style={{ width: `${valueWidth}%` }} defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
-            </div>)
+        let { stylings, listArray, limit, titleWidth, valueWidth, heightStyling, rowStyles } = this.state
+        let listOfItems = listArray.map((item, i) => {
+            return (
+                <div className="editPairRow pairRow" style={rowStyles} key={`${this.makeId()}`}>
+                    <input className="titleInput" style={{ width: `${titleWidth}%` }} defaultValue={item.title} onBlur={e => this.updateValue('title', e.target.value, i)} />
+                    <input className="valueInput border-right" style={{ width: `${valueWidth}%` }} defaultValue={item.value} onBlur={e => this.updateValue('value', e.target.value, i)} />
+                </div>
+            )
         })
 
         let inputRowStyles = {
-            width: rowWidth,
-            display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
+            width: rowStyles.width,
+            display: `${listOfItems.length >= limit ? 'none' : 'inherit'}`
         }
 
-        let stripes = []
-        for (let i = 0; i < limit; i++) {
-            stripes.push((<div className="pairRowStriping" style={rowStyles} key={`${this.makeId()}`}> </div>))
+        let striping = []
+        for (let i = 0; i < limit - listArray.length - 1; i++) {
+            striping.push((<div className="pairRowStriping pairRow" style={rowStyles} key={`${this.makeId()}`}> </div>))
         }
 
-        let heightStyling = {
-            height: height || 'unset'
-        }
-        
         return (
             <div style={stylings} className="viewPairListStriping">
-                <div className="stripesShell" style={heightStyling}>
-                    {stripes}
-                </div>
                 <div className="contentPairListShell" style={heightStyling}>
-                    {listOfInputs}
-                    <div className="editPairRow" style={inputRowStyles}>
+                    {listOfItems}
+                    <div className="editPairRow pairRow" style={inputRowStyles}>
                         <input id={`addNewItemInputTitle${this.state.type}`} className="titleInput" style={{ width: `${titleWidth}%` }} onBlur={e => this.addNewItem(e.target.value, null)} />
                         <input id={`addNewItemInputValue${this.state.type}`} className="valueInput border-right" style={{ width: `${valueWidth}%` }} onBlur={e => this.addNewItem(null, e.target.value)} placeholder={this.state.defaultValue} />
                     </div>
+                    {striping}
                 </div>
             </div>
         )
