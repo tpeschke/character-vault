@@ -36,6 +36,11 @@
     width: 50px;
 }
 
+.speed {
+    width: 50px;
+    text-align: center;
+}
+
 .lengthShell {
     font-family: 'Vollkorn SC', serif;
     margin-top: 2px;
