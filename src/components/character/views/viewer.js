@@ -17,7 +17,7 @@ import Abilities from './components/pageOne/abilities/abilities'
 import Skills from './components/pageTwo/skills/skills'
 import CashAndGear from './components/pageTwo/cashAndGear/cashAndGear'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
-import ArmorBlock from './components/pageTwo/armorBlock'
+import ArmorBlock from './components/pageTwo/armorBlock/armorBlock'
 import ShieldBlock from './components/pageTwo/shieldBlock'
 import WeaponBlock from './components/pageTwo/weaponBlock'
 
@@ -113,7 +113,7 @@ export default class CharacterViewer extends Component {
                 }
             })
         }
-        
+
         if (!gearfour.length) { gearfour = [] }
         gearone.forEach(cleanArray)
         geartwo.forEach(cleanArray)
@@ -597,14 +597,18 @@ export default class CharacterViewer extends Component {
                     </div>
                     <div id="pageTwo" className="pageTwo pageTwoMargin pageBase pageViewStylings">
                         <CashAndGear cashAndGear={cashAndGear} />
-
                         <Skills skillsObject={skillsObject} />
+                        <div className='armorShieldWeaponArea'>
+                            <div>
+                                <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} />
+                                {/* <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} /> */}
+                            </div>
+                            <div>
+                                :)
+                            </div>
+                        </div>
 
                         {/* <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} /> */}
-
-                        {/* <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} /> */}
-
-                        {/* <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} /> */}
 
                         {/* <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
                         <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />

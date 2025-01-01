@@ -394,11 +394,6 @@ textarea {
     transition: .8s
 }
 
-.armorBonusArea textarea {
-    overflow: hidden;
-    text-indent: 40px;
-}
-
 .plates p {
     font-family: 'Vollkorn SC', serif;
 }
@@ -435,8 +430,7 @@ textarea {
     background: lightgray;
 }
 
-.baseCombatStatsShell p,
-.armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, 
+.baseCombatStatsShell p, .shieldBlockShell p, .shieldBlockShell input, 
 .statsShell input, .combatSkills p, .combatSkills input {
     position: unset !important;
     z-index: 1;
@@ -702,54 +696,8 @@ strong {
     width: 28px;
 }
 
-.armorBlockShell {
-    position: absolute;
-    top: 532px;
-    left: 20px;
-    width: 151px;
-    border: 2px #222 solid;
-}
-
-.armorBlockShell div:nth-child(even), .shieldBlockShell div:nth-child(even), .weaponProfileShell div:nth-child(odd) {
-    background: lightgray;
-}
-
-.armorBlockShell div, .shieldBlockShell div {
-    padding: 0 2px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.basicStatsDrawer div {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-}
-
-.basicStatsDrawer div:last-child {
-    background: none;
-}
-
-.basicStatsDrawer div p, .basicStatsDrawer div input {
-    width: 50%;
-}
-
-.basicStatsDrawer div p:last-child, .basicStatsDrawer div input:last-child {
-    text-align: center;
-}
-
-.basicStats p:first-child, .basicStatsDrawer div p:first-child {
-    padding-top: 2px;
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-}
-
-.basicStats p:last-child, .basicStats input:last-child {
-    text-align: center;
-}
-
-.basicStats p:first-child, .basicStats p:last-child, .basicStats input:first-child, .basicStats input:last-child {
-    width: 75px;
+.armorShieldWeaponArea {
+    margin-top: 5px;
 }
 
 .twinShieldStats div {
@@ -767,83 +715,6 @@ strong {
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;
     text-align: left;
-}
-
-.armornameLocation {
-    padding: 3px 2px 0;
-    background: lightgrey;
-    width: 100%;
-    border-radius: 0;
-    text-align: left;
-    font-size: 12px;
-}
-
-.armorBonusArea {
-    position: relative;
-    max-width: 100%;
-    min-width: 100%;
-    max-height: 49px;
-    min-height: 49px;
-    overflow: hidden;
-}
-
-.armorBonusAreaView {
-    max-height: 48px;
-    min-height: 48px;
-}
-
-.shieldBonusArea {
-    max-height: 74px;
-    min-height: 74px;
-}
-
-.armorBonusArea p:first-child {
-    padding-top: 2px;
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    position: absolute !important;
-    top: 0;
-    left: 0;
-}
-
-.armorBonusArea p:last-child {
-    width: 100%;
-    text-indent: 39px;
-}
-
-.calculatedStats {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-}
-
-.calculatedStatsHeading {
-    background: grey !important;
-    font-family: 'Vollkorn SC', serif;
-    color: white
-}
-
-.calculatedStatsHeading p {
-    padding-top: 2px;
-}
-
-.calculatedStats p, .calculatedStats input {
-    width: 25px;
-    text-align: center;
-    border-right: 2px solid grey;
-}
-
-.calculatedStats.shield p, .calculatedStats.shield input, .calculatedStats.shield.calculatedStatsHeading p {
-    width: 33px;
-}
-
-.calculatedStats p:last-child {
-    padding-top: 2px;
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    text-align: left;
-    min-width: 40px;
-    border-right: none
 }
 
 .shieldBlockShell {

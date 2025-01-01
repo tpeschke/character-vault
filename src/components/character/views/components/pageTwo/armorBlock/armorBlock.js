@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './armorBlock.css'
 import axios from "axios"
 
 const sortFunction = function (a, b) {
@@ -60,7 +61,7 @@ export default class ArmorBlock extends Component {
 
     toggleArmor = () => {
         this.state.armor.toggleArmor()
-        this.setState({ armor: {...this.state.armor, showArmor: !this.state.armor.showArmor}, seed: Math.random() })
+        this.setState({ armor: { ...this.state.armor, showArmor: !this.state.armor.showArmor }, seed: Math.random() })
     }
 
     calculateArmorDefense = (base, ranks, misc) => {
@@ -199,52 +200,43 @@ export default class ArmorBlock extends Component {
             <div className="armorBlockShell" key={this.state.seed}>
                 <h2>Armor Workspace</h2>
                 <button className="armornameLocation" onClick={this.toggleArmor}><p className={showArmor ? null : 'buttonStrikeThrough'}>{armorname}</p></button>
-                <div className="basicStats">
-                    <p>DR</p>
-                    <p>{armordr}</p>
-                </div>
-                <div className="basicStats">
-                    <p>Skill Adju.</p>
-                    <p>{armorskilladj}</p>
-                </div>
-                <div className="armorBonusArea armorBonusAreaView">
-                    <p>Bonus</p>
-                    <p>{armorbonus}</p>
-                </div>
+                {creatPairs('DR', armordr, 'basicStats')}
+                {creatPairs('Skill Adju.', armorskilladj, 'basicStats')}
+                {creatPairs('Bonus', armorbonus, 'armorBonusArea')}
 
-                <div className="calculatedStats calculatedStatsHeading">
-                    <p>Def</p>
-                    <p>Fat</p>
-                    <p>Rcv</p>
-                    <p>Init</p>
-                    <p> </p>
-                </div>
-                <div className="calculatedStats">
-                    <p>{armorbasedef}</p>
-                    <p>{armorbasefatiguemod}</p>
-                    <p>{armorbaserecovery}</p>
-                    <p>{armorbaseinit}</p>
-                    <p>Base</p>
-                </div>
-
-                <div className="calculatedStats">
-                    <p>{armortrainingdef}</p>
-                    <p>{armortrainfatigue}</p>
-                    <p>{armortrainrecovery}</p>
-                    <p>{armortraininit}</p>
-                    <p>Skills</p>
-                </div>
-
-                {miscInputs}
-
-                <div className="calculatedStats">
-                    <p>{this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef)}</p>
-                    <p>{id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : ''}</p>
-                    <p>{id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : ''}</p>
-                    <p>{returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit)}</p>
-                    <p>Total</p>
+                <div className='calculatedStatsShell'>
+                    {createStatCalculation('Def', 'Fat', 'Rcv', 'Init', '', 'calculatedStats calculatedStatsHeading')}
+                    {createStatCalculation(armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit, 'Base', 'calculatedStats')}
+                    {createStatCalculation(armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, 'Skill', 'calculatedStats')}
+                    {miscInputs}
+                    {createStatCalculation( this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef), 
+                                            id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : '', 
+                                            id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : '', 
+                                            returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit), 
+                                            'Total', 'calculatedStats')}
                 </div>
             </div>
         )
     }
+}
+
+function creatPairs(label, value, classes) {
+    return (
+        <div className={classes}>
+            <p>{label}</p>
+            <p>{value}</p>
+        </div>
+    )
+}
+
+function createStatCalculation(label1, label2, label3, label4, label5, classes) {
+    return (
+        <div className={classes}>
+            <p>{label1}</p>
+            <p>{label2}</p>
+            <p>{label3}</p>
+            <p>{label4}</p>
+            <p>{label5}</p>
+        </div>
+    )
 }
