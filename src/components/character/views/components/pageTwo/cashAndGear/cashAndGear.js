@@ -82,10 +82,10 @@ export default function Skills({ cashAndGear, editing }) {
     let gearThreeList = <ViewPairList stylings={{ width: '194px' }} listArray={gearthree} limit={7} updateFunction={updateAttribute} type={"gearthree"} />
     let gearFourList = <ViewPairList stylings={{ width: '194px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
     if (id !== 'blank') {
-        gearOneList = <EditPairList stylings={{ width: '194px' }} listArray={gearone} limit={7} updateFunction={updateAttribute} type={"gearone"} />
-        gearTwoList = <EditPairList stylings={{ width: '194px' }} listArray={geartwo} limit={7} updateFunction={updateAttribute} type={"geartwo"} />
-        gearThreeList = <EditPairList stylings={{ width: '194px' }} listArray={gearthree} limit={7} updateFunction={updateAttribute} type={"gearthree"} />
-        gearFourList = <EditPairList stylings={{ width: '194px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
+        gearOneList = <EditPairList stylings={{ width: '193px' }} listArray={gearone} limit={7} updateFunction={updateAttribute} type={"gearone"} />
+        gearTwoList = <EditPairList stylings={{ width: '193px' }} listArray={geartwo} limit={7} updateFunction={updateAttribute} type={"geartwo"} />
+        gearThreeList = <EditPairList stylings={{ width: '193px' }} listArray={gearthree} limit={7} updateFunction={updateAttribute} type={"gearthree"} />
+        gearFourList = <EditPairList stylings={{ width: '191px' }} listArray={gearfour} limit={6} updateFunction={updateAttribute} type={"gearfour"} />
     }
     return (
         <div className="cashAndGearShell">

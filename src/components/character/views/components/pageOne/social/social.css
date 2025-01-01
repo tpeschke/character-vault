@@ -75,7 +75,7 @@
 }
 
 div.temperamentLocation {
-    width: 213px;
+    width: 217px;
     display: flex;
     align-items: center;
 }
@@ -90,7 +90,7 @@ div.temperamentLocation strong {
 
 .reputationTitles p, .reputationTitles input {
     font-family: 'Vollkorn SC', serif;
-    height: 18.5px;
+    height: 19.5px;
     padding-right: 5px;
     padding-top: 1px;
 }

@@ -7,7 +7,6 @@
 .cashAndGearShell {
     display: flex;
     flex-direction: column;
-    width: 776px;
 }
 
 .cashTitle {
@@ -15,7 +14,7 @@
 }
 
 .cashAndGearShell h1 {
-    width: 446px;
+    width: 464px;
 }
 
 .cashShell {

@@ -1,0 +1,160 @@
+.skillOuterShell {
+    margin-top: 5px;
+}
+
+.skillShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillLeftColumn {
+    width: 33%;
+}
+
+.skillRightColumn {
+    width: 67%
+}
+
+.skillMods {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.skillMods div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 33%;
+    height: 19.6px;
+}
+
+.skillMods div:nth-child(odd) {
+    background: lightgray
+}
+
+.skillMods div p:first-child, .skillAdept p:first-child, .skillRow p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.skillMods div p:nth-child(2) {
+    width: 24px;
+    text-align: center;
+}
+
+.skillAdept {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid lightgrey;
+    height: 19.6px;
+}
+
+.skilladeptLocation {
+    width: 120px;
+    text-align: center;
+}
+
+.skillShell p, .skillShell input {
+    z-index: 1;
+    margin: 0;
+    min-height: 19.6px;
+}
+.skillsuiteShell {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.skillsuiteShell .skillRow {
+    display: flex;
+    justify-content: space-between;
+    height: 19.5px;
+}
+
+.skillsuiteShell .skillRow:nth-child(odd), .combatRow .skillRow:nth-child(odd) {
+    background: lightgray
+}
+
+.skillsuiteShell .skillRow:first-child {
+    background: #222;
+}
+
+.skillRow p, .skillRow input {
+    text-align: center;
+    width: 40px;
+}
+
+.skillRow p:first-child {
+    text-align: left;
+    width: 90px;
+}
+
+.skillRow h2:nth-child(2), .skillRow h2:nth-child(3), .skillRow h2:nth-child(4) {
+    font-size: 10px;
+    padding-top: 3px;
+    padding-left: 0px;
+    width: 40px;
+    text-align: center;
+}
+
+.skillRowHeaderShell {
+    display: flex;
+}
+
+.skillRowHeaderShell .skillRowHeader h2 {
+    width: 30px;
+}
+
+.skillRowHeader {
+    background-color: #222;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.skillRowHeader h2 {
+    width: 30px;
+}
+
+.skillRowHeader h2:first-child {
+    width: 150px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.navLang {
+    width: 95px !important;
+    font-size: 11px !important;
+}
+
+/* .skillShell {
+    position: absolute;
+    top: 211px;
+    left: 20px;
+    width: 776px;
+}
+
+.innerSkillShell {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillLeftShell {
+    width: 30%;
+    border-right: 1px solid #222;
+}
+
+.skillLeftShell h2 {
+    text-align: left;
+    padding-left: 10px;
+    margin-right: -1px;
+}
+
+.skillRightShell {
+    width: 70%;
+    position: relative;
+    overflow: hidden;
+} */

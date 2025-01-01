@@ -71,7 +71,7 @@ input[type=number] {
 }
 
 .pageOneMiddle {
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -82,7 +82,7 @@ input[type=number] {
 
 .rightColumn {
     width: 325px;
-    margin-top: -32px;
+    margin-top: -28px;
 }
 
 .marginTop {
@@ -328,14 +328,14 @@ input[type=number] {
 }
 
 .pageBase {
-    height: 1016px;
-    width: 776px;
+    height: 1036px;
+    width: 796px;
     background-color: white;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    padding: 20px;
+    padding: 15px;
 }
 
 .pageViewStylings {
@@ -435,7 +435,7 @@ textarea {
     background: lightgray;
 }
 
-.skillShell p, .skillShell input, .baseCombatStatsShell p,
+.baseCombatStatsShell p,
 .armorBlockShell p, .armorBlockShell input, .shieldBlockShell p, .shieldBlockShell input, 
 .statsShell input, .combatSkills p, .combatSkills input {
     position: unset !important;
@@ -1141,47 +1141,10 @@ textarea.traitsLocation {
     text-align: center;
 }
 
-.skillShell {
-    position: absolute;
-    top: 211px;
-    left: 20px;
-    width: 776px;
-}
-
-.innerSkillShell {
-    display: flex;
-    justify-content: space-between;
-}
-
-.skillLeftShell {
-    width: 30%;
-    border-right: 1px solid #222;
-}
-
-.skillLeftShell h2 {
-    text-align: left;
-    padding-left: 10px;
-    margin-right: -1px;
-}
-
-.skillRightShell {
-    width: 70%;
-    position: relative;
-    overflow: hidden;
-}
-
-.skillMods, .combatMods {
+.combatMods {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.skillMods div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 33%;
-    height: 19.6px;
 }
 
 .combatMods div {
@@ -1218,49 +1181,6 @@ textarea.traitsLocation {
 .skilladeptLocation {
     width: 120px;
     text-align: center;
-}
-
-.skillsuiteShell {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.skillsuiteShell .skillRow {
-    display: flex;
-    justify-content: space-between;
-}
-
-.skillsuiteShell .skillRow:nth-child(odd), .combatRow .skillRow:nth-child(odd) {
-    background: lightgray
-}
-
-.skillsuiteShell .skillRow:first-child {
-    background: #222;
-}
-
-.skillRow p, .skillRow input {
-    text-align: center;
-    width: 40px;
-    position: unset;
-}
-
-.skillRow p:first-child {
-    text-align: left;
-    width: 90px;
-}
-
-.skillRow h2:nth-child(2), .skillRow h2:nth-child(3), .skillRow h2:nth-child(4) {
-    font-size: 10px;
-    padding-top: 3px;
-    padding-left: 0px;
-    width: 40px;
-    text-align: center;
-}
-
-.navLang {
-    width: 95px !important;
-    font-size: 11px !important;
 }
 
 .advSkillBackgroundShell {

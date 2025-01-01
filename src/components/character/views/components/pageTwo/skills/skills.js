@@ -1,6 +1,7 @@
 import React from 'react'
-import ViewSkillList from '../pairComponents/viewSkillList'
-import EditSkillList from '../pairComponents/editSkillList'
+import './skills.css'
+import ViewSkillList from '../../pairComponents/viewSkillList'
+import EditSkillList from '../../pairComponents/editSkillList'
 
 export default function Skills({ skillsObject, editing }) {
     let { str, con, dex, wis, cha, skillsuites, nativelanguage, skills, skilladept, int, updateAttribute, updateNativeLanguage, updateSkillsuites, updateTrained } = skillsObject
@@ -373,55 +374,30 @@ export default function Skills({ skillsObject, editing }) {
         </div>
     )
 
+    let skillSuitesHTML = []
     if (skillsuites) {
-        athletics = (<div className="skillRow">
-            <p>Athletics</p>
-            <p className="skillcost">{Math.floor((30 - int + (skillsuites[0].rank * 10)) * (1 - (skilladept * .10)))}</p>
-            <p className="skillrank">{skillsuites[0].trained ? skillsuites[0].rank : 'U'}</p>
-            <p className="skillmod">{Math.min(checkMod[str], checkMod[con])}</p>
-        </div>)
-        lore = (
-            <div className="skillRow">
-                <p>Lore</p>
-                <p className="skillcost">{Math.floor((30 - int + (skillsuites[1].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                <p className="skillrank">{skillsuites[1].trained ? skillsuites[1].rank : 'U'}</p>
-                <p className="skillmod">{checkMod[int]}</p>
-            </div>
-        )
-        streetwise = (<div className="skillRow">
-            <p>Streetwise</p>
-            <p className="skillcost">{Math.floor((30 - int + (skillsuites[2].rank * 10)) * (1 - (skilladept * .10)))}</p>
-            <p className="skillrank">{skillsuites[2].trained ? skillsuites[2].rank : 'U'}</p>
-            <p className="skillmod">{Math.min(checkMod[wis], checkMod[cha])}</p>
-        </div>)
-        survival = (
-            <div className="skillRow">
-                <p>Survival</p>
-                <p className="skillcost">{Math.floor((30 - int + (skillsuites[3].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                <p className="skillrank">{skillsuites[3].trained ? skillsuites[3].rank : 'U'}</p>
-                <p className="skillmod">{Math.min(checkMod[con], checkMod[wis])}</p>
-            </div>
-        )
-        tactics = (
-            <div className="skillRow">
-                <p>Strategy</p>
-                <p className="skillcost">{Math.floor((30 - int + (skillsuites[4].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                <p className="skillrank">{skillsuites[4].trained ? skillsuites[4].rank : 'U'}</p>
-                <p className="skillmod">{Math.min(checkMod[wis], checkMod[cha])}</p>
-            </div>
-        )
-        trades = (<div className="skillRow">
-            <p>Trades</p>
-            <p className="skillcost">{Math.floor((30 - int + (skillsuites[5].rank * 10)) * (1 - (skilladept * .10)))}</p>
-            <p className="skillrank">{skillsuites[5].trained ? skillsuites[5].rank : 'U'}</p>
-            <p className="skillmod">{Math.min(checkMod[dex], checkMod[int])}</p>
-        </div>)
-        weirdcraft = (<div className="skillRow">
-            <p>Weirdcraft</p>
-            <p className="skillcost">{Math.floor((40 - int + (skillsuites[6].rank * 10)) * (1 - (skilladept * .10)))}</p>
-            <p className="skillrank">{skillsuites[6].trained ? skillsuites[6].rank : 'U'}</p>
-            <p className="skillmod">{Math.min(checkMod[int], checkMod[wis])}</p>
-        </div>)
+        function formatSkillSuites(label, skillsuite, skillAdeptPercent, stat1, stat2) {
+            let { rank, trained } = skillsuite
+            const mod1 = checkMod[stat1]
+            const mod2 = checkMod[stat2]
+            return (
+                <div className="skillRow">
+                    <p>{label}</p>
+                    <p className="skillcost">{Math.floor((30 - int + (rank * 10)) * skillAdeptPercent)}</p>
+                    <p className="skillrank">{trained ? rank : 'U'}</p>
+                    <p className="skillmod">{Math.min(mod1, mod2)}</p>
+                </div>
+            )
+        }
+        const skillAdeptPercent = 1 - (skilladept * .10)
+        skillSuitesHTML.push(formatSkillSuites('Athletics', skillsuites[0], skillAdeptPercent, str, con))
+        skillSuitesHTML.push(formatSkillSuites('Lore', skillsuites[1], skillAdeptPercent, int, int))
+        skillSuitesHTML.push(formatSkillSuites('Streetwise', skillsuites[2], skillAdeptPercent, wis, cha))
+        skillSuitesHTML.push(formatSkillSuites('Survival', skillsuites[3], skillAdeptPercent, con, wis))
+        skillSuitesHTML.push(formatSkillSuites('Strategy', skillsuites[4], skillAdeptPercent, wis, cha))
+        skillSuitesHTML.push(formatSkillSuites('Trades', skillsuites[5], skillAdeptPercent, dex, int))
+        skillSuitesHTML.push(formatSkillSuites('Weirdcraft', skillsuites[6], skillAdeptPercent, int, wis))
+
         nativeLanguage = (
             <div className="skillRow">
                 <p className="navLang">{nativelanguage.language}</p>
@@ -433,43 +409,23 @@ export default function Skills({ skillsObject, editing }) {
     }
 
     return (
-        <div className='skillShell'>
+        <div className='skillOuterShell'>
             <h1>Skills</h1>
-            <div className="innerSkillShell">
-                <div className="skillLeftShell">
-                    <div>
-                        <h2>Check Mods & Skill Adepts</h2>
-                        <div className="skillDiscount">
-                            <div className="skillMods">
-                                <div>
-                                    <p>Str</p>
-                                    <p>{skillsuites ? checkMod[str] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Dex</p>
-                                    <p>{skillsuites ? checkMod[dex] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Con</p>
-                                    <p>{skillsuites ? checkMod[con] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Int</p>
-                                    <p>{skillsuites ? checkMod[int] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Will</p>
-                                    <p>{skillsuites ? checkMod[wis] : ''}</p>
-                                </div>
-                                <div>
-                                    <p>Pre</p>
-                                    <p>{skillsuites ? checkMod[cha] : ''}</p>
-                                </div>
-                            </div>
-                            <div className="skillAdept">
-                                <p>Skill Adept(s)</p>
-                                <p className="skilladeptLocation">{skilladept}</p>
-                            </div>
+            <div className='skillShell'>
+                <div className='skillLeftColumn'>
+                    <h2>Check Mods & Skill Adepts</h2>
+                    <div className="skillDiscount">
+                        <div className="skillMods">
+                            {skillCheckMods('Str', skillsuites, checkMod[str])}
+                            {skillCheckMods('Dex', skillsuites, checkMod[dex])}
+                            {skillCheckMods('Con', skillsuites, checkMod[con])}
+                            {skillCheckMods('Int', skillsuites, checkMod[int])}
+                            {skillCheckMods('Will', skillsuites, checkMod[wis])}
+                            {skillCheckMods('Pre', skillsuites, checkMod[cha])}
+                        </div>
+                        <div className="skillAdept">
+                            <p>Skill Adept(s)</p>
+                            <p className="skilladeptLocation">{skilladept}</p>
                         </div>
                     </div>
                     <div className="skillsuiteShell">
@@ -479,13 +435,7 @@ export default function Skills({ skillsObject, editing }) {
                             <h2>Rank</h2>
                             <h2>Mod</h2>
                         </div>
-                        {athletics}
-                        {lore}
-                        {streetwise}
-                        {tactics}
-                        {survival}
-                        {trades}
-                        {weirdcraft}
+                        {skillSuitesHTML}
                     </div>
                     <div className="skillsuiteShell">
                         <div className="skillRow">
@@ -497,152 +447,33 @@ export default function Skills({ skillsObject, editing }) {
                         {nativeLanguage}
                     </div>
                 </div>
-                <div className="skillRightShell">
-                    <div className="advSkillBackgroundShell">
-                        <div>
-                            <div className="skillRow">
-                                <h2>Adv Skill</h2>
-                                <h2>Cost</h2>
-                                <h2>Rank</h2>
-                                <h2>Mod</h2>
-                            </div>
-                            <div className="stripings">
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
+                <div className='skillRightColumn'>
+                    <div className="skillRow skillRowHeaderShell">
+                        <div className="skillRowHeader">
+                            <h2>Skill</h2>
+                            <h2>Cost</h2>
+                            <h2>Rank</h2>
+                            <h2>Mod</h2>
                         </div>
-                        <div>
-                            <div className="skillRow">
-                                <h2>Adv Skill</h2>
-                                <h2>Cost</h2>
-                                <h2>Rank</h2>
-                                <h2>Mod</h2>
-                            </div>
-                            <div className="stripings">
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                                <div className="stripeDiv">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
+                        <div className="skillRowHeader">
+                            <h2>Skill</h2>
+                            <h2>Cost</h2>
+                            <h2>Rank</h2>
+                            <h2>Mod</h2>
                         </div>
                     </div>
-                    <ViewSkillList stylings={{ width: '549px', height: '275px' }} rowWidth={'271px'} listArray={skills} skilladept={skilladept} />
+                    <ViewSkillList stylings={{ width: '513.22px', height: '255px' }} rowWidth={'50%'} limit={26} listArray={skills} skilladept={skilladept} />
                 </div>
             </div>
+        </div>
+    )
+}
+
+function skillCheckMods(label, skillsuites, mod) {
+    return (
+        <div>
+            <p>{label}</p>
+            <p>{skillsuites ? mod : ''}</p>
         </div>
     )
 }
