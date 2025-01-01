@@ -11,7 +11,7 @@
     height: 19.6px;
 }
 
-.armorBlockShell div:nth-child(even), .shieldBlockShell div:nth-child(even), .weaponProfileShell div:nth-child(odd) {
+.armorBlockShell div:nth-child(even) {
     background: lightgray;
 }
 
@@ -65,4 +65,8 @@
 .armorBonusArea textarea {
     overflow: hidden;
     text-indent: 40px;
+}
+
+.calculatedStatsShell .calculatedStats:nth-child(even) {
+    background: whitesmoke;
 }

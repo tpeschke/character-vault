@@ -21,18 +21,13 @@
     flex-direction: column;
 }
 
-.calculatedStatsShell .calculatedStats:nth-child(even) {
-    background: whitesmoke;
-}
-
 .calculatedStats {
     display: flex;
-    justify-content: space-between;
     text-align: center;
 }
 
 .calculatedStatsHeading {
-    background: grey;
+    background: grey !important;
     font-family: 'Vollkorn SC', serif;
     color: white
 }
@@ -45,6 +40,8 @@
     width: 25px;
     text-align: center;
     border-right: 2px solid grey;
+    margin: 0;
+    height: 19.5px;
 }
 
 .calculatedStats.shield p, .calculatedStats.shield input, .calculatedStats.shield.calculatedStatsHeading p {

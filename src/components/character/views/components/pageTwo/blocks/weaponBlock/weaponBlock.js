@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './weaponBlock.css'
+import '../blocks.css'
 import axios from "axios"
 
 const sortFunction = function (a, b) {
@@ -189,7 +191,7 @@ export default class WeaponBlock extends Component {
         }
 
         let miscInputs = (
-            <div className="weaponCalculatedStats">
+            <div className="calculatedStats">
                 <p> </p>
                 <p> </p>
                 <p> </p>
@@ -199,10 +201,10 @@ export default class WeaponBlock extends Component {
         )
         if (id !== 'blank') {
             miscInputs = (
-                <div className="weaponCalculatedStats">
+                <div className="calculatedStats">
                     <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
                     <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
-                    <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                    <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
                     <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
                     <p>Misc</p>
                 </div>
@@ -210,63 +212,73 @@ export default class WeaponBlock extends Component {
         }
 
         return (
-            <div className={`weaponProfile${position} weaponProfileShell`}>
-                <h2>Weapon Workspace</h2>
-                <p className="weaponnameLocation">{name}</p>
-                <div className="armorBaseStats">
-                    <p>Damage</p>
-                    <p className="basedamageLocation">{basedamage}</p>
+            <div className={`weaponProfileShell`}>
+                {rowPairs('Weapon', name, 'armorBaseStats')}
+                {rowPairs('Damage', basedamage, 'armorBaseStats')}
+                <div className="weaponPair">
+                    {rowPairs('Rec', baserecovery, 'armorBaseStats')}
+                    {rowPairs('Size', size, 'armorBaseStats')}
                 </div>
-                <div className="armorBaseStats">
-                    <div>
-                        <p>Recov.</p>
-                        <p>{baserecovery}</p>
+                {position === 'four' ? (
+                    <></>
+                ) : (
+                    <div className={"weaponPair"}>
+                        {rowPairs('Meas.', basemeasure, 'armorBaseStats')}
+                        {rowPairs('Parry', baseparry, 'armorBaseStats')}
                     </div>
-                    <div>
-                        <p>Size</p>
-                        <p>{size}</p>
-                    </div>
-                </div>
-                {measureAndParry}
-                <div className="armorBaseStats">
-                    <p>Type</p>
-                    <p className="basedamageLocation">{type}</p>
-                </div>
-                <div className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
+                )}
+                {rowPairs('Type', type, 'armorBaseStats')}
+                <div className="weaponBonusArea">
                     <p>Bonus</p>
                     <p>{bonus}</p>
                 </div>
-                <div className="weaponTraitArea">
+                <div className={position === 'four' ? 'weaponTraitArea weaponTraitAreaFour' : "weaponTraitArea"}>
                     <p>Traits</p>
-                    <p className={position !== "four" ? "traitsLocation" : "traitsLocation traitsfour"}>{traits}</p>
+                    <p className="traitsLocation">{traits}</p>
                 </div>
 
-                <div className="weaponCalculatedStats weaponCalculatedStatsHeader">
-                    <p>Atk</p>
-                    <p>Rcv</p>
-                    <p>Pry</p>
-                    <p>Dam</p>
-                    <p> </p>
-                </div>
-
-                <div className="weaponCalculatedStats">
-                    <p>{trainattack}</p>
-                    <p>{trainrecovery}</p>
-                    <p>{trainparry}</p>
-                    <p>{traindamage}</p>
-                    <p>Skill</p>
-                </div>
-
-                {miscInputs}
-
-                <div className="weaponCalculatedStats">
-                    <p>{returnZeroIfNaN(trainattack + +miscattack)}</p>
-                    <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
-                    <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                    <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
-                    <p>Total</p>
+                <div className={position === 'four' ? 'calculatedStatsShell ranged' : 'calculatedStatsShell'}>
+                    {createStatCalculation('Atk', 'Rcv', 'Pry', 'Dam', '', 'calculatedStats calculatedStatsHeading', position)}
+                    {createStatCalculation(trainattack, trainrecovery, trainparry, traindamage, 'Skill', 'calculatedStats', position)}
+                    {miscInputs}
+                    {createStatCalculation(returnZeroIfNaN(trainattack + +miscattack),
+                        returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery),
+                        returnZeroIfNaN(+trainparry + +miscparry),
+                        returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage),
+                        'Total', 'calculatedStats', position)}
                 </div>
             </div>
         )
     }
+}
+
+function rowPairs(label, value, className) {
+    return (
+        <div className={className}>
+            <p>{label}</p>
+            <p>{value}</p>
+        </div>
+    )
+}
+
+function createStatCalculation(label1, label2, label3, label4, label5, classes, position) {
+    if (position === 'four') {
+        return (
+            <div className={classes}>
+                <p>{label1}</p>
+                <p>{label2}</p>
+                <p>{label3}</p>
+                <p>{label5}</p>
+            </div>
+        )
+    }
+    return (
+        <div className={classes}>
+            <p>{label1}</p>
+            <p>{label2}</p>
+            <p>{label3}</p>
+            <p>{label4}</p>
+            <p>{label5}</p>
+        </div>
+    )
 }

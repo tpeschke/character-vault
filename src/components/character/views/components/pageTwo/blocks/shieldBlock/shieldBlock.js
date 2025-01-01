@@ -244,39 +244,20 @@ export default class ShieldBlock extends Component {
                         <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
                     </div>
 
-                    <div className="calculatedStats shield calculatedStatsHeading">
-                        <p>Fat</p>
-                        <p>Pry</p>
-                        <p>Brk</p>
-                        <p> </p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{shieldbasefatigue}</p>
-                        <p>{shieldbaseparry}</p>
-                        <p>{shieldbasebreak}</p>
-                        <p>Base</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{shieldtrainfatigue}</p>
-                        <p>{shieldtrainparry}</p>
-                        <p>{shieldtrainbreak}</p>
-                        <p>Skill</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
-                        <p>Misc</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{returnZeroIfNaN(shieldFatigue)}</p>
-                        <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
-                        <p>{returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak)}</p>
-                        <p>Total</p>
+                    <div className='calculatedStatsShellShield'>
+                        {createStatCalculation('Fat', 'Pry', 'Brk', '', 'calculatedStats shield calculatedStatsHeading')}
+                        {createStatCalculation(shieldbasefatigue, shieldbaseparry, shieldbasebreak, 'Base', 'calculatedStats shield')}
+                        {createStatCalculation(shieldtrainfatigue, shieldtrainparry, shieldtrainbreak, 'Skill', 'calculatedStats shield')}
+                        <div className="calculatedStats shield">
+                            <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                            <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                            <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+                            <p>Misc</p>
+                        </div>
+                        {createStatCalculation(returnZeroIfNaN(shieldFatigue),
+                                                returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry),
+                                                returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak),
+                                                'Total', 'calculatedStats shield')}
                     </div>
                 </div>
             )
@@ -284,3 +265,13 @@ export default class ShieldBlock extends Component {
     }
 }
 
+function createStatCalculation(label1, label2, label3, label4, classes) {
+    return (
+        <div className={classes}>
+            <p>{label1}</p>
+            <p>{label2}</p>
+            <p>{label3}</p>
+            <p>{label4}</p>
+        </div>
+    )
+}

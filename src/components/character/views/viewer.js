@@ -19,7 +19,7 @@ import CashAndGear from './components/pageTwo/cashAndGear/cashAndGear'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats/baseCombatStats'
 import ArmorBlock from './components/pageTwo/blocks/armorBlock/armorBlock'
 import ShieldBlock from './components/pageTwo/blocks/shieldBlock/shieldBlock'
-import WeaponBlock from './components/pageTwo/weaponBlock'
+import WeaponBlock from './components/pageTwo/blocks/weaponBlock/weaponBlock'
 
 import statTables from '../statTables'
 
@@ -603,13 +603,18 @@ export default class CharacterViewer extends Component {
                                 <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} />
                                 <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} />
                             </div>
-                            <div className='combatStatWeaponBlocks'>
+                            <div>
                                 <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} />
 
-                                {/* <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
-                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
-                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
-                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} /> */}
+                                <div className='combatStatWeaponWorkspaces'>
+                                    <h2>Weapon Workspaces</h2>
+                                    <div className='combatStatWeaponBlocks'>
+                                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
