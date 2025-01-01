@@ -300,7 +300,7 @@ export default class CharacterEditor extends Component {
                                 </div>
                                 <div className='flexSpaceBetween marginTop'>
                                     <MiscVitals miscVitals={miscVitals} editing={true} />
-                                    <Ranges maxrange={maxrange} editing={true} updateAttribute={this.updateAttribute} editing={true} />
+                                    <Ranges maxrange={maxrange} editing={true} updateAttribute={this.updateAttribute} />
                                 </div>
 
                                 <Vitality vitality={vitality} editing={true} />

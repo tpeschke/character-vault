@@ -68,9 +68,7 @@
 }
 
 .temperamentLocation {
-    left: 20px;
-    top: 383px;
-    width: 205px;
+    width: 223px;
     background-color: lightgray;
 }
 
@@ -91,7 +89,6 @@ div.temperamentLocation strong {
 .reputationTitles p, .reputationTitles input {
     font-family: 'Vollkorn SC', serif;
     height: 19.5px;
-    padding-right: 5px;
     padding-top: 1px;
 }
 
@@ -105,7 +102,7 @@ div.temperamentLocation strong {
 
 .contactstextArea {
     position: absolute !important;
-    width: 431px;
+    width: 435px;
     height: 102px;
     overflow: hidden;
 }

@@ -373,7 +373,6 @@ input[type=number] {
 input, textarea {
     background: rgba(173, 216, 230, 0.50);
     border: none;
-    position: relative;
     font-size: 13px;
 }
 

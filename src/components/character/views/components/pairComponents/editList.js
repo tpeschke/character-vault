@@ -10,8 +10,11 @@ export default class EditList extends Component {
             limit: props.limit,
             updateFunction: props.updateFunction,
             type: props.type,
-            height: props.height,
-            objectKey: props.objectKey || 'value'
+            objectKey: props.objectKey || 'value',
+            heightStyling: {
+                height: props.height || 'unset'
+            }
+    
         }
     }
 
@@ -45,12 +48,9 @@ export default class EditList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, height, objectKey } = this.state
+        let { stylings, listArray, limit, heightStyling, objectKey } = this.state
         let listOfInputs = listArray.map((item, i) => {
-            let inputStyles = {
-                width: '100%'
-            }
-            return <input style={inputStyles} key={`${this.makeId()}`} defaultValue={item[objectKey]} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input className="pairRowStriping pairRow" style={{width: '100%'}} key={`${this.makeId()}`} defaultValue={item[objectKey]} onBlur={e => this.updateValue(e.target.value, i)} />
         })
 
         let inputStyles = {
@@ -59,22 +59,16 @@ export default class EditList extends Component {
         }
 
         let stripes = []
-        for (let i = 0; i < limit; i++) {
-            stripes.push((<div className="pairRowStriping" key={`${this.makeId()}`}> </div>))
-        }
-
-        let heightStyling = {
-            height: height || 'unset'
+        for (let i = 0; i < limit - listOfInputs.length - 1; i++) {
+            stripes.push((<div className="pairRowStriping pairRow" key={`${this.makeId()}`}> </div>))
         }
 
         return (
             <div style={stylings} className="viewList viewPairListStriping">
-                <div className="stripesShell" style={heightStyling}>
-                    {stripes}
-                </div>
-                <div className="contentListShell" style={heightStyling}>
+                <div className="contentPairListShell" style={heightStyling}>
                     {listOfInputs}
                     <input style={inputStyles} onBlur={e => this.addNewItem(e.target.value)} id={`addNewItemInput${this.state.type}`} />
+                    {stripes}
                 </div>
             </div>
         )
