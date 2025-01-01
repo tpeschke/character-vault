@@ -1,0 +1,37 @@
+.shieldBlockShell p, .shieldBlockShell input {
+    z-index: 1;
+    margin: 0;
+    height: 19.6px;
+}
+
+.shieldBlockShell {
+    width: 151px;
+    border: 2px #222 solid;
+}
+
+.shieldnameLocation {
+    padding: 3px 2px 0;
+    background: lightgrey;
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    font-size: 12px;
+    width: 100%;
+}
+
+.twinShieldStats div {
+    padding: 0;
+    width: 50%;
+}
+
+.twinShieldStats div p, .twinShieldStats div input {
+    width: 50%;
+    text-align: center;
+}
+
+.twinShieldStats div p:first-child, .twinShieldStats div input:first-child {
+    padding-top: 2px;
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    text-align: left;
+}

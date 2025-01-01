@@ -17,8 +17,8 @@ import Abilities from './components/pageOne/abilities/abilities'
 import Skills from './components/pageTwo/skills/skills'
 import CashAndGear from './components/pageTwo/cashAndGear/cashAndGear'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
-import ArmorBlock from './components/pageTwo/armorBlock/armorBlock'
-import ShieldBlock from './components/pageTwo/shieldBlock'
+import ArmorBlock from './components/pageTwo/blocks/armorBlock/armorBlock'
+import ShieldBlock from './components/pageTwo/blocks/shieldBlock/shieldBlock'
 import WeaponBlock from './components/pageTwo/weaponBlock'
 
 import statTables from '../statTables'
@@ -601,7 +601,7 @@ export default class CharacterViewer extends Component {
                         <div className='armorShieldWeaponArea'>
                             <div>
                                 <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} />
-                                {/* <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} /> */}
+                                <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} />
                             </div>
                             <div>
                                 :)

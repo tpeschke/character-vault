@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './shieldBlock.css'
+import '../blocks.css'
 import axios from "axios"
 
 const sortFunction = function (a, b) {
@@ -141,79 +143,14 @@ export default class ShieldBlock extends Component {
                     <div className="calculatedStats shield">
                         <p>{shieldFatigue}</p>
                         <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
-                        <p>{+shieldbasebreak + Math.ceil(+shieldtrainbreak /2) + +shieldmiscbreak}</p>
+                        <p>{+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak}</p>
                         <p>Total</p>
                     </div>
                 </div>
             )
         }
 
-        if (id !== 'blank') {
-            return (
-                <div className="shieldBlockShell">
-                    <h2>Shield Workspace</h2>
-                    <button className="shieldnameLocation" onClick={this.toggleShield}><p className={usingshield ? null : 'buttonStrikeThrough'}>{shieldname}</p></button>
-
-                    <div className="basicStats">
-                        <p>DR</p>
-                        <p className="shielddrLocation">{shielddr}</p>
-                    </div>
-                    <div className="twinShieldStats">
-                        <div>
-                            <p>Def</p>
-                            <p className="shielddrLocation">{shieldbasedef}</p>
-                        </div>
-                        <div>
-                            <p>Size</p>
-                            <p className="shieldsizeLocation">{shieldsize}</p>
-                        </div>
-                    </div>
-                    <div className="basicStats">
-                        <p>Cover</p>
-                        <p className="shieldcoverLocation">{shieldcover}</p>
-                    </div>
-                    <div className="armorBonusArea shieldBonusArea">
-                        <p>Bonus</p>
-                        <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
-                    </div>
-
-                    <div className="calculatedStats shield calculatedStatsHeading">
-                        <p>Fat</p>
-                        <p>Pry</p>
-                        <p>Brk</p>
-                        <p> </p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{shieldbasefatigue}</p>
-                        <p>{shieldbaseparry}</p>
-                        <p>{shieldbasebreak}</p>
-                        <p>Base</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{shieldtrainfatigue}</p>
-                        <p>{shieldtrainparry}</p>
-                        <p>{shieldtrainbreak}</p>
-                        <p>Skills</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                        <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                        <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
-                        <p>Misc</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{returnZeroIfNaN(shieldFatigue)}</p>
-                        <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
-                        <p>{returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak/2) + +shieldmiscbreak)}</p>
-                        <p>Total</p>
-                    </div>
-                </div>
-            )
-        } else {
+        if (id === 'blank') {
             return (
                 <div className="shieldBlockShell">
                     <h2>Shield Workspace</h2>
@@ -278,6 +215,72 @@ export default class ShieldBlock extends Component {
                     </div>
                 </div>
             )
+        } else {
+            return (
+                <div className="shieldBlockShell">
+                    <h2>Shield Workspace</h2>
+                    <button className="shieldnameLocation" onClick={this.toggleShield}><p className={usingshield ? null : 'buttonStrikeThrough'}>{shieldname}</p></button>
+
+                    <div className="basicStats">
+                        <p>DR</p>
+                        <p className="shielddrLocation">{shielddr}</p>
+                    </div>
+                    <div className="twinShieldStats">
+                        <div>
+                            <p>Def</p>
+                            <p className="shielddrLocation">{shieldbasedef}</p>
+                        </div>
+                        <div>
+                            <p>Size</p>
+                            <p className="shieldsizeLocation">{shieldsize}</p>
+                        </div>
+                    </div>
+                    <div className="basicStats">
+                        <p>Cover</p>
+                        <p className="shieldcoverLocation">{shieldcover}</p>
+                    </div>
+                    <div className="armorBonusArea shieldBonusArea">
+                        <p>Bonus</p>
+                        <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
+                    </div>
+
+                    <div className="calculatedStats shield calculatedStatsHeading">
+                        <p>Fat</p>
+                        <p>Pry</p>
+                        <p>Brk</p>
+                        <p> </p>
+                    </div>
+
+                    <div className="calculatedStats shield">
+                        <p>{shieldbasefatigue}</p>
+                        <p>{shieldbaseparry}</p>
+                        <p>{shieldbasebreak}</p>
+                        <p>Base</p>
+                    </div>
+
+                    <div className="calculatedStats shield">
+                        <p>{shieldtrainfatigue}</p>
+                        <p>{shieldtrainparry}</p>
+                        <p>{shieldtrainbreak}</p>
+                        <p>Skill</p>
+                    </div>
+
+                    <div className="calculatedStats shield">
+                        <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                        <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                        <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+                        <p>Misc</p>
+                    </div>
+
+                    <div className="calculatedStats shield">
+                        <p>{returnZeroIfNaN(shieldFatigue)}</p>
+                        <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
+                        <p>{returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak)}</p>
+                        <p>Total</p>
+                    </div>
+                </div>
+            )
         }
     }
 }
+

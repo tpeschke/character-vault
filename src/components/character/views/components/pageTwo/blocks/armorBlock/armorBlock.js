@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './armorBlock.css'
+import '../blocks.css'
 import axios from "axios"
 
 const sortFunction = function (a, b) {

@@ -1,65 +1,11 @@
-.armorBlockShell {
-    width: 151px;
-    border: 2px #222 solid;
-    display: flex;
-    flex-direction: column;
-}
-
-.armorBlockShell p, .armorBlockShell input {
-    z-index: 1;
-    margin: 0;
-    height: 19.6px;
-}
-
-.armorBlockShell div:nth-child(even), .shieldBlockShell div:nth-child(even), .weaponProfileShell div:nth-child(odd) {
-    background: lightgray;
-}
-
-.armorBlockShell div, .shieldBlockShell div {
-    display: flex;
-    justify-content: start;
-}
-
-.armornameLocation {
-    padding: 2px 2px 0;
-    background: lightgrey;
-    width: 100%;
-    border-radius: 0;
-    text-align: left;
-    font-size: 12px;
-}
-
-.armorBonusArea {
-    position: relative;
-    width: 100%;
-    height: 49px;
-    overflow: hidden;
-}
-
-.armorBonusAreaView {
-    height: 48px;
-}
-
-.shieldBonusArea {
-    height: 74px;
-}
-
-.basicStats, .armorBonusArea {
+.basicStats {
     padding: 0 2px;
 }
 
-.armorBonusArea p:first-child, .basicStats p:first-child {
+.basicStats p:first-child {
     padding-top: 2px;
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;
-}
-
-.armorBonusArea p:last-child {
-    width: 100%;
-    text-indent: 47px;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 .basicStats p:last-child, .basicStats input:last-child {
@@ -68,11 +14,6 @@
 
 .basicStats p:first-child, .basicStats p:last-child, .basicStats input:first-child, .basicStats input:last-child {
     width: 75px;
-}
-
-.armorBonusArea textarea {
-    overflow: hidden;
-    text-indent: 40px;
 }
 
 .calculatedStatsShell {
