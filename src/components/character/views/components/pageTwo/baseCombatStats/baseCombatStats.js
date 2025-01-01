@@ -232,9 +232,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         skillSuitesHTML.push(formatSkillSuites('Shields', combatskillsuites[3], martialadeptPercent))
         skillSuitesHTML.push(formatSkillSuites('Unarmed', combatskillsuites[4], martialadeptPercent))
     }
-
-    console.log(combatskills)
-
+    
     return (
         <div className='combatshell'>
             <div className='combatSkills'>
