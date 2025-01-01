@@ -87,11 +87,6 @@ export default function weaponsquare({ weapon }) {
         miscparry, thrownweapon, updateAttribute, shieldname, shieldflanks, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
         shieldcover, miscrecovery, trainrecovery, showArmor, maxrange, baseInit = 5 } = weapon
     let { dexAtk, dexDef, intAtk, willDef, strDam: strDamChart, strRec } = combatStatMods
-    if (editing) {
-        return (
-            <div className={`weaponsquare weapon${position}`}></div>
-        )
-    }
 
     if (!shielddr) { shielddr = ' 2/d' }
     if (!armordr) { armordr = 0 }
