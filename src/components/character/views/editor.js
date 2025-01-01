@@ -13,7 +13,7 @@ import CashAndGear from './components/pageTwo/cashAndGear/cashAndGear'
 import ArmorBlock from './components/pageTwo/blocks/armorBlock/armorBlock'
 import ShieldBlock from './components/pageTwo/blocks/shieldBlock/shieldBlock'
 import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
-import BaseCombatFromStats from './components/pageTwo/baseCombatStats'
+import BaseCombatFromStats from './components/pageTwo/baseCombatStats/baseCombatStats'
 
 import statTables from '../statTables'
 

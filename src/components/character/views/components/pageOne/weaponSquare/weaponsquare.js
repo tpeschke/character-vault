@@ -1,6 +1,6 @@
 import React from 'react'
 import './weaponsquare.css'
-import combatStatMods from '../../pageTwo/combatStatTables'
+import combatStatMods from '../../pageTwo/baseCombatStats/combatStatTables'
 
 const calculateRecovery = (recovery, size, isMelee, type, strRec, isBow) => {
     let minimumRecovery

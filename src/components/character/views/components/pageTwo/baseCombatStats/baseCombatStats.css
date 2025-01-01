@@ -1,0 +1,151 @@
+.combatshell {
+    display: flex;
+}
+
+.combatSkills {
+    width: 225px;
+    display: flex;
+    flex-direction: column;
+}
+
+.combatMods {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.combatMods div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 25%;
+    height: 19.5px;
+}
+
+.combatMods div:nth-child(even) {
+    background: lightgray
+}
+
+.combatMods p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.combatMods div p:nth-child(2) {
+    width: 24px;
+    text-align: center;
+}
+
+.combatAdept {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid lightgrey;
+    height: 19.6px;
+    width: 100% !important;
+}
+
+.combatAdept p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.combatAdept input:nth-child(2), .combatAdept p:nth-child(2) {
+    width: 55px;
+    text-align: center;
+}
+
+.skilladeptLocation {
+    width: 111px !important;
+    text-align: center;
+}
+
+.baseCombatStatsShell p, .statsShell input, .combatSkills p, .combatSkills input {
+    z-index: 1;
+    margin: 0;
+    min-height: 19.6px;
+}
+
+.combatRow .skillRow {
+    display: flex;
+    height: 19.5px;
+}
+
+.combatRow div h2 {
+    text-align: left;
+    padding-left: 10px;
+    margin-right: -1px;
+}
+
+.combatRow .skillRow p, .combatRow .skillRow h2, .combatRow .skillRow input, .combatCost, .combatRank, .combatTotalCost {
+    width: 25%;
+}
+
+.combatRow .skillRow p:first-child, .combatRow .skillRow h2:first-child, .combatInput {
+    width: 51%;
+}
+
+.skillRow p:first-child {
+    font-family: 'Vollkorn SC', serif;
+    font-weight: bold;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.advSkillBackgroundShell div .skillRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advSkillBackgroundShell div .skillRow:first-child {
+    background: #222
+}
+
+.advSkillBackgroundShell div .skillRow h2:first-child, .advSkillBackgroundShell div .skillRow p:first-child {
+    width: 151px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.advSkillBackgroundShell div .skillRow h2:nth-child(2), .advSkillBackgroundShell div .skillRow h2:nth-child(3),
+.advSkillBackgroundShell div .skillRow h2:nth-child(4), .advSkillBackgroundShell div .skillRow p:nth-child(2),
+.advSkillBackgroundShell div .skillRow p:nth-child(3), .advSkillBackgroundShell div .skillRow p:nth-child(4) {
+    width: 40px;
+}
+
+.combatSkillRowShell .skillRow h2, .combatRanks, .combatCost, .combatTotalCost {
+    width: 25% !important;
+}
+
+.combatSkillRowShell .skillRow h2:first-child, .combatInput {
+    width: 55% !important;
+}
+
+.combatAdvancedSkill {
+    width: 386px;
+    height: 186px;
+}
+
+.skillRowHeader {
+    background-color: #222;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.skillRowHeader h2 {
+    width: 45px;
+}
+
+.skillRowHeaderShell .skillRowHeader h2 {
+    width: 25%;
+}
+
+.skillRowHeader h2:first-child {
+    width: 55%;
+    text-align: left;
+    padding-left: 5px;
+}

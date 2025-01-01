@@ -7,7 +7,6 @@ export default class ViewSkillList extends Component {
 
         this.state = {
             stylings: {
-                position: 'absolute',
                 display: 'flex',
                 flexDirection: 'column',
                 flexWrap: 'wrap',

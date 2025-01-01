@@ -430,13 +430,6 @@ textarea {
     background: lightgray;
 }
 
-.baseCombatStatsShell p, .statsShell input, .combatSkills p, .combatSkills input {
-    position: unset !important;
-    z-index: 1;
-    margin: 0;
-    min-height: 19.6px;
-}
-
 #confDieShell {
     width: 48px;
     position: relative;
@@ -697,6 +690,8 @@ strong {
 
 .armorShieldWeaponArea {
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .weaponProfileShell {
@@ -976,32 +971,11 @@ textarea.traitsLocation {
     text-align: center;
 }
 
-.combatMods {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.combatMods div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 25%;
-    height: 19.6px;
-}
-
-.skillMods div:nth-child(odd), .combatMods div:nth-child(odd) {
+.skillMods div:nth-child(odd) {
     background: lightgray
 }
 
-.skillMods div p:first-child, .skillAdept p:first-child, .skillRow p:first-child, .combatMods p:first-child {
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    margin-top: 2px;
-    padding-left: 5px;
-}
-
-.skillMods div p:nth-child(2), .combatMods div p:nth-child(2) {
+.skillMods div p:nth-child(2) {
     width: 24px;
     text-align: center;
 }
@@ -1025,27 +999,6 @@ textarea.traitsLocation {
 
 .advSkillBackgroundShell div {
     width: 100%;
-}
-
-.advSkillBackgroundShell div .skillRow {
-    display: flex;
-    justify-content: space-between;
-}
-
-.advSkillBackgroundShell div .skillRow:first-child {
-    background: #222
-}
-
-.advSkillBackgroundShell div .skillRow h2:first-child, .advSkillBackgroundShell div .skillRow p:first-child {
-    width: 151px;
-    text-align: left;
-    padding-left: 10px;
-}
-
-.advSkillBackgroundShell div .skillRow h2:nth-child(2), .advSkillBackgroundShell div .skillRow h2:nth-child(3),
-.advSkillBackgroundShell div .skillRow h2:nth-child(4), .advSkillBackgroundShell div .skillRow p:nth-child(2),
-.advSkillBackgroundShell div .skillRow p:nth-child(3), .advSkillBackgroundShell div .skillRow p:nth-child(4) {
-    width: 40px;
 }
 
 .advSkillBackgroundShell div .stripings {
@@ -1088,72 +1041,6 @@ textarea.traitsLocation {
 
 #nativename {
     width: 93px
-}
-
-.combatshell {
-    position: absolute;
-    top: 532px;
-    left: 185px;
-    display: flex;
-}
-
-.combatSkills {
-    width: 225px;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid #222;
-}
-
-.combatAdvancedSkill {
-    width: 386px;
-    height: 186px;
-}
-
-.combatRow .skillRow {
-    display: flex;
-}
-
-.combatRow div h2 {
-    text-align: left;
-    padding-left: 10px;
-    margin-right: -1px;
-}
-
-.combatRow .skillRow p, .combatRow .skillRow h2, .combatRow .skillRow input, .combatCost, .combatRank, .combatTotalCost {
-    width: 25%;
-}
-
-.combatRow .skillRow p:first-child, .combatRow .skillRow h2:first-child, .combatInput {
-    width: 51%;
-}
-
-.combatAdept {
-    display: flex;
-    justify-content: space-between;
-    border-top: 2px solid lightgrey;
-    height: 19.6px;
-    width: 100% !important;
-}
-
-.combatAdept p:first-child {
-    font-family: 'Vollkorn SC', serif;
-    font-weight: bold;
-    margin-top: 2px;
-    padding-left: 5px;
-}
-
-.combatAdept input:nth-child(2), .combatAdept p:nth-child(2) {
-    width: 55px;
-    text-align: center;
-}
-
-.combatSkillRowShell .skillRow h2, .combatRanks, .combatCost, .combatTotalCost {
-    width: 25% !important;
-}
-
-.combatSkillRowShell .skillRow h2:first-child, .combatInput {
-    width: 55% !important;
 }
 
 .combatSkillRowShell .stripings div {
@@ -1242,6 +1129,10 @@ textarea.traitsLocation {
 
 .locked-out {
     color: red
+}
+
+.combatStatWeaponBlocks {
+
 }
 
 @media (max-width: 825px) {
