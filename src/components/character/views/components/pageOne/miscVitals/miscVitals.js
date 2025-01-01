@@ -4,6 +4,23 @@ import './miscVitals.css'
 export default function MiscVitals({ miscVitals, editing }) {
     let { updateAttribute, currentfavor, chaData, favormax, anointed, id, vitalitydice, wis, con, stressdie } = miscVitals
 
+    function rowPair(label, value, updateName) {
+        if (editing && updateName) {
+            return (
+                <div>
+                    <p>{label}</p>
+                    <input type="text" defaultValue={value} onBlur={event => updateAttribute(event.target.value, updateName)} />
+                </div>
+            )
+        }
+        return (
+            <div>
+                <p>{label}</p>
+                <p>{value}</p>
+            </div>
+        )
+    }
+
     const minStress = minStressDictionary[wis]
     const minVitality = minVitalityDictionary[con]
 
@@ -13,53 +30,6 @@ export default function MiscVitals({ miscVitals, editing }) {
     }
     if (anointed) {
         anointedDiv = (<div className="anointedDiv" onClick={_ => updateAttribute(false, "anointed")}><i className="fas fa-check"></i></div>)
-    }
-
-    let minFavor = null
-    if (chaData) {
-        minFavor = chaData.favor
-    }
-
-    if (editing) {
-        return (
-            <div className="stressThresholdShell">
-                <div className="vitalShell">
-                    <div>
-                        <p>Favor</p>
-                        <input className="currentfavorLocation" type="number" min="0" defaultValue={currentfavor} onBlur={event => updateAttribute(event.target.value, "currentfavor")} />
-                    </div>
-                    <div>
-                        <p>Max</p>
-                        <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
-                    </div>
-                    <div className="checkboxShell">
-                        <p>Anointed?</p>
-                        <div className="checkboxShellInner">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="dieAndMinShell">
-                    <div>
-                        <p>Vitality Die</p>
-                        <input className="currentfavorLocation" type="text" defaultValue={vitalitydice} onBlur={event => updateAttribute(event.target.value, "vitalitydice")} />
-                    </div>
-                    <div>
-                        <p>Min Vitality</p>
-                        <p>{minVitality}</p>
-                    </div>
-                    <div>
-                        <p>Nerve Die</p>
-                        <input className="currentfavorLocation" type="text" defaultValue={stressdie} onBlur={event => updateAttribute(event.target.value, "stressdie")} />
-                    </div>
-                    <div>
-                        <p>Min Nerve</p>
-                        <p>{minStress}</p>
-                    </div>
-                </div>
-            </div>
-        )
     }
 
     let favorInput = <p> </p>
@@ -76,7 +46,11 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
                 <div>
                     <p>Max</p>
-                    <p className="favormaxLocation">{favormax}</p>
+                    {editing ? (
+                        <input className="favormaxLocation" type="number" defaultValue={favormax} onChange={event => updateAttribute(event.target.value, "favormax")} />
+                    ) : (
+                        <p className="favormaxLocation">{favormax}</p>
+                    )}
                 </div>
                 <div className="checkboxShell">
                     <p>Anointed?</p>
@@ -86,20 +60,11 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
             </div>
             <div className="dieAndMinShell">
-                {rowPair('Vitality Die', vitalitydice)}
+                {rowPair('Vitality Die', vitalitydice, vitalitydice)}
                 {rowPair('Min Vitality', minVitality)}
-                {rowPair('Nerve Die', stressdie)}
+                {rowPair('Nerve Die', stressdie, stressdie)}
                 {rowPair('Min Nerve', minStress)}
             </div>
-        </div>
-    )
-}
-
-function rowPair (label, value) {
-    return (
-        <div>
-            <p>{label}</p>
-            <p>{value}</p>
         </div>
     )
 }
