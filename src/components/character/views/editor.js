@@ -190,7 +190,7 @@ export default class CharacterEditor extends Component {
         return baseAndRanks + addToDefense + +misc
     }
 
-    render() { 
+    render() {
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel,
             temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts, strength,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
@@ -282,41 +282,54 @@ export default class CharacterEditor extends Component {
                 <div id="pdf" className='pdfViewStylings editing'>
                     <div className="pageOne pageBase pageViewStylings">
                         <CharacterInfo characterInfo={characterInfo} editing={true} />
+                        <div className='pageOneMiddle'>
+                            <div className='leftColumn'>
+                                <div className='flexSpaceBetween'>
+                                    <Stats stats={stats} editing={true} />
+                                    <Movement movement={movement} editing={true} />
+                                </div>
 
-                        <Stats stats={stats} editing={true} />
+                                <Social social={social} editing={true} />
+                            </div>
+                            <div className='rightColumn'>
+                                <div className='weaponSquares'>
+                                    <WeaponSquare weapon={weapononeobject} />
+                                    <WeaponSquare weapon={weapontwoobject} />
+                                    <WeaponSquare weapon={weaponthreeobject} />
+                                    <WeaponSquare weapon={weaponfourobject} />
+                                </div>
+                                <div className='flexSpaceBetween marginTop'>
+                                    <MiscVitals miscVitals={miscVitals} editing={true} />
+                                    <Ranges maxrange={maxrange} editing={true} updateAttribute={this.updateAttribute} editing={true} />
+                                </div>
 
-                        <Movement movement={movement} editing={true} />
-
-                        <Social social={social} editing={true} />
-
-                        <WeaponSquare weapon={weapononeobject} />
-                        <WeaponSquare weapon={weapontwoobject} />
-                        <WeaponSquare weapon={weaponthreeobject} />
-                        <WeaponSquare weapon={weaponfourobject} />
-
-                        <MiscVitals miscVitals={miscVitals} editing={true} />
-
-                        <Ranges maxrange={maxrange} updateAttribute={this.updateAttribute} editing={true} />
-
-                        <Vitality vitality={vitality} editing={true} />
-
+                                <Vitality vitality={vitality} editing={true} />
+                            </div>
+                        </div>
                         <Abilities abilities={abilities} editing={true} />
                     </div>
                     <div className="pageTwo pageTwoMargin pageBase pageViewStylings">
-                        <Skills skillsObject={skillsObject} editing={true} />
-
                         <CashAndGear cashAndGear={cashAndGear} editing={true} />
+                        <Skills skillsObject={skillsObject} editing={true} />
+                        <div className='armorShieldWeaponArea'>
+                            <div>
+                                <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} editing={true} />
+                                <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} editing={true} />
+                            </div>
+                            <div>
+                                <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} editing={true} />
 
-                        <ArmorBlock armor={armor} updateManyAttributes={this.updateManyAttributes} editing={true} />
-
-                        <ShieldBlock shield={shield} updateManyAttributes={this.updateManyAttributes} editing={true} />
-
-                        <BaseCombatFromStats baseCombatFromStats={baseCombatFromStats} editing={true} />
-
-                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
-                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} updateEntireObject={this.updateEntireObject} returnZeroIfNaN={this.returnZeroIfNaN} editing={true} />
+                                <div className='combatStatWeaponWorkspaces'>
+                                    <h2>Weapon Workspaces</h2>
+                                    <div className='combatStatWeaponBlocks'>
+                                        <WeaponBlock weapon={weaponone} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} editing={true} />
+                                        <WeaponBlock weapon={weapontwo} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} editing={true} />
+                                        <WeaponBlock weapon={weaponthree} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} editing={true} />
+                                        <WeaponBlock weapon={weaponfour} updateObject={this.updateObject} returnZeroIfNaN={this.returnZeroIfNaN} updateEntireObject={this.updateEntireObject} editing={true} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="pageThree" className="pageBase pageViewStylings">
                         <div className='general-notes-header'>

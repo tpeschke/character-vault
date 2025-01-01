@@ -617,7 +617,6 @@ export default class CharacterViewer extends Component {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div id="pageThree" className={!(secretgeneralnotes || id === 'blank') || owned ? "pageBase pageViewStylings" : "displayNone"}>
                         <h1>General Notes</h1>
