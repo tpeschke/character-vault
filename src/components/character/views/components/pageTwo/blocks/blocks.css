@@ -41,7 +41,7 @@
     text-align: center;
     border-right: 2px solid grey;
     margin: 0;
-    height: 19.5px;
+    height: 19px;
 }
 
 .calculatedStats.shield p, .calculatedStats.shield input, .calculatedStats.shield.calculatedStatsHeading p {
@@ -58,5 +58,5 @@
 }
 
 .nameClass {
-    height: 19.59px;
+    height: 19px;
 }

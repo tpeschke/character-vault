@@ -2,6 +2,8 @@
     width: 154px;
     border-bottom: 2px #222 solid;
     border-right: 2px #222 solid;
+    display: flex;
+    flex-direction: column;
 }
 
 .weaponnameLocation {
@@ -57,7 +59,7 @@
 .armorBaseStats, .armorBaseStats div {
     display: flex;
     justify-content: space-between;
-    height: 19.5px;
+    height: 19px;
 }
 
 .basedamageLocation {
@@ -127,7 +129,7 @@ textarea.traitsLocation {
 }
 
 .armorShieldWeaponArea {
-    margin-top: 5px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }

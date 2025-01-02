@@ -20,7 +20,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 25%;
-    height: 19.5px;
+    height: 19px;
 }
 
 .combatMods div:nth-child(even) {
@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     border-top: 2px solid lightgrey;
-    height: 19.6px;
+    height: 19px;
     width: 100% !important;
 }
 
@@ -67,12 +67,12 @@
 .baseCombatStatsShell p, .statsShell input, .combatSkills p, .combatSkills input {
     z-index: 1;
     margin: 0;
-    min-height: 19.6px;
+    min-height: 19px;
 }
 
 .combatRow .skillRow {
     display: flex;
-    height: 19.5px;
+    height: 19px;
     position: relative;
 }
 

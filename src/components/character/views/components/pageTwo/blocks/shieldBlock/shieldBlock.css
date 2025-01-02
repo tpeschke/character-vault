@@ -1,12 +1,14 @@
 .shieldBlockShell p, .shieldBlockShell input {
     z-index: 1;
     margin: 0;
-    height: 19.59px;
+    height: 19px;
 }
 
 .shieldBlockShell {
     width: 151px;
     border: 2px #222 solid;
+    display: flex;
+    flex-direction: column;
 }
 
 .shieldnameLocation {
@@ -17,6 +19,7 @@
     text-align: left;
     font-size: 12px;
     width: 100%;
+    height: 19px;
 }
 
 .twinShieldStats div {
@@ -41,6 +44,6 @@
     flex-direction: column;
 }
 
-.calculatedStatsShellShield .calculatedStats:nth-child(even), .shieldBlockShell > div:nth-child(even) {
+.calculatedStatsShellShield .calculatedStats:nth-child(even), .shieldBlockShell>div:nth-child(even) {
     background: lightgray;
 }

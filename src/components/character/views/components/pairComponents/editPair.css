@@ -6,7 +6,7 @@
 }
 
 .pairRowStriping, .contentPairListShell input, .contentListShell input, .editPairRow input {
-    height: 19.59px;
+    height: 19px;
     margin: 0;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .pairRow {
-    height: 19.59px;
+    height: 19px;
 }
 
 .contentPairListShell .pairRow:nth-child(even) {

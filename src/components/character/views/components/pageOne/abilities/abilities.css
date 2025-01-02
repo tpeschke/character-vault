@@ -1,7 +1,7 @@
 .abilitiesShell {
     display: flex;
     justify-content: space-between;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .classShell {
