@@ -54,12 +54,13 @@
     font-weight: bold;
 }
 
-.armorBonusArea p:last-child {
+.armorBonusArea p:last-child, .armorBonusArea textarea:last-child {
     width: 100%;
     text-indent: 47px;
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
 }
 
 .armorBonusArea textarea {

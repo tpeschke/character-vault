@@ -93,6 +93,46 @@ export default class ArmorBlock extends Component {
             armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue, showArmor } = this.state.armor
         let { editing, armorOptions } = this.state
 
+        function creatPairs(label, value, classes, updateName) {
+            if (editing && updateName) {
+                return (
+                    <div className={classes}>
+                        <p>{label}</p>
+                        <input type="text" value={value} onChange={event => this.updateAttribute(event.target.value, updateName)} />
+                    </div>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label}</p>
+                    <p>{value}</p>
+                </div>
+            )
+        }
+
+        function createStatCalculation(label, classes, updateValues) {
+            if (editing && updateValues) {
+                return (
+                    <div className={classes}>
+                        <input type="number" value={label[0]} onChange={event => this.updateAttribute(event.target.value, label[0])} />
+                        <input type="number" value={label[1]} onChange={event => this.updateAttribute(event.target.value, label[1])} />
+                        <input type="number" value={label[2]} onChange={event => this.updateAttribute(event.target.value, label[2])} />
+                        <input type="number" value={label[3]} onChange={event => this.updateAttribute(event.target.value, label[3])} />
+                        <p>{label[4]}</p>
+                    </div>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label[0]}</p>
+                    <p>{label[1]}</p>
+                    <p>{label[2]}</p>
+                    <p>{label[3]}</p>
+                    <p>{label[4]}</p>
+                </div>
+            )
+        }
+
         if (!armorbasefatiguemod && armorbasefatigue) {
             switch (armorbasefatigue) {
                 case 'A':
@@ -113,50 +153,34 @@ export default class ArmorBlock extends Component {
             }
         }
 
-        if (editing) {
-            return (
-                <div className="armorBlockShell" key={this.state.seed}>
-                    <h2>Armor Workspace</h2>
-                    <input className="armornameLocation" defaultValue={armorname} type="text" list="armorChoices" onChange={this.changeArmorName} />
-                    <datalist id="armorChoices">
-                        {armorOptions}
-                    </datalist>
-                    <div className="basicStats">
-                        <p>DR</p>
-                        <input type="text" value={armordr} onChange={event => this.updateAttribute(event.target.value, "armordr")} />
-                    </div>
-                    <div className="basicStats">
-                        <p>Skill Adju.</p>
-                        <input type="number" value={armorskilladj} onChange={event => this.updateAttribute(event.target.value, "armorskilladj")} />
-                    </div>
-                    <div className="armorBonusArea">
-                        <p>Bonus</p>
+        return (
+            <div className="armorBlockShell" key={this.state.seed}>
+                <h2>Armor Workspace</h2>
+                {editing ? (
+                    <>
+                        <input className="armornameLocation" defaultValue={armorname} type="text" list="armorChoices" onChange={this.changeArmorName} />
+                        <datalist id="armorChoices">
+                            {armorOptions}
+                        </datalist>
+                    </>
+                ) : (
+                    <button className="armornameLocation" onClick={this.toggleArmor}><p className={showArmor ? null : 'buttonStrikeThrough'}>{armorname}</p></button>
+                )}
+                {creatPairs('DR', armordr, 'basicStats', 'armordr')}
+                {creatPairs('Skill Adju.', armorskilladj, 'basicStats', 'armorskilladj')}
+                <div className='armorBonusArea'>
+                    <p>'Bonus'</p>
+                    {editing ? (
                         <textarea value={armorbonus} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"60"}></textarea>
-                    </div>
+                    ) : (
+                        <p>{armorbonus}</p>
+                    )}
+                </div>
 
-                    <div className="calculatedStats calculatedStatsHeading">
-                        <p>Def</p>
-                        <p>Fat</p>
-                        <p>Rcv</p>
-                        <p>Init</p>
-                        <p> </p>
-                    </div>
-                    <div className="calculatedStats">
-                        <input type="number" value={armorbasedef} onChange={event => this.updateAttribute(event.target.value, "armorbasedef")} />
-                        <input type="text" value={armorbasefatiguemod} onChange={event => this.updateAttribute(event.target.value, "armorbasefatiguemod")} />
-                        <input type="number" value={armorbaserecovery} onChange={event => this.updateAttribute(event.target.value, "armorbaserecovery")} />
-                        <input type="number" value={armorbaseinit} onChange={event => this.updateAttribute(event.target.value, "armorbaseinit")} />
-                        <p>Base</p>
-                    </div>
-
-                    <div className="calculatedStats">
-                        <input type="number" value={armortrainingdef} onChange={event => this.updateAttribute(event.target.value, "armortrainingdef")} />
-                        <input type="number" value={armortrainfatigue} onChange={event => this.updateAttribute(event.target.value, "armortrainfatigue")} />
-                        <input type="number" value={armortrainrecovery} onChange={event => this.updateAttribute(event.target.value, "armortrainrecovery")} />
-                        <input type="number" value={armortraininit} onChange={event => this.updateAttribute(event.target.value, "armortraininit")} />
-                        <p>Skills</p>
-                    </div>
-
+                <div className='calculatedStatsShell'>
+                    {createStatCalculation(['Def', 'Fat', 'Rcv', 'Init', ''], 'calculatedStats calculatedStatsHeading')}
+                    {createStatCalculation([armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit, "Base"], 'calculatedStats', ["armorbasedef", "armorbasefatiguemod", "armorbaserecovery", "armorbaseinit"])}
+                    {createStatCalculation([armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, 'Skill'], 'calculatedStats', ["armortrainingdef", "armortrainfatigue", "armortrainrecovery", "armortraininit"])}
                     <div className="calculatedStats">
                         <input type="number" value={armormiscdef} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
                         <input type="number" value={armormiscfatigue} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
@@ -164,80 +188,14 @@ export default class ArmorBlock extends Component {
                         <input type="number" value={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
                         <p>Misc</p>
                     </div>
-
-                    <div className="calculatedStats">
-                        <p>{this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef)}</p>
-                        <p>{returnZeroIfNaN(+armorbasefatiguemod + +armortrainfatigue + +armormiscfatigue)}</p>
-                        <p>{armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0}</p>
-                        <p>{+armorbaseinit + (+armortraininit * -1) > 0 ? +armorbaseinit + (+armortraininit * -1) + +armormiscinit : 0 + +armormiscinit}</p>
-                        <p>Total</p>
-                    </div>
-                </div>
-            )
-        }
-
-        let miscInputs = (
-            <div className="calculatedStats">
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p>Misc</p>
-            </div>
-        )
-        if (id !== 'blank') {
-            miscInputs = (
-                <div className="calculatedStats">
-                    <input type="number" value={armormiscdef} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
-                    <input type="number" value={armormiscfatigue} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
-                    <input type="number" value={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
-                    <input type="number" value={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
-                    <p>Misc</p>
-                </div>
-            )
-        }
-
-        return (
-            <div className="armorBlockShell" key={this.state.seed}>
-                <h2>Armor Workspace</h2>
-                <button className="armornameLocation" onClick={this.toggleArmor}><p className={showArmor ? null : 'buttonStrikeThrough'}>{armorname}</p></button>
-                {creatPairs('DR', armordr, 'basicStats')}
-                {creatPairs('Skill Adju.', armorskilladj, 'basicStats')}
-                {creatPairs('Bonus', armorbonus, 'armorBonusArea')}
-
-                <div className='calculatedStatsShell'>
-                    {createStatCalculation('Def', 'Fat', 'Rcv', 'Init', '', 'calculatedStats calculatedStatsHeading')}
-                    {createStatCalculation(armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit, 'Base', 'calculatedStats')}
-                    {createStatCalculation(armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, 'Skill', 'calculatedStats')}
-                    {miscInputs}
-                    {createStatCalculation( this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef), 
-                                            id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : '', 
-                                            id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : '', 
-                                            returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit), 
-                                            'Total', 'calculatedStats')}
+                    {createStatCalculation([this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef),
+                    id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : '',
+                    id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : '',
+                    returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit),
+                        'Total'], 'calculatedStats')}
                 </div>
             </div>
         )
     }
 }
 
-function creatPairs(label, value, classes) {
-    return (
-        <div className={classes}>
-            <p>{label}</p>
-            <p>{value}</p>
-        </div>
-    )
-}
-
-function createStatCalculation(label1, label2, label3, label4, label5, classes) {
-    return (
-        <div className={classes}>
-            <p>{label1}</p>
-            <p>{label2}</p>
-            <p>{label3}</p>
-            <p>{label4}</p>
-            <p>{label5}</p>
-        </div>
-    )
-}
