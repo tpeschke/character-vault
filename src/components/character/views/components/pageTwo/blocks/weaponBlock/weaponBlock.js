@@ -86,199 +86,132 @@ export default class WeaponBlock extends Component {
         return false
     }
 
+    rowPairs(label, value, className, updateName) {
+        if (this.state.editing && updateName) {
+            return (
+                <div className={className}>
+                    <p>{label}</p>
+                    <input type="text" value={value} onChange={event => this.updateValue(event.target.value, updateName)} />
+                </div>
+            )
+        }
+        return (
+            <div className={className}>
+                <p>{label}</p>
+                <p>{value}</p>
+            </div>
+        )
+    }
+
+    createStatCalculation(label, classes, position, updateNames) {
+        if (position === 'four') {
+            if (this.state.editing && updateNames) {
+                return (
+                    <div className={classes}>
+                        <input type="number" value={label[0]} onChange={event => this.updateValue(event.target.value, label[0])} />
+                        <input type="number" value={label[1]} onChange={event => this.updateValue(event.target.value, label[1])} />
+                        <input type="number" value={label[2]} onChange={event => this.updateValue(event.target.value, label[2])} />
+                        <p>{label[4]}</p>
+                    </div>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label[0]}</p>
+                    <p>{label[1]}</p>
+                    <p>{label[2]}</p>
+                    <p>{label[4]}</p>
+                </div>
+            )
+        }
+        if (this.state.editing && updateNames) {
+            return (
+                <div className={classes}>
+                    <input type="number" value={label[0]} onChange={event => this.updateValue(event.target.value, label[0])} />
+                    <input type="number" value={label[1]} onChange={event => this.updateValue(event.target.value, label[1])} />
+                    <input type="number" value={label[2]} onChange={event => this.updateValue(event.target.value, label[2])} />
+                    <input type="number" value={label[3]} onChange={event => this.updateValue(event.target.value, label[3])} />
+                    <p>{label[4]}</p>
+                </div>
+            )
+        }
+        return (
+            <div className={classes}>
+                <p>{label[0]}</p>
+                <p>{label[1]}</p>
+                <p>{label[2]}</p>
+                <p>{label[3]}</p>
+                <p>{label[4]}</p>
+            </div>
+        )
+    }
+
     render() {
         let { position, name, basemeasure, basedamage, baseparry, baserecovery, size, type, bonus, traits, trainrecovery, trainattack, traindamage, trainparry,
             miscattack, miscdamage, miscparry, miscrecovery, id } = this.state.weapon
         let { returnZeroIfNaN, editing, weaponOptions, weaponChoiceType } = this.state
 
-        if (editing) {
-            let measureAndParry = (<div className="armorBaseStats">
-                <div>
-                    <p>Meas.</p>
-                    <input type="text" value={basemeasure} onChange={event => this.updateValue(event.target.value, "basemeasure")} />
-                </div>
-                <div>
-                    <p>Parry</p>
-                    <input type="number" value={baseparry} onChange={event => this.updateValue(event.target.value, "baseparry")} />
-                </div>
-            </div>)
-            if (position === "four") {
-                measureAndParry = (null)
-            }
-
-            return (
-                <div className={`weaponProfile${position} weaponProfileShell`} key={this.state.seed}>
-                    <h2>Weapon Workspace</h2>
-                    <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value, type)} />
-                    <datalist id={weaponChoiceType}>
-                        {weaponOptions}
-                    </datalist>
-                    <div className="armorBaseStats">
-                        <p>Damage</p>
-                        <input className="basedamageLocation" type="text" value={basedamage} onChange={event => this.updateValue(event.target.value, "basedamage")} />
-                    </div>
-                    <div className="armorBaseStats">
-                        <div>
-                            <p>Recov.</p>
-                            <input className="baserecoveryLocation" type="number" value={baserecovery} onChange={event => this.updateValue(event.target.value, "baserecovery")} />
-                        </div>
-                        <div>
-                            <p>Size</p>
-                            <input type="text" value={size} onChange={event => this.updateValue(event.target.value, "size")} />
-                        </div>
-                    </div>
-                    {measureAndParry}
-                    <div className="armorBaseStats">
-                        <p>Type</p>
-                        <input className="basedamageLocation" type="text" value={type} onChange={event => this.updateValue(event.target.value, "type")} />
-                    </div>
-                    <div className={position !== "four" ? "weaponBonusArea" : "weaponBonusArea bonusfour"}>
-                        <p>Bonus</p>
-                        <textarea value={bonus ? bonus : ''} onChange={event => this.updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
-                    </div>
-                    <div className="weaponTraitArea">
-                        <p>Traits</p>
-                        <textarea className={position !== "four" ? "traitsLocation" : "traitsLocation traitsfour"} value={traits} onChange={event => this.updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
-                    </div>
-
-                    <div className="weaponCalculatedStats weaponCalculatedStatsHeader">
-                        <p>Atk</p>
-                        <p>Rcv</p>
-                        <p>Pry</p>
-                        <p>Dam</p>
-                        <p> </p>
-                    </div>
-
-                    <div className="weaponCalculatedStats">
-                        <input type="number" value={trainattack} onChange={event => this.updateValue(event.target.value, "trainattack")} />
-                        <input type="number" value={trainrecovery} onChange={event => this.updateValue(event.target.value, "trainrecovery")} />
-                        <input type="number" value={trainparry} onChange={event => this.updateValue(event.target.value, "trainparry")} />
-                        <input type="number" value={traindamage} onChange={event => this.updateValue(event.target.value, "traindamage")} />
-                        <p>Skill</p>
-                    </div>
-
-                    <div className="weaponCalculatedStats">
-                        <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
-                        <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
-                        <input type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
-                        <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
-                        <p>Misc</p>
-                    </div>
-
-                    <div className="weaponCalculatedStats">
-                        <p>{returnZeroIfNaN(+trainattack + +miscattack)}</p>
-                        <p>{returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery)}</p>
-                        <p>{returnZeroIfNaN(+trainparry + +miscparry)}</p>
-                        <p>{returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage)}</p>
-                        <p>Total</p>
-                    </div>
-                </div>
-            )
-        }
-
-        let measureAndParry = (<div className="armorBaseStats">
-            <div>
-                <p>Meas.</p>
-                <p>{basemeasure}</p>
-            </div>
-            <div>
-                <p>Parry</p>
-                <p>{baseparry}</p>
-            </div>
-        </div>)
-        if (position === "four") {
-            measureAndParry = (null)
-        }
-
-        let miscInputs = (
-            <div className="calculatedStats">
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p>Misc</p>
-            </div>
-        )
-        if (id !== 'blank') {
-            miscInputs = (
-                <div className="calculatedStats">
-                    <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
-                    <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
-                    <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
-                    <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
-                    <p>Misc</p>
-                </div>
-            )
-        }
-
         return (
             <div className={`weaponProfileShell`}>
-                {rowPairs('Weapon', name, 'armorBaseStats')}
-                {rowPairs('Damage', basedamage, 'armorBaseStats')}
+                {editing ? (
+                    <>
+                        <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value, type)} />
+                        <datalist id={weaponChoiceType}>
+                            {weaponOptions}
+                        </datalist>
+                    </>
+                ) : (
+                    <p className='nameClass'>{name}</p>
+                )}
+                {this.rowPairs('Damage', basedamage, 'armorBaseStats', 'basedamage')}
                 <div className="weaponPair">
-                    {rowPairs('Rec', baserecovery, 'armorBaseStats')}
-                    {rowPairs('Size', size, 'armorBaseStats')}
+                    {this.rowPairs('Rec', baserecovery, 'armorBaseStats', 'baserecovery')}
+                    {this.rowPairs('Size', size, 'armorBaseStats', 'size', 'baseparry')}
                 </div>
                 {position === 'four' ? (
                     <></>
                 ) : (
                     <div className={"weaponPair"}>
-                        {rowPairs('Meas.', basemeasure, 'armorBaseStats')}
-                        {rowPairs('Parry', baseparry, 'armorBaseStats')}
+                        {this.rowPairs('Meas.', basemeasure, 'armorBaseStats', 'basemeasure')}
+                        {this.rowPairs('Parry', baseparry, 'armorBaseStats', 'baseparry')}
                     </div>
                 )}
-                {rowPairs('Type', type, 'armorBaseStats')}
+                {this.rowPairs('Type', type, 'armorBaseStats', 'type')}
                 <div className="weaponBonusArea">
                     <p>Bonus</p>
-                    <p>{bonus}</p>
+                    {editing ? (
+                        <textarea value={bonus ? bonus : ''} onChange={event => this.updateValue(event.target.value, "bonus")} maxLength={"75"}></textarea>
+                    ) : (
+                        <p>{bonus}</p>
+                    )}
                 </div>
                 <div className={position === 'four' ? 'weaponTraitArea weaponTraitAreaFour' : "weaponTraitArea"}>
                     <p>Traits</p>
-                    <p className="traitsLocation">{traits}</p>
+                    {editing ? (
+                        <textarea value={traits} onChange={event => this.updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
+                    ) : (
+                        <p>{traits}</p>
+
+                    )}
                 </div>
 
                 <div className={position === 'four' ? 'calculatedStatsShell ranged' : 'calculatedStatsShell'}>
-                    {createStatCalculation('Atk', 'Rcv', 'Pry', 'Dam', '', 'calculatedStats calculatedStatsHeading', position)}
-                    {createStatCalculation(trainattack, trainrecovery, trainparry, traindamage, 'Skill', 'calculatedStats', position)}
-                    {miscInputs}
-                    {createStatCalculation(returnZeroIfNaN(trainattack + +miscattack),
-                        returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery),
-                        returnZeroIfNaN(+trainparry + +miscparry),
-                        returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage),
-                        'Total', 'calculatedStats', position)}
+                    {this.createStatCalculation(['Atk', 'Rcv', 'Pry', 'Dam', ''], 'calculatedStats calculatedStatsHeading', position)}
+                    {this.createStatCalculation([trainattack, trainrecovery, trainparry, traindamage, 'Skill'], 'calculatedStats', position, ['trainattack', 'trainrecovery', 'trainparry', 'traindamage'])}
+                    <div className="calculatedStats">
+                        <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
+                        <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
+                        <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                        <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
+                        <p>Misc</p>
+                    </div>
+                    {this.createStatCalculation([returnZeroIfNaN(trainattack + +miscattack),
+                    returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery),
+                    returnZeroIfNaN(+trainparry + +miscparry),
+                    returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage),
+                        'Total'], 'calculatedStats', position)}
                 </div>
             </div>
         )
     }
-}
-
-function rowPairs(label, value, className) {
-    return (
-        <div className={className}>
-            <p>{label}</p>
-            <p>{value}</p>
-        </div>
-    )
-}
-
-function createStatCalculation(label1, label2, label3, label4, label5, classes, position) {
-    if (position === 'four') {
-        return (
-            <div className={classes}>
-                <p>{label1}</p>
-                <p>{label2}</p>
-                <p>{label3}</p>
-                <p>{label5}</p>
-            </div>
-        )
-    }
-    return (
-        <div className={classes}>
-            <p>{label1}</p>
-            <p>{label2}</p>
-            <p>{label3}</p>
-            <p>{label4}</p>
-            <p>{label5}</p>
-        </div>
-    )
 }
