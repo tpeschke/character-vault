@@ -101,7 +101,7 @@
 }
 
 .vitalsShell p {
-    position: unset;
+    height: 18px;
 }
 
 .woundCategoryShell div p:first-child, .currentBox p:first-child, .thresholdBox p:first-child {

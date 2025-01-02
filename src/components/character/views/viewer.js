@@ -449,9 +449,9 @@ export default class CharacterViewer extends Component {
             , miscVitals = { id }
             , vitality = { id }
             , abilities = {}
-            , skillsObject = {}
+            , skillsObject = { id }
             , cashAndGear = { id }
-            , baseCombatFromStats = {}
+            , baseCombatFromStats = { id }
             , armor = { id, returnZeroIfNaN: this.returnZeroIfNaN }
             , shield = { id }
             , armorFatigue = 0
@@ -510,7 +510,7 @@ export default class CharacterViewer extends Component {
             miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox, vitalitydice, wis, stressdie }
             vitality = { stresslockout, shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, stressroll }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
-            skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int }
+            skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int, id }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
             baseCombatFromStats = { str, dex, int, wis, isDownloading, updateAttribute: this.updateAttribute, martialadept, combatskillsuites, combatskills }
             armor = {

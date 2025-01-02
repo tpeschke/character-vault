@@ -5,11 +5,19 @@ import EditSkillList from '../../pairComponents/editSkillList'
 import combatStatMods from './combatStatTables'
 
 export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
-    let { str, int, dex, wis, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained } = baseCombatFromStats
+    let { str, int, dex, wis, updateAttribute, combatskills, combatskillsuites, martialadept, updatecombatSkillSuites, updateTrained, id } = baseCombatFromStats
 
     let { dexAtk, dexDef, intAtk, willDef, strDam, strRec } = combatStatMods
 
     function statModifiers(label, hasCombatSkillSuites, modifier) {
+        if (id === 'blank') {
+            return (
+                <div>
+                    <p>{label}</p>
+                    <p> </p>
+                </div>
+            )
+        }
         return (
             <div>
                 <p>{label}</p>
@@ -19,42 +27,50 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
     }
 
     let skillSuitesHTML = []
-    if (combatskillsuites) {
-        function formatSkillSuites(label, skillsuite, martialadeptPercent, skillSuiteNumber) {
-            let { rank, trained } = skillsuite
-            if (editing && (skillSuiteNumber || skillSuiteNumber === 0)) {
-                return (
-                    <div className="skillRow">
-                        <p>{label}</p>
-                        {trained ? (
-                            <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "combatskillsuites", skillSuiteNumber)}>T</div>
-                        ) : (
-                            <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "combatskillsuites", skillSuiteNumber)}></div>
-                        )}
-                        <p className="skillcost">{Math.floor((40 - int + (rank * 10)) * (1 - (martialadept * .10)))}</p>
-                        {trained ? (
-                            <input className="skillrank" type="number" defaultValue={rank} onChange={event => updatecombatSkillSuites(event.target.value, skillSuiteNumber)} />
-                        ) : (
-                            <p className="skillrank">U</p>
-                        )}
-                    </div>
-                )
-            }
+    if (!combatskillsuites) { combatskillsuites = [{}, {}, {}, {}, {}] }
+    function formatSkillSuites(label, skillsuite, martialadeptPercent, skillSuiteNumber) {
+        let { rank, trained } = skillsuite
+        if (id === 'blank') {
             return (
                 <div className="skillRow">
                     <p>{label}</p>
-                    <p className="skillcost">{Math.floor((40 - int + (rank * 10)) * martialadeptPercent)}</p>
-                    <p className="skillrank">{trained ? rank : 'U'}</p>
+                    <p className="skillcost"> </p>
+                    <p className="skillrank"> </p>
                 </div>
             )
         }
-        const martialadeptPercent = 1 - (martialadept * .10)
-        skillSuitesHTML.push(formatSkillSuites('Armor', combatskillsuites[0], martialadeptPercent, 0))
-        skillSuitesHTML.push(formatSkillSuites('Melee', combatskillsuites[1], martialadeptPercent, 1))
-        skillSuitesHTML.push(formatSkillSuites('Ranged', combatskillsuites[2], martialadeptPercent, 2))
-        skillSuitesHTML.push(formatSkillSuites('Shields', combatskillsuites[3], martialadeptPercent, 3))
-        skillSuitesHTML.push(formatSkillSuites('Unarmed', combatskillsuites[4], martialadeptPercent, 4))
+        if (editing && (skillSuiteNumber || skillSuiteNumber === 0)) {
+            return (
+                <div className="skillRow">
+                    <p>{label}</p>
+                    {trained ? (
+                        <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "combatskillsuites", skillSuiteNumber)}>T</div>
+                    ) : (
+                        <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "combatskillsuites", skillSuiteNumber)}></div>
+                    )}
+                    <p className="skillcost">{Math.floor((40 - int + (rank * 10)) * (1 - (martialadept * .10)))}</p>
+                    {trained ? (
+                        <input className="skillrank" type="number" defaultValue={rank} onChange={event => updatecombatSkillSuites(event.target.value, skillSuiteNumber)} />
+                    ) : (
+                        <p className="skillrank">U</p>
+                    )}
+                </div>
+            )
+        }
+        return (
+            <div className="skillRow">
+                <p>{label}</p>
+                <p className="skillcost">{Math.floor((40 - int + (rank * 10)) * martialadeptPercent)}</p>
+                <p className="skillrank">{trained ? rank : 'U'}</p>
+            </div>
+        )
     }
+    const martialadeptPercent = 1 - (martialadept * .10)
+    skillSuitesHTML.push(formatSkillSuites('Armor', combatskillsuites[0], martialadeptPercent, 0))
+    skillSuitesHTML.push(formatSkillSuites('Melee', combatskillsuites[1], martialadeptPercent, 1))
+    skillSuitesHTML.push(formatSkillSuites('Ranged', combatskillsuites[2], martialadeptPercent, 2))
+    skillSuitesHTML.push(formatSkillSuites('Shields', combatskillsuites[3], martialadeptPercent, 3))
+    skillSuitesHTML.push(formatSkillSuites('Unarmed', combatskillsuites[4], martialadeptPercent, 4))
 
     return (
         <div className='combatshell'>

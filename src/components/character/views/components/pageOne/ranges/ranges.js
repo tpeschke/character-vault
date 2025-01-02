@@ -16,9 +16,9 @@ export default function Ranges({ maxrange, editing, updateAttribute }) {
         return (
             <div>
                 <p>{rangeIncrement}</p>
-                <p className="maxrangeLocation">{min}</p>
+                <p className="maxrangeLocation">{isNaN(min) ? '' : min}</p>
                 <p>-</p>
-                <p className="maxrangeLocation">{max}</p>
+                <p className="maxrangeLocation">{isNaN(max) ? '' : max}</p>
             </div>
         )
     }

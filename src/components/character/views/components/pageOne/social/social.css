@@ -51,12 +51,15 @@
 .socialBodyShell {
     display: flex;
     justify-content: space-between;
-    height: 333px;
     overflow: hidden;
 }
 
 .socialRightShell, .socialLeftShell {
     width: 224px;
+}
+
+.socialRightShell p {
+    height: 19px;
 }
 
 .socialLeftShell {
@@ -70,6 +73,7 @@
 .temperamentLocation {
     width: 223px;
     background-color: lightgray;
+    height: 19px;
 }
 
 div.temperamentLocation {

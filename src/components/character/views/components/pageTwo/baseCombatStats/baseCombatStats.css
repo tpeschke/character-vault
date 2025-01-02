@@ -87,7 +87,7 @@
 }
 
 .combatRow .skillRow p:first-child, .combatRow .skillRow h2:first-child, .combatInput {
-    width: 51%;
+    width: 55%;
 }
 
 .skillRow p:first-child {
@@ -95,6 +95,8 @@
     font-weight: bold;
     margin-top: 2px;
     padding-left: 5px;
+    text-align: left;
+    width: 55%;
 }
 
 .advSkillBackgroundShell div .skillRow {

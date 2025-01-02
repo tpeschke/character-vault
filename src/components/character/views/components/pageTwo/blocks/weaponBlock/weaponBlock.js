@@ -198,20 +198,24 @@ export default class WeaponBlock extends Component {
                 <div className={position === 'four' ? 'calculatedStatsShell ranged' : 'calculatedStatsShell'}>
                     {this.createStatCalculation(['Atk', 'Rcv', 'Pry', 'Dam', ''], 'calculatedStats calculatedStatsHeading', position)}
                     {this.createStatCalculation([trainattack, trainrecovery, trainparry, traindamage, 'Skill'], 'calculatedStats', position, ['trainattack', 'trainrecovery', 'trainparry', 'traindamage'])}
-                    <div className="calculatedStats">
-                        <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
-                        <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
-                        <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
-                        <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
-                        <p>Misc</p>
-                    </div>
+                    {id === 'blank' ? (
+                        this.createStatCalculation([' ', ' ', ' ', ' ', 'Misc'], 'calculatedStats', position)
+                    ) : (
+                        <div className="calculatedStats">
+                            <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
+                            <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
+                            <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                            <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
+                            <p>Misc</p>
+                        </div>
+                    )}
                     {this.createStatCalculation([returnZeroIfNaN(trainattack + +miscattack),
                     returnZeroIfNaN((Math.ceil(trainrecovery / 2) * -1) + +miscrecovery),
                     returnZeroIfNaN(+trainparry + +miscparry),
                     returnZeroIfNaN(Math.ceil(+traindamage / 2) + +miscdamage),
                         'Total'], 'calculatedStats', position)}
                 </div>
-            </div>
+            </div >
         )
     }
 }

@@ -8,15 +8,6 @@ const getCrPRequirement = (level) => {
 export default function CharacterInfo({ characterInfo, editing }) {
     let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, excurrent, drawback, updateAttribute, id } = characterInfo
 
-    let currentEx = <p className="excurrentLocation"> </p>
-    if (id !== 'blank') {
-        currentEx = <input className="excurrentLocation" type="number" min="0" defaultValue={excurrent} onBlur={event => updateAttribute(event.target.value, "excurrent")} />
-    }
-    let crplocation = <p className="crpLocation">{crp ? crp : ' '}</p>
-    if (id !== 'blank') {
-        crplocation = <input className="crpLocation" type="number" min="0" defaultValue={crp} onChange={event => updateAttribute(event.target.value, "crp")} />
-    }
-
     function infoPairs(title, className, info, updateName) {
         if (editing && updateName) {
             return (
@@ -29,6 +20,11 @@ export default function CharacterInfo({ characterInfo, editing }) {
     }
 
     function infoPairsEdit(title, className, info, callback, attribute) {
+        if (id === 'blank') {
+            return (
+                <div className='title-info-pair'><strong>{title}</strong><p className={className}>{info ? info : ' '}</p></div>
+            )
+        }
         return (
             <div className='title-info-pair'><strong>{title}</strong><input className={className} type="number" min="0" defaultValue={info} onChange={event => callback(event.target.value, attribute)} /></div>
         )

@@ -7,6 +7,14 @@ export default function Skills({ cashAndGear, editing }) {
     let { copper, updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading, id } = cashAndGear
 
     function cashPair(label, number, type, callback) {
+        if (id === 'blank' || !callback) {
+            return (
+                <div>
+                    <p>{label}</p>
+                    <p> </p>
+                </div>
+            )
+        }
         return (
             <div>
                 <p>{label}</p>

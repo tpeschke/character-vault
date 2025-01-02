@@ -38,6 +38,8 @@
     font-weight: bold;
     margin-top: 2px;
     padding-left: 5px;
+    text-align: left;
+    width: 55%;
 }
 
 .skillMods div p:nth-child(2) {
@@ -89,28 +91,23 @@
 
 .skillRow p, .skillRow input {
     text-align: center;
-    width: 40px;
+    width: 25%;
 }
 
-.skillRow p:first-child {
-    text-align: left;
-    width: 90px;
+.skillsuiteShell .skillRow h2:first-child {
+    width: 55%;
 }
 
 .skillRow h2:nth-child(2), .skillRow h2:nth-child(3), .skillRow h2:nth-child(4) {
     font-size: 10px;
     padding-top: 3px;
     padding-left: 0px;
-    width: 40px;
     text-align: center;
+    width: 25%;
 }
 
 .skillRowHeaderShell {
     display: flex;
-}
-
-.skillRowHeaderShell .skillRowHeader h2 {
-    width: 30px;
 }
 
 .skillRowHeader {
@@ -125,7 +122,7 @@
 }
 
 .skillRowHeader h2:first-child {
-    width: 150px;
+    width: 55%;
     text-align: left;
     padding-left: 5px;
 }
@@ -134,32 +131,3 @@
     width: 95px !important;
     font-size: 11px !important;
 }
-
-/* .skillShell {
-    position: absolute;
-    top: 211px;
-    left: 20px;
-    width: 776px;
-}
-
-.innerSkillShell {
-    display: flex;
-    justify-content: space-between;
-}
-
-.skillLeftShell {
-    width: 30%;
-    border-right: 1px solid #222;
-}
-
-.skillLeftShell h2 {
-    text-align: left;
-    padding-left: 10px;
-    margin-right: -1px;
-}
-
-.skillRightShell {
-    width: 70%;
-    position: relative;
-    overflow: hidden;
-} */

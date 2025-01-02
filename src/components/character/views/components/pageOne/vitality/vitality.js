@@ -108,16 +108,26 @@ export default function Vitality({ vitality, editing }) {
         return (
             <div className="hurtLocation">
                 <p>{label}</p>
-                <p>{categoryNumber === 1 ? 1 : (max * (.25 * (categoryNumber - 1))).toFixed(0)} - {(max * (.25 * categoryNumber)).toFixed(0) - 1}</p>
+                <p>{getCategoryRange(categoryNumber, max)}</p>
             </div>
         )
+    }
+
+    function getCategoryRange (categoryNumber, max) {
+        if (id === 'blank') {
+            return ''
+        }
+        if (categoryNumber === 1) {
+            return 1
+        }
+        return `${(max * (.25 * (categoryNumber - 1))).toFixed(0)} - ${(max * (.25 * categoryNumber)).toFixed(0) - 1}`
     }
 
     return (
         <div className="vitalsShell" key={`${damageone}${damagetwo}`}>
             <h1>Nerve</h1>
             <div className="woundCategoryShell">
-                {editing ? (
+                {editing || id === 'blank' ? (
                     <></>
                 ) : (
                     <div className={"circle panickedCircle"} style={calculatePanickedLeft(dwarfModifier, stresslockout)}>{stresslockout >= 4 ? 'A' : ''}</div>
@@ -148,7 +158,7 @@ export default function Vitality({ vitality, editing }) {
             </div>
             <h1>Vitality</h1>
             <div className="woundCategoryShell">
-                {editing ? (
+                {editing || id === 'blank' ? (
                     <></>
                 ) : (
                     <div className="circle woundCircle" style={calculateWoundedLeft(usingshield ? totalFatigue : armorFatigue)}>{showAlwaysFatiguedPenalty(usingshield ? totalFatigue : armorFatigue)}</div>
@@ -168,7 +178,7 @@ export default function Vitality({ vitality, editing }) {
                 <p className="tinyGrey">Days to Heal</p>
                 <div className="thresholdBox">
                     <p>Trauma Thres.</p>
-                    <p className="traumaLocation">{((shownVitality ? shownVitality : vitalityTotal) * .25).toFixed(0)}</p>
+                    <p className="traumaLocation">{id === 'blank' ? '' : ((shownVitality ? shownVitality : vitalityTotal) * .25).toFixed(0)}</p>
                 </div>
                 <p className="tinyGrey">Severity</p>
                 <p className="tinyGrey">Days to Heal</p>

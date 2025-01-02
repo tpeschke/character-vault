@@ -156,7 +156,9 @@ export default class ArmorBlock extends Component {
         return (
             <div className="armorBlockShell" key={this.state.seed}>
                 <h2>Armor Workspace</h2>
-                {editing ? (
+                {id === 'blank' ? (
+                    <p className="armornameLocation"> </p>
+                ) : editing ? (
                     <>
                         <input className="armornameLocation" defaultValue={armorname} type="text" list="armorChoices" onChange={this.changeArmorName} />
                         <datalist id="armorChoices">
@@ -181,18 +183,27 @@ export default class ArmorBlock extends Component {
                     {createStatCalculation(['Def', 'Fat', 'Rcv', 'Init', ''], 'calculatedStats calculatedStatsHeading')}
                     {createStatCalculation([armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit, "Base"], 'calculatedStats', ["armorbasedef", "armorbasefatiguemod", "armorbaserecovery", "armorbaseinit"])}
                     {createStatCalculation([armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, 'Skill'], 'calculatedStats', ["armortrainingdef", "armortrainfatigue", "armortrainrecovery", "armortraininit"])}
-                    <div className="calculatedStats">
-                        <input type="number" value={armormiscdef} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
-                        <input type="number" value={armormiscfatigue} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
-                        <input type="number" value={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
-                        <input type="number" value={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
-                        <p>Misc</p>
-                    </div>
-                    {createStatCalculation([this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef),
-                    id !== 'blank' ? returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue) : '',
-                    id !== 'blank' ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0 : '',
-                    returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit),
-                        'Total'], 'calculatedStats')}
+                    {id === 'blank' ? (
+                        <>
+                            {createStatCalculation([' ', ' ', ' ', ' ', 'Misc'], 'calculatedStats')}
+                            {createStatCalculation([' ', ' ', ' ', ' ', 'Total'], 'calculatedStats')}
+                        </>
+                    ) : (
+                        <>
+                            <div className="calculatedStats">
+                                <input type="number" value={armormiscdef} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
+                                <input type="number" value={armormiscfatigue} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
+                                <input type="number" value={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
+                                <input type="number" value={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
+                                <p>Misc</p>
+                            </div>
+                            {createStatCalculation([this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef),
+                            returnZeroIfNaN(armorbasefatiguemod + Math.floor(armortrainfatigue / 2) + armormiscfatigue),
+                            armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery > 0 ? armorbaserecovery + (armortrainrecovery * -1) + armormiscrecovery : 0,
+                            returnZeroIfNaN(armorbaseinit + (+armortraininit * -1) > 0 ? armorbaseinit + (+armortraininit * -1) + armormiscinit : 0 + armormiscinit),
+                                'Total'], 'calculatedStats')}
+                        </>
+                    )}
                 </div>
             </div>
         )
