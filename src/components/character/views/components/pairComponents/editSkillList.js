@@ -20,8 +20,11 @@ export default class EditSkillList extends Component {
             defaultCost: props.defaultCost || 1,
             defaultRank: props.defaultRank || 0,
             defaultMod: props.defaultMod || 0,
-            rowWidth: props.rowWidth || '100%',
-            isCombat: props.isCombat
+            isCombat: props.isCombat,
+            skilladept: props.skilladept,
+            rowStyles: {
+                width: props.rowWidth || '100%'
+            }
         }
     }
 
@@ -77,43 +80,38 @@ export default class EditSkillList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, rowWidth, isCombat } = this.state
-        let { skilladept } = this.props
-        let rowStyles = {
-            width: rowWidth
-        }
+        let { stylings, listArray, limit, rowStyles, isCombat, skilladept } = this.state
         let listOfInputs = listArray.map((item, i) => {
             if (!isCombat) {
                 return (
-                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                    <div className="editPairRow pairRow skillBorder" style={rowStyles} key={`${this.makeId()}`}>
                         <input className="skillInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
-                        <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                        <p id="totalCost">({item.cost + (item.rank * 3) - skilladept})</p>
+                        <div className='costShell'>
+                            <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
+                            <p id="totalCost">{item.cost + (item.rank * 3) - skilladept}</p>
+                        </div>
                         <input className="rankInput border-right" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
                         <input className="modInput border-right" defaultValue={item.mod} onBlur={e => this.updateValue('mod', e.target.value, i)} />
                     </div>
                 )
             } else {
                 return (
-                    <div className="editPairRow" style={rowStyles} key={`${this.makeId()}`}>
+                    <div className="editPairRow pairRow skillBorder" style={rowStyles} key={`${this.makeId()}`}>
                         <input className="skillInput combatInput" defaultValue={item.skill} onBlur={e => this.updateValue('skill', e.target.value, i)} />
-                        <input className="costInput border-right combatCost" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
-                        <p id="combatTotalCost">({item.cost + (item.rank * 3) - skilladept})</p>
+                        <div className='costShell'>
+                            <input className="costInput border-right" defaultValue={item.cost} onBlur={e => this.updateValue('cost', e.target.value, i)} />
+                            <p id="totalCost">{item.cost + (item.rank * 3) - skilladept}</p>
+                        </div>
                         <input className="rankInput border-right combatRank" defaultValue={item.rank} onBlur={e => this.updateValue('rank', e.target.value, i)} />
                     </div>
                 )
             }
         })
 
-        let inputRowStyles = {
-            width: rowWidth,
-            display: `${listOfInputs.length >= limit ? 'none' : 'inherit'}`
-        }
-
         let addNewSkillInputs = (
-            <div className="editPairRow" style={inputRowStyles}>
+            <div className="editPairRow pairRow skillBorder" style={rowStyles}>
                 <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput" onBlur={e => this.addNewItem(e.target.value, null)} />
-                <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
+                <input id={`addNewSkillInputcost${this.state.type}`} className="costShell border-right" onBlur={e => this.addNewItem(null, e.target.value, null)} />
                 <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right" onBlur={e => this.addNewItem(null, null, e.target.value)} />
                 <input id={`addNewSkillInputmod${this.state.type}`} className="modInput border-right" onBlur={e => this.addNewItem(null, null, null, e.target.value)} />
             </div>
@@ -121,18 +119,24 @@ export default class EditSkillList extends Component {
 
         if (isCombat) {
             addNewSkillInputs = (
-                <div className="editPairRow" style={inputRowStyles}>
+                <div className="editPairRow pairRow skillBorder" style={rowStyles}>
                     <input id={`addNewSkillInputskill${this.state.type}`} className="skillInput combatInput" onBlur={e => this.addNewItem(e.target.value, null)} />
-                    <input id={`addNewSkillInputcost${this.state.type}`} className="costInput border-right combatCost" onBlur={e => this.addNewItem(null, e.target.value, null)} />
+                    <input id={`addNewSkillInputcost${this.state.type}`} className="costShell border-right combatCost" onBlur={e => this.addNewItem(null, e.target.value, null)} />
                     <input id={`addNewSkillInputrank${this.state.type}`} className="rankInput border-right combatRank" onBlur={e => this.addNewItem(null, null, e.target.value)} />
                 </div>
             )
         }
 
+        let striping = []
+        for (let i = 0; i < limit - listArray.length - 1; i++) {
+            striping.push((<div className="pairRowStriping pairRow skillBorder" style={rowStyles} key={`${this.makeId()}`}> </div>))
+        }
+
         return (
-            <div style={stylings}>
+            <div style={stylings} className="contentPairListShell">
                 {listOfInputs}
                 {addNewSkillInputs}
+                {striping}
             </div>
         )
     }

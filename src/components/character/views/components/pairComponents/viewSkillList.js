@@ -13,10 +13,12 @@ export default class ViewSkillList extends Component {
                 ...props.stylings
             },
             listArray: props.listArray || [],
-            rowWidth: props.rowWidth || '100%',
             skilladept: props.skilladept,
             isCombat: props.isCombat,
-            limit: props.limit
+            limit: props.limit,
+            rowStyles: {
+                width: props.rowWidth || '100%'
+            }
         }
     }
 
@@ -25,10 +27,8 @@ export default class ViewSkillList extends Component {
     };
 
     render() {
-        let { stylings, listArray, rowWidth, skilladept, isCombat, limit } = this.state
-        let rowStyles = {
-            width: rowWidth
-        }
+        let { stylings, listArray, rowStyles, skilladept, isCombat, limit } = this.state
+        
         let listOfSkills = listArray.map((item, i) => {
             if (!isCombat) {
                 return (

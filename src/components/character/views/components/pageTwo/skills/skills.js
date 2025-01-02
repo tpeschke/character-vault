@@ -50,322 +50,16 @@ export default function Skills({ skillsObject, editing }) {
         23: 6
     }
 
-    if (editing) {
+    function skillCheckMods(label, skillsuites, mod) {
         return (
-            <div className='skillShell'>
-                <h1>Skills</h1>
-                <div className="innerSkillShell">
-                    <div className="skillLeftShell">
-                        <div>
-                            <h2>Check Mods & Skill Adepts</h2>
-                            <div className="skillDiscount">
-                                <div className="skillMods">
-                                    <div>
-                                        <p>Str</p>
-                                        <p>{checkMod[str]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Dex</p>
-                                        <p>{checkMod[dex]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Con</p>
-                                        <p>{checkMod[con]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Int</p>
-                                        <p>{checkMod[int]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Will</p>
-                                        <p>{checkMod[wis]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Pre</p>
-                                        <p>{checkMod[cha]}</p>
-                                    </div>
-                                </div>
-                                <div className="skillAdept">
-                                    <p>Skill Adept(s)</p>
-                                    <input className="skilladeptLocation" type="number" defaultValue={skilladept} onChange={event => updateAttribute(event.target.value, "skilladept")} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="skillsuiteShell">
-                            <div className="skillRow">
-                                <h2>Skill Suites</h2>
-                                <h2>Cost</h2>
-                                <h2>Rank</h2>
-                                <h2>Mod</h2>
-                            </div>
-                            <div className="skillRow">
-                                <p>Athletics</p>
-                                {skillsuites[0].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 0)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 0)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[0].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[0].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[0].rank} onChange={event => updateSkillsuites(event.target.value, 0)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[str], checkMod[con])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Lore</p>
-                                {skillsuites[1].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 1)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 1)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[1].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[1].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[1].rank} onChange={event => updateSkillsuites(event.target.value, 1)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{checkMod[int]}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Streetwise</p>
-                                {skillsuites[2].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 2)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 2)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[2].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[2].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[2].rank} onChange={event => updateSkillsuites(event.target.value, 2)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[wis], checkMod[cha])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Strategy</p>
-                                {skillsuites[4].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 4)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 4)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[4].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[4].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[4].rank} onChange={event => updateSkillsuites(event.target.value, 4)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[wis], checkMod[cha])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Survival</p>
-                                {skillsuites[3].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 3)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 3)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[3].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[3].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[3].rank} onChange={event => updateSkillsuites(event.target.value, 3)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[con], checkMod[wis])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Trades</p>
-                                {skillsuites[5].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 5)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 5)}></div>}
-                                <p className="skillcost">{Math.floor((30 - int + (skillsuites[5].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[5].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[5].rank} onChange={event => updateSkillsuites(event.target.value, 5)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[dex], checkMod[int])}</p>
-                            </div>
-                            <div className="skillRow">
-                                <p>Weirdcraft</p>
-                                {skillsuites[6].trained ? <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", 6)}>T</div> : <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", 6)}></div>}
-                                <p className="skillcost">{Math.floor((40 - int + (skillsuites[6].rank * 10)) * (1 - (skilladept * .10)))}</p>
-                                {skillsuites[6].trained ? <input className="skillrank" type="number" defaultValue={skillsuites[6].rank} onChange={event => updateSkillsuites(event.target.value, 6)} /> : <p className="skillrank">U</p>}
-                                <p className="skillmod">{Math.min(checkMod[int], checkMod[wis])}</p>
-                            </div>
-                        </div>
-                        <div className="skillsuiteShell">
-                            <div className="skillRow">
-                                <h2>Native Lang.</h2>
-                                <h2>Cost</h2>
-                                <h2>Rank</h2>
-                                <h2>Mod</h2>
-                            </div>
-                            <div className="skillRow">
-                                <input id="nativename" type="text" defaultValue={nativelanguage.language} onChange={event => updateNativeLanguage(event.target.value, 'language')} />
-                                <p id="nativecost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
-                                <input id="nativerank" type="number" placeholder={int} defaultValue={nativelanguage.rank} onChange={event => updateNativeLanguage(event.target.value, 'rank')} />
-                                <p id="nativemod"> </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="skillRightShell">
-                        <div className="advSkillBackgroundShell">
-                            <div>
-                                <div className="skillRow">
-                                    <h2>Adv Skill</h2>
-                                    <h2>Cost</h2>
-                                    <h2>Rank</h2>
-                                    <h2>Mod</h2>
-                                </div>
-                                <div className="stripings">
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="skillRow">
-                                    <h2>Adv Skill</h2>
-                                    <h2>Cost</h2>
-                                    <h2>Rank</h2>
-                                    <h2>Mod</h2>
-                                </div>
-                                <div className="stripings">
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div className="stripeDiv">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <EditSkillList stylings={{ width: '549px', height: '275px' }} rowWidth={'274px'} limit={28} listArray={skills} updateFunction={updateAttribute} type={"skills"} skilladept={skilladept} />
-                    </div>
-                </div>
+            <div>
+                <p>{label}</p>
+                <p>{skillsuites ? mod : ''}</p>
             </div>
         )
     }
 
-    let athletics = (<div className="skillRow">
-        <p>Athletics</p>
-        <p className="skillcost"> </p>
-        <p className='skillrank'> </p>
-        <p className="skillmod"> </p>
-    </div>
-    )
-    let lore = (
-        <div className="skillRow">
-            <p>Lore</p>
-            <p className="skillcost"> </p>
-            <p className='skillrank'> </p>
-            <p className="skillmod"> </p>
-        </div>
-    )
-    let streetwise = (<div className="skillRow">
-        <p>Streetwise</p>
-        <p className="skillcost"> </p>
-        <p className='skillrank'> </p>
-        <p className="skillmod"> </p>
-    </div>)
-    let survival = (<div className="skillRow">
-        <p>Survival</p>
-        <p className="skillcost"> </p>
-        <p className='skillrank'> </p>
-        <p className="skillmod"> </p>
-    </div>
-    )
-    let tactics = (
-        <div className="skillRow">
-            <p>Strategy</p>
-            <p className="skillcost"> </p>
-            <p className='skillrank'> </p>
-            <p className="skillmod"> </p>
-        </div>
-    )
-    let trades = (
-        <div className="skillRow">
-            <p>Trades</p>
-            <p className="skillcost"> </p>
-            <p className='skillrank'> </p>
-            <p className="skillmod"> </p>
-        </div>
-    )
-    let weirdcraft = (
-        <div className="skillRow">
-            <p>Weirdcraft</p>
-            <p className="skillcost"> </p>
-            <p className='skillrank'> </p>
-            <p className="skillmod"> </p>
-        </div>
-    )
-    let nativeLanguage = (
+    let nativeLanguageHTML = (
         <div className="skillRow">
             <p className="navLang"> </p>
             <p className="skillcost"> </p>
@@ -376,10 +70,29 @@ export default function Skills({ skillsObject, editing }) {
 
     let skillSuitesHTML = []
     if (skillsuites) {
-        function formatSkillSuites(label, skillsuite, skillAdeptPercent, stat1, stat2) {
+        function formatSkillSuites(label, skillsuite, skillAdeptPercent, stat1, stat2, skillSuiteNumber) {
             let { rank, trained } = skillsuite
             const mod1 = checkMod[stat1]
             const mod2 = checkMod[stat2]
+            if (editing && (skillSuiteNumber || skillSuiteNumber === 0)) {
+                return (
+                    <div className="skillRow">
+                        <p>{label}</p>
+                        {trained ? (
+                            <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", skillSuiteNumber)}>T</div>
+                        ) : (
+                            <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(true, "skillsuites", skillSuiteNumber)}></div>
+                        )}
+                        <p className="skillcost">{Math.floor((30 - int + (rank * 10)) * skillAdeptPercent)}</p>
+                        {trained ? (
+                            <input className="skillrank" type="number" defaultValue={rank} onChange={event => updateSkillsuites(event.target.value, skillSuiteNumber)} />
+                        ) : (
+                            <p className="skillrank">U</p>
+                        )}
+                        <p className="skillmod">{Math.min(mod1, mod2)}</p>
+                    </div>
+                )
+            }
             return (
                 <div className="skillRow">
                     <p>{label}</p>
@@ -389,16 +102,24 @@ export default function Skills({ skillsObject, editing }) {
                 </div>
             )
         }
-        const skillAdeptPercent = 1 - (skilladept * .10)
-        skillSuitesHTML.push(formatSkillSuites('Athletics', skillsuites[0], skillAdeptPercent, str, con))
-        skillSuitesHTML.push(formatSkillSuites('Lore', skillsuites[1], skillAdeptPercent, int, int))
-        skillSuitesHTML.push(formatSkillSuites('Streetwise', skillsuites[2], skillAdeptPercent, wis, cha))
-        skillSuitesHTML.push(formatSkillSuites('Survival', skillsuites[3], skillAdeptPercent, con, wis))
-        skillSuitesHTML.push(formatSkillSuites('Strategy', skillsuites[4], skillAdeptPercent, wis, cha))
-        skillSuitesHTML.push(formatSkillSuites('Trades', skillsuites[5], skillAdeptPercent, dex, int))
-        skillSuitesHTML.push(formatSkillSuites('Weirdcraft', skillsuites[6], skillAdeptPercent, int, wis))
 
-        nativeLanguage = (
+        const skillAdeptPercent = 1 - (skilladept * .10)
+        skillSuitesHTML.push(formatSkillSuites('Athletics', skillsuites[0], skillAdeptPercent, str, con, 0))
+        skillSuitesHTML.push(formatSkillSuites('Lore', skillsuites[1], skillAdeptPercent, int, int, 1))
+        skillSuitesHTML.push(formatSkillSuites('Streetwise', skillsuites[2], skillAdeptPercent, wis, cha, 2))
+        skillSuitesHTML.push(formatSkillSuites('Survival', skillsuites[3], skillAdeptPercent, con, wis, 3))
+        skillSuitesHTML.push(formatSkillSuites('Strategy', skillsuites[4], skillAdeptPercent, wis, cha, 4))
+        skillSuitesHTML.push(formatSkillSuites('Trades', skillsuites[5], skillAdeptPercent, dex, int, 5))
+        skillSuitesHTML.push(formatSkillSuites('Weirdcraft', skillsuites[6], skillAdeptPercent, int, wis, 6))
+
+        nativeLanguageHTML = editing ? (
+            <div className="skillRow">
+                <input id="nativename" type="text" defaultValue={nativelanguage.language} onChange={event => updateNativeLanguage(event.target.value, 'language')} />
+                <p id="nativecost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
+                <input id="nativerank" type="number" placeholder={int} defaultValue={nativelanguage.rank} onChange={event => updateNativeLanguage(event.target.value, 'rank')} />
+                <p id="nativemod"> </p>
+            </div>
+        ) : (
             <div className="skillRow">
                 <p className="navLang">{nativelanguage.language}</p>
                 <p className="skillcost">{5 + (nativelanguage.rank || int * 2) - skilladept}</p>
@@ -425,7 +146,11 @@ export default function Skills({ skillsObject, editing }) {
                         </div>
                         <div className="skillAdept">
                             <p>Skill Adept(s)</p>
-                            <p className="skilladeptLocation">{skilladept}</p>
+                            {editing ? (
+                                <input className="skilladeptLocation" type="number" defaultValue={skilladept} onChange={event => updateAttribute(event.target.value, "skilladept")} />
+                            ) : (
+                                <p className="skilladeptLocation">{skilladept}</p>
+                            )}
                         </div>
                     </div>
                     <div className="skillsuiteShell">
@@ -444,7 +169,7 @@ export default function Skills({ skillsObject, editing }) {
                             <h2>Rank</h2>
                             <h2>Mod</h2>
                         </div>
-                        {nativeLanguage}
+                        {nativeLanguageHTML}
                     </div>
                 </div>
                 <div className='skillRightColumn'>
@@ -462,18 +187,13 @@ export default function Skills({ skillsObject, editing }) {
                             <h2>Mod</h2>
                         </div>
                     </div>
-                    <ViewSkillList stylings={{ width: '513.22px', height: '255px' }} rowWidth={'50%'} limit={26} listArray={skills} skilladept={skilladept} />
+                    {editing ? (
+                        <EditSkillList stylings={{ width: '513.22px', height: '255px' }} rowWidth={'50%'} limit={26} listArray={skills} updateFunction={updateAttribute} type={"skills"} skilladept={skilladept} />
+                    ) : (
+                        <ViewSkillList stylings={{ width: '513.22px', height: '255px' }} rowWidth={'50%'} limit={26} listArray={skills} skilladept={skilladept} />
+                    )}
                 </div>
             </div>
-        </div>
-    )
-}
-
-function skillCheckMods(label, skillsuites, mod) {
-    return (
-        <div>
-            <p>{label}</p>
-            <p>{skillsuites ? mod : ''}</p>
         </div>
     )
 }

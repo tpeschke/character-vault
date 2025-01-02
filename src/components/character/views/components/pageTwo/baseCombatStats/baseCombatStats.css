@@ -73,6 +73,7 @@
 .combatRow .skillRow {
     display: flex;
     height: 19.5px;
+    position: relative;
 }
 
 .combatRow div h2 {
