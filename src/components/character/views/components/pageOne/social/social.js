@@ -6,7 +6,7 @@ import EditList from '../../pairComponents/editList'
 import EditPairList from '../../pairComponents/editPairList'
 
 export default function Social({ social, editing }) {
-    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, strength, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, honor, descriptions, temperamentrank } = social
+    let { shownHonor, updateAttribute, isHuman, honorDiceLeft, strength, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions } = social
 
     let honorCircle = <div></div>
     let honorInput = <p className="honorLocation"> </p>

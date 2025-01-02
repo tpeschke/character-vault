@@ -25,13 +25,13 @@ export default class ArmorBlock extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let { armorChoices, armorOptions } = this.state
         axios.get(`https://bonfire.stone-fish.com/getArmor`).then(({ data }) => {
             armorChoices = data
             armorChoices.push({ def: 0, dr: 0, fatigue: 0, name: "Unarmored", init: 0, rec: 0, skill: 0 })
             armorOptions = data.sort(sortFunction).map(choice => {
-                return <option value={choice.name} />
+                return <option key={choice.name} value={choice.name} />
             })
             this.setState({ armorChoices, armorOptions })
         })
@@ -90,7 +90,7 @@ export default class ArmorBlock extends Component {
     render() {
         let { armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatiguemod, armorbaserecovery, armorbaseinit,
             armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, armormiscfatigue,
-            armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN, id, armorbasefatigue, showArmor } = this.state.armor
+            armormiscrecovery, armormiscinit, returnZeroIfNaN, id, armorbasefatigue, showArmor } = this.state.armor
         let { editing, armorOptions } = this.state
 
         function creatPairs(label, value, classes, updateName) {
@@ -98,7 +98,7 @@ export default class ArmorBlock extends Component {
                 return (
                     <div className={classes}>
                         <p>{label}</p>
-                        <input type="text" value={value} onChange={event => this.updateAttribute(event.target.value, updateName)} />
+                        <input type="text" value={value ? value : ''} onChange={event => this.updateAttribute(event.target.value, updateName)} />
                     </div>
                 )
             }
@@ -114,10 +114,10 @@ export default class ArmorBlock extends Component {
             if (editing && updateValues) {
                 return (
                     <div className={classes}>
-                        <input type="number" value={label[0]} onChange={event => this.updateAttribute(event.target.value, label[0])} />
-                        <input type="number" value={label[1]} onChange={event => this.updateAttribute(event.target.value, label[1])} />
-                        <input type="number" value={label[2]} onChange={event => this.updateAttribute(event.target.value, label[2])} />
-                        <input type="number" value={label[3]} onChange={event => this.updateAttribute(event.target.value, label[3])} />
+                        <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, label[0])} />
+                        <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, label[1])} />
+                        <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, label[2])} />
+                        <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateAttribute(event.target.value, label[3])} />
                         <p>{label[4]}</p>
                     </div>
                 )
@@ -150,6 +150,8 @@ export default class ArmorBlock extends Component {
                 case 'C':
                     armorbasefatiguemod = 0;
                     break;
+                default:
+                    break;
             }
         }
 
@@ -160,7 +162,7 @@ export default class ArmorBlock extends Component {
                     <p className="armornameLocation"> </p>
                 ) : editing ? (
                     <>
-                        <input className="armornameLocation" defaultValue={armorname} type="text" list="armorChoices" onChange={this.changeArmorName} />
+                        <input className="armornameLocation" defaultValue={armorname ? armorname : ''} type="text" list="armorChoices" onChange={this.changeArmorName} />
                         <datalist id="armorChoices">
                             {armorOptions}
                         </datalist>
@@ -173,7 +175,7 @@ export default class ArmorBlock extends Component {
                 <div className='armorBonusArea'>
                     <p>Bonus</p>
                     {editing ? (
-                        <textarea value={armorbonus} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"60"}></textarea>
+                        <textarea value={armorbonus ? armorbonus : ''} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"60"}></textarea>
                     ) : (
                         <p>{armorbonus}</p>
                     )}
@@ -191,10 +193,10 @@ export default class ArmorBlock extends Component {
                     ) : (
                         <>
                             <div className="calculatedStats">
-                                <input type="number" value={armormiscdef} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
-                                <input type="number" value={armormiscfatigue} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
-                                <input type="number" value={armormiscrecovery} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
-                                <input type="number" value={armormiscinit} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
+                                <input type="number" value={armormiscdef ? armormiscdef : ''} onChange={event => this.updateAttribute(event.target.value, "armormiscdef")} />
+                                <input type="number" value={armormiscfatigue ? armormiscfatigue : ''} onChange={event => this.updateAttribute(event.target.value, "armormiscfatigue")} />
+                                <input type="number" value={armormiscrecovery ? armormiscrecovery : ''} onChange={event => this.updateAttribute(event.target.value, "armormiscrecovery")} />
+                                <input type="number" value={armormiscinit ? armormiscinit : ''} onChange={event => this.updateAttribute(event.target.value, "armormiscinit")} />
                                 <p>Misc</p>
                             </div>
                             {createStatCalculation([this.calculateArmorDefense(+armorbasedef, +armortrainingdef, +armormiscdef),

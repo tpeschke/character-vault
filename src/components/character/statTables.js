@@ -1,4 +1,4 @@
-export default {
+const statTables = {
     strTable: {
         1: { damage: -4, carry: 1, skill: -3 },
         2: { damage: -3, carry: 2, skill: -2 },
@@ -135,7 +135,8 @@ export default {
         17: { favor: 7, honorstart: 20, skill: 1 },
         18: { favor: 8, honorstart: 20, skill: 2 },
         19: { favor: 8, honorstart: 20, skill: 2 },
-        20: { favor: 9, honorstart: 25, skill: 3, confrontation: 'D20!+d4!' }
+        20: { favor: 9, honorstart: 25, skill: 3 }
     }
 }
 
+export default statTables

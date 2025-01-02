@@ -2,7 +2,7 @@ import React from 'react'
 import './miscVitals.css'
 
 export default function MiscVitals({ miscVitals, editing }) {
-    let { updateAttribute, currentfavor, chaData, favormax, anointed, id, vitalitydice, wis, con, stressdie } = miscVitals
+    let { updateAttribute, currentfavor, favormax, anointed, id, vitalitydice, wis, con, stressdie } = miscVitals
 
     function rowPair(label, value, updateName) {
         if (editing && updateName) {

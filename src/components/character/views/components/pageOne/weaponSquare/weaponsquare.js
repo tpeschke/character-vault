@@ -83,8 +83,8 @@ export default function weaponsquare({ weapon }) {
     let { position, returnZeroIfNaN, size, trainattack,
         miscattack, dex, int, wis, armorbaseinit, armortraininit, armormiscinit, str, armorbaserecovery, armortrainrecovery, armormiscrecovery,
         armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldmiscdef, armordr, shielddr, name, basedamage, traindamage,
-        miscdamage, basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
-        miscparry, thrownweapon, updateAttribute, shieldname, shieldflanks, type, baserecovery, totalFatigue, armorFatigue, isRanged, updateObject, editing, id, calculateArmorDefense,
+        basemeasure, shieldbaseparry, shieldtrainparry, shieldmiscparry, baseparry, usingshield, trainparry,
+        miscparry, thrownweapon, shieldname, shieldflanks, type, baserecovery, isRanged, updateObject, id, calculateArmorDefense,
         shieldcover, miscrecovery, trainrecovery, showArmor, maxrange, baseInit = 5 } = weapon
     let { dexAtk, dexDef, intAtk, willDef, strDam: strDamChart, strRec } = combatStatMods
 

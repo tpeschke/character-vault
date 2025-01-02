@@ -1,6 +1,5 @@
 import React from 'react'
 import './vitality.css'
-import EditPairList from '../../pairComponents/editPairList'
 import ViewPairList from '../../pairComponents/viewPairList'
 
 function calculatePanickedLeft(dwarfModifier, stresslockout = 1) {
@@ -26,7 +25,6 @@ function calculatePanickedLeft(dwarfModifier, stresslockout = 1) {
 function calculateWoundedLeft(fatigue) {
     let left = '0px'
         , display = 'inherit'
-        , borderColor = null
     if (fatigue === 'H') {
         left = '0px'
     } else if (fatigue === 'B') {
@@ -52,9 +50,9 @@ function showAlwaysFatiguedPenalty(fatigue) {
 }
 
 export default function Vitality({ vitality, editing }) {
-    let { shownVitality, overCarry, updateAttribute, shownHonor, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData,
-        vitalityTotal, id, totalEncumb, woundMultiplier, shownThreshold, stressthreshold, wis, currentstress, relaxation, totalFatigue,
-        armorFatigue, usingshield, dwarfModifier, stressroll, stresslockout } = vitality
+    let { shownVitality, updateAttribute, damageone, damagetwo, sizemod,
+        vitalityTotal, id, shownThreshold, stressthreshold, currentstress, relaxation, totalFatigue,
+        armorFatigue, usingshield, dwarfModifier, stresslockout } = vitality
 
     const STRESS = 'stress'
         , VITALITY = 'vitality'

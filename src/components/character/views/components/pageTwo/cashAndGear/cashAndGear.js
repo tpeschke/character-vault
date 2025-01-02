@@ -51,9 +51,9 @@ export default function Skills({ cashAndGear, editing }) {
                 <h1>Gear & Loot</h1>
                 <div className="cashShell">
                     {cashPair('CC', copper, 'copper', updateAttribute)}
-                    {cashPair('SC', copper, 'silver', updateAttribute)}
-                    {cashPair('GC', copper, 'gold', updateAttribute)}
-                    {cashPair('PC', copper, 'platinium', updateAttribute)}
+                    {cashPair('SC', silver, 'silver', updateAttribute)}
+                    {cashPair('GC', gold, 'gold', updateAttribute)}
+                    {cashPair('PC', platinium, 'platinium', updateAttribute)}
                 </div>
             </div>
             <div className="gearColumns">

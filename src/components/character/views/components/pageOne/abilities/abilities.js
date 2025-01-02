@@ -2,12 +2,12 @@ import React from 'react'
 import './abilities.css'
 
 export default function Abilities({ abilities, editing }) {
-    let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute, drawback } = abilities
+    let { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute } = abilities
 
     function createDivs(number) {
         let divs = []
         for (let i = 0; i < number; i++) {
-            divs.push((<div></div>))
+            divs.push((<div key={`abilitiesdivs${i}`}></div>))
         }
         return divs
     }

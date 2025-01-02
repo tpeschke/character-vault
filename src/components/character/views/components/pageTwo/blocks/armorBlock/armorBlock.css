@@ -17,7 +17,7 @@
 
 .armorBlockShell div, .shieldBlockShell div {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .armornameLocation {

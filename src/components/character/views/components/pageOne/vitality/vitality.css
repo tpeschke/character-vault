@@ -118,7 +118,7 @@
 .currentDamageRow {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .currentBox p:first-child, .thresholdBox p:first-child {

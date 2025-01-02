@@ -15,31 +15,6 @@ import ShieldBlock from './components/pageTwo/blocks/shieldBlock/shieldBlock'
 import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats/baseCombatStats'
 
-import statTables from '../statTables'
-
-const chaTable = {
-    1: { favor: 1, honorstart: 5, skill: -3 },
-    2: { favor: 1, honorstart: 10, skill: -2 },
-    3: { favor: 1, honorstart: 10, skill: -2 },
-    4: { favor: 1, honorstart: 10, skill: -1 },
-    5: { favor: 1, honorstart: 15, skill: -1 },
-    6: { favor: 1, honorstart: 15, skill: -1 },
-    7: { favor: 2, honorstart: 15, skill: -1 },
-    8: { favor: 2, honorstart: 15, skill: 0 },
-    9: { favor: 2, honorstart: 15, skill: 0 },
-    10: { favor: 2, honorstart: 15, skill: 0 },
-    11: { favor: 3, honorstart: 15, skill: 0 },
-    12: { favor: 3, honorstart: 15, skill: 0 },
-    13: { favor: 4, honorstart: 15, skill: 1 },
-    14: { favor: 4, honorstart: 15, skill: 1 },
-    15: { favor: 5, honorstart: 15, skill: 1 },
-    16: { favor: 6, honorstart: 15, skill: 1 },
-    17: { favor: 7, honorstart: 20, skill: 1 },
-    18: { favor: 8, honorstart: 20, skill: 2 },
-    19: { favor: 8, honorstart: 20, skill: 2 },
-    20: { favor: 9, honorstart: 25, skill: 3 }
-}
-
 export default class CharacterEditor extends Component {
     constructor(props) {
         super(props)
@@ -123,46 +98,6 @@ export default class CharacterEditor extends Component {
         return thing
     }
 
-    calculateArmorFatigue = (basefatigue, trainfatigue, miscfatigue) => {
-        return this.convertToFatigueLetter(this.convertFromFatigueLetter(basefatigue) + (trainfatigue * -1) + (miscfatigue * -1))
-    }
-
-    calculateTotalFatigue = (armorFatigue, shieldFatigue) => {
-        return this.convertToFatigueLetter(this.convertFromFatigueLetter(armorFatigue) + shieldFatigue)
-    }
-
-    convertFromFatigueLetter = (fatigue) => {
-        switch (fatigue) {
-            case null:
-            case 'C':
-                return 0;
-            case 'W':
-                return -1;
-            case 'B':
-                return -2;
-            case 'H':
-                return -3;
-            case 'A':
-                return -4;
-            default:
-                return fatigue
-        }
-    }
-
-    convertToFatigueLetter = (number) => {
-        if (number >= 0) {
-            return 'C';
-        } else if (number === -1) {
-            return 'W';
-        } else if (number === -2) {
-            return 'B';
-        } else if (number === -3) {
-            return 'H';
-        } else {
-            return 'A';
-        }
-    }
-
     calculateRecovery = (recovery, size, isMelee) => {
         let minimumRecovery
         if (!size) {
@@ -191,16 +126,15 @@ export default class CharacterEditor extends Component {
     }
 
     render() {
-        let { name, race, primarya, secondarya, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, vitalityroll, wis, int, primarylevel, secondarylevel,
-            temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts, strength,
+        let { name, race, primarya, secondarya, level, cha, con, crp, dex, excurrent, favormax, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, wis, int,
+            temperament, goals, devotions, flaws, traits, reputation, contacts, strength,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
             shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, combatskillsuites,
-            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions, stressroll, stressdie, currentfavor, stresslockout } = this.state.character
-        let { updateCharacter, cancelUpdate, updateEntireObject } = this.state
+            nativelanguage, weaponone, weapontwo, weaponthree, weaponfour, extrahonordice, relaxation, armorbasefatiguemod, secretgeneralnotes, descriptions, stressdie, currentfavor, stresslockout } = this.state.character
+        let { updateCharacter, cancelUpdate } = this.state
             , { isUpdating } = this.props
-            , shownHonor = honor ? honor : cha ? chaTable[cha].honor : null
             , isHuman = checkIfHuman(race)
         let editButton = (<i onClick={_ => updateCharacter(this.state.character)} className="fas fa-save"></i>)
         if (isUpdating) {
@@ -208,67 +142,61 @@ export default class CharacterEditor extends Component {
         }
 
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
-            , shownThreshold = stressthreshold ? stressthreshold : 0
 
         weaponone.totalRecoveryModifiers = Math.floor(weaponone.trainrecovery / 2) + +weaponone.miscrecovery
         weapontwo.totalRecoveryModifiers = Math.floor(weapontwo.trainrecovery / 2) + +weapontwo.miscrecovery
         weaponthree.totalRecoveryModifiers = Math.floor(weaponthree.trainrecovery / 2) + +weaponthree.miscrecovery
         weaponfour.totalRecoveryModifiers = Math.floor(weaponfour.trainrecovery / 2) + +weaponfour.miscrecovery
 
-
         weaponfour.isRanged = true
 
-        let armorFatigue = this.calculateArmorFatigue(armorbasefatigue, armortrainfatigue, armormiscfatigue);
-        let shieldFatigue = shieldbasefatigue + shieldtrainfatigue + shieldmiscfatigue;
-        let totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue);
-
-        let characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, drawback, updateAttribute: this.updateAttribute }
+        let characterInfo = { name, race, primarya, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
-            , social = { updateAttribute: this.updateAttribute, strength, temperament, temperamentrank, goals, devotions, flaws, traits, reputation, contacts, shownHonor, extrahonordice, isHuman, descriptions }
+            , social = { updateAttribute: this.updateAttribute, strength, temperament, goals, devotions, flaws, traits, reputation, contacts, extrahonordice, isHuman, descriptions }
             , miscVitals = { updateAttribute: this.updateAttribute, vitalitydice, con, wis, stressdie, vitalityTotal, favormax, currentfavor }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
-            , vitality = { updateAttribute: this.updateAttribute, stresslockout, sizemod, vitalitydice, vitalityroll, stressthreshold, wis, relaxation, stressroll, vitalityTotal }
+            , vitality = { updateAttribute: this.updateAttribute, stresslockout, sizemod, stressthreshold, relaxation, vitalityTotal }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
-            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, int, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
+            , skillsObject = { skillsuites, nativelanguage, skills, skilladept, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour }
             , weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
-                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponone
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false,
+                thrownweapon: true, dead: false, shieldname, shieldflanks, isRanged: false, editing: true, shieldcover, ...weaponone
             }
             , weapontwoobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
-                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weapontwo
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false,
+                thrownweapon: true, dead: false, shieldname, shieldflanks, isRanged: false, editing: true, shieldcover, ...weapontwo
             }
             , weaponthreeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
-                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: false, editing: true, shieldcover, ...weaponthree
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false,
+                thrownweapon: true, dead: false, shieldname, shieldflanks, isRanged: false, editing: true, shieldcover, ...weaponthree
             }
             , weaponfourobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateRecovery: this.calculateRecovery, calculateArmorDefense: this.calculateArmorDefense,
                 armorRecovery, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr,
-                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: false, shieldname, shieldflanks, totalFatigue, isRanged: true, updateObject: this.updateObject, editing: true,
+                shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield: false,
+                thrownweapon: true, dead: false, shieldname, shieldflanks, isRanged: true, updateObject: this.updateObject, editing: true,
                 shieldcover, ...weaponfour
             }
             , armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, calculateArmorDefense: this.calculateArmorDefense,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                armormiscrecovery, armormiscinit, armorFatigue, armorbasefatiguemod, returnZeroIfNaN: this.returnZeroIfNaN
+                armormiscrecovery, armormiscinit, armorbasefatiguemod, returnZeroIfNaN: this.returnZeroIfNaN
             }
             , shield = {
-                shieldname, shieldflanks, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-                shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
+                shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscparry, shieldmiscfatigue,
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize
             }
 

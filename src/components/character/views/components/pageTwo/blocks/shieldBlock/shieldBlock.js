@@ -26,12 +26,12 @@ export default class ShieldBlock extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let { shieldChoices, shieldOptions } = this.state
         axios.get(`https://bonfire.stone-fish.com/getShields`).then(({ data }) => {
             shieldChoices = data
             shieldOptions = data.sort(sortFunction).map(choice => {
-                return <option value={choice.name} />
+                return <option key={choice.name} value={choice.name} />
             })
             this.setState({ shieldChoices, shieldOptions }, _ => this.changeShieldName(this.state.shield.shieldname))
         })
@@ -79,7 +79,7 @@ export default class ShieldBlock extends Component {
             return (
                 <div className={classes}>
                     <p>{label}</p>
-                    <input type="text" value={value} onChange={event => this.updateAttribute(event.target.value, updateName)} />
+                    <input type="text" value={value ? value : ''} onChange={event => this.updateAttribute(event.target.value, updateName)} />
                 </div>
             )
         }
@@ -95,9 +95,9 @@ export default class ShieldBlock extends Component {
         if (this.state.editing && updateValues) {
             return (
                 <div className={classes}>
-                    <input type="number" value={label[0]} onChange={event => this.updateAttribute(event.target.value, label[0])} />
-                    <input type="number" value={label[1]} onChange={event => this.updateAttribute(event.target.value, label[1])} />
-                    <input type="number" value={label[2]} onChange={event => this.updateAttribute(event.target.value, label[2])} />
+                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, label[0])} />
+                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, label[1])} />
+                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, label[2])} />
                     <p>{label[3]}</p>
                 </div>
             )
@@ -114,7 +114,7 @@ export default class ShieldBlock extends Component {
 
     render() {
         let { shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-            shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldflanks,
+            shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscparry, shieldmiscfatigue,
             returnZeroIfNaN, shieldsize, shieldFatigue, id, usingshield } = this.state.shield
         let { editing, shieldOptions } = this.state
 
@@ -125,7 +125,7 @@ export default class ShieldBlock extends Component {
                     <p className="shieldnameLocation"> </p>
                 ) : editing ? (
                     <>
-                        <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
+                        <input className="armornameLocation" defaultValue={shieldname ? shieldname : ''} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
                         <datalist id="shieldChoices">
                             {shieldOptions}
                         </datalist>
@@ -161,9 +161,9 @@ export default class ShieldBlock extends Component {
                     ) : (
                         <>
                             <div className="calculatedStats shield">
-                                <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                                <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                                <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+                                <input type="number" value={shieldmiscfatigue ? shieldmiscfatigue : ''} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+                                <input type="number" value={shieldmiscparry ? shieldmiscparry : ''} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+                                <input type="number" value={shieldmiscbreak ? shieldmiscbreak : ''} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                                 <p>Misc</p>
                             </div>
                             {this.createStatCalculation([returnZeroIfNaN(shieldFatigue),

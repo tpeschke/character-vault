@@ -26,13 +26,13 @@ export default class WeaponBlock extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let { weapon, weaponChoices, weaponOptions } = this.state
         if (weapon.position === 'four') {
             axios.get(`https://bonfire.stone-fish.com/getWeapons/ranged`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.sort(sortFunction).map(choice => {
-                    return <option value={`${choice.name} (${choice.type})`} />
+                    return <option key={`${choice.name} (${choice.type})`} value={`${choice.name} (${choice.type})`} />
                 })
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'ranged' })
             })
@@ -40,7 +40,7 @@ export default class WeaponBlock extends Component {
             axios.get(`https://bonfire.stone-fish.com/getWeapons/melee`).then(({ data }) => {
                 weaponChoices = data
                 weaponOptions = data.sort(sortFunction).map(choice => {
-                    return <option value={`${choice.name} (${choice.type})`}></option>
+                    return <option key={`${choice.name} (${choice.type})`} value={`${choice.name} (${choice.type})`}></option>
                 })
                 this.setState({ weaponChoices, weaponOptions, weaponChoiceType: 'melee' })
             })
@@ -91,7 +91,7 @@ export default class WeaponBlock extends Component {
             return (
                 <div className={className}>
                     <p>{label}</p>
-                    <input type="text" value={value} onChange={event => this.updateValue(event.target.value, updateName)} />
+                    <input type="text" value={value ? value : ''} onChange={event => this.updateValue(event.target.value, updateName)} />
                 </div>
             )
         }
@@ -108,9 +108,9 @@ export default class WeaponBlock extends Component {
             if (this.state.editing && updateNames) {
                 return (
                     <div className={classes}>
-                        <input type="number" value={label[0]} onChange={event => this.updateValue(event.target.value, label[0])} />
-                        <input type="number" value={label[1]} onChange={event => this.updateValue(event.target.value, label[1])} />
-                        <input type="number" value={label[2]} onChange={event => this.updateValue(event.target.value, label[2])} />
+                        <input type="number" value={label[0] ? label[0] : 0} onChange={event => this.updateValue(event.target.value, label[0])} />
+                        <input type="number" value={label[1] ? label[1] : 0} onChange={event => this.updateValue(event.target.value, label[1])} />
+                        <input type="number" value={label[2] ? label[2] : 0} onChange={event => this.updateValue(event.target.value, label[2])} />
                         <p>{label[4]}</p>
                     </div>
                 )
@@ -127,10 +127,10 @@ export default class WeaponBlock extends Component {
         if (this.state.editing && updateNames) {
             return (
                 <div className={classes}>
-                    <input type="number" value={label[0]} onChange={event => this.updateValue(event.target.value, label[0])} />
-                    <input type="number" value={label[1]} onChange={event => this.updateValue(event.target.value, label[1])} />
-                    <input type="number" value={label[2]} onChange={event => this.updateValue(event.target.value, label[2])} />
-                    <input type="number" value={label[3]} onChange={event => this.updateValue(event.target.value, label[3])} />
+                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateValue(event.target.value, label[0])} />
+                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateValue(event.target.value, label[1])} />
+                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateValue(event.target.value, label[2])} />
+                    <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateValue(event.target.value, label[3])} />
                     <p>{label[4]}</p>
                 </div>
             )
@@ -155,7 +155,7 @@ export default class WeaponBlock extends Component {
             <div className={`weaponProfileShell`}>
                 {editing ? (
                     <>
-                        <input className="weaponnameLocation" defaultValue={name} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value, type)} />
+                        <input className="weaponnameLocation" defaultValue={name ? name : ''} type="text" list={weaponChoiceType} onBlur={e => this.changeWeaponName(e.target.value, type)} />
                         <datalist id={weaponChoiceType}>
                             {weaponOptions}
                         </datalist>
@@ -188,7 +188,7 @@ export default class WeaponBlock extends Component {
                 <div className={position === 'four' ? 'weaponTraitArea weaponTraitAreaFour' : "weaponTraitArea"}>
                     <p>Traits</p>
                     {editing ? (
-                        <textarea value={traits} onChange={event => this.updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
+                        <textarea value={traits ? traits : ''} onChange={event => this.updateValue(event.target.value, "traits")} maxLength={"35"}></textarea>
                     ) : (
                         <p>{traits}</p>
 
@@ -202,10 +202,10 @@ export default class WeaponBlock extends Component {
                         this.createStatCalculation([' ', ' ', ' ', ' ', 'Misc'], 'calculatedStats', position)
                     ) : (
                         <div className="calculatedStats">
-                            <input type="number" value={miscattack} onChange={event => this.updateValue(event.target.value, "miscattack")} />
-                            <input type="number" value={miscrecovery} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
-                            <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry} onChange={event => this.updateValue(event.target.value, "miscparry")} />
-                            <input type="number" value={miscdamage} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
+                            <input type="number" value={miscattack ? miscattack : ''} onChange={event => this.updateValue(event.target.value, "miscattack")} />
+                            <input type="number" value={miscrecovery ? miscrecovery : ''} onChange={event => this.updateValue(event.target.value, "miscrecovery")} />
+                            <input className={position === 'four' ? 'displayNone' : ''} type="number" value={miscparry ? miscparry : ''} onChange={event => this.updateValue(event.target.value, "miscparry")} />
+                            <input type="number" value={miscdamage ? miscdamage : ''} onChange={event => this.updateValue(event.target.value, "miscdamage")} />
                             <p>Misc</p>
                         </div>
                     )}

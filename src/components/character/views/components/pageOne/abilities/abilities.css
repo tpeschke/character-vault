@@ -32,6 +32,7 @@
 .drawbackInnerShell {
     position: relative;
 }
+
 .removedAbilityShell {
     display: flex;
     justify-content: space-between;

@@ -57,7 +57,7 @@ export default function Skills({ skillsObject, editing }) {
         const mod2 = checkMod[stat2]
         if (id === 'blank') {
             return (
-                <div className="skillRow">
+                <div className="skillRow" key={`skillSuite${skillSuiteNumber}`}>
                     <p>{label}</p>
                     <p className="skillcost"> </p>
                     <p className="skillrank"> </p>
@@ -67,7 +67,7 @@ export default function Skills({ skillsObject, editing }) {
         }
         if (editing && (skillSuiteNumber || skillSuiteNumber === 0)) {
             return (
-                <div className="skillRow">
+                <div className="skillRow" key={`skillSuite${skillSuiteNumber}`}>
                     <p>{label}</p>
                     {trained ? (
                         <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "skillsuites", skillSuiteNumber)}>T</div>
@@ -85,7 +85,7 @@ export default function Skills({ skillsObject, editing }) {
             )
         }
         return (
-            <div className="skillRow">
+            <div className="skillRow" key={`skillSuite${skillSuiteNumber}`}>
                 <p>{label}</p>
                 <p className="skillcost">{Math.floor((30 - int + (rank * 10)) * skillAdeptPercent)}</p>
                 <p className="skillrank">{trained ? rank : 'U'}</p>
@@ -144,7 +144,7 @@ export default function Skills({ skillsObject, editing }) {
                         <div className="skillAdept">
                             <p>Skill Adept(s)</p>
                             {id === 'blank' ? (
-                                <p className="skilladeptLocation"> </p>
+                                <p className="skilladeptLocation">{skilladept}</p>
                             ) : editing ? (
                                 <input className="skilladeptLocation" type="number" defaultValue={skilladept} onChange={event => updateAttribute(event.target.value, "skilladept")} />
                             ) : (

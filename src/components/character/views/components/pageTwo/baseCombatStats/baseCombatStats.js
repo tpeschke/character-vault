@@ -32,7 +32,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         let { rank, trained } = skillsuite
         if (id === 'blank') {
             return (
-                <div className="skillRow">
+                <div className="skillRow" key={`combatSkillSuite${skillSuiteNumber}`}>
                     <p>{label}</p>
                     <p className="skillcost"> </p>
                     <p className="skillrank"> </p>
@@ -41,7 +41,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
         }
         if (editing && (skillSuiteNumber || skillSuiteNumber === 0)) {
             return (
-                <div className="skillRow">
+                <div className="skillRow" key={`combatSkillSuite${skillSuiteNumber}`}>
                     <p>{label}</p>
                     {trained ? (
                         <div className="anointedDiv skillsUntrainedDiv" onClick={_ => updateTrained(false, "combatskillsuites", skillSuiteNumber)}>T</div>
@@ -58,7 +58,7 @@ export default function BaseCombatFromStats({ baseCombatFromStats, editing }) {
             )
         }
         return (
-            <div className="skillRow">
+            <div className="skillRow" key={`combatSkillSuite${skillSuiteNumber}`}>
                 <p>{label}</p>
                 <p className="skillcost">{Math.floor((40 - int + (rank * 10)) * martialadeptPercent)}</p>
                 <p className="skillrank">{trained ? rank : 'U'}</p>

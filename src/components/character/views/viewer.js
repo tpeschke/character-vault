@@ -42,14 +42,14 @@ export default class CharacterViewer extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get('/api/isUserAboveLimit').then(({ data }) => {
             this.setState({ isAboveLimit: data.isUserAboveLimit })
         })
-        let { gearone, geartwo, gearthree, gearfour, vitality, sizemod, vitalityroll, con, skills } = this.state.character
+        let { gearone, geartwo, gearthree, gearfour, vitality } = this.state.character
         if (this.state.character.id !== 'blank') {
             this.reduceAndCleanGearArrays(gearone, geartwo, gearthree, gearfour)
-            this.setState({ shownVitality: vitality ? vitality : sizemod + vitalityroll + con })
+            this.setState({ shownVitality: vitality ? vitality : 0 })
         }
     }
 
@@ -69,10 +69,10 @@ export default class CharacterViewer extends Component {
             let currentBit = ''
 
             value = value.replace(/\s+/g, '')
-            value.match(/[\d\.]+|\D+/g).forEach(character => {
+            value.match(/[d.]+|\D+/g).forEach(character => {
                 if (character.includes('S') || character.includes('M') || character.includes('L')) {
                     currentBit = currentBit + character
-                    currentBit = currentBit.match(/[\d\.]+|\D+/g)
+                    currentBit = currentBit.match(/[d.]+|\D+/g)
                     let number, type, container = false
                     if (currentBit.includes('+') || currentBit.includes('-')) {
                         container = true
@@ -153,6 +153,8 @@ export default class CharacterViewer extends Component {
                 case 'W':
                     return -1;
                 case 'C':
+                    return 0;
+                default:
                     return 0;
             }
         }
@@ -376,10 +378,10 @@ export default class CharacterViewer extends Component {
     }
 
     render() {
-        let { name, id, race, primarya, secondarya, primarylevel, secondarylevel, level, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, vitalityroll, wis, int, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
+        let { name, id, race, primarya, secondarya, level, cha, con, crp, dex, excurrent, favormax, honor, sizemod, str, stressthreshold, vitalitydice, wis, int, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef,
             armorbaserecovery, armorbasefatigue, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak, shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscbreak, shieldmiscfatigue, skillsuites, nativelanguage,
-            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, temperamentrank, stressroll, stressdie, stresslockout, strength } = this.state.character
+            owned, currentfavor, currentstress, relaxation, usingshield, damageone, damagetwo, skills, skilladept, weaponone, weapontwo, weaponthree, weaponfour, anointed, martialadept, combatskillsuites, combatskills, armorbasefatiguemod, secretgeneralnotes, descriptions, stressdie, stresslockout, strength } = this.state.character
             , { shownVitality, dead, downloadMode, isDownloading, isHalfwayDone, isAboveLimit } = this.state
 
         str = str ? str : 1
@@ -471,16 +473,16 @@ export default class CharacterViewer extends Component {
             shieldFatigue = shieldbasefatigue + Math.floor(shieldtrainfatigue / 2) + shieldmiscfatigue;
             totalFatigue = this.calculateTotalFatigue(armorFatigue, shieldFatigue, overCarry);
 
-            characterInfo = { name, race, primarylevel, primarya, secondarylevel, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute, drawback }
+            characterInfo = { name, race, primarya, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute }
             stats = { str, strData, dex, dexData, con, conData, int, intData, wis, wisData, cha, chaData, isDownloading }
             movement = { crawl, walk, jog, run, sprint, overCarry }
-            social = { shownHonor, strength, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions, temperamentrank }
+            social = { shownHonor, strength, updateAttribute: this.updateAttribute, isHuman, honorDiceLeft, extrahonordice, temperament, goals, devotions, flaws, traits, reputation, contacts, descriptions }
             weapononeobject = {
                 returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
+                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, isRanged: false,
                 shieldcover, showArmor: this.state.showArmor, baseInit, ...weaponone
             }
             weapontwoobject = {
@@ -488,7 +490,7 @@ export default class CharacterViewer extends Component {
                 armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
+                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, isRanged: false,
                 shieldcover, showArmor: this.state.showArmor, baseInit, ...weapontwo
             }
             weaponthreeobject = {
@@ -496,7 +498,7 @@ export default class CharacterViewer extends Component {
                 armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: false,
+                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, isRanged: false,
                 shieldcover, showArmor: this.state.showArmor, baseInit, ...weaponthree
             }
             weaponfourobject = {
@@ -504,24 +506,24 @@ export default class CharacterViewer extends Component {
                 armorbaserecovery, armortrainrecovery, armormiscrecovery, dex, int, wis, armorbaseinit, armortraininit, armormiscinit,
                 armorbasedef, armortrainingdef, armormiscdef, shieldbasedef, shieldtraindef, shieldmiscdef, armordr, shielddr, str,
                 shieldbaseparry, shieldtrainparry, shieldmiscparry, usingshield, updateAttribute: this.updateAttribute,
-                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), isRanged: true, updateObject: this.updateObject,
+                thrownweapon: true, dead: dead, shieldname, shieldflanks, totalFatigue, isRanged: true, updateObject: this.updateObject,
                 shieldcover, showArmor: this.state.showArmor, baseInit, maxrange, ...weaponfour
             }
-            miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, chaData, favormax, anointed, checkThisBox: this.checkThisBox, vitalitydice, wis, stressdie }
-            vitality = { stresslockout, shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, vitalitydice, vitalityroll, conData, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield, stressroll }
+            miscVitals = { con, updateAttribute: this.updateAttribute, currentfavor, favormax, anointed, checkThisBox: this.checkThisBox, vitalitydice, wis, stressdie }
+            vitality = { stresslockout, shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
-            skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, int, id }
+            skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, id }
             cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
             baseCombatFromStats = { str, dex, int, wis, isDownloading, updateAttribute: this.updateAttribute, martialadept, combatskillsuites, combatskills }
             armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, armorbasefatiguemod,
                 armortrainingdef, armortrainfatigue, armortrainrecovery, armortraininit, armormiscdef, updateAttribute: this.updateAttribute, armormiscfatigue,
-                armormiscrecovery, armormiscinit, armorFatigue, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
+                armormiscrecovery, armormiscinit, returnZeroIfNaN: this.returnZeroIfNaN, calculateArmorDefense: this.calculateArmorDefense,
                 toggleArmor: this.toggleArmor, showArmor: this.state.showArmor
             }
             shield = {
-                shieldname, shieldflanks, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldmiscbreak, shieldbasefatigue, shieldbasebreak,
-                shieldtraindef, shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscdef, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
+                shieldname, shielddr, shieldcover, shieldbonus, shieldbasedef, shieldbaseparry, shieldbasefatigue, shieldbasebreak,
+                shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscparry, shieldmiscfatigue, shieldmiscbreak,
                 returnZeroIfNaN: this.returnZeroIfNaN, updateAttribute: this.updateAttribute, shieldsize, shieldFatigue, usingshield
             }
 
@@ -626,7 +628,7 @@ export default class CharacterViewer extends Component {
                 <div className={downloadMode ? 'removeButtons' : 'Buttons'}>
                     <div className="left-corner-button corner-button">
                         <div className="left-corner-button corner-button zindexOne">
-                            <a onClick={_ => this.generatePdf(false)}><i className="fas fa-file-download fa-lg"></i></a>
+                            <div onClick={_ => this.generatePdf(false)}><i className="fas fa-file-download fa-lg"></i></div>
                         </div>
                         <div className="downloadAsPregen zindexNegOne">
                             <div className="downloadAsPregen centerIconLeft">

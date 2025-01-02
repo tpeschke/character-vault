@@ -6,7 +6,7 @@ const getCrPRequirement = (level) => {
 }
 
 export default function CharacterInfo({ characterInfo, editing }) {
-    let { name, race, primarya, primarylevel, secondarya, secondarylevel, level, crp, excurrent, drawback, updateAttribute, id } = characterInfo
+    let { name, race, primarya, secondarya, level, crp, excurrent, updateAttribute, id } = characterInfo
 
     function infoPairs(title, className, info, updateName) {
         if (editing && updateName) {
