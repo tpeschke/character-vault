@@ -16,8 +16,8 @@ class Character extends Component {
             loading: true,
             character: null,
             isEditingMode:
-                // props.match.path === "/new/:id",
-            true,
+                props.match.path === "/new/:id",
+            // true,
             isUpdating: false
         }
 

@@ -537,11 +537,13 @@ strong {
     background: whitesmoke;
     width: 19px;
     height: 19px;
+    display: flex;
 }
 
 .general-notes-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #990000;
 }
 
