@@ -13,7 +13,7 @@
 }
 
 .basicStats p:first-child, .basicStats p:last-child, .basicStats input:first-child, .basicStats input:last-child {
-    width: 75px;
+    width: 50%;
 }
 
 .calculatedStatsShell {

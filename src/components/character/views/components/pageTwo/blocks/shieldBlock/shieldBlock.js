@@ -80,198 +80,155 @@ export default class ShieldBlock extends Component {
             returnZeroIfNaN, shieldsize, shieldFatigue, id, usingshield } = this.state.shield
         let { editing, shieldOptions } = this.state
 
-        if (editing) {
+        function creatPairs(label, value, classes, updateName) {
+            if (editing && updateName) {
+                return (
+                    <div className={classes}>
+                        <p>{label}</p>
+                        <input type="text" value={value} onChange={event => this.updateAttribute(event.target.value, updateName)} />
+                    </div>
+                )
+            }
             return (
-                <div className="shieldBlockShell" key={this.state.seed}>
-                    <h2>Shield Workspace</h2>
-                    {/* <input className="shieldnameLocation" type="text" value={shieldname} onChange={event => this.updateAttribute(event.target.value, "shieldname")} /> */}
-                    <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
-                    <datalist id="shieldChoices">
-                        {shieldOptions}
-                    </datalist>
-                    <div className="basicStats">
-                        <p>DR</p>
-                        <input className="shielddrLocation" type="text" value={shielddr} onChange={event => this.updateAttribute(event.target.value, "shielddr")} />
+                <div className={classes}>
+                    <p>{label}</p>
+                    <p>{value}</p>
+                </div>
+            )
+        }
+
+        function createStatCalculation(label, classes, updateValues) {
+            if (editing && updateValues) {
+                return (
+                    <div className={classes}>
+                        <input type="number" value={label[0]} onChange={event => this.updateAttribute(event.target.value, label[0])} />
+                        <input type="number" value={label[1]} onChange={event => this.updateAttribute(event.target.value, label[1])} />
+                        <input type="number" value={label[2]} onChange={event => this.updateAttribute(event.target.value, label[2])} />
+                        <p>{label[3]}</p>
                     </div>
-                    <div className="twinShieldStats">
-                        <div>
-                            <p>Def</p>
-                            <input className="shieldsizeLocation" type="text" value={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
-                        </div>
-                        <div>
-                            <p>Size</p>
-                            <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
-                        </div>
-                    </div>
-                    <div className="basicStats">
-                        <p>Cover</p>
-                        <input className="shieldcoverLocation" type="text" value={shieldcover} onChange={event => this.updateAttribute(event.target.value, "shieldcover")} />
-                    </div>
-                    <div className="armorBonusArea shieldBonusArea">
-                        <p>Bonus</p>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label[0]}</p>
+                    <p>{label[1]}</p>
+                    <p>{label[2]}</p>
+                    <p>{label[3]}</p>
+                </div>
+            )
+        }
+
+        // if (editing) {
+        //     return (
+        //         <div className="shieldBlockShell" key={this.state.seed}>
+        //             <h2>Shield Workspace</h2>
+
+        //             <div className="basicStats">
+        //                 <p>DR</p>
+        //                 <input className="shielddrLocation" type="text" value={shielddr} onChange={event => this.updateAttribute(event.target.value, "shielddr")} />
+        //             </div>
+        //             <div className="twinShieldStats">
+        //                 <div>
+        //                     <p>Def</p>
+        //                     <input className="shieldsizeLocation" type="text" value={shieldbasedef} onChange={event => this.updateAttribute(event.target.value, "shieldbasedef")} />
+        //                 </div>
+        //                 <div>
+        //                     <p>Size</p>
+        //                     <input className="shieldsizeLocation" type="text" value={shieldsize} onChange={event => this.updateAttribute(event.target.value, "shieldsize")} />
+        //                 </div>
+        //             </div>
+        //             <div className="basicStats">
+        //                 <p>Cover</p>
+        //                 <input className="shieldcoverLocation" type="text" value={shieldcover} onChange={event => this.updateAttribute(event.target.value, "shieldcover")} />
+        //             </div>
+        //             <div className="armorBonusArea shieldBonusArea">
+        //                 <p>Bonus</p>
+        //                 <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
+        //             </div>
+
+        //             <div className="calculatedStats shield calculatedStatsHeading">
+        //                 <p>Fat</p>
+        //                 <p>Pry</p>
+        //                 <p>Brk</p>
+        //                 <p> </p>
+        //             </div>
+
+        //             <div className="calculatedStats shield">
+        //                 <input className="shieldbaseencumbLocation" type="number" value={shieldbasefatigue} onChange={event => this.updateAttribute(event.target.value, "shieldbasefatigue")} />
+        //                 <input className="shieldbaseparryLocation" type="number" value={shieldbaseparry} onChange={event => this.updateAttribute(event.target.value, "shieldbaseparry")} />
+        //                 <input className="shieldbasebreakLocation" type="number" value={shieldbasebreak} onChange={event => this.updateAttribute(event.target.value, "shieldbasebreak")} />
+        //                 <p>Base</p>
+        //             </div>
+
+        //             <div className="calculatedStats shield">
+        //                 <input className="shieldtrainencumbLocation" type="number" value={shieldtrainfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldtrainfatigue")} />
+        //                 <input className="shieldtrainparryLocation" type="number" value={shieldtrainparry} onChange={event => this.updateAttribute(event.target.value, "shieldtrainparry")} />
+        //                 <input className="shieldtrainbreakLocation" type="number" value={shieldtrainbreak} onChange={event => this.updateAttribute(event.target.value, "shieldtrainbreak")} />
+        //                 <p>Skills</p>
+        //             </div>
+
+        //             <div className="calculatedStats shield">
+        //                 <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
+        //                 <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
+        //                 <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
+        //                 <p>Misc</p>
+        //             </div>
+
+        //             <div className="calculatedStats shield">
+        //                 <p>{shieldFatigue}</p>
+        //                 <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
+        //                 <p>{+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak}</p>
+        //                 <p>Total</p>
+        //             </div>
+        //         </div>
+        //     )
+        // }
+
+        return (
+            <div className="shieldBlockShell">
+                <h2>Shield Workspace</h2>
+                {editing ? (
+                    <>
+                        <input className="armornameLocation" defaultValue={shieldname} type="text" list="shieldChoices" onBlur={e => this.changeShieldName(e.target.value)} />
+                        <datalist id="shieldChoices">
+                            {shieldOptions}
+                        </datalist>
+                    </>
+                ) : (
+                    <button className="shieldnameLocation" onClick={this.toggleShield}><p className={usingshield ? null : 'buttonStrikeThrough'}>{shieldname}</p></button>
+                )}
+                {creatPairs('DR', shielddr, 'basicStats', 'shielddr')}
+                <div className="twinShieldStats">
+                    {creatPairs('Def', shieldbasedef, 'basicStats', 'shieldbasedef')}
+                    {creatPairs('Size', shieldsize, 'basicStats', 'shieldsize')}
+                </div>
+                {creatPairs('Cover', shieldcover, 'basicStats', 'shieldcover')}
+
+                <div className="armorBonusArea shieldBonusArea">
+                    <p>Bonus</p>
+                    {editing ? (
                         <textarea className="shieldbonusLocation shieldbonustextArea" value={shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''} onChange={event => this.updateAttribute(event.target.value, "shieldbonus")} maxLength={"60"}></textarea>
-                    </div>
+                    ) : (
+                        <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
+                    )}
+                </div>
 
-                    <div className="calculatedStats shield calculatedStatsHeading">
-                        <p>Fat</p>
-                        <p>Pry</p>
-                        <p>Brk</p>
-                        <p> </p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <input className="shieldbaseencumbLocation" type="number" value={shieldbasefatigue} onChange={event => this.updateAttribute(event.target.value, "shieldbasefatigue")} />
-                        <input className="shieldbaseparryLocation" type="number" value={shieldbaseparry} onChange={event => this.updateAttribute(event.target.value, "shieldbaseparry")} />
-                        <input className="shieldbasebreakLocation" type="number" value={shieldbasebreak} onChange={event => this.updateAttribute(event.target.value, "shieldbasebreak")} />
-                        <p>Base</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <input className="shieldtrainencumbLocation" type="number" value={shieldtrainfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldtrainfatigue")} />
-                        <input className="shieldtrainparryLocation" type="number" value={shieldtrainparry} onChange={event => this.updateAttribute(event.target.value, "shieldtrainparry")} />
-                        <input className="shieldtrainbreakLocation" type="number" value={shieldtrainbreak} onChange={event => this.updateAttribute(event.target.value, "shieldtrainbreak")} />
-                        <p>Skills</p>
-                    </div>
-
+                <div className='calculatedStatsShellShield'>
+                    {createStatCalculation(['Fat', 'Pry', 'Brk', ''], 'calculatedStats shield calculatedStatsHeading')}
+                    {createStatCalculation([shieldbasefatigue, shieldbaseparry, shieldbasebreak, 'Base'], 'calculatedStats shield', ['shieldbasefatigue', 'shieldbaseparry', 'shieldbasebreak'])}
+                    {createStatCalculation([shieldtrainfatigue, shieldtrainparry, shieldtrainbreak, 'Skill'], 'calculatedStats shield', ['shieldtrainfatigue', 'shieldtrainparry', 'shieldtrainbreak'])}
                     <div className="calculatedStats shield">
                         <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
                         <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
                         <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
                         <p>Misc</p>
                     </div>
-
-                    <div className="calculatedStats shield">
-                        <p>{shieldFatigue}</p>
-                        <p>{returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry)}</p>
-                        <p>{+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak}</p>
-                        <p>Total</p>
-                    </div>
+                    {createStatCalculation([returnZeroIfNaN(shieldFatigue),
+                    returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry),
+                    returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak),
+                        'Total'], 'calculatedStats shield')}
                 </div>
-            )
-        }
-
-        if (id === 'blank') {
-            return (
-                <div className="shieldBlockShell">
-                    <h2>Shield Workspace</h2>
-                    <p className="shieldnameLocation"> </p>
-
-                    <div className="basicStats">
-                        <p>DR</p>
-                        <p className="shielddrLocation"> </p>
-                    </div>
-                    <div className="twinShieldStats">
-                        <div>
-                            <p>Def</p>
-                            <p className="shielddrLocation"> </p>
-                        </div>
-                        <div>
-                            <p>Size</p>
-                            <p className="shieldsizeLocation"> </p>
-                        </div>
-                    </div>
-                    <div className="basicStats">
-                        <p>Cover</p>
-                        <p className="shieldcoverLocation"> </p>
-                    </div>
-                    <div className="armorBonusArea shieldBonusArea">
-                        <p>Bonus</p>
-                        <p className="shieldbonusLocation"> </p>
-                    </div>
-
-                    <div className="calculatedStats shield calculatedStatsHeading">
-                        <p>Fat</p>
-                        <p>Pry</p>
-                        <p>Brk</p>
-                        <p> </p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p> </p>
-                        <p> </p>
-                        <p> </p>
-                        <p>Base</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p> </p>
-                        <p> </p>
-                        <p> </p>
-                        <p>Skills</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p> </p>
-                        <p> </p>
-                        <p> </p>
-                        <p>Misc</p>
-                    </div>
-
-                    <div className="calculatedStats shield">
-                        <p> </p>
-                        <p> </p>
-                        <p> </p>
-                        <p>Total</p>
-                    </div>
-                </div>
-            )
-        } else {
-            return (
-                <div className="shieldBlockShell">
-                    <h2>Shield Workspace</h2>
-                    <button className="shieldnameLocation" onClick={this.toggleShield}><p className={usingshield ? null : 'buttonStrikeThrough'}>{shieldname}</p></button>
-
-                    <div className="basicStats">
-                        <p>DR</p>
-                        <p className="shielddrLocation">{shielddr}</p>
-                    </div>
-                    <div className="twinShieldStats">
-                        <div>
-                            <p>Def</p>
-                            <p className="shielddrLocation">{shieldbasedef}</p>
-                        </div>
-                        <div>
-                            <p>Size</p>
-                            <p className="shieldsizeLocation">{shieldsize}</p>
-                        </div>
-                    </div>
-                    <div className="basicStats">
-                        <p>Cover</p>
-                        <p className="shieldcoverLocation">{shieldcover}</p>
-                    </div>
-                    <div className="armorBonusArea shieldBonusArea">
-                        <p>Bonus</p>
-                        <p className="shieldbonusLocation">{shieldbonus && shieldbonus !== 'false' ? shieldbonus : ''}</p>
-                    </div>
-
-                    <div className='calculatedStatsShellShield'>
-                        {createStatCalculation('Fat', 'Pry', 'Brk', '', 'calculatedStats shield calculatedStatsHeading')}
-                        {createStatCalculation(shieldbasefatigue, shieldbaseparry, shieldbasebreak, 'Base', 'calculatedStats shield')}
-                        {createStatCalculation(shieldtrainfatigue, shieldtrainparry, shieldtrainbreak, 'Skill', 'calculatedStats shield')}
-                        <div className="calculatedStats shield">
-                            <input type="number" value={shieldmiscfatigue} onChange={event => this.updateAttribute(event.target.value, "shieldmiscfatigue")} />
-                            <input type="number" value={shieldmiscparry} onChange={event => this.updateAttribute(event.target.value, "shieldmiscparry")} />
-                            <input type="number" value={shieldmiscbreak} onChange={event => this.updateAttribute(event.target.value, "shieldmiscbreak")} />
-                            <p>Misc</p>
-                        </div>
-                        {createStatCalculation(returnZeroIfNaN(shieldFatigue),
-                                                returnZeroIfNaN(+shieldbaseparry + +shieldtrainparry + +shieldmiscparry),
-                                                returnZeroIfNaN(+shieldbasebreak + Math.ceil(+shieldtrainbreak / 2) + +shieldmiscbreak),
-                                                'Total', 'calculatedStats shield')}
-                    </div>
-                </div>
-            )
-        }
+            </div>
+        )
     }
-}
-
-function createStatCalculation(label1, label2, label3, label4, classes) {
-    return (
-        <div className={classes}>
-            <p>{label1}</p>
-            <p>{label2}</p>
-            <p>{label3}</p>
-            <p>{label4}</p>
-        </div>
-    )
 }

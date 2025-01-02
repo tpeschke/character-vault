@@ -169,7 +169,7 @@ export default class ArmorBlock extends Component {
                 {creatPairs('DR', armordr, 'basicStats', 'armordr')}
                 {creatPairs('Skill Adju.', armorskilladj, 'basicStats', 'armorskilladj')}
                 <div className='armorBonusArea'>
-                    <p>'Bonus'</p>
+                    <p>Bonus</p>
                     {editing ? (
                         <textarea value={armorbonus} onChange={event => this.updateAttribute(event.target.value, "armorbonus")} maxLength={"60"}></textarea>
                     ) : (
