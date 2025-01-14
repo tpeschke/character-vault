@@ -1,5 +1,6 @@
 import React from 'react'
 import './vitality.css'
+import EditPairList from '../../pairComponents/editPairList'
 import ViewPairList from '../../pairComponents/viewPairList'
 
 function calculatePanickedLeft(dwarfModifier, stresslockout = 1) {
@@ -62,9 +63,6 @@ export default function Vitality({ vitality, editing }) {
         currentDamage = damageone.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0) + damagetwo.reduce((accumulator, currentValue) => accumulator + +currentValue.title, 0)
     }
 
-    let damageOnePairList = <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
-    let damageTwoPairList = <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
-
     const updateStressLockout = (value) => {
         if (value === stresslockout) {
             updateAttribute(null, 'stresslockout')
@@ -111,7 +109,7 @@ export default function Vitality({ vitality, editing }) {
         )
     }
 
-    function getCategoryRange (categoryNumber, max) {
+    function getCategoryRange(categoryNumber, max) {
         if (id === 'blank') {
             return ''
         }
@@ -176,7 +174,7 @@ export default function Vitality({ vitality, editing }) {
                 <p className="tinyGrey">Days to Heal</p>
                 <div className="thresholdBox">
                     <p>Trauma Thres.</p>
-                    <p className="traumaLocation">{id === 'blank' ? '' : ((shownVitality ? shownVitality : vitalityTotal) * .25).toFixed(0)}</p>
+                    <p className="traumaLocation">{id === 'blank' ? ' ' : ((shownVitality ? shownVitality : vitalityTotal) * .25).toFixed(0)}</p>
                 </div>
                 <p className="tinyGrey">Severity</p>
                 <p className="tinyGrey">Days to Heal</p>
@@ -191,7 +189,11 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                     </div>
-                    {damageOnePairList}
+                    {id === 'blank' ? (
+                        <ViewPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                    ) : (
+                        <EditPairList stylings={{ width: '99px' }} listArray={damageone} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                    )}
                 </div>
                 <div className="damageShellRight">
                     <div className="woundTitleShell">
@@ -201,7 +203,11 @@ export default function Vitality({ vitality, editing }) {
                         <p>Wound</p>
                         <p>Wound</p>
                     </div>
-                    {damageTwoPairList}
+                    {id === 'blank' ? (
+                        <ViewPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damageone"} />
+                    ) : (
+                        < EditPairList stylings={{ width: '99px' }} listArray={damagetwo} limit={5} titleWidth={50} titleSameAsValue={true} updateFunction={updateAttribute} type={"damagetwo"} />
+                    )}
                 </div>
             </div>
 

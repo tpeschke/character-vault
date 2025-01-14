@@ -108,9 +108,9 @@ export default class WeaponBlock extends Component {
             if (this.state.editing && updateNames) {
                 return (
                     <div className={classes}>
-                        <input type="number" value={label[0] ? label[0] : 0} onChange={event => this.updateValue(event.target.value, label[0])} />
-                        <input type="number" value={label[1] ? label[1] : 0} onChange={event => this.updateValue(event.target.value, label[1])} />
-                        <input type="number" value={label[2] ? label[2] : 0} onChange={event => this.updateValue(event.target.value, label[2])} />
+                        <input type="number" value={label[0] ? label[0] : 0} onChange={event => this.updateValue(event.target.value, updateNames[0])} />
+                        <input type="number" value={label[1] ? label[1] : 0} onChange={event => this.updateValue(event.target.value, updateNames[1])} />
+                        <input type="number" value={label[3] ? label[3] : 0} onChange={event => this.updateValue(event.target.value, updateNames[3])} />
                         <p>{label[4]}</p>
                     </div>
                 )
@@ -119,7 +119,7 @@ export default class WeaponBlock extends Component {
                 <div className={classes}>
                     <p>{label[0]}</p>
                     <p>{label[1]}</p>
-                    <p>{label[2]}</p>
+                    <p>{label[3]}</p>
                     <p>{label[4]}</p>
                 </div>
             )
@@ -127,10 +127,10 @@ export default class WeaponBlock extends Component {
         if (this.state.editing && updateNames) {
             return (
                 <div className={classes}>
-                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateValue(event.target.value, label[0])} />
-                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateValue(event.target.value, label[1])} />
-                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateValue(event.target.value, label[2])} />
-                    <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateValue(event.target.value, label[3])} />
+                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateValue(event.target.value, updateNames[0])} />
+                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateValue(event.target.value, updateNames[1])} />
+                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateValue(event.target.value, updateNames[2])} />
+                    <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateValue(event.target.value, updateNames[3])} />
                     <p>{label[4]}</p>
                 </div>
             )

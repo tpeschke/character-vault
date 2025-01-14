@@ -95,9 +95,9 @@ export default class ShieldBlock extends Component {
         if (this.state.editing && updateValues) {
             return (
                 <div className={classes}>
-                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, label[0])} />
-                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, label[1])} />
-                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, label[2])} />
+                    <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[0])} />
+                    <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[1])} />
+                    <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[2])} />
                     <p>{label[3]}</p>
                 </div>
             )
@@ -117,7 +117,7 @@ export default class ShieldBlock extends Component {
             shieldtrainparry, shieldtrainfatigue, shieldtrainbreak, shieldmiscparry, shieldmiscfatigue,
             returnZeroIfNaN, shieldsize, shieldFatigue, id, usingshield } = this.state.shield
         let { editing, shieldOptions } = this.state
-
+        
         return (
             <div className="shieldBlockShell">
                 <h2>Shield Workspace</h2>

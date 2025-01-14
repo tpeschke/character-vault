@@ -93,46 +93,6 @@ export default class ArmorBlock extends Component {
             armormiscrecovery, armormiscinit, returnZeroIfNaN, id, armorbasefatigue, showArmor } = this.state.armor
         let { editing, armorOptions } = this.state
 
-        function creatPairs(label, value, classes, updateName) {
-            if (editing && updateName) {
-                return (
-                    <div className={classes}>
-                        <p>{label}</p>
-                        <input type="text" value={value ? value : ''} onChange={event => this.updateAttribute(event.target.value, updateName)} />
-                    </div>
-                )
-            }
-            return (
-                <div className={classes}>
-                    <p>{label}</p>
-                    <p>{value}</p>
-                </div>
-            )
-        }
-
-        function createStatCalculation(label, classes, updateValues) {
-            if (editing && updateValues) {
-                return (
-                    <div className={classes}>
-                        <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, label[0])} />
-                        <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, label[1])} />
-                        <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, label[2])} />
-                        <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateAttribute(event.target.value, label[3])} />
-                        <p>{label[4]}</p>
-                    </div>
-                )
-            }
-            return (
-                <div className={classes}>
-                    <p>{label[0]}</p>
-                    <p>{label[1]}</p>
-                    <p>{label[2]}</p>
-                    <p>{label[3]}</p>
-                    <p>{label[4]}</p>
-                </div>
-            )
-        }
-
         if (!armorbasefatiguemod && armorbasefatigue) {
             switch (armorbasefatigue) {
                 case 'A':
@@ -153,6 +113,46 @@ export default class ArmorBlock extends Component {
                 default:
                     break;
             }
+        }
+
+        const creatPairs = (label, value, classes, updateName) => {
+            if (this.state.editing && updateName) {
+                return (
+                    <div className={classes}>
+                        <p>{label}</p>
+                        <input type="text" value={value ? value : ''} onChange={event => this.updateAttribute(event.target.value, updateName)} />
+                    </div>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label}</p>
+                    <p>{value}</p>
+                </div>
+            )
+        }
+    
+        const createStatCalculation = (label, classes, updateValues) => {
+            if (this.state.editing && updateValues) {
+                return (
+                    <div className={classes}>
+                        <input type="number" value={label[0] ? label[0] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[0])} />
+                        <input type="number" value={label[1] ? label[1] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[1])} />
+                        <input type="number" value={label[2] ? label[2] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[2])} />
+                        <input type="number" value={label[3] ? label[3] : ''} onChange={event => this.updateAttribute(event.target.value, updateValues[3])} />
+                        <p>{label[4]}</p>
+                    </div>
+                )
+            }
+            return (
+                <div className={classes}>
+                    <p>{label[0]}</p>
+                    <p>{label[1]}</p>
+                    <p>{label[2]}</p>
+                    <p>{label[3]}</p>
+                    <p>{label[4]}</p>
+                </div>
+            )
         }
 
         return (

@@ -60,7 +60,7 @@ export default function CharacterInfo({ characterInfo, editing }) {
                 <div className='info-row'>
                     <strong className='ultra-strong'>CrP</strong>
                     {infoPairsEdit('Unspent', 'crpLocation', crp, updateAttribute, 'crp')}
-                    {infoPairsEdit('Unspent', 'excurrentLocation', excurrent, updateAttribute, 'excurrent')}
+                    {infoPairsEdit('Spent', 'excurrentLocation', excurrent, updateAttribute, 'excurrent')}
                     {infoPairs('Spent to Next LvL', 'extolevelLocation', getCrPRequirement(level))}
                 </div>
             </div >

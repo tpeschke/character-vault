@@ -100,10 +100,6 @@
     background: lightgray;
 }
 
-.vitalsShell p {
-    height: 18px;
-}
-
 .woundCategoryShell div p:first-child, .currentBox p:first-child, .thresholdBox p:first-child {
     font-family: 'Vollkorn SC', serif;
     font-weight: bold;
@@ -182,7 +178,7 @@
 }
 
 .damageShellLeft .woundTitleShell p {
-    width: 50px;
+    width: 60px;
 }
 
 .damageShellRight .woundTitleShell p {

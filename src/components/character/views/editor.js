@@ -127,7 +127,7 @@ export default class CharacterEditor extends Component {
 
     render() {
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, excurrent, favormax, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, wis, int,
-            temperament, goals, devotions, flaws, traits, reputation, contacts, strength,
+            temperament, goals, devotions, flaws, traits, reputation, contacts, strength, damageone, damagetwo,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
@@ -156,7 +156,7 @@ export default class CharacterEditor extends Component {
             , social = { updateAttribute: this.updateAttribute, strength, temperament, goals, devotions, flaws, traits, reputation, contacts, extrahonordice, isHuman, descriptions }
             , miscVitals = { updateAttribute: this.updateAttribute, vitalitydice, con, wis, stressdie, vitalityTotal, favormax, currentfavor }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
-            , vitality = { updateAttribute: this.updateAttribute, stresslockout, sizemod, stressthreshold, relaxation, vitalityTotal }
+            , vitality = { updateAttribute: this.updateAttribute, stresslockout, sizemod, stressthreshold, relaxation, vitalityTotal, damageone, damagetwo }
             , abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability, updateAttribute: this.updateAttribute }
             , skillsObject = { skillsuites, nativelanguage, skills, skilladept, updateAttribute: this.updateAttribute, updateSkillsuites: this.updateSkillsuites, updateNativeLanguage: this.updateNativeLanguage, str, dex, con, int, wis, cha, updateTrained: this.updateTrained }
             , cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour }

@@ -82,7 +82,7 @@ export default class Home extends Component {
             if (characters.length > 0) {
                 characterList = characters.map(({ name, race, primarya, secondarya, level, id }) => {
                     return (
-                        <div className="character">
+                        <div key={id} className="character">
                             <Link className="characterLink" key={id} to={`/view/${id}`}>
                                 <p><span>{name}</span></p>
                                 <p><span>{race}</span></p>
@@ -99,7 +99,7 @@ export default class Home extends Component {
         }
         let vaultList = vault.map(({ name, race, primarya, secondarya, level, id }) => {
             return (
-                <div className="character">
+                <div key={id} className="character">
                     <Link className="characterLink" key={id} to={`/view/${id}`}>
                         <p><span>{name}</span></p>
                         <p><span>{race}</span></p>
