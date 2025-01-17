@@ -12,6 +12,7 @@ export default function Social({ social, editing }) {
     let honorInput = <p className="honorLocation"> </p>
     let honorDieInput = <p className="extrahonordiceLocation"> </p>
     let alliesTextArea = <div className="contactsLocation contactstextArea"></div>
+
     if (!!shownHonor || shownHonor === 0) {
         if (!editing) {
             honorCircle = <div className="circle" style={{ left: honorDiceLeft }}> </div>

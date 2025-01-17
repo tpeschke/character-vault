@@ -15,6 +15,8 @@ import ShieldBlock from './components/pageTwo/blocks/shieldBlock/shieldBlock'
 import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
 import BaseCombatFromStats from './components/pageTwo/baseCombatStats/baseCombatStats'
 
+import statTables from '../statTables'
+
 export default class CharacterEditor extends Component {
     constructor(props) {
         super(props)
@@ -127,7 +129,7 @@ export default class CharacterEditor extends Component {
 
     render() {
         let { name, race, primarya, secondarya, level, cha, con, crp, dex, excurrent, favormax, sizemod, str, stressthreshold, vitality: vitalityTotal, vitalitydice, wis, int,
-            temperament, goals, devotions, flaws, traits, reputation, contacts, strength, damageone, damagetwo,
+            temperament, goals, devotions, flaws, traits, reputation, contacts, strength, damageone, damagetwo, honor,
             abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, crawl, walk, jog, run, sprint, skills, combatskills, skilladept,
             armorname, armordr, armorskilladj, armorbonus, armortrainingdef, armortrainrecovery, armortrainfatigue, armortraininit, armormiscdef, armormiscrecovery, armormiscinit, armormiscfatigue, armorbasedef, armorbaserecovery,
             armorbasefatigue, armorbaseinit, shieldname, shieldflanks, shielddr, shieldsize, shieldcover, shieldbonus, martialadept,
@@ -141,6 +143,16 @@ export default class CharacterEditor extends Component {
             editButton = (<i className="fas fa-spinner spinner-tiny"></i>)
         }
 
+        str = str ? str : 1
+        dex = dex ? dex : 1
+        con = con ? con : 1
+        int = int ? int : 1
+        wis = wis ? wis : 1
+        cha = cha ? cha : 1
+
+        let chaData = statTables.chaTable[cha]
+        let shownHonor = cha ? honor : chaData.honor
+
         let armorRecovery = armorbaserecovery + armortrainrecovery + armormiscrecovery > 0 ? armorbaserecovery + armortrainrecovery + armormiscrecovery : 0
 
         weaponone.totalRecoveryModifiers = Math.floor(weaponone.trainrecovery / 2) + +weaponone.miscrecovery
@@ -153,7 +165,7 @@ export default class CharacterEditor extends Component {
         let characterInfo = { name, race, primarya, secondarya, level, crp, excurrent, updateAttribute: this.updateAttribute }
             , stats = { str, dex, con, int, wis, cha, updateAttribute: this.updateAttribute }
             , movement = { crawl, walk, jog, run, sprint, updateAttribute: this.updateAttribute, }
-            , social = { updateAttribute: this.updateAttribute, strength, temperament, goals, devotions, flaws, traits, reputation, contacts, extrahonordice, isHuman, descriptions }
+            , social = { shownHonor, updateAttribute: this.updateAttribute, strength, temperament, goals, devotions, flaws, traits, reputation, contacts, extrahonordice, isHuman, descriptions }
             , miscVitals = { updateAttribute: this.updateAttribute, vitalitydice, con, wis, stressdie, vitalityTotal, favormax, currentfavor }
             , baseCombatFromStats = { str, dex, int, wis, combatskillsuites, martialadept, combatskills, updateAttribute: this.updateAttribute, updatecombatSkillSuites: this.updatecombatSkillSuites, updateTrained: this.updateTrained }
             , vitality = { updateAttribute: this.updateAttribute, stresslockout, sizemod, stressthreshold, relaxation, vitalityTotal, damageone, damagetwo }

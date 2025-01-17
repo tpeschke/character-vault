@@ -60,9 +60,9 @@ export default function MiscVitals({ miscVitals, editing }) {
                 </div>
             </div>
             <div className="dieAndMinShell">
-                {rowPair('Vitality Die', vitalitydice, vitalitydice)}
+                {rowPair('Vitality Die', vitalitydice, 'vitalitydice')}
                 {rowPair('Min Vitality', minVitality)}
-                {rowPair('Nerve Die', stressdie, stressdie)}
+                {rowPair('Nerve Die', stressdie, 'stressdie')}
                 {rowPair('Min Nerve', minStress)}
             </div>
         </div>

@@ -399,7 +399,6 @@ export default class CharacterViewer extends Component {
             , wisData = statTables.wisTable[wis]
 
         let shownHonor = cha ? honor : chaData.honor
-            , shownGearCarry = this.convertFromEncumbToCarry(this.state.adjustedCarry)
 
         let quarterMastering = this.state.character.skills.filter(({ skill }) => {
             if (skill) {
@@ -430,7 +429,7 @@ export default class CharacterViewer extends Component {
             , carryFromStr = strData.carry
 
         if (isRatfolk) {
-            carryFromStr *= 2
+            carryFromStr *= 5
         }
 
         let shownCarry = this.convertFromEncumbToCarry(carryFromStr + quarterMastering)
@@ -513,7 +512,7 @@ export default class CharacterViewer extends Component {
             vitality = { stresslockout, shownVitality, overCarry, updateAttribute: this.updateAttribute, shownHonor, dwarfModifier, damageone, damagetwo, sizemod, currentstress, shownThreshold, relaxation, totalFatigue, armorFatigue: this.convertToFatigueLetter(armorFatigue), usingshield }
             abilities = { abilitiesone, abilitiestwo, abilitiesthree, removedability }
             skillsObject = { str, con, dex, int, wis, cha, skillsuites, nativelanguage, skills, skilladept, id }
-            cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry, shownCarry, isDownloading }
+            cashAndGear = { copper, updateAttribute: this.updateAttribute, silver, gold, platinium, gearone, geartwo, gearthree, gearfour, shownGearCarry: this.convertFromEncumbToCarry(this.state.adjustedCarry), shownCarry, isDownloading }
             baseCombatFromStats = { str, dex, int, wis, isDownloading, updateAttribute: this.updateAttribute, martialadept, combatskillsuites, combatskills }
             armor = {
                 armorname, armordr, armorskilladj, armorbonus, armorbasedef, armorbasefatigue, armorbaserecovery, armorbaseinit, armorbasefatiguemod,

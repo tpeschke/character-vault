@@ -86,7 +86,7 @@
 }
 
 .dieAndMinShell div p {
-    width: 25%;
+    width: 50%;
     text-align: center;
 }
 
@@ -99,6 +99,6 @@
 }
 
 .dieAndMinShell input {
-    width: 25%;
+    width: 50%;
     text-align: center;
 }
