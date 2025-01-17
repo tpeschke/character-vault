@@ -52,6 +52,10 @@
     position: absolute;
 }
 
+.weaponTraitArea textarea {
+    text-indent: 40px;
+}
+
 .bonusfour {
     height: 82px;
 }

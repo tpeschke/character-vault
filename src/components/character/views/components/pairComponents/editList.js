@@ -13,8 +13,8 @@ export default class EditList extends Component {
             objectKey: props.objectKey || 'value',
             heightStyling: {
                 height: props.height || 'unset'
-            }
-    
+            },
+            rowStyles: props.rowStyles
         }
     }
 
@@ -48,9 +48,9 @@ export default class EditList extends Component {
     }
 
     render() {
-        let { stylings, listArray, limit, heightStyling, objectKey } = this.state
+        let { stylings, listArray, limit, heightStyling, objectKey, rowStyles } = this.state
         let listOfInputs = listArray.map((item, i) => {
-            return <input className="pairRowStriping pairRow" style={{width: '100%'}} key={`${this.makeId()}`} defaultValue={item[objectKey]} onBlur={e => this.updateValue(e.target.value, i)} />
+            return <input className="pairRowStriping pairRow" style={{width: '100%', ...rowStyles}} key={`${this.makeId()}`} defaultValue={item[objectKey]} onBlur={e => this.updateValue(e.target.value, i)} />
         })
 
         let inputStyles = {

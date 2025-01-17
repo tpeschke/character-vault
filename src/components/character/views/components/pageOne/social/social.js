@@ -113,7 +113,7 @@ export default function Social({ social, editing }) {
                     <p>I'm Known For</p>
                 </div>
                 {editing ? (
-                    <EditList stylings={{ width: '341px' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
+                    <EditList stylings={{ width: '341px' }} rowStyles={{ textAlign: 'left' }} listArray={reputation} limit={3} updateFunction={updateAttribute} type={"reputation"} />
                 ) : (
                     <ViewList stylings={{ width: '341px' }} listArray={reputation} limit={3} />
                 )
