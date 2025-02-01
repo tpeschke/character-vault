@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import _ from "lodash";
+import _, { size } from "lodash";
 
 import WeaponSquare from './components/pageOne/weaponSquare/weaponsquare'
 import CharacterInfo from './components/pageOne/characterInfo/characterInfo'
@@ -67,18 +67,18 @@ export default class CharacterViewer extends Component {
             if (!containsCarry) { return 0 }
 
             let currentBit = ''
-
             value = value.replace(/\s+/g, '')
-            value.match(/[d.]+|\D+/g).forEach(character => {
+            value.split('').forEach(character => {
                 if (character.includes('S') || character.includes('M') || character.includes('L')) {
                     currentBit = currentBit + character
-                    currentBit = currentBit.match(/[d.]+|\D+/g)
+                    currentBit = currentBit.split('')
                     let number, type, container = false
                     if (currentBit.includes('+') || currentBit.includes('-')) {
                         container = true
                         number = +currentBit[1]
                         type = currentBit[2]
-                    } if (currentBit[0].includes('+') || currentBit[0].includes('-')) {
+                    } 
+                    if (currentBit[0].includes('+') || currentBit[0].includes('-')) {
                         container = true
                         if (!isNaN(+currentBit[1])) {
                             number = +currentBit[1]
