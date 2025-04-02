@@ -11,11 +11,11 @@
 }
 
 .contentPairListShell input {
-    text-align: center;
+    text-align: unset;
 }
 
-.contentPairListShell input:first-child {
-    text-align: unset;
+.contentPairListShell input:last-child {
+    text-align: center;
 }
 
 .gearColumn .contentPairListShell input:first-child {

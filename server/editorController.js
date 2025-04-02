@@ -173,52 +173,52 @@ editController = {
             let promiseArray = []
             promiseArray.push(db.delete.goals([id, [0, ...goals.map(goals => goals.id)]]).then(_ => {
                 return goals.map(({ id: goalid, value }) => {
-                    return db.upsert.goals(goalid, id, value)
+                    return db.upsert.goals(goalid, id, value).catch(e => sendErrorForward('inner goals', e, res))
                 })
             }).catch(e => sendErrorForward('goals', e, res)))
             promiseArray.push(db.delete.devotions([id, [0, ...devotions.map(devotions => devotions.id)]]).then(_ => {
                 return devotions.map(({ id: devotionid, value, title }) => {
-                    return db.upsert.devotions(devotionid, id, title, setToMin(value, 0))
+                    return db.upsert.devotions(devotionid, id, title, setToMin(value, 0)).catch(e => sendErrorForward('inner devotions', e, res))
                 })
             }).catch(e => sendErrorForward('devotions', e, res)))
             promiseArray.push(db.delete.flaws([id, [0, ...flaws.map(flaws => flaws.id)]]).then(_ => {
                 return flaws.map(({ id: flawid, value, title }) => {
-                    return db.upsert.flaws(flawid, id, title, value)
+                    return db.upsert.flaws(flawid, id, title, value).catch(e => sendErrorForward('inner flaws', e, res))
                 })
             }).catch(e => sendErrorForward('flaws', e, res)))
             promiseArray.push(db.delete.traits([id, [0, ...req.body.traits.map(traits => traits.id)]]).then(_ => {
                 return req.body.traits.map(({ id: traitsid, value, title }) => {
-                    return db.upsert.traits(traitsid, id, title, value)
+                    return db.upsert.traits(traitsid, id, title, value).catch(e => sendErrorForward('inner traits', e, res))
                 })
             }).catch(e => sendErrorForward('traits', e, res)))
             promiseArray.push(db.delete.descriptions([id, [0, ...req.body.descriptions.map(descriptions => descriptions.id)]]).then(_ => {
                 return req.body.descriptions.map(({ id: descriptionsid, value, title }) => {
-                    return db.upsert.descriptions(descriptionsid, id, title, value)
+                    return db.upsert.descriptions(descriptionsid, id, title, value).catch(e => sendErrorForward('inner descriptions', e, res))
                 })
             }).catch(e => sendErrorForward('descriptions', e, res)))
             promiseArray.push(db.delete.reputation([id, [0, ...reputation.map(reputation => reputation.id)]]).then(_ => {
                 return reputation.map(({ id: reputationid, value }) => {
-                    return db.upsert.reputation(reputationid, id, value)
+                    return db.upsert.reputation(reputationid, id, value).catch(e => sendErrorForward('inner reputation', e, res))
                 })
             }).catch(e => sendErrorForward('reputation', e, res)))
             promiseArray.push(db.delete.gearone([id, [0, ...gearone.map(gearone => gearone.id)]]).then(_ => {
                 return gearone.map(({ id: gearoneid, value, title }) => {
-                    return db.upsert.gearone(gearoneid, id, title, value)
+                    return db.upsert.gearone(gearoneid, id, title, value).catch(e => sendErrorForward('inner gear one', e, res))
                 })
             }).catch(e => sendErrorForward('gear one', e, res)))
             promiseArray.push(db.delete.geartwo([id, [0, ...geartwo.map(geartwo => geartwo.id)]]).then(_ => {
                 return geartwo.map(({ id: geartwoid, value, title }) => {
-                    return db.upsert.geartwo(geartwoid, id, title, value)
+                    return db.upsert.geartwo(geartwoid, id, title, value).catch(e => sendErrorForward('inner gear two', e, res))
                 })
             }).catch(e => sendErrorForward('gear two', e, res)))
             promiseArray.push(db.delete.gearthree([id, [0, ...gearthree.map(gearthree => gearthree.id)]]).then(_ => {
                 return gearthree.map(({ id: gearthreeid, value, title }) => {
-                    return db.upsert.gearthree(gearthreeid, id, title, value)
+                    return db.upsert.gearthree(gearthreeid, id, title, value).catch(e => sendErrorForward('inner gear three', e, res))
                 })
             }).catch(e => sendErrorForward('gear three', e, res)))
             promiseArray.push(db.delete.gearfour([id, [0, ...gearfour.map(gearfour => gearfour.id)]]).then(_ => {
                 return gearfour.map(({ id: gearfourid, value, title }) => {
-                    return db.upsert.gearfour(gearfourid, id, title, value)
+                    return db.upsert.gearfour(gearfourid, id, title, value).catch(e => sendErrorForward('inner gear four', e, res))
                 })
             }).catch(e => sendErrorForward('gear four', e, res)))
             let { weaponid, trainattack, trainparry, trainrecovery, traindamage, miscattack, miscparry, miscrecovery, miscdamage, miscinit, name, basedamage, baserecovery, baseparry, basemeasure, type, bonus, traits, size } = weaponone

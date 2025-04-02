@@ -77,7 +77,7 @@ function checkLogin (req, res, next) {
   if (req.user && req.user.id) {
     next()
   } else {
-    res.send({message: 'log on'})
+    res.send({error: true, message: 'log on'})
   }
 }
 
