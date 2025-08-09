@@ -1,17 +1,19 @@
 const { assembleCharacter } = require('./viewController')
 const { sendErrorForwardNoFile, checkForContentTypeBeforeSending } = require('./helpers')
 const { query } = require('../db/index')
-const { generalInserts } = require('../db/general/generalInserts')
-const { generalDeletes } = require('../db/general/generalDeletes')
-const { generalGets } = require('../db/general/generalGets')
-const { socialDeletes } = require('../db/social/socialDeletes')
-const { socialInserts } = require('../db/social/socialInserts')
-const { gearDeletes } = require('../db/gear/gearDeletes')
-const { gearInserts } = require('../db/gear/gearInserts')
-const { combatInserts } = require('../db/combat/combatInserts')
-const { combatDeletes } = require('../db/combat/combatDeletes')
-const { skillDeletes } = require('../db/skill/skillDeletes')
-const { skillInserts } = require('../db/skill/skillInserts')
+const generalInserts = require('../db/general/generalInserts')
+const generalDeletes = require('../db/general/generalDeletes')
+const generalGets = require('../db/general/generalGets')
+const socialDeletes = require('../db/social/socialDeletes')
+const socialInserts = require('../db/social/socialInserts')
+const gearDeletes = require('../db/gear/gearDeletes')
+const gearInserts = require('../db/gear/gearInserts')
+const combatInserts = require('../db/combat/combatInserts')
+const combatUpdates = require('../db/combat/combatUpdates')
+const combatDeletes = require('../db/combat/combatDeletes')
+const skillDeletes = require('../db/skill/skillDeletes')
+const skillInserts = require('../db/skill/skillInserts')
+const skillUpdates = require('../db/skill/skillUpdates')
 const sendErrorForward = sendErrorForwardNoFile('editor controller')
 
 function setToMinAndMax(value = 0, min, max) {
@@ -70,9 +72,9 @@ editController = {
                 }
 
                 if (Array.isArray(body[keyName])) {
-                    console.log(body, keyName)
                     let promiseArray = []
-                    // promiseArray.push(db.delete[keyName]([characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
+                    console.log(body, keyName)
+                    // promiseArray.push(query([keyName], [characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
                     //     return body[keyName].map(({ id, value, title }) => {
                     //         return db.upsert[keyName](id, characterid, title, value)
                     //     })
@@ -135,7 +137,7 @@ editController = {
         vitalityroll = setToMin(vitalityroll, 0)
         stressroll = setToMin(stressroll, 0)
 
-        query(generalInserts.character, [id, req.user.id, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept, martialadept, secretgeneralnotes, temperamentrank, stressroll, stressdie, currentfavor, stresslockout, strength]).then((data) => {
+        query(generalInserts.characterInfo, [id, req.user.id, name, race, primarya, secondarya, +primarylevel, +secondarylevel, cha, con, crp, dex, drawback, excurrent, favormax, honor, sizemod, str, stressthreshold, +vitality, vitalitydice, vitalityroll, wis, int, level, temperament, contacts, abilitiesone, abilitiestwo, abilitiesthree, removedability, maxrange, generalnotes, copper, silver, gold, platinium, crawl, walk, jog, run, sprint, skilladept, martialadept, secretgeneralnotes, temperamentrank, stressroll, stressdie, currentfavor, stresslockout, strength]).then((data) => {
             req.params.id = id
             let promiseArray = []
 
@@ -219,11 +221,12 @@ editController = {
 
             skillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
-                    promiseArray.push(query(skillInserts.skillsuites, [rank, characterskillsuitesid, trained]).catch(e => sendErrorForward('skill suites update', e, res)))
+                    promiseArray.push(query(skillUpdates.skillsuites, [rank, characterskillsuitesid, trained]).catch(e => sendErrorForward('skill suites update', e, res)))
                 } else if (!characterskillsuitesid) {
                     promiseArray.push(query(skillInserts.skillsuites, [skillsuiteid, id, rank, trained]).catch(e => sendErrorForward('skill suites add', e, res)))
                 }
             })
+
             promiseArray.push(query(skillDeletes.skills, [id, [0, ...skills.map(skills => skills.id)]]).then(_ => {
                 return skills.map(({ id: skillsid, cost, skill, rank, mod }) => {
                     return query(skillInserts.skills, [skillsid, id, skill, cost, rank, mod]).catch(e => sendErrorForward('skills update', e, res))
@@ -232,11 +235,12 @@ editController = {
 
             combatskillsuites.forEach(({ skillsuiteid, rank, characterskillsuitesid, trained }) => {
                 if (characterskillsuitesid) {
-                    promiseArray.push(query(combatInserts.skillsuitescombat, [rank, characterskillsuitesid, trained]).catch(e => sendErrorForward('combat skill suites update', e, res)))
+                    promiseArray.push(query(combatUpdates.skillsuitescombat, [rank, characterskillsuitesid, trained]).catch(e => sendErrorForward('combat skill suites update', e, res)))
                 } else if (!characterskillsuitesid) {
                     promiseArray.push(query(combatInserts.skillsuitescombat, [skillsuiteid, id, rank, trained]).catch(e => sendErrorForward('combat skill suites add', e, res)))
                 }
             })
+
             promiseArray.push(query(combatDeletes.skillscombat, [id, [0, ...combatskills.map(skills => skills.id)]]).then(_ => {
                 return combatskills.map(({ id: skillsid, cost, skill, rank, mod }) => {
                     return query(combatInserts.skillscombat, [skillsid, id, skill, cost, rank, mod]).catch(e => sendErrorForward('combat skills update', e, res))
