@@ -1,1 +1,0 @@
-SELECT id, name, vitalityroll, sizemod, vitality, con from cvcharactermain c where id = $1

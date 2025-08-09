@@ -1,0 +1,3 @@
+module.exports = {
+    skills: "delete from cvskills where characterid = $1 and id != ANY($2)"
+}
