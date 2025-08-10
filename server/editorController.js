@@ -73,12 +73,19 @@ editController = {
 
                 if (Array.isArray(body[keyName])) {
                     let promiseArray = []
-                    console.log(body, keyName)
-                    // promiseArray.push(query([keyName], [characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
-                    //     return body[keyName].map(({ id, value, title }) => {
-                    //         return db.upsert[keyName](id, characterid, title, value)
-                    //     })
-                    // }).catch(e => sendErrorForward('update single thing array', e.message, res)))
+                    let sqlDeletes = combatDeletes
+                    let sqlInserts = combatInserts
+                    
+                    if (keyName.includes('gear')) {
+                        sqlDeletes = gearDeletes
+                        sqlInserts = gearInserts
+                    }
+
+                    promiseArray.push(query(sqlDeletes[keyName], [characterid, [0, ...body[keyName].map(table => table.id)]]).then(_ => {
+                        return body[keyName].map(({ id, value, title }) => {
+                            return query(sqlInserts[keyName], [id, characterid, title, value])
+                        })
+                    }).catch(e => sendErrorForward('update single thing array', e.message, res)))
 
                     Promise.all(promiseArray).then(_ => {
                         checkForContentTypeBeforeSending(res, { messsage: "updated" })

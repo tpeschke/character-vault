@@ -179,6 +179,10 @@
     z-index: 9999;
 }
 
+.drshell:hover .tooltip p, .damage:hover .tooltip p {
+    height: unset;
+}
+
 #armorDr, #def {
     margin: 0;
     font-size: 13px;
