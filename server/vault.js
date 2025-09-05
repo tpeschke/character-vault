@@ -58,9 +58,8 @@ passport.serializeUser((id, done) => {
     done(null, id)
 })
 passport.deserializeUser((id, done) => {
-    app.get('db').findUserSession([id]).then((user) => {
-        return done(null, user[0]);
-    })
+    const [user] = await query(userSQL.findUserSession, [id])
+    return done(null, user);
 })
 
 app.get('/auth/logout', function (req, res) {
