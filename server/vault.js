@@ -57,7 +57,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 passport.serializeUser((id, done) => {
     done(null, id)
 })
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(async (id, done) => {
     const [user] = await query(userSQL.findUserSession, [id])
     return done(null, user);
 })
